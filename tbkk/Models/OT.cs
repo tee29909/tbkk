@@ -11,12 +11,17 @@ namespace tbkk.Models
         [Key]
         public int OTID { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
         public DateTime TimeStart { get; set; }
 
-        [DataType(DataType.Date)]
+        
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeEnd { get; set; }
+        
+
 
         public string TypeOT { get; set; }
         public string TypStatus { get; set; }

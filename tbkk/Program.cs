@@ -15,8 +15,8 @@ namespace tbkk
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-            /*var host = CreateHostBuilder(args).Build();
+            //CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
 
 
             using (var scope = host.Services.CreateScope())
@@ -25,6 +25,8 @@ namespace tbkk
 
                 try
                 {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogDebug( "22222222222222222222222222222");
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)
@@ -34,7 +36,7 @@ namespace tbkk
                 }
             }
 
-            host.Run();*/
+            host.Run();
 
         }
 

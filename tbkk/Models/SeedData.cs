@@ -16,24 +16,22 @@ namespace tbkk.Models
                     DbContextOptions<tbkkdbContext>>()))
             {
                 // Look for any movies.
-               
-                    context.Position.AddRange(
-                    new Position
-                    {
-                        PositionName = "admin"
-                    }
-                    );
+
+                if (context.EmployeeType.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Position.AddRange(
+                new Position
+                {
+                    PositionName = "admin"
+                }
+                );
                 
                /* ---------------------------------*/
                 
-                    context.EmployeeType.AddRange(
-                    new EmployeeType
-                    {
-                        EmployeeTypeName = "Part Time"
-                    }
-                    );
-                
-
+                    
                 
                     context.EmployeeType.AddRange(
                     new EmployeeType
@@ -73,10 +71,30 @@ namespace tbkk.Models
                         Status = "open"
                     }
                     );
-                
+
+                context.SaveChanges();
                 /*---------------------------------*/
-               
-                    context.Employee.AddRange(
+
+                
+            }
+
+
+
+            using (var context = new tbkkdbContext(
+                serviceProvider.GetRequiredService<
+                    DbContextOptions<tbkkdbContext>>()))
+            {
+                // Look for any movies.
+
+                if (context.Login.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.SaveChanges();
+                /*---------------------------------*/
+
+                context.Employee.AddRange(
                     new Employee
                     {
 
@@ -112,21 +130,21 @@ namespace tbkk.Models
                         Position_PositionID = 1
                     }
                     );
-                
+
                 /*---------------------------------*/
-               
-                
-                    context.Login.AddRange(
-                    new Login
-                    {
-                        Username = "admin",
 
-                        Password = "admin",
 
-                        Employee_EmployeeID = 1
-                    }
-                    );
-                
+                context.Login.AddRange(
+                new Login
+                {
+                    Username = "admin",
+
+                    Password = "admin",
+
+                    Employee_EmployeeID = 1
+                }
+                );
+
 
 
 

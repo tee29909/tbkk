@@ -1,0 +1,60 @@
+﻿@page
+@model tbkk.Pages.DetailOTs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>DetailOT</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DetailOT.DetailOTID" />
+            <div class="form-group">
+                <label asp-for="DetailOT.TimeStart" class="control-label"></label>
+                <input asp-for="DetailOT.TimeStart" class="form-control" />
+                <span asp-validation-for="DetailOT.TimeStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
+                <input asp-for="DetailOT.TimeEnd" class="form-control" />
+                <span asp-validation-for="DetailOT.TimeEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.Hour" class="control-label"></label>
+                <input asp-for="DetailOT.Hour" class="form-control" />
+                <span asp-validation-for="DetailOT.Hour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.Type" class="control-label"></label>
+                <input asp-for="DetailOT.Type" class="form-control" />
+                <span asp-validation-for="DetailOT.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.CarNumber" class="control-label"></label>
+                <input asp-for="DetailOT.CarNumber" class="form-control" />
+                <span asp-validation-for="DetailOT.CarNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.Status" class="control-label"></label>
+                <input asp-for="DetailOT.Status" class="form-control" />
+                <span asp-validation-for="DetailOT.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

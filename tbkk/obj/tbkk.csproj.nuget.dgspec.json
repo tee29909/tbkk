@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\tbkkNew\\tbkk\\tbkk\\tbkk.csproj": {}
+    "D:\\tbkkNew\\tbkknew\\tbkk\\tbkk.csproj": {}
   },
   "projects": {
-    "D:\\tbkkNew\\tbkk\\tbkk\\tbkk.csproj": {
+    "D:\\tbkkNew\\tbkknew\\tbkk\\tbkk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\tbkkNew\\tbkk\\tbkk\\tbkk.csproj",
+        "projectUniqueName": "D:\\tbkkNew\\tbkknew\\tbkk\\tbkk.csproj",
         "projectName": "tbkk",
-        "projectPath": "D:\\tbkkNew\\tbkk\\tbkk\\tbkk.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\tbkkNew\\tbkk\\tbkk\\obj\\",
+        "projectPath": "D:\\tbkkNew\\tbkknew\\tbkk\\tbkk.csproj",
+        "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
+        "outputPath": "D:\\tbkkNew\\tbkknew\\tbkk\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Master\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

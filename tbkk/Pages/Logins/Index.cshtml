@@ -38,6 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.LoginID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.LoginID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.LoginID">Delete</a>
