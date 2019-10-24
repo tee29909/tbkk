@@ -25,9 +25,19 @@
                 if (1 <= d && d <= 5) {
                     console.log("raday");
                     $(document).ready(function () {
+                        var today = new Date();
+                        var data = {
+                            TimeStart: today.val(),
+                            TimeEnd: today.val(),
+                            TypeOT: "Nomal",
+                            TypStatus: "Open",
+                
+            };
                         $.ajax({
                             type: 'POST',
-                            url: '/api/addtime'
+                            url: '/api/addtime',
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
                         }).done(function () {
                 console.log('SUCCESS');
                 location.reload();

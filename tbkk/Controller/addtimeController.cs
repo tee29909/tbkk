@@ -53,10 +53,11 @@ namespace tbkk.Controller
             OT.TimeEnd = date;
             OT.TypeOT = "Nomal";
             OT.TypStatus = "Open";
+
             await _context.SaveChangesAsync();
 
             //return Page();
-            return Ok(OT) ;
+            return Ok();
         }
 
         // PUT api/<controller>/5
