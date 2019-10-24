@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <script>
+        
+            
         function startTime() {
+            
+
+          
             var today = new Date();
+            today.setHours(8);
+            today.setMinutes(0);
             var d = today.getDay();
 
             var h = today.getHours();
@@ -12,10 +19,29 @@
             m = checkTime(m);
             s = checkTime(s);
             h = checkTime(h);
-            show(d,h,m,s)
             document.getElementById('txt').innerHTML =d+"::"+  h + ":" + m + ":" + s;
             var t = setTimeout(startTime, 500);
-            checkStartTime(d,h,m)
+            if (h == 8 && m == 0) {
+                if (1 <= d && d <= 5) {
+                    console.log("raday");
+                    $(document).ready(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/api/addtime'
+                        }).done(function () {
+                console.log('SUCCESS');
+                location.reload();
+            }).fail(function (msg) {
+                
+                alert('FAIL');
+            });
+                    });
+
+                }
+            
+               
+            }
+            
             
         }
         function checkTime(i) {
@@ -23,21 +49,26 @@
             { i = "0" + i };  // add zero in front of numbers < 10
             return i;
         }
-        function checkDate(d) {
+       /* function checkDate(d) {
             
             if (1 <= d && d <= 5) {
-                
-            } 
-            if (d == 5) {
-                
-            }  
+
+             *//* $( document ).ready(function() {
+                  console.log("raday");
+              });*//*
+                return true;
+
+            }
+            return false;
+            
         }
         function checkStartTime(d, h, m) {
             if (h == 8 && m == 0) {
-                chechDate(d);
-            } 
+                return chechDate(d);
+            }
+            return false;
 
-        }
+        }*/
         
     </script>
 
@@ -298,8 +329,13 @@
 
     @RenderSection("Scripts", required: false)
 
+   
+
+    
 
 
 
-</body>
+
+
+    </body>
 </html>
