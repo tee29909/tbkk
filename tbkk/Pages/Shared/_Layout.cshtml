@@ -1,6 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        function startTime() {
+            var today = new Date();
+            var d = today.getDay();
+
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            h = checkTime(h);
+            show(d,h,m,s)
+            document.getElementById('txt').innerHTML =d+"::"+  h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+            checkStartTime(d,h,m)
+            
+        }
+        function checkTime(i) {
+            if (i < 10)
+            { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        function checkDate(d) {
+            
+            if (1 <= d && d <= 5) {
+                
+            } 
+            if (d == 5) {
+                
+            }  
+        }
+        function checkStartTime(d, h, m) {
+            if (h == 8 && m == 0) {
+                chechDate(d);
+            } 
+
+        }
+        
+    </script>
+
+    <h1 id="txt"></h1>
+
+
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TBKK</title>
@@ -56,48 +101,8 @@
 
 
 
-
-
-
-
-
-
-    <script>
-        function selectType1() {
-            var m1 = document.getElementById("M1");
-            var m2 = document.getElementById("M2");
-            document.getElementById("gridCheck2").checked = false;
-            document.getElementById("gridCheck3").checked = false;
-            m1.style.display = "block";
-            m2.style.display = "none";
-        }
-        function selectType2() {
-            var m1 = document.getElementById("M1");
-            var m2 = document.getElementById("M2");
-            document.getElementById("gridCheck1").checked = false;
-            document.getElementById("gridCheck3").checked = false;
-            m1.style.display = "none";
-            m2.style.display = "block";
-        }
-        function selectType3() {
-            var m1 = document.getElementById("M1");
-            var m2 = document.getElementById("M2");
-            document.getElementById("gridCheck1").checked = false;
-            document.getElementById("gridCheck2").checked = false;
-            m1.style.display = "none";
-            m2.style.display = "block";
-        }
-        function selectH1() {
-            document.getElementById("h2").checked = false;
-        }
-        function selectH2() {
-            document.getElementById("h1").checked = false;
-        }
-    </script>
-
-
 </head>
-<body id="page-top">
+<body id="page-top" onload="startTime()">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -256,6 +261,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -285,11 +291,14 @@
     <script src="~/js/sb-admin.min.js"></script>
 
 
-    <script src="~/js/demo/datatables-demo.js"></script>
+    <script src="~/js/demo/chart-bar-demo.js"></script>
     <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/demo/chart-area-demo2.js"></script>
 
 
     @RenderSection("Scripts", required: false)
+
+
 
 
 </body>

@@ -31,17 +31,21 @@ namespace tbkk.Pages
             Debug.WriteLine(Username);
             if (Username == string.Empty && Password == string.Empty)
             {
-                return NotFound();
+                return Page();
 
             }
             
 
             Login = await _context.Login
-                .FirstOrDefaultAsync(m => string.Equals(m.Username, Username) && string.Equals(m.Password, Username));
+                .FirstOrDefaultAsync(m => string.Equals(m.Username, Username));
 
             if (Login == null)
             {
-                return NotFound();
+                return Page();
+            }
+            if (!Login.Password.Equals(Password))
+            {
+                return Page();
             }
             ViewData["Employee_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
             Debug.WriteLine(Login.Employee_EmployeeID);

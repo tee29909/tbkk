@@ -148,8 +148,23 @@ namespace tbkk.Migrations
                     b.Property<string>("CarNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CarType_CarTypeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Employee_EmpID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodSet_FoodSetID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Hour")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OT_OTID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Part_PaetID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -164,6 +179,16 @@ namespace tbkk.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DetailOTID");
+
+                    b.HasIndex("CarType_CarTypeID");
+
+                    b.HasIndex("Employee_EmpID");
+
+                    b.HasIndex("FoodSet_FoodSetID");
+
+                    b.HasIndex("OT_OTID");
+
+                    b.HasIndex("Part_PaetID");
 
                     b.ToTable("DetailOT");
                 });
@@ -380,6 +405,39 @@ namespace tbkk.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("tbkk.Models.DetailOT", b =>
+                {
+                    b.HasOne("tbkk.Models.CarType", "CarType")
+                        .WithMany()
+                        .HasForeignKey("CarType_CarTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("Employee_EmpID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.FoodSet", "FoodSet")
+                        .WithMany()
+                        .HasForeignKey("FoodSet_FoodSetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.OT", "OT")
+                        .WithMany()
+                        .HasForeignKey("OT_OTID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.Part", "Part")
+                        .WithMany()
+                        .HasForeignKey("Part_PaetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("tbkk.Models.Employee", b =>
                 {
                     b.HasOne("tbkk.Models.Company", "Company")
@@ -432,6 +490,5 @@ namespace tbkk.Migrations
                 });
 #pragma warning restore 612, 618
         }
-
     }
 }

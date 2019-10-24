@@ -22,9 +22,11 @@ namespace tbkk.Pages.listOTs
 
         public async Task OnGetAsync()
         {
-            int id = 1;
+            
             OT = await _context.OT.ToListAsync();
+            
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
+
         }
     }
 }

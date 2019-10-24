@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace tbkk.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,24 +69,6 @@ namespace tbkk.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Department", x => x.DepartmentID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetailOT",
-                columns: table => new
-                {
-                    DetailOTID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TimeStart = table.Column<DateTime>(nullable: false),
-                    TimeEnd = table.Column<DateTime>(nullable: false),
-                    Hour = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
-                    CarNumber = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetailOT", x => x.DetailOTID);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,6 +241,59 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DetailOT",
+                columns: table => new
+                {
+                    DetailOTID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TimeStart = table.Column<DateTime>(nullable: false),
+                    TimeEnd = table.Column<DateTime>(nullable: false),
+                    Hour = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    CarNumber = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    Part_PaetID = table.Column<int>(nullable: false),
+                    FoodSet_FoodSetID = table.Column<int>(nullable: false),
+                    CarType_CarTypeID = table.Column<int>(nullable: false),
+                    OT_OTID = table.Column<int>(nullable: false),
+                    Employee_EmpID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetailOT", x => x.DetailOTID);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_CarType_CarType_CarTypeID",
+                        column: x => x.CarType_CarTypeID,
+                        principalTable: "CarType",
+                        principalColumn: "CarTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_Employee_Employee_EmpID",
+                        column: x => x.Employee_EmpID,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_FoodSet_FoodSet_FoodSetID",
+                        column: x => x.FoodSet_FoodSetID,
+                        principalTable: "FoodSet",
+                        principalColumn: "FoodSetID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_OT_OT_OTID",
+                        column: x => x.OT_OTID,
+                        principalTable: "OT",
+                        principalColumn: "OTID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_Part_Part_PaetID",
+                        column: x => x.Part_PaetID,
+                        principalTable: "Part",
+                        principalColumn: "PartID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Login",
                 columns: table => new
                 {
@@ -283,6 +318,31 @@ namespace tbkk.Migrations
                 name: "IX_CarType_CompanyCarID",
                 table: "CarType",
                 column: "CompanyCarID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_CarType_CarTypeID",
+                table: "DetailOT",
+                column: "CarType_CarTypeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_Employee_EmpID",
+                table: "DetailOT",
+                column: "Employee_EmpID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_FoodSet_FoodSetID",
+                table: "DetailOT",
+                column: "FoodSet_FoodSetID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_OT_OTID",
+                table: "DetailOT",
+                column: "OT_OTID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_Part_PaetID",
+                table: "DetailOT",
+                column: "Part_PaetID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_Company_CompanyID",
@@ -323,16 +383,16 @@ namespace tbkk.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CarType");
-
-            migrationBuilder.DropTable(
                 name: "DetailOT");
 
             migrationBuilder.DropTable(
-                name: "FoodSet");
+                name: "Login");
 
             migrationBuilder.DropTable(
-                name: "Login");
+                name: "CarType");
+
+            migrationBuilder.DropTable(
+                name: "FoodSet");
 
             migrationBuilder.DropTable(
                 name: "OT");
@@ -341,13 +401,13 @@ namespace tbkk.Migrations
                 name: "Part");
 
             migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
                 name: "CompanyCar");
 
             migrationBuilder.DropTable(
                 name: "Canteen");
-
-            migrationBuilder.DropTable(
-                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Company");
