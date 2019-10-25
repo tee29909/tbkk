@@ -43,6 +43,7 @@ namespace tbkk.Pages.Home
             ViewData["EmployeeType_EmployeeTypeID"] = new SelectList(_context.EmployeeType, "EmployeeTypeID", "EmployeeTypeID");
             ViewData["Location_LocationID"] = new SelectList(_context.Location, "LocationID", "LocationID");
             ViewData["Position_PositionID"] = new SelectList(_context.Position, "PositionID", "PositionID");
+            //return RedirectToPage("./../Home/Home", new { id = Employee.EmployeeID });
             return Page();
         }
     }

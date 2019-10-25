@@ -671,3 +671,18 @@ D:\TBKK\New folder\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Delete
 D:\TBKK\New folder\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Details.cshtml.g.cs
 D:\TBKK\New folder\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Edit.cshtml.g.cs
 D:\TBKK\New folder\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Index.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Create.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Delete.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Details.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Edit.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Canteens\Index.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\CarTypes\Create.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\CarTypes\Delete.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\CarTypes\Details.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\CarTypes\Edit.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\CarTypes\Index.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Paths\Create.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Paths\Delete.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Paths\Details.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Paths\Edit.cshtml.g.cs
+D:\TBKK\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Paths\Index.cshtml.g.cs

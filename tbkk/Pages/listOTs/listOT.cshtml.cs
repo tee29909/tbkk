@@ -21,32 +21,32 @@ namespace tbkk.Pages.listOTs
 
         public IList<OT> OT { get;set; }
         public Employee Employee { get; set; }
-        public async Task OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            
+            if (id == null)
+            {
+                return NotFound();
+            }
             OT = await _context.OT.ToListAsync();
            
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 
-            Employee = await _context.Employee.FirstOrDefaultAsync(m => m.EmployeeID == id);
-            Debug.WriteLine("--------------------------------------------------------------" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "");
-            Debug.WriteLine(Employee);
+            Employee = await _context.Employee
+                 .Include(e => e.Company)
+                 .Include(e => e.Department)
+                 .Include(e => e.EmployeeType)
+                 .Include(e => e.Location)
+                 .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+
+            if (Employee == null)
+            {
+                return NotFound();
+            }
+            return Page();
 
         }
         
 
-
-
-        
-        
        
     }
 }
