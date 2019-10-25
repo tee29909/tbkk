@@ -45,6 +45,31 @@
                 <span asp-validation-for="DetailOT.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
+                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
+                <span asp-validation-for="DetailOT.Part_PaetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
+                <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
+                <span asp-validation-for="DetailOT.FoodSet_FoodSetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.CarType_CarTypeID" class="control-label"></label>
+                <select asp-for="DetailOT.CarType_CarTypeID" class="form-control" asp-items="ViewBag.CarType_CarTypeID"></select>
+                <span asp-validation-for="DetailOT.CarType_CarTypeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.OT_OTID" class="control-label"></label>
+                <select asp-for="DetailOT.OT_OTID" class="form-control" asp-items="ViewBag.OT_OTID"></select>
+                <span asp-validation-for="DetailOT.OT_OTID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailOT.Employee_EmpID" class="control-label"></label>
+                <select asp-for="DetailOT.Employee_EmpID" class="form-control" asp-items="ViewBag.Employee_EmpID"></select>
+                <span asp-validation-for="DetailOT.Employee_EmpID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

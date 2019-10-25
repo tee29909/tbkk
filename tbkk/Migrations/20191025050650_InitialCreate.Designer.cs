@@ -10,8 +10,8 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20191023114714_Initial")]
-    partial class Initial
+    [Migration("20191025050650_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

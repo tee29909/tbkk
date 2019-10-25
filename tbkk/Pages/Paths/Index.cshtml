@@ -1,0 +1,42 @@
+﻿@page
+@model tbkk.Pages.Paths.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Part[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Part[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Part) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PartID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PartID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PartID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

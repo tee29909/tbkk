@@ -49,7 +49,13 @@ namespace tbkk.Pages
             }
             ViewData["Employee_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
             Debug.WriteLine(Login.Employee_EmployeeID);
-            return RedirectToPage("./Home/Home");
+            datalogin data = new datalogin();
+            data.EmployeeID = Login.Employee_EmployeeID;
+           
+            
+            Debug.WriteLine(data.EmployeeID + "555555555555555555555555555555555555555555555555555555555555555555555555");
+            
+            return RedirectToPage("./Home/Home", new { id = Login.Employee_EmployeeID });
         }
     }
 }

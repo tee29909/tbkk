@@ -29,12 +29,22 @@ namespace tbkk.Pages.DetailOTs
                 return NotFound();
             }
 
-            DetailOT = await _context.DetailOT.FirstOrDefaultAsync(m => m.DetailOTID == id);
+            DetailOT = await _context.DetailOT
+                .Include(d => d.CarType)
+                .Include(d => d.Employee)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
             if (DetailOT == null)
             {
                 return NotFound();
             }
+           ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
+           ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+           ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
+           ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
+           ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
             return Page();
         }
 

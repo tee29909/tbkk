@@ -19,43 +19,13 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-
-
-
-        [BindProperty]
-        public OT OT { get; set; }
-        public int ID; 
-
-        public async Task<IActionResult> OnGetAsync(int id)
-        {
-            
-            if (id == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                ID = id;
-            }
-            
-            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == id);
-
-            if (OT == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
-
-
-
-
-
-
-
-
         public IActionResult OnGet()
         {
+        ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
+        ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+        ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
+        ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
+        ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
             return Page();
         }
 
@@ -72,10 +42,27 @@ namespace tbkk.Pages.listOTs
             }
 
             _context.DetailOT.Add(DetailOT);
-            
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./listOT");
+            return RedirectToPage("./Index");
+        }
+        public Employee Employee { get; set; }
+        public OT OT { get; set; }
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == id);
+            
+
+            if (OT == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }

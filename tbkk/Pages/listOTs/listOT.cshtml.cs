@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +20,33 @@ namespace tbkk.Pages.listOTs
         }
 
         public IList<OT> OT { get;set; }
-
-        public async Task OnGetAsync()
+        public Employee Employee { get; set; }
+        public async Task OnGetAsync(int id)
         {
             
             OT = await _context.OT.ToListAsync();
-            
+           
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 
+            Employee = await _context.Employee.FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Debug.WriteLine("--------------------------------------------------------------" +
+                "" +
+                "" +
+                "" +
+                "" +
+                "" +
+                "" +
+                "" +
+                "");
+            Debug.WriteLine(Employee);
+
         }
+        
+
+
+
+        
+        
+       
     }
 }

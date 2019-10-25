@@ -5,7 +5,10 @@
     ViewData["Title"] = "listOT";
 }
 
-    <h1>ขอทำงานOT</h1>
+
+
+<h1>ขอทำงานOT @Html.DisplayFor(model => model.Employee.EmployeeID)</h1>
+
 
 
 <table class="table">
@@ -27,26 +30,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.OT) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeOT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypStatus)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.OTID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OTID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OTID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.OT)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypStatus)
+                </td>
+                <td>
+                    <a asp-page="./../DetailOT/Create" asp-route-id="@item.OTID">สมัคร</a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<script>
+    console.log(login);
+
+</script>

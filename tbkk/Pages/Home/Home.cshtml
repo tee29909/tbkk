@@ -5,13 +5,21 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Home</h1>
+<h1 id="data">@Html.DisplayFor(model => model.Employee.EmployeeID)</h1>
 
-    <canvas id="test" style="max-width: 500px;"></canvas>
+<h1 id="data"></h1>
+
+<canvas id="test" style="max-width: 500px;"></canvas>
 
 
 <canvas id="myAreaChart" style="max-width: 500px;"></canvas>
 <canvas id="myBarChart" style="max-width: 500px;"></canvas>
+<script>
+
+    login = data();
+    console.log(login);
+    
+</script>
 
 
 

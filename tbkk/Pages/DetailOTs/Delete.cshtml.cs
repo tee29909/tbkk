@@ -28,7 +28,12 @@ namespace tbkk.Pages.DetailOTs
                 return NotFound();
             }
 
-            DetailOT = await _context.DetailOT.FirstOrDefaultAsync(m => m.DetailOTID == id);
+            DetailOT = await _context.DetailOT
+                .Include(d => d.CarType)
+                .Include(d => d.Employee)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
             if (DetailOT == null)
             {

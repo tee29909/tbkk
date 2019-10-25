@@ -1,0 +1,48 @@
+﻿@page
+@model tbkk.Pages.CarTypes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType[0].NameCar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType[0].Seat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType[0].CompanyCar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CarType) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyCar.CompanyCarID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CarTypeID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CarTypeID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CarTypeID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -8,11 +8,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using tbkk.Models;
+using tbkk.Pages;
 
 namespace tbkk
 {
     public class Program
     {
+       
+            
+
         public static void Main(string[] args)
         {
             //CreateHostBuilder(args).Build().Run();

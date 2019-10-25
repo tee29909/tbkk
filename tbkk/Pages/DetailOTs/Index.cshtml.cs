@@ -22,7 +22,12 @@ namespace tbkk.Pages.DetailOTs
 
         public async Task OnGetAsync()
         {
-            DetailOT = await _context.DetailOT.ToListAsync();
+            DetailOT = await _context.DetailOT
+                .Include(d => d.CarType)
+                .Include(d => d.Employee)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).ToListAsync();
         }
     }
 }

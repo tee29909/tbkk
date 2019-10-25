@@ -31,6 +31,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.DetailOT[0].Status)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].Part)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].CarType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].OT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -54,6 +69,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Part.PartID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType.CarTypeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OT.OTID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |

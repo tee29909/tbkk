@@ -1,13 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+   
+   
+   
     <script>
-        
+        var login; 
+        function data() {
+            var a = document.getElementById("data").innerHTML;
             
-        function startTime() {
-            
+            console.log(login);
+            return a;
+        }
 
-          
+
+        function startTime() {
+
+
+
             var today = new Date();
             today.setHours(8);
             today.setMinutes(0);
@@ -19,70 +29,30 @@
             m = checkTime(m);
             s = checkTime(s);
             h = checkTime(h);
-            document.getElementById('txt').innerHTML =d+"::"+  h + ":" + m + ":" + s;
+            //document.getElementById('txt').innerHTML = d + "::" + h + ":" + m + ":" + s;
+            
             var t = setTimeout(startTime, 500);
             if (h == 8 && m == 0) {
                 if (1 <= d && d <= 5) {
-                    console.log("raday");
-                    $(document).ready(function () {
-                        var today = new Date();
-                        var data = {
-                            TimeStart: today.,
-                            TimeEnd: today,
-                            TypeOT: "Nomal",
-                            TypStatus: "Open",
-                
-            };
-                        $.ajax({
-                            type: 'POST',
-                            url: '/api/addtime',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data)
-                        }).done(function () {
-                console.log('SUCCESS');
-                location.reload();
-            }).fail(function (msg) {
-                
-                alert('FAIL');
-            });
-                    });
+
+
 
                 }
-            
-               
+
+
             }
-            
-            
+
+
         }
         function checkTime(i) {
-            if (i < 10)
-            { i = "0" + i };  // add zero in front of numbers < 10
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
             return i;
         }
-       /* function checkDate(d) {
-            
-            if (1 <= d && d <= 5) {
 
-             *//* $( document ).ready(function() {
-                  console.log("raday");
-              });*//*
-                return true;
 
-            }
-            return false;
-            
-        }
-        function checkStartTime(d, h, m) {
-            if (h == 8 && m == 0) {
-                return chechDate(d);
-            }
-            return false;
-
-        }*/
-        
     </script>
 
-    <h1 id="txt"></h1>
+    
 
 
 
@@ -144,6 +114,7 @@
 
 </head>
 <body id="page-top" onload="startTime()">
+
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -213,7 +184,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
-                    <a class="dropdown-item" asp-page="./../listOTs/listOT">ขอทำงานOT</a>
+                    <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=login>ขอทำงานOT</a>
                     <a class="dropdown-item" href="register.html">คิวรถกลับบ่าน</a>
                     <a class="dropdown-item" href="forgot-password.html">ประวัตการทำงานOT</a>
 
@@ -240,23 +211,6 @@
 
 
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>from</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Login Screens:</h6>
-                    <a class="dropdown-item" href="login.html">Login</a>
-                    <a class="dropdown-item" href="register.html">Register</a>
-                    <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Other Pages:</h6>
-                    <a class="dropdown-item" href="404.html">404 Page</a>
-                    <a class="dropdown-item" href="blank.html">Blank Page</a>
-                </div>
-            </li>
 
 
 
@@ -265,18 +219,8 @@
 
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
+
+
         </ul>
 
         <div id="content-wrapper">
@@ -325,7 +269,7 @@
     <!-- Bootstrap core JavaScript-->
     <!-- Core plugin JavaScript-->
     <!-- Page level plugin JavaScript-->
-    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    
     <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
 
 
@@ -338,14 +282,15 @@
 
 
     @RenderSection("Scripts", required: false)
-
-   
-
     
 
 
 
 
 
-    </body>
+
+
+
+
+</body>
 </html>
