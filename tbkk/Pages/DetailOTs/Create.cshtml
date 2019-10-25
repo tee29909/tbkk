@@ -30,38 +30,47 @@
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.Type" class="control-label"></label>
-                <input asp-for="DetailOT.Type" class="form-control" />
-                <span asp-validation-for="DetailOT.Type" class="text-danger"></span>
+                <select asp-for="DetailOT.Type" class="form-control">
+                    <option>One-way-front</option>
+                    <option>One-way-back</option>
+                    <option>Two-way</option>
+                </select>
+
             </div>
             <div class="form-group">
-                <label asp-for="DetailOT.CarNumber" class="control-label"></label>
-                <input asp-for="DetailOT.CarNumber" class="form-control" />
-                <span asp-validation-for="DetailOT.CarNumber" class="text-danger"></span>
+              
+                <input hidden asp-for="DetailOT.CarNumber" class="form-control" value="0" />
+               
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.Status" class="control-label"></label>
-                <input asp-for="DetailOT.Status" class="form-control" />
-                <span asp-validation-for="DetailOT.Status" class="text-danger"></span>
+                <select asp-for="DetailOT.Status" class="form-control">
+                    <option>Pending for approval</option>
+                    <option>Approved</option>
+                    <option>Unapproved</option>
+                </select>
+
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                <select asp-for="DetailOT.Part_PaetID" class ="form-control" asp-items="ViewBag.Part_PaetID"></select>
+                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
-                <select asp-for="DetailOT.FoodSet_FoodSetID" class ="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
+                <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DetailOT.CarType_CarTypeID" class="control-label"></label>
-                <select asp-for="DetailOT.CarType_CarTypeID" class ="form-control" asp-items="ViewBag.CarType_CarTypeID"></select>
+
+                <input hidden asp-for="DetailOT.CarType_CarTypeID" class="form-control" value=1 />
+
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.OT_OTID" class="control-label"></label>
-                <select asp-for="DetailOT.OT_OTID" class ="form-control" asp-items="ViewBag.OT_OTID"></select>
+                <select asp-for="DetailOT.OT_OTID" class="form-control" asp-items="ViewBag.OT_OTID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.Employee_EmpID" class="control-label"></label>
-                <select asp-for="DetailOT.Employee_EmpID" class ="form-control" asp-items="ViewBag.Employee_EmpID"></select>
+                <select asp-for="DetailOT.Employee_EmpID" class="form-control" asp-items="ViewBag.Employee_EmpID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

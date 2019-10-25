@@ -21,6 +21,7 @@ namespace tbkk.Pages.listOTs
 
         public IList<OT> OT { get;set; }
         public Employee Employee { get; set; }
+        public IList<DetailOT> DetailOT { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -28,7 +29,20 @@ namespace tbkk.Pages.listOTs
                 return NotFound();
             }
             OT = await _context.OT.ToListAsync();
-           
+
+            DetailOT = await _context.DetailOT
+              .Include(d => d.CarType)
+              .Include(d => d.Employee)
+              .Include(d => d.FoodSet)
+              .Include(d => d.OT)
+              .Include(d => d.Part).ToListAsync();
+
+            DetailOT = DetailOT.Where(d => d.Employee_EmpID == id).ToList();
+            DetailOT = DetailOT.Where(d => d.TimeStart.Date.Equals(DateTime.Today.Date)).ToList();
+
+            
+            Console.WriteLine(DetailOT);
+
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 
             Employee = await _context.Employee
