@@ -11,13 +11,13 @@ namespace tbkk.Models
     {
         [Key]
         public int DetailOTID { get; set; }
-
-        [DataType(DataType.Time)]
+        
+       
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeStart { get; set; }
-
-        [DataType(DataType.Time)]
+        
+       
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeEnd { get; set; }
@@ -34,7 +34,7 @@ namespace tbkk.Models
         [ForeignKey("FoodSet")]
         public int FoodSet_FoodSetID { get; set; }
         public FoodSet FoodSet { get; set; }
-        [Display(Name = "CarNumber")]
+        
         [ForeignKey("CarType")]
         public int CarType_CarTypeID { get; set; }
         public CarType CarType { get; set; }
