@@ -65,6 +65,24 @@
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
                 <a class="dropdown-item" href="forgot-password.html">History</a>
 
+                <a class="dropdown-item" href="forgot-password.html">History</a>
+                @{
+
+
+                    if (!Model.Employee.Position.PositionName.Equals("Employee"))
+                    {
+                        <h6 class="dropdown-header">Management OT</h6>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                    }
+                    if (!Model.Employee.Position.PositionName.Equals("Employee") && !Model.Employee.Position.PositionName.Equals("Manager"))
+                    {
+                        <h6 class="dropdown-header">data OT</h6>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
+
+                    }
+                }
+
             </div>
         </li>
         <li class="nav-item dropdown">

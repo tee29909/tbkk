@@ -37,7 +37,9 @@ namespace tbkk.Pages.listOTs
               .Include(d => d.OT)
               .Include(d => d.Part).ToListAsync();
 
-            DetailOT = DetailOT.Where(d => d.Employee_EmpID == id).ToList();
+           
+            
+
             DetailOT = DetailOT.Where(d => d.TimeStart.Date.Equals(DateTime.Today.Date)).ToList();
 
             

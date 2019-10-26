@@ -5,6 +5,16 @@
     Layout = "~/Pages/Shared/_Login.cshtml";
 }
 
+
+@{
+    DateTime time1 = DateTime.Parse("5:30");
+    DateTime time2 = DateTime.Parse("20:00");
+    TimeSpan time3 = time1.Subtract(time2);
+ }
+<script>
+    console.log(@time3.ToString());
+</script>
+
 <div class="card card-login mx-auto mt-5">
     <div class="card-header">
         <div class="text-center">
