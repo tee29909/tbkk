@@ -3,3 +3,18 @@
     background-image: linear-gradient(100deg, #c24edf 10%, #224abe 100%);
     background-size: cover;
   }
+.card-layout {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.full-img {
+    width: 100%;
+    height: 100%;
+}
+
+#wrapper #content-fullimg {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}

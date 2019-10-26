@@ -62,9 +62,9 @@
 
 
 
-                <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID >ขอทำงานOT</a>
-                <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id =@Model.Employee.EmployeeID>คิวรถกลับบ่าน</a>
-                <a class="dropdown-item" href="forgot-password.html">ประวัตการทำงานOT</a>
+                <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
+                <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
+                <a class="dropdown-item" href="forgot-password.html">History</a>
 
             </div>
         </li>
@@ -84,10 +84,10 @@
         </li>
     </ul>
     <div id="content-wrapper">
-        <div name="55555">
+        <div name="55555" class="card-layout">
 
 
-            <h1>ขอทำงานOT @Html.DisplayFor(model => model.Employee.EmployeeID)</h1>
+            <h1>Request OT</h1>
 
 
 
@@ -126,14 +126,14 @@
                                 @Html.DisplayFor(modelItem => item.TypStatus)
                             </td>
                             <td>
-                                <a asp-page="./../listOTs/addOT" asp-route-id="@item.OTID">สมัคร</a>
+                               
 
                                 @{
                                    
                                     
                                     if (!Model.DetailOT.Any())
                                     {
-                                        <script>document.getElementById('regis').value;</script>
+                                      <a asp-page="./../listOTs/addOT" asp-route-id="@item.OTID">register</a>
                                         
 
                                     }
@@ -142,13 +142,6 @@
                                         <h2>Oh no. Its @DateTime.Now.DayOfWeek</h2>
                                     }
                                 }
-
-
-                               
-
-
-
-
 
                             </td>
                         </tr>

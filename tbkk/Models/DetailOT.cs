@@ -34,6 +34,7 @@ namespace tbkk.Models
         [ForeignKey("FoodSet")]
         public int FoodSet_FoodSetID { get; set; }
         public FoodSet FoodSet { get; set; }
+        [Display(Name = "CarNumber")]
         [ForeignKey("CarType")]
         public int CarType_CarTypeID { get; set; }
         public CarType CarType { get; set; }
