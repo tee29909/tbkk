@@ -1298,7 +1298,7 @@ namespace tbkk.Models
                 {
 
                     TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("13:00 PM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Nomal",
                     TypStatus = "Open"
 
@@ -1311,15 +1311,152 @@ namespace tbkk.Models
                 {
 
                     TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("13:00 PM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Special",
                     TypStatus = "Open"
 
 
                 }
                 );
+                //
+                context.OT.AddRange(
+                new OT
+                {
+
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
 
 
+                }
+                );
+                context.OT.AddRange(
+                new OT
+                {
+
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
+
+
+                }
+                );
+                context.OT.AddRange(
+                new OT
+                {
+
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
+
+
+                }
+                );
+                context.DetailOT.AddRange(
+               new DetailOT
+               {
+
+                   TimeStart = DateTime.Parse("16:00 AM"),
+                   TimeEnd = DateTime.Parse("18:00 PM"),
+                   Hour = "2",
+                   Type = "Cloes",
+                   CarNumber = "1",
+                   Status = "full",
+                   Part_PaetID = 1,//1-4
+                   FoodSet_FoodSetID = 1,//1-3
+                   CarType_CarTypeID = 1, //1-4
+                   OT_OTID = 1, //1-2
+                   Employee_EmpID = 2 //2-20
+               }
+                );
+                context.DetailOT.AddRange(
+              new DetailOT
+              {
+
+                  TimeStart = DateTime.Parse("16:00 AM"),
+                  TimeEnd = DateTime.Parse("18:00 PM"),
+                  Hour = "2",
+                  Type = "Cloes",
+                  CarNumber = "1",
+                  Status = "full",
+                  Part_PaetID = 3,//1-4
+                   FoodSet_FoodSetID = 1,//1-3
+                   CarType_CarTypeID = 2, //1-4
+                   OT_OTID = 1, //1-2
+                   Employee_EmpID = 3 //2-20
+               }
+               );
+                context.DetailOT.AddRange(
+             new DetailOT
+             {
+
+                 TimeStart = DateTime.Parse("16:00 AM"),
+                 TimeEnd = DateTime.Parse("18:00 PM"),
+                 Hour = "2",
+                 Type = "Cloes",
+                 CarNumber = "1",
+                 Status = "full",
+                 Part_PaetID = 1,//1-4
+                  FoodSet_FoodSetID = 3,//1-3
+                  CarType_CarTypeID = 2, //1-4
+                  OT_OTID = 1, //1-2
+                  Employee_EmpID = 4 //2-20
+              }
+              );
+                context.DetailOT.AddRange(
+             new DetailOT
+             {
+
+                 TimeStart = DateTime.Parse("16:00 AM"),
+                 TimeEnd = DateTime.Parse("18:00 PM"),
+                 Hour = "2",
+                 Type = "Cloes",
+                 CarNumber = "1",
+                 Status = "full",
+                 Part_PaetID = 1,//1-4
+                  FoodSet_FoodSetID = 1,//1-3
+                  CarType_CarTypeID = 3, //1-4
+                  OT_OTID = 2, //1-2
+                  Employee_EmpID = 5 //2-20
+              }
+              );
+                context.DetailOT.AddRange(
+             new DetailOT
+             {
+
+                 TimeStart = DateTime.Parse("16:00 AM"),
+                 TimeEnd = DateTime.Parse("18:00 PM"),
+                 Hour = "2",
+                 Type = "Cloes",
+                 CarNumber = "1",
+                 Status = "full",
+                 Part_PaetID = 2,//1-4
+                  FoodSet_FoodSetID = 2,//1-3
+                  CarType_CarTypeID = 2, //1-4
+                  OT_OTID = 2, //1-2
+                  Employee_EmpID = 6 //2-20
+              }
+              );
+                context.DetailOT.AddRange(
+             new DetailOT
+             {
+
+                 TimeStart = DateTime.Parse("16:00 AM"),
+                 TimeEnd = DateTime.Parse("18:00 PM"),
+                 Hour = "2",
+                 Type = "Cloes",
+                 CarNumber = "1",
+                 Status = "full",
+                 Part_PaetID = 2,//1-4
+                  FoodSet_FoodSetID = 3,//1-3
+                  CarType_CarTypeID = 2, //1-4
+                  OT_OTID = 1, //1-2
+                  Employee_EmpID = 7 //2-20
+              }
+              );
 
 
 
