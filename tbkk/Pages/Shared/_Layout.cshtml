@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-   
-   
-   
-    
 
-    
+
+
+
+
+
 
 
 
@@ -27,7 +27,7 @@
     <link href="~/css/sb-admin2.css" rel="stylesheet">
 
 
-
+    <script src="~/lib/chart.js/Chart.min.js"></script>
 
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -36,22 +36,6 @@
     <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
 
 
-    
-    <script src="~/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
-
-
-    <script src="~/js/sb-admin.min.js"></script>
-
-
-    <script src="~/js/demo/datatables-demo.js"></script>
-   
-
-
-
-
-
-
 
     <script src="~/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
@@ -61,7 +45,23 @@
 
 
     <script src="~/js/demo/datatables-demo.js"></script>
-    
+
+
+
+
+
+
+
+
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
+
+
+    <script src="~/js/sb-admin.min.js"></script>
+
+
+    <script src="~/js/demo/datatables-demo.js"></script>
+
 
 
 
@@ -69,10 +69,10 @@
 </head>
 <body id="page-top">
 
-    
 
-        @RenderBody()
-    
+
+    @RenderBody()
+
 
     <!-- /.container-fluid -->
     <!-- Sticky Footer -->
@@ -80,8 +80,8 @@
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>
-                    
-                    @{var footer = "COPYRIGHT @ 2012 TBKK (Thailand) Co.,Ltd. ALL RIGHTS RESERVED.";} 
+
+                    @{var footer = "COPYRIGHT @ 2012 TBKK (Thailand) Co.,Ltd. ALL RIGHTS RESERVED.";}
                     @footer
                 </span>
             </div>
@@ -131,8 +131,16 @@
 
 
 
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.js"></script>
 
 
+    <script src="~/js/sb-admin.min.js"></script>
+
+
+    @*<script src="~/js/demo/chart-bar-demo.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>*@
+    <script src="~/js/demo/chart-area-demo2.js"></script>
 
 
 

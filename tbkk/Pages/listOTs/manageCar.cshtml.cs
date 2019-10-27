@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,43 +9,27 @@ using tbkk.Models;
 
 namespace tbkk.Pages.listOTs
 {
-    public class listOTModel : PageModel
+    public class manageCarModel : PageModel
     {
         private readonly tbkk.Models.tbkkdbContext _context;
 
-        public listOTModel(tbkk.Models.tbkkdbContext context)
+        public manageCarModel(tbkk.Models.tbkkdbContext context)
         {
             _context = context;
         }
 
-        public IList<OT> OT { get;set; }
         public Employee Employee { get; set; }
-        public IList<DetailOT> DetailOT { get; set; }
+        public IList<DetailOT> DetailOT { get;set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            OT = await _context.OT.ToListAsync();
-
             DetailOT = await _context.DetailOT
-              .Include(d => d.CarType)
-              .Include(d => d.Employee)
-              .Include(d => d.FoodSet)
-              .Include(d => d.OT)
-              .Include(d => d.Part).ToListAsync();
-
-
-           
-            
-
-            DetailOT = DetailOT.Where(d => d.TimeStart.Date.Equals(DateTime.Today.Date)).ToList();
-
-            
-            Console.WriteLine(DetailOT);
-
-            OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
+                .Include(d => d.CarType)
+                .Include(d => d.Employee)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).ToListAsync();
+            DetailOT = DetailOT.Where(d => d.TimeStart.Month == DateTime.Now.Month).ToList();
 
             Employee = await _context.Employee
                  .Include(e => e.Company)
@@ -60,10 +43,6 @@ namespace tbkk.Pages.listOTs
                 return NotFound();
             }
             return Page();
-
         }
-        
-
-       
     }
 }

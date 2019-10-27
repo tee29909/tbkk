@@ -78,7 +78,8 @@
 
                 <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
-                <a class="dropdown-item" href="forgot-password.html">History</a>
+                <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
+
                 @{
 
 
@@ -87,12 +88,16 @@
                         <h6 class="dropdown-header">Management OT</h6>
                         <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageCar" asp-route-id=@Model.Employee.EmployeeID>test</a>
                     }
-                    if (!Model.Employee.Position.PositionName.Equals("Employee")&&!Model.Employee.Position.PositionName.Equals("Manager"))
+                    if (!Model.Employee.Position.PositionName.Equals("Employee") && !Model.Employee.Position.PositionName.Equals("Manager"))
                     {
                         <h6 class="dropdown-header">data OT</h6>
                         <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
-                       
+
+
+
+
                     }
                 }
             </div>
@@ -127,7 +132,7 @@
 
 
 
-        <img src="http://www.tbkk.co.th/images/slider/04.jpg" alt="" />
+        <img width="100%" height="100%"   src="http://www.tbkk.co.th/images/slider/04.jpg" alt="" />
 
 
         <!-- <div name="55555" class=">

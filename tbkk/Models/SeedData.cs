@@ -1281,18 +1281,6 @@ namespace tbkk.Models
                 );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 context.OT.AddRange(
                 new OT
                 {
@@ -1318,20 +1306,76 @@ namespace tbkk.Models
 
                 }
                 );
-                //
-               
-                
+                context.OT.AddRange(
+                new OT
+                {
+
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
 
 
+                }
+                );
+                context.OT.AddRange(
+                new OT
+                {
 
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Special",
+                     TypStatus = "Cloes"
 
+                }
+                );
+                context.OT.AddRange(
+                new OT
+                {
 
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                     TypeOT = "Nomal",
+                     TypStatus = "Cloes"
+                 }
+                 );
+                context.OT.AddRange(
+                new OT
+                {
 
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
+                }
+                );
+                context.OT.AddRange(
+                new OT
+                {
+                    TimeStart = DateTime.Parse("8:00 AM"),
+                    TimeEnd = DateTime.Parse("15:00 PM"),
+                    TypeOT = "Nomal",
+                    TypStatus = "Cloes"
+                 }
+                 );
+                /*context.DetailOT.AddRange(
+               new DetailOT
+               {
 
-
-
-
-
+                   TimeStart = DateTime.Parse("16:00 PM"),
+                   TimeEnd = DateTime.Parse("18:00 PM"),
+                   Hour = "2",
+                   Type = "One-way",
+                   CarNumber = "1",
+                   Status = "pending",
+                   Part_PaetID = 1,
+                   FoodSet_FoodSetID = 2,
+                   CarType_CarTypeID = 2, 
+                   OT_OTID = 1, 
+                   Employee_EmpID = 2 
+               }
+                );
+                */ 
 
 
 

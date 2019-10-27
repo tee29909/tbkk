@@ -1,11 +1,13 @@
 ﻿@page
-@model tbkk.Pages.listOTs.addOTModel
+@model tbkk.Pages.listOTs.detailModel
 
 @{
-    ViewData["Title"] = "addOT";
+    ViewData["Title"] = "detail";
 }
+
+
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-    <a class="navbar-brand mr-1" asp-page="./../Home/Home" asp-route-id=@Model.Employee.EmployeeID>TBKK</a>
+    <a class="navbar-brand mr-1" asp-page="./../Home/Home" asp-route-id=@Model.DetailOT.Employee_EmpID>TBKK</a>
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
@@ -31,7 +33,7 @@
     <!-- Sidebar -->
     <ul class="sidebar bg-gradient-primary navbar-nav">
         <li class="nav-item ">
-            <a class="nav-link" asp-page="./../Home/Home" asp-route-id=@Model.Employee.EmployeeID>
+            <a class="nav-link" asp-page="./../Home/Home" asp-route-id=@Model.DetailOT.Employee_EmpID>
                 <i class="fas fa-fw fa-home"></i>
                 <span>Home</span>
             </a>
@@ -56,33 +58,30 @@
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
 
-
-
-                <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
-                <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
-                <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
+                <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.DetailOT.Employee_EmpID>Request OT</a>
+                <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.DetailOT.Employee_EmpID>Bus Station</a>
+                <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.DetailOT.Employee_EmpID>List Show Join OT</a>
 
                 @{
 
 
-                    if (!Model.Employee.Position.PositionName.Equals("Employee"))
+                    if (!Model.DetailOT.Employee.Position.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageCar" asp-route-id=@Model.Employee.EmployeeID>test</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.DetailOT.Employee_EmpID>Petition OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.DetailOT.Employee_EmpID>Report OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageCar" asp-route-id=@Model.DetailOT.Employee_EmpID>test</a>
                     }
-                    if (!Model.Employee.Position.PositionName.Equals("Employee") && !Model.Employee.Position.PositionName.Equals("Manager"))
+                    if (!Model.DetailOT.Employee.Position.Equals("Employee") && !Model.DetailOT.Employee.Position.Equals("Manager"))
                     {
                         <h6 class="dropdown-header">data OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.DetailOT.Employee_EmpID>Petition OT</a>
 
 
 
 
                     }
                 }
-
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -92,6 +91,7 @@
                 <span>IT Serves</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                a
                 <h6 class="dropdown-header">Help Desk:</h6>
                 <a class="dropdown-item" href="login.html">แจ้งอุปกรรเสียหาย</a>
                 <a class="dropdown-item" href="login.html">อุปกรที่ใช้งานอยู่</a>
@@ -103,90 +103,82 @@
     <div id="content-wrapper">
         <div name="55555" class="card-layout">
 
-
-            <h1>Request</h1>
-
-<h4>Register</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DetailOT.TimeStart" class="control-label"></label>
-                <input asp-for="DetailOT.TimeStart" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeStart" class="text-danger"></span>
-
-                @*<input hidden type="text" name="t1[]" value="@">
-                <h1>item.Hour</h1>*@
-
+            <div>
+                <h4>DetailOT</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.TimeStart)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.TimeEnd)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Hour)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Hour)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Type)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Type)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.CarNumber)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.CarNumber)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Status)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Status)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Part)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Part.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.FoodSet.FoodSetcoManul)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.CarType)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.CarType.NameCar)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.OT)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.OT.OTID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Employee)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Employee.FirstName) @Html.DisplayFor(model => model.DetailOT.Employee.LastName)
+                    </dd>
+                </dl>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
-                <input asp-for="DetailOT.TimeEnd" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeEnd" class="text-danger"></span>
+            <div>
+                
+                <a asp-page="./../listOTs/listOT" asp-route-id=@Model.DetailOT.Employee_EmpID>Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Hour" class="control-label"></label>
-                <input asp-for="DetailOT.Hour" class="form-control" />
-                <span asp-validation-for="DetailOT.Hour" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Type" class="control-label"></label>
-                <select asp-for="DetailOT.Type" class="form-control">
-                    <option>One-way-front</option>
-                    <option>One-way-back</option>
-                    <option>Two-way</option>
-                </select>
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.CarNumber" class="form-control" value="0" />
-
-            </div>
-            <div class="form-group">
-
-                <select hidden asp-for="DetailOT.Status" class="form-control">
-                    <option>Pending for approval</option>
-                    <option>Approved</option>
-                    <option>Unapproved</option>
-                </select>
-
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
-                <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.CarType_CarTypeID" class="form-control" value=1 />
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.Employee_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
-
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a a asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Back to List</a>
-</div>
 
 
 
@@ -228,9 +220,12 @@
     </div>
 </div>
 
-
-
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+
+
+
+

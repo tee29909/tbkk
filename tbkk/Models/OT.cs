@@ -25,6 +25,7 @@ namespace tbkk.Models
         
         public string TypeOT { get; set; }
         
+        [Display(Name = "TypeStatus")]
         public string TypStatus { get; set; }
     }
 }

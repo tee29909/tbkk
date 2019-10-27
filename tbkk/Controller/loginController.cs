@@ -8,9 +8,13 @@ namespace tbkk.Controller
 {
     public class loginController : ControllerBase
     {
+
+       
         public IActionResult Index()
         {
+
             
+           
             return View();
         }
 
