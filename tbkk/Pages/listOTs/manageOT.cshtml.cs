@@ -33,7 +33,7 @@ namespace tbkk.Pages.listOTs
                .Include(e => e.Location)
                .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
 
-
+           
 
             if (Employee == null)
             {
@@ -65,10 +65,14 @@ namespace tbkk.Pages.listOTs
             {
                 return Page();
             }
+         
+
+            _context.Attach(OT).State = EntityState.Modified;
+
+
+           
             
-
-
-            _context.Attach(Department).State = EntityState.Modified;
+            
 
             try
             {
@@ -76,22 +80,22 @@ namespace tbkk.Pages.listOTs
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DepartmentExists(Department.DepartmentID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                //if (!OTExists(OT.OTID))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                //    throw;
+                //}
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./../listOTs/manageOT", new { id = a });
         }
 
-        private bool DepartmentExists(int id)
+        private bool OTExists(int id)
         {
-            return _context.Department.Any(e => e.DepartmentID == id);
+            return _context.OT.Any(e => e.OTID == id);
         }
 
 
