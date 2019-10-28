@@ -25,9 +25,9 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-           
-                a = id;
-            
+
+
+            a = id;
            
            
 
@@ -63,7 +63,7 @@ namespace tbkk.Pages.listOTs
             _context.OT.Add(OT);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./../listOTs/listOT", new { id = a });
+            return RedirectToPage("./../listOTs/manageOT", new { id = a });
         }
     }
 }

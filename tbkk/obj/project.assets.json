@@ -8048,11 +8048,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\tbkk\\tbkk\\tbkk\\tbkk.csproj",
+      "projectUniqueName": "C:\\Users\\Master\\Desktop\\testfinal\\tbkk\\tbkk\\tbkk.csproj",
       "projectName": "tbkk",
-      "projectPath": "D:\\tbkk\\tbkk\\tbkk\\tbkk.csproj",
+      "projectPath": "C:\\Users\\Master\\Desktop\\testfinal\\tbkk\\tbkk\\tbkk.csproj",
       "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
-      "outputPath": "D:\\tbkk\\tbkk\\tbkk\\obj\\",
+      "outputPath": "C:\\Users\\Master\\Desktop\\testfinal\\tbkk\\tbkk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -44,6 +44,9 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
 
+            DetailOT = DetailOT.Where(d => d.Employee_EmpID.Equals(id)).ToList();
+            DetailOT = DetailOT.Where(d => d.Status.Equals("Approved")).ToList();
+
             Employee = await _context.Employee
                 .Include(e => e.Company)
                 .Include(e => e.Department)

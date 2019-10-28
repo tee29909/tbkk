@@ -69,19 +69,11 @@
                     if (!Model.Employee.Position.PositionName.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageCar" asp-route-id=@Model.Employee.EmployeeID>test</a>
-                    }
-                    if (!Model.Employee.Position.PositionName.Equals("Employee") && !Model.Employee.Position.PositionName.Equals("Manager"))
-                    {
-                        <h6 class="dropdown-header">data OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Petition OT</a>
-
-
-
 
                     }
+
                 }
 
             </div>
@@ -109,23 +101,7 @@
             <h1>List Join OT</h1>
 
 
-            @{
-
-
-                if (!Model.Employee.Position.PositionName.Equals("Employee"))
-                {
-                        <p>
-                            <a asp-page="CreateOT" asp-route-id="@Model.Employee.EmployeeID">Create OT</a>
-                        </p>
-
-
-
-                }
-                
-
-
-
-            }
+            
             
 
 
@@ -133,7 +109,7 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].OT)
+                            Date
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
@@ -174,10 +150,16 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OT.OTID)
+                               
+                                @{
+                                    DateTime date = item.TimeStart;
+                                                                    }
+
+                                @date.ToString("dddd, dd MMMM yyyy")
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                                @Html.DisplayFor(modelItem => item.Employee.LastName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TimeStart)
@@ -198,13 +180,13 @@
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Part.PartID)
+                                @Html.DisplayFor(modelItem => item.Part.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
+                                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetcoManul)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CarType.CarTypeID)
+                                @Html.DisplayFor(modelItem => item.CarType.NameCar)
                             </td>
 
 
