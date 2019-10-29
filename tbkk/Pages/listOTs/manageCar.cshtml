@@ -62,19 +62,33 @@
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
 
+
                 <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
                 <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
 
                 @{
+                    if (Model.Employee.Department_DepartmentID == 5 || !Model.Employee.Position.PositionName.Equals("Employee"))
+                    {
+                        <h6 class="dropdown-header">Management</h6>
+
+                        <a class="dropdown-item" asp-page="./../listOTs/listEmpOT" asp-route-id=@Model.Employee.EmployeeID>List Employer</a>
+
+
+                    }
 
 
                     if (!Model.Employee.Position.PositionName.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        //<a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>Manage OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/OTcar" asp-route-id=@Model.Employee.EmployeeID>Car Management</a>
+
+
+                        //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+
+
 
                     }
 
@@ -148,23 +162,23 @@
                 <tbody>
                     <input type="text" name="data[][]" value="">
                     }
-                    @*@{ for (int i =1;i<=31;i++) { 
-                       for (int j= 0; i< Model.DetailOT.Count;j++)
-                        {
-                            if ()
+                    @*@{ for (int i =1;i<=31;i++) {
+                           for (int j= 0; i< Model.DetailOT.Count;j++)
                             {
+                                if ()
+                                {
+
+                                }
 
                             }
-
                         }
-                    }
 
-                    }*@
+                        }*@
 
 
 
                     @foreach (var item in Model.DetailOT)
-                        
+
                     {
 
 
@@ -230,10 +244,10 @@
 
 
                         }
-                        
+
                     }*@
                 </script>
-               
+
 
 
 
@@ -242,8 +256,8 @@
 
             <canvas id="test1" style="max-width: 500px;"></canvas>
             <script>
-                var date = $("input[name='t2[]']").map(function(){return $(this).val();}).get();
-                var values = $("input[name='t1[]']").map(function(){return $(this).val();}).get();
+                var date = $("input[name='t2[]']").map(function () { return $(this).val(); }).get();
+                var values = $("input[name='t1[]']").map(function () { return $(this).val(); }).get();
                 var ctx = document.getElementById("test1");
                 var aDate = new Array();
                 for (var i = 0; i < date.length; i++) {
@@ -253,102 +267,107 @@
                 }
                 alert([Array(3).keys()]);
                 var myLineChart = new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                    //labels: aDate.keys(),
-                    datasets: [{
-                      label: "Sessions",
-                      lineTension: 0.3,
-                      backgroundColor: "rgba(2,117,216,0.2)",
-                      borderColor: "rgba(2,117,216,1)",
-                      pointRadius: 5,
-                      pointBackgroundColor: "rgba(2,117,216,1)",
-                      pointBorderColor: "rgba(255,255,255,0.8)",
-                      pointHoverRadius: 5,
-                      pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                      pointHitRadius: 50,
-                      pointBorderWidth: 2,
-                      data: aDate,
-                    }],
-                  },
-                  options: {
-                    scales: {
-                      xAxes: [{
-                        time: {
-                          unit: 'date'
-                        },
-                        gridLines: {
-                          display: false
-                        },
-                        ticks: {
-                          maxTicksLimit: 7
-                        }
-                      }],
-                      yAxes: [{
-                        ticks: {
-                          min: 0,
-                          max: 5,
-                          maxTicksLimit: 5
-                        },
-                        gridLines: {
-                          color: "rgba(0, 0, 0, .125)",
-                        }
-                      }],
+                    type: 'bar',
+                    data: {
+                        //labels: aDate.keys(),
+                        datasets: [{
+                            label: "Sessions",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(2,117,216,0.2)",
+                            borderColor: "rgba(2,117,216,1)",
+                            pointRadius: 5,
+                            pointBackgroundColor: "rgba(2,117,216,1)",
+                            pointBorderColor: "rgba(255,255,255,0.8)",
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                            pointHitRadius: 50,
+                            pointBorderWidth: 2,
+                            data: aDate,
+                        }],
                     },
-                    legend: {
-                      display: false
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxTicksLimit: 7
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 5,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                        },
+                        legend: {
+                            display: false
+                        }
                     }
-                  }
                 });
-                            </script>
-                            @*<canvas id="myAreaChart" style="max-width: 500px;"></canvas>
-                        <canvas id="myBarChart" style="max-width: 500px;"></canvas>*@
+            </script>
+            @*<canvas id="myAreaChart" style="max-width: 500px;"></canvas>
+                <canvas id="myBarChart" style="max-width: 500px;"></canvas>*@
 
-                           <!-- <script src="~/js/demo/chart-area-demo2.js"></script> -->
+            <!-- <script src="~/js/demo/chart-area-demo2.js"></script> -->
 
 
-                        </div>
-                        <!-- /.container-fluid -->
-                        <!-- Sticky Footer -->
-                        <footer class="sticky-footer">
-                            <div class="container my-auto">
-                                <div class="copyright text-center my-auto">
-                                    <span>Copyright © Your Website 2019</span>
-                                </div>
-                            </div>
-                        </footer>
-                    </div>
-                    <!-- /.content-wrapper -->
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Your Website 2019</span>
                 </div>
-                <!-- /#wrapper -->
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" asp-page="./../Index">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" asp-page="./../Index">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
 
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 
 

@@ -61,19 +61,33 @@
 
 
 
+
                 <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
                 <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
 
                 @{
+                    if (Model.Employee.Department_DepartmentID == 5 || !Model.Employee.Position.PositionName.Equals("Employee"))
+                    {
+                        <h6 class="dropdown-header">Management</h6>
+
+                        <a class="dropdown-item" asp-page="./../listOTs/listEmpOT" asp-route-id=@Model.Employee.EmployeeID>List Employer</a>
+
+
+                    }
 
 
                     if (!Model.Employee.Position.PositionName.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        //<a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>Manage OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/OTcar" asp-route-id=@Model.Employee.EmployeeID>Car Management</a>
+
+
+                        //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+
+
 
                     }
 

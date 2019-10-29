@@ -58,19 +58,33 @@
 
 
 
+
                 <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
                 <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
 
                 @{
+                    if (Model.Employee.Department_DepartmentID == 5 || !Model.Employee.Position.PositionName.Equals("Employee"))
+                    {
+                        <h6 class="dropdown-header">Management</h6>
+
+                        <a class="dropdown-item" asp-page="./../listOTs/listEmpOT" asp-route-id=@Model.Employee.EmployeeID>List Employer</a>
+
+
+                    }
 
 
                     if (!Model.Employee.Position.PositionName.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        //<a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>Manage OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/OTcar" asp-route-id=@Model.Employee.EmployeeID>Car Management</a>
+
+
+                        //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+
+
 
                     }
 
@@ -107,8 +121,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="DetailOT.TimeStart" class="control-label"></label>
-                <input asp-for="DetailOT.TimeStart" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeStart" class="text-danger"></span>
+                <input asp-for="DetailOT.TimeStart" name="t1" class="form-control" />
+                <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
 
                 @*<input hidden type="text" name="t1[]" value="@">
                 <h1>item.Hour</h1>*@
@@ -116,8 +130,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
-                <input asp-for="DetailOT.TimeEnd" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeEnd" class="text-danger"></span>
+                <input asp-for="DetailOT.TimeEnd" name="t2" class="form-control" />
+
+                <span asp-validation-for="DetailOT.TimeEnd.TimeOfDay" class="text-danger"></span>
+
+                <script>
+
+
+                    var t1 = document.getElementById("t1").innerHTML;
+                
+                    var t2 = document.getElementById("t2").innerHTML;
+
+
+                </script>
             </div>
             <div class="form-group">
                 <label asp-for="DetailOT.Hour" class="control-label"></label>

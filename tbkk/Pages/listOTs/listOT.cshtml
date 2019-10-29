@@ -60,19 +60,33 @@
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
 
+
                 <a class="dropdown-item" asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Request OT</a>
                 <a class="dropdown-item" asp-page="./../listOTs/CarQueue" asp-route-id=@Model.Employee.EmployeeID>Bus Station</a>
                 <a class="dropdown-item" asp-page="./../listOTs/listJoinOT" asp-route-id=@Model.Employee.EmployeeID>List Show Join OT</a>
 
                 @{
+                    if (Model.Employee.Department_DepartmentID == 5 || !Model.Employee.Position.PositionName.Equals("Employee"))
+                    {
+                        <h6 class="dropdown-header">Management</h6>
+
+                        <a class="dropdown-item" asp-page="./../listOTs/listEmpOT" asp-route-id=@Model.Employee.EmployeeID>List Employer</a>
+
+
+                    }
 
 
                     if (!Model.Employee.Position.PositionName.Equals("Employee"))
                     {
                         <h6 class="dropdown-header">Management OT</h6>
-                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
-                        <a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        //<a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
+                        <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>Manage OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/OTcar" asp-route-id=@Model.Employee.EmployeeID>Car Management</a>
+
+
+                        //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+
+
 
                     }
 
@@ -86,7 +100,8 @@
                 <i class="fas fa-fw fa-cogs"></i>
                 <span>IT Serves</span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">a
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                a
                 <h6 class="dropdown-header">Help Desk:</h6>
                 <a class="dropdown-item" href="login.html">แจ้งอุปกรรเสียหาย</a>
                 <a class="dropdown-item" href="login.html">อุปกรที่ใช้งานอยู่</a>
@@ -127,54 +142,63 @@
                 <tbody>
                     @foreach (var item in Model.OT)
                     {
-                    <tr>
-                        <td>
+                        <tr>
+                            <td>
 
 
-                            @{
-                                DateTime date = item.TimeStart;
+                                @{
+                                    DateTime date = item.TimeStart;
 
 
 
-                            }
+                                }
 
-                            @date.ToString("dddd, dd MMMM yyyy")
-
-                            
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TimeStart)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TimeEnd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TypeOT)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TypStatus)
-                        </td>
-                        <td>
-                            
-
-                            @{
+                                @date.ToString("dddd, dd MMMM yyyy")
 
 
-                                if (Model.DetailOT.Any())
-                                {
-                                    var check = 0;
-                                    foreach (var i in Model.DetailOT)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeStart)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypStatus)
+                            </td>
+                            <td>
+
+
+                                @{
+
+
+                                    if (Model.DetailOT.Any())
                                     {
-                                        if (item.OTID == i.OT_OTID)
+                                        var check = 0;
+                                        foreach (var i in Model.DetailOT)
                                         {
-                                            check = 1;
-                                            <a asp-page="./../listOTs/detail" asp-route-id="@i.DetailOTID">Detail</a>
+                                            if (item.OTID == i.OT_OTID)
+                                            {
+                                                check = 1;
+                                                <a asp-page="./../listOTs/detail" asp-route-id="@i.DetailOTID">Detail</a>
+
+                                            }
+
+                                        }
+                                        if (check == 0)
+                                        {
+                                            <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID">Register</a>
 
                                         }
 
+
+
                                     }
-                                    if (check == 0)
+                                    else
                                     {
                                         <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID">Register</a>
 
@@ -183,22 +207,13 @@
 
 
                                 }
-                                else
-                                {
-                                    <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID">Register</a>
 
-                                }
-
-
-
-                            }
-
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
-           
+
 
 
 
@@ -243,4 +258,9 @@
 
 
 
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

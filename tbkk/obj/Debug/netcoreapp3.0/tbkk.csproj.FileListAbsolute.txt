@@ -1084,3 +1084,4 @@ C:\Users\admin\Desktop\tbkk(28102562)\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.csp
 C:\Users\admin\Desktop\tbkk(28102562)\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.dll
 C:\Users\admin\Desktop\tbkk(28102562)\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.pdb
 C:\Users\admin\Desktop\tbkk(28102562)\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\OTcar.cshtml.g.cs
+C:\Users\admin\Desktop\tbkk(28102562)\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\listEmpOT.cshtml.g.cs
