@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\tbkk(28102562)\\tbkk\\tbkk\\tbkk.csproj": {}
+    "C:\\Users\\Master\\Desktop\\tbkk(10.29.2019)\\tbkk\\tbkk\\tbkk.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\tbkk(28102562)\\tbkk\\tbkk\\tbkk.csproj": {
+    "C:\\Users\\Master\\Desktop\\tbkk(10.29.2019)\\tbkk\\tbkk\\tbkk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\tbkk(28102562)\\tbkk\\tbkk\\tbkk.csproj",
+        "projectUniqueName": "C:\\Users\\Master\\Desktop\\tbkk(10.29.2019)\\tbkk\\tbkk\\tbkk.csproj",
         "projectName": "tbkk",
-        "projectPath": "C:\\Users\\admin\\Desktop\\tbkk(28102562)\\tbkk\\tbkk\\tbkk.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\tbkk(28102562)\\tbkk\\tbkk\\obj\\",
+        "projectPath": "C:\\Users\\Master\\Desktop\\tbkk(10.29.2019)\\tbkk\\tbkk\\tbkk.csproj",
+        "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Master\\Desktop\\tbkk(10.29.2019)\\tbkk\\tbkk\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Master\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

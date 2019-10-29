@@ -19,7 +19,7 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
         public Employee Employee { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id,int? Did)
         {
             if (id == null)
             {
@@ -28,8 +28,15 @@ namespace tbkk.Pages.listOTs
 
 
             a = id;
-           
-           
+
+            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
+
+            if (OT == null)
+            {
+                return NotFound();
+            }
+
+
 
             Employee = await _context.Employee
             .Include(e => e.Company)

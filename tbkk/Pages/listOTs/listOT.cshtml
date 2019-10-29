@@ -176,33 +176,36 @@
                                 @{
 
 
-                                    if (Model.DetailOT.Any())
+
+
+                                    var check = 0;
+                                    foreach (var i in Model.DetailOT)
                                     {
-                                        var check = 0;
-                                        foreach (var i in Model.DetailOT)
+                                        if (Model.Employee.EmployeeID == i.Employee_EmpID)
                                         {
-                                            if (item.OTID == i.OT_OTID)
-                                            {
-                                                check = 1;
-                                                <a asp-page="./../listOTs/detail" asp-route-id="@i.DetailOTID">Detail</a>
+                                            check = check+1;
 
-                                            }
-
-                                        }
-                                        if (check == 0)
-                                        {
-                                            <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID">Register</a>
 
                                         }
 
-
+                                    }
+                                    if (check == 0)
+                                    {
+                                        <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.Employee.EmployeeID">Register</a>
 
                                     }
                                     else
                                     {
-                                        <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID">Register</a>
-
+                                        <a asp-page="./../listOTs/detail" asp-route-id="@item.OTID">Detail</a>
                                     }
+
+
+
+
+
+
+
+
 
 
 

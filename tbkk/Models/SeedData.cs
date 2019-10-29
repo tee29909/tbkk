@@ -1362,8 +1362,8 @@ namespace tbkk.Models
                new DetailOT
                {
 
-                   TimeStart = DateTime.Parse("16:00 PM"),
-                   TimeEnd = DateTime.Parse("18:00 PM"),
+                   TimeStart = DateTime.Parse("16:00"),
+                   TimeEnd = DateTime.Parse("18:00"),
                    Hour = "2",
                    Type = "One-way",
                    CarNumber = "1",
@@ -1374,8 +1374,8 @@ namespace tbkk.Models
                    OT_OTID = 1, 
                    Employee_EmpID = 2 
                }
-                );
-                */ 
+                );*/
+                
 
 
 
