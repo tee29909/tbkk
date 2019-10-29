@@ -19,6 +19,8 @@ namespace tbkk.Pages.listOTs
         }
         public Employee Employee { get; set; }
         public IList<OT> OT { get;set; }
+        [BindProperty]
+        public OT OTs { get; set; }
 
         private static int? a;
 
@@ -65,14 +67,8 @@ namespace tbkk.Pages.listOTs
             {
                 return Page();
             }
-         
 
-            _context.Attach(OT).State = EntityState.Modified;
-
-
-           
-            
-            
+            _context.Attach(OTs).State = EntityState.Modified;
 
             try
             {
@@ -80,17 +76,17 @@ namespace tbkk.Pages.listOTs
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!OTExists(OT.OTID))
-                //{
-                //    return NotFound();
-                //}
-                //else
-                //{
-                //    throw;
-                //}
+                if (!OTExists(OTs.OTID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return RedirectToPage("./../listOTs/manageOT", new { id = a });
+            return Page();
         }
 
         private bool OTExists(int id)
