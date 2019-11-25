@@ -42,9 +42,9 @@ namespace tbkk.Pages.listOTs
             }
             ViewData["Company_CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID");
             ViewData["Department_DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
-            ViewData["EmployeeType_EmployeeTypeID"] = new SelectList(_context.EmployeeType, "EmployeeTypeID", "EmployeeTypeID");
+            ViewData["Employee_EmployeeTypeID"] = new SelectList(_context.EmployeeType, "EmployeeTypeID", "EmployeeTypeID");
             ViewData["Location_LocationID"] = new SelectList(_context.Location, "LocationID", "LocationID");
-            ViewData["Position_PositionID"] = new SelectList(_context.Position, "PositionID", "PositionID");
+            ViewData["Employee_PositionID"] = new SelectList(_context.Position, "PositionID", "PositionID");
 
             DetailOT = await _context.DetailOT
                 .Include(d => d.CarType)

@@ -14,16 +14,16 @@ namespace tbkk.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        
         private readonly tbkk.Models.tbkkdbContext _context;
 
         public IndexModel(tbkk.Models.tbkkdbContext context)
         {
             _context = context;
         }
-        
-        public Login Login { get; set; }
 
+        public Login Login { get; set; }
+        
         public async Task<IActionResult> OnPostAsync()
         {
             string Username = Request.Form["Username"];
@@ -36,8 +36,8 @@ namespace tbkk.Pages
             }
             
 
-            Login = await _context.Login
-                .FirstOrDefaultAsync(m => string.Equals(m.Username, Username));
+            Login = await _context.Login.Include(e => e.Employee)
+                .FirstOrDefaultAsync(u => u.Username.Equals(Username));
 
             if (Login == null)
             {
@@ -47,15 +47,16 @@ namespace tbkk.Pages
             {
                 return Page();
             }
-            ViewData["Employee_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
-            Debug.WriteLine(Login.Employee_EmployeeID);
-            datalogin data = new datalogin();
-            data.EmployeeID = Login.Employee_EmployeeID;
+            ViewData["Login_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
+            Debug.WriteLine(Login.Login_EmployeeID);
+            
            
             
-            Debug.WriteLine(data.EmployeeID + "555555555555555555555555555555555555555555555555555555555555555555555555");
             
-            return RedirectToPage("./Home/Home", new { id = Login.Employee_EmployeeID });
+            return RedirectToPage("./Home/Home", new { id = Login.Employee.EmployeeID });
+
+
         }
+
     }
 }

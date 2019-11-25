@@ -19,7 +19,7 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-       
+
 
         [BindProperty]
         public DetailOT DetailOT { get; set; }

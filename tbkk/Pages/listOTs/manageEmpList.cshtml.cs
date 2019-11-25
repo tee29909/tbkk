@@ -28,6 +28,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
+            return Page();
         }
     }
 }

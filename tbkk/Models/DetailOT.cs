@@ -21,7 +21,7 @@ namespace tbkk.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeEnd { get; set; }
-        public string Hour { get; set; }
+        public double Hour { get; set; }
         public string Type { get; set; }
         public string CarNumber { get; set; }
 
@@ -41,6 +41,8 @@ namespace tbkk.Models
         [ForeignKey("OT")]
         public int OT_OTID { get; set; }
         public OT OT { get; set; }
+
+
         [ForeignKey("Employee")]
         public int Employee_EmpID { get; set; }
         public Employee Employee { get; set; }

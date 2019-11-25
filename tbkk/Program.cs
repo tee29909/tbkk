@@ -31,6 +31,8 @@ namespace tbkk
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogDebug( "22222222222222222222222222222");
+
+
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

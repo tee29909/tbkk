@@ -26,9 +26,10 @@ namespace tbkk
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
             services.AddDbContext<tbkkdbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("tbkkdbContext")));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

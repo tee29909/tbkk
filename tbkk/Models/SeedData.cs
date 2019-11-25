@@ -239,6 +239,8 @@ namespace tbkk.Models
 
                         Gender = "male",
 
+                        Birthday = DateTime.Parse("1989-2-12"),
+
                         Email = "admin@hotmail.com",
 
                         Call = "0805694932",
@@ -253,15 +255,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 1,
+                        Employee_DepartmentNameID = 1,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 1
+                        Employee_PositionID = 1
                     }
                     );
 
@@ -304,15 +306,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 5,
+                        Employee_DepartmentNameID = 5,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
@@ -340,15 +342,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 5,
+                        Employee_DepartmentNameID = 5,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
@@ -376,15 +378,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 5,
+                        Employee_DepartmentNameID = 5,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
@@ -412,15 +414,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 4,
+                        Employee_DepartmentNameID = 4,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
@@ -448,21 +450,20 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 4,
+                        Employee_DepartmentNameID = 4,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
-
 
                         FirstName = "Angela",
 
@@ -484,15 +485,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 3,
+                        Employee_DepartmentNameID = 3,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                     );
                 context.Employee.AddRange(
@@ -520,15 +521,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 3,
+                        Employee_DepartmentNameID = 3,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                     );
                 context.Employee.AddRange(
@@ -556,15 +557,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 2,
+                        Employee_DepartmentNameID = 2,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 2
+                        Employee_PositionID = 2
                     }
                     );
 
@@ -594,15 +595,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 2,
+                        Employee_DepartmentNameID = 2,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 2
+                        Employee_PositionID = 2
                     }
                     );
 
@@ -632,15 +633,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 2,
+                        Employee_DepartmentNameID = 2,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 2
+                        Employee_PositionID = 2
                     }
                    );
                 //12
@@ -669,15 +670,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 5,
+                        Employee_DepartmentNameID = 5,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                    );
                 //13
@@ -706,15 +707,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 4,
+                        Employee_DepartmentNameID = 4,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                    );
                 //14
@@ -743,15 +744,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 4,
+                        Employee_DepartmentNameID = 4,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                    );
                 //15
@@ -780,15 +781,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 3,
+                        Employee_DepartmentNameID = 3,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                    );
                 //16
@@ -817,15 +818,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 2,
+                        Employee_DepartmentNameID = 2,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 2
+                        Employee_PositionID = 2
                     }
                    );
                 //17
@@ -854,15 +855,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 3,
+                        Employee_DepartmentNameID = 3,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                    );
                 //18
@@ -891,15 +892,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 1,
+                        Employee_DepartmentNameID = 1,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 2
+                        Employee_PositionID = 2
                     }
                    );
                 //19
@@ -928,15 +929,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 2,
+                        Employee_DepartmentNameID = 2,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 2,
+                        Employee_EmployeeTypeID = 2,
 
-                        Position_PositionID = 3
+                        Employee_PositionID = 3
                     }
                    );
                 //20
@@ -965,15 +966,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Company_CompanyID = 1,
+                        Employee_CompanyID = 1,
 
-                        Department_DepartmentID = 5,
+                        Employee_DepartmentNameID = 5,
 
-                        Location_LocationID = 1,
+                        Employee_LocationID = 1,
 
-                        EmployeeType_EmployeeTypeID = 1,
+                        Employee_EmployeeTypeID = 1,
 
-                        Position_PositionID = 4
+                        Employee_PositionID = 4
                     }
                    );
 
@@ -993,7 +994,7 @@ namespace tbkk.Models
 
                     Password = "admin",
 
-                    Employee_EmployeeID = 1
+                    Login_EmployeeID = 1
                 }
                 );
 
@@ -1005,7 +1006,7 @@ namespace tbkk.Models
 
                     Password = "user1",
 
-                    Employee_EmployeeID = 2
+                    Login_EmployeeID = 2
                 }
                 );
                 context.Login.AddRange(
@@ -1015,7 +1016,7 @@ namespace tbkk.Models
 
                     Password = "user2",
 
-                    Employee_EmployeeID = 3
+                    Login_EmployeeID = 3
                 }
                 );
                 context.Login.AddRange(
@@ -1025,7 +1026,7 @@ namespace tbkk.Models
 
                     Password = "user3",
 
-                    Employee_EmployeeID = 4
+                    Login_EmployeeID = 4
                 }
                 );
                 context.Login.AddRange(
@@ -1035,7 +1036,7 @@ namespace tbkk.Models
 
                     Password = "user4",
 
-                    Employee_EmployeeID = 5
+                    Login_EmployeeID = 5
                 }
                 );
                 context.Login.AddRange(
@@ -1045,7 +1046,7 @@ namespace tbkk.Models
 
                     Password = "user5",
 
-                    Employee_EmployeeID = 6
+                    Login_EmployeeID = 6
                 }
                 );
                 context.Login.AddRange(
@@ -1055,7 +1056,7 @@ namespace tbkk.Models
 
                     Password = "user6",
 
-                    Employee_EmployeeID = 7
+                    Login_EmployeeID = 7
                 }
                 );
                 context.Login.AddRange(
@@ -1065,7 +1066,7 @@ namespace tbkk.Models
 
                     Password = "user7",
 
-                    Employee_EmployeeID = 8
+                    Login_EmployeeID = 8
                 }
                 );
                 context.Login.AddRange(
@@ -1075,7 +1076,7 @@ namespace tbkk.Models
 
                     Password = "user8",
 
-                    Employee_EmployeeID = 9
+                    Login_EmployeeID = 9
                 }
                 );
                 context.Login.AddRange(
@@ -1085,7 +1086,7 @@ namespace tbkk.Models
 
                     Password = "user9",
 
-                    Employee_EmployeeID = 10
+                    Login_EmployeeID = 10
                 }
                 );
                 context.Login.AddRange(
@@ -1095,7 +1096,7 @@ namespace tbkk.Models
 
                    Password = "employee11",
 
-                   Employee_EmployeeID = 11
+                   Login_EmployeeID = 11
                }
                );
                 context.Login.AddRange(
@@ -1105,7 +1106,7 @@ namespace tbkk.Models
 
                    Password = "employee12",
 
-                   Employee_EmployeeID = 12
+                   Login_EmployeeID = 12
                }
                );
                 context.Login.AddRange(
@@ -1115,7 +1116,7 @@ namespace tbkk.Models
 
                    Password = "employee13",
 
-                   Employee_EmployeeID = 13
+                   Login_EmployeeID = 13
                }
                );
                 context.Login.AddRange(
@@ -1125,7 +1126,7 @@ namespace tbkk.Models
 
                    Password = "employee14",
 
-                   Employee_EmployeeID = 14
+                   Login_EmployeeID = 14
                }
                );
                 context.Login.AddRange(
@@ -1135,7 +1136,7 @@ namespace tbkk.Models
 
                    Password = "employee15",
 
-                   Employee_EmployeeID = 15
+                   Login_EmployeeID = 15
                }
                );
                 context.Login.AddRange(
@@ -1145,7 +1146,7 @@ namespace tbkk.Models
 
                    Password = "employee16",
 
-                   Employee_EmployeeID = 16
+                   Login_EmployeeID = 16
                }
                );
                 context.Login.AddRange(
@@ -1155,7 +1156,7 @@ namespace tbkk.Models
 
                    Password = "employee17",
 
-                   Employee_EmployeeID = 17
+                   Login_EmployeeID = 17
                }
                );
                 context.Login.AddRange(
@@ -1165,7 +1166,7 @@ namespace tbkk.Models
 
                    Password = "employee18",
 
-                   Employee_EmployeeID = 18
+                   Login_EmployeeID = 18
                }
                );
                 context.Login.AddRange(
@@ -1175,7 +1176,7 @@ namespace tbkk.Models
 
                    Password = "employee19",
 
-                   Employee_EmployeeID = 19
+                   Login_EmployeeID = 19
                }
                );
                 context.Login.AddRange(
@@ -1185,35 +1186,20 @@ namespace tbkk.Models
 
                    Password = "employee20",
 
-                   Employee_EmployeeID = 20
+                   Login_EmployeeID = 20
                }
                );
 
                 /*+++++++++++++++++++++++++++++++++++++++++++*/
 
 
-
-
-
-
-
-                context.CarType.AddRange(
-                new CarType
-                {
-
-                    NameCar = "Canteen@hotmail.com",
-                    Seat = "tee29909",
-                    CompanyCarID = 1
-
-
-                }
-                );
+                
                 context.CarType.AddRange(
                 new CarType
                 {
 
                     NameCar = "ว่าง",
-                    Seat = "0",
+                    Seat = 0,
                     CompanyCarID = 1
 
 
@@ -1225,7 +1211,7 @@ namespace tbkk.Models
                 {
 
                     NameCar = "สองแถวสองประตู",
-                    Seat = "tee29909",
+                    Seat = 8,
                     CompanyCarID = 1
 
 
@@ -1238,7 +1224,7 @@ namespace tbkk.Models
                 {
 
                     NameCar = "สองแถวสี่ประตู",
-                    Seat = "tee29909",
+                    Seat = 6,
                     CompanyCarID = 1
 
 

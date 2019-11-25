@@ -10,7 +10,6 @@ namespace tbkk.Models
     {
         [Key]
         public int CompanyID { get; set; }
-
         public string CompanyName { get; set; }
         public string Image { get; set; }
         public string Status { get; set; }

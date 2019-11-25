@@ -18,7 +18,7 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-         public Employee Employee { get; set; }
+        public Employee Employee { get; set; }
         public IList<OT> OT { get;set; }
 
         public async Task OnGetAsync(int? id)
