@@ -11,16 +11,22 @@ namespace tbkk.Models
     {
         [Key]
         public int DetailOTID { get; set; }
-        
-       
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
+
+        
+        
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime TimeStart { get; set; }
-        
-       
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
+
+
+        
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime TimeEnd { get; set; }
+
+
+
+
         public double Hour { get; set; }
         public string Type { get; set; }
         public string CarNumber { get; set; }

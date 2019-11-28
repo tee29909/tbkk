@@ -10,9 +10,7 @@ namespace tbkk.Models
     {
         [Key]
         public int CanteenID { get; set; }
-
         public string Name { get; set; }
-
         public string Email { get; set; }
         public string Line { get; set; }
         public string Call { get; set; }

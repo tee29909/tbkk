@@ -47,6 +47,17 @@ namespace tbkk.Models
                 }
                 );
 
+               context.Part.AddRange(
+               new Part
+               {
+
+                   Name = "No",
+                   Price = "0",
+
+
+               }
+               );
+
 
                 context.Part.AddRange(
                 new Part

@@ -178,25 +178,27 @@
 
 
 
-                                    var check = 0;
+                                    int check = 0;
+                                    int IDdetail=0;
                                     foreach (var i in Model.DetailOT)
                                     {
-                                        if (Model.Employee.EmployeeID == i.Employee_EmpID)
+                                        if (i.Employee_EmpID == Model.Employee.EmployeeID && i.OT_OTID == item.OTID)
                                         {
-                                            check = check+1;
-
-
+                                            check = 1;
+                                            IDdetail = i.DetailOTID;
+                                            break;
                                         }
 
                                     }
+
                                     if (check == 0)
                                     {
-                                        <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.Employee.EmployeeID">Register</a>
+                                        <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Register</a>
 
                                     }
                                     else
                                     {
-                                        <a asp-page="./../listOTs/detail" asp-route-id="@item.OTID">Detail</a>
+                                        <a asp-page="./../listOTs/detailOTView" asp-route-id="@IDdetail" asp-route-Did="@Model.Employee.EmployeeID">Detail</a>
                                     }
 
 

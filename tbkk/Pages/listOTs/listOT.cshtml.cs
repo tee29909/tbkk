@@ -28,7 +28,7 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-            OT = await _context.OT.ToListAsync();
+           
 
             DetailOT = await _context.DetailOT
               .Include(d => d.CarType)
@@ -39,12 +39,11 @@ namespace tbkk.Pages.listOTs
 
 
            
-            
 
-            DetailOT = DetailOT.Where(d => d.TimeStart.Date.Equals(DateTime.Today.Date)).ToList();
+
 
             
-            Console.WriteLine(DetailOT);
+            OT = await _context.OT.ToListAsync();
 
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 

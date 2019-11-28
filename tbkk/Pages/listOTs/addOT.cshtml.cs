@@ -24,16 +24,87 @@ namespace tbkk.Pages.listOTs
         [BindProperty]
         public DetailOT DetailOT { get; set; }
 
+        public OT OT { get; set; }
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
 
         public Employee Employee { get; set; }
+        public IList<FoodSet> FoodSet { get; set; }
+        
+
+        public async Task<IActionResult> OnGetAsync(int? id,int? Did)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await onLoad(id, Did); 
+            if (OT == null)
+            {
+                return NotFound();
+            }
+
+
+            if (Employee == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
+        }
+
+        private async Task onLoad(int? id, int? Did)
+        {
+            Employee = await _context.Employee
+             .Include(e => e.Company)
+             .Include(e => e.Department)
+             .Include(e => e.EmployeeType)
+             .Include(e => e.Location)
+             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
+
+
+            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");
+            ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
+            ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
+            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+
                 return Page();
             }
+            DateTime TimeS = DateTime.Now;
+            DetailOT.TimeStart = new DateTime(TimeS.Year, TimeS.Month, TimeS.Day, DetailOT.TimeStart.Hour, DetailOT.TimeStart.Minute, DetailOT.TimeStart.Second);
+            DetailOT.TimeEnd = new DateTime(TimeS.Year, TimeS.Month, TimeS.Day, DetailOT.TimeEnd.Hour, DetailOT.TimeEnd.Minute, DetailOT.TimeEnd.Second);
+            if (DetailOT.TimeStart>=DetailOT.TimeEnd)
+            {
+                ModelState.AddModelError("timeError1", "The start time is less than the end time.");
+                ModelState.AddModelError("timeError2", "The start time is less than the end time.");
+                await returnPage();
+                return Page();
+
+            }
+
+            if (!DetailOT.Type.Equals("No") && DetailOT.Part_PaetID == 1)
+            {
+                
+                ModelState.AddModelError("partError", "Please select a route.");
+                await returnPage();
+                return Page();
+
+            }
+            
+            
+
+
 
             _context.DetailOT.Add(DetailOT);
             await _context.SaveChangesAsync();
@@ -41,76 +112,37 @@ namespace tbkk.Pages.listOTs
             return RedirectToPage("./../listOTs/listOT", new { id = DetailOT.Employee_EmpID });
          
         }
-      
-        public OT OT { get; set; }
 
-
-
-        public IList<DetailOT> DetailOT2 { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        private async Task returnPage()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Employee = await _context.Employee.Include(e => e.Company)
+                         .Include(e => e.Department)
+                         .Include(e => e.EmployeeType)
+                         .Include(e => e.Location)
+                         .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == DetailOT.Employee_EmpID);
+            OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
 
 
 
-
-            DetailOT2 = await _context.DetailOT
-              .Include(d => d.CarType)
-              .Include(d => d.Employee)
-              .Include(d => d.FoodSet)
-              .Include(d => d.OT)
-              .Include(d => d.Part).ToListAsync();
-
-            DetailOT2 = DetailOT2.Where(d => d.Employee_EmpID == id).ToList();
-            DetailOT2 = DetailOT2.Where(d => d.TimeStart.Date.Equals(DateTime.Today.Date)).ToList();
-
-           
-
-
-
-
-
-
-            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == id);
-
-
-
-
-            if (OT == null)
-            {
-                return NotFound();
-            }
-            Employee = await _context.Employee
-             .Include(e => e.Company)
-             .Include(e => e.Department)
-             .Include(e => e.EmployeeType)
-             .Include(e => e.Location)
-             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
-
-
-
-            if (DetailOT2.Any())
-            {
-
-                return RedirectToPage("./../listOTs/listOT", new { id = Employee.EmployeeID });
-            }
-
-            if (Employee == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
+            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");
             ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
-            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
+            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
             ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
-            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
-           
-            return Page();
+            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+            
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

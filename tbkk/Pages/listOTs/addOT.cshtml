@@ -4,6 +4,11 @@
 @{
     ViewData["Title"] = "addOT";
 }
+
+
+
+
+
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" asp-page="./../Home/Home" asp-route-id=@Model.Employee.EmployeeID>TBKK</a>
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -111,103 +116,118 @@
         <div name="55555" class="card-layout">
 
 
-            <h1>Request</h1>
 
-<h4>Register</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DetailOT.TimeStart" class="control-label"></label>
-                <input asp-for="DetailOT.TimeStart" name="t1" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
 
-                @*<input hidden type="text" name="t1[]" value="@">
-                <h1>item.Hour</h1>*@
+            <h4>Register</h4>
+            <hr />
 
+            <div class="row">
+                <div class="col-md-4">
+
+                    <form method="post">
+
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="DetailOT.TimeStart" class="control-label"></label>
+                            <input asp-for="DetailOT.TimeStart" class="form-control" />
+                            <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
+                            <lable class="text-danger" >
+                                @Html.ValidationMessage("timeError1")
+                            </lable>
+                            
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
+                            <input asp-for="DetailOT.TimeEnd" class="form-control" />
+                            <span asp-validation-for="DetailOT.TimeEnd.TimeOfDay" class="text-danger"></span>
+                            <lable class="text-danger">
+                                @Html.ValidationMessage("timeError2")
+                            </lable>
+                            
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label asp-for="DetailOT.Type" class="control-label"></label>
+                            <select asp-for="DetailOT.Type" class="form-control">
+                                <option>No</option>
+                                <option>back</option>
+
+                                @{
+                                    if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
+                                    {
+                                        <option>go</option>
+
+                                        <option>go and back</option>
+
+                                    }
+                                }
+
+
+                            </select>
+
+                           
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <input hidden asp-for="DetailOT.CarNumber" class="form-control" value="0" />
+
+                        </div>
+
+                        <div class="form-group">
+                            <input hidden asp-for="DetailOT.Status" class="form-control" value="Pending for approval" />
+                        </div>
+                        <div class="form-group">
+                            <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
+                            <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
+                            <lable class="text-danger">
+                                @Html.ValidationMessage("partError")
+                            </lable>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
+                            <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select> 
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <input hidden asp-for="DetailOT.CarType_CarTypeID" class="form-control" value=1 />
+                        </div>
+                       
+                        <div class="form-group">
+
+                            <input hidden asp-for="DetailOT.Employee_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <input type="submit"  value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
-                <input asp-for="DetailOT.TimeEnd" name="t2" class="form-control" />
 
-                <span asp-validation-for="DetailOT.TimeEnd.TimeOfDay" class="text-danger"></span>
-
-                <script>
-
-
-                    var t1 = document.getElementById("t1").innerHTML;
-                
-                    var t2 = document.getElementById("t2").innerHTML;
-
-
-                </script>
+            <div>
+                <a asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Hour" class="control-label"></label>
-                <input asp-for="DetailOT.Hour" class="form-control" />
-                <span asp-validation-for="DetailOT.Hour" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Type" class="control-label"></label>
-                <select asp-for="DetailOT.Type" class="form-control">
-                    <option>One-way-front</option>
-                    <option>One-way-back</option>
-                    <option>Two-way</option>
-                </select>
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.CarNumber" class="form-control" value="0" />
-
-            </div>
-            <div class="form-group">
-
-                <select hidden asp-for="DetailOT.Status" class="form-control">
-                    <option>Pending for approval</option>
-                    <option>Approved</option>
-                    <option>Unapproved</option>
-                </select>
-
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.FoodSet.NameSet" class="control-label"></label>
-                <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.CarType_CarTypeID" class="form-control" value=1 />
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
-
-
-                
-
-            </div>
-            <div class="form-group">
-
-                <input hidden asp-for="DetailOT.Employee_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
-
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a a asp-page="./../listOTs/listOT" asp-route-id=@Model.Employee.EmployeeID>Back to List</a>
-</div>
 
 
 
@@ -248,6 +268,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
