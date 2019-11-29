@@ -127,7 +127,7 @@ namespace tbkk.Pages.listOTs
             if (!(OT.TypeOT.Equals("Sunday") || OT.TypeOT.Equals("Saturday")) && DetailOT.TimeStart.Hour < 17)
             {
                 check = 1;
-                ModelState.AddModelError("timeError1", "Time to start working overtime at 5 PM o'clock.");
+                ModelState.AddModelError("timeError1", "Time to start working overtime at 17.00 o'clock.");
 
             }
 
@@ -144,6 +144,13 @@ namespace tbkk.Pages.listOTs
             {
                 check = 1;
                 ModelState.AddModelError("timeError1", "Time to start working overtime at 8.00 o'clock.");
+
+            }
+
+            if ((OT.TypeOT.Equals("Sunday") || OT.TypeOT.Equals("Saturday")) && DetailOT.TimeEnd.Hour < 8)
+            {
+                check = 1;
+                ModelState.AddModelError("timeError2", "Time to start working overtime at 8.00 o'clock.");
 
             }
 
