@@ -1284,7 +1284,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Nomal",
+                    TypeOT = "Monday",
                     TypStatus = "Open"
 
 
@@ -1297,7 +1297,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Special",
+                    TypeOT = "Saturday",
                     TypStatus = "Open"
 
 
@@ -1309,7 +1309,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Nomal",
+                    TypeOT = "Monday",
                     TypStatus = "Cloes"
 
 
@@ -1321,7 +1321,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Special",
+                    TypeOT = "Saturday",
                      TypStatus = "Cloes"
 
                 }
@@ -1332,7 +1332,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                     TypeOT = "Nomal",
+                     TypeOT = "Monday",
                      TypStatus = "Cloes"
                  }
                  );
@@ -1342,7 +1342,7 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Nomal",
+                    TypeOT = "Monday",
                     TypStatus = "Cloes"
                 }
                 );
@@ -1351,7 +1351,7 @@ namespace tbkk.Models
                 {
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Nomal",
+                    TypeOT = "Monday",
                     TypStatus = "Cloes"
                  }
                  );

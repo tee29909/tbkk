@@ -443,8 +443,8 @@ namespace tbkk.Migrations
                     b.Property<int>("FoodSet_FoodSetID")
                         .HasColumnType("int");
 
-                    b.Property<double>("Hour")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("Hour")
+                        .HasColumnType("time");
 
                     b.Property<int>("OT_OTID")
                         .HasColumnType("int");

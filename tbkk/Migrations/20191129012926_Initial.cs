@@ -642,7 +642,7 @@ namespace tbkk.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TimeStart = table.Column<DateTime>(nullable: false),
                     TimeEnd = table.Column<DateTime>(nullable: false),
-                    Hour = table.Column<double>(nullable: false),
+                    Hour = table.Column<TimeSpan>(nullable: false),
                     Type = table.Column<string>(nullable: true),
                     CarNumber = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),

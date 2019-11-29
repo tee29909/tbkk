@@ -76,41 +76,81 @@ namespace tbkk.Pages.listOTs
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
 
                 return Page();
             }
-            DateTime TimeS = DateTime.Now;
+            OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
+
+            DateTime TimeS = OT.TimeStart;
             DetailOT.TimeStart = new DateTime(TimeS.Year, TimeS.Month, TimeS.Day, DetailOT.TimeStart.Hour, DetailOT.TimeStart.Minute, DetailOT.TimeStart.Second);
             DetailOT.TimeEnd = new DateTime(TimeS.Year, TimeS.Month, TimeS.Day, DetailOT.TimeEnd.Hour, DetailOT.TimeEnd.Minute, DetailOT.TimeEnd.Second);
-            if (DetailOT.TimeStart>=DetailOT.TimeEnd)
+            TimeSpan hour = DetailOT.TimeEnd - DetailOT.TimeStart;
+            DetailOT.Hour = hour;
+
+
+            int check = 0;
+            check = checkTime(check);
+            if (check == 1)
             {
-                ModelState.AddModelError("timeError1", "The start time is less than the end time.");
-                ModelState.AddModelError("timeError2", "The start time is less than the end time.");
                 await returnPage();
                 return Page();
-
             }
-
-            if (!DetailOT.Type.Equals("No") && DetailOT.Part_PaetID == 1)
-            {
-                
-                ModelState.AddModelError("partError", "Please select a route.");
-                await returnPage();
-                return Page();
-
-            }
-            
-            
-
-
 
             _context.DetailOT.Add(DetailOT);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./../listOTs/listOT", new { id = DetailOT.Employee_EmpID });
-         
+
+        }
+
+        private int checkTime(int check)
+        {
+            if (DetailOT.TimeStart == DetailOT.TimeEnd)
+            {
+                ModelState.AddModelError("timeError1", "The start time is less than the end time.");
+                ModelState.AddModelError("timeError2", "The start time is less than the end time.");
+                check = 1;
+
+            }
+
+            if (!DetailOT.Type.Equals("No") && DetailOT.Part_PaetID == 1)
+            {
+                check = 1;
+                ModelState.AddModelError("partError", "Please select a route.");
+
+            }
+
+
+            if (!(OT.TypeOT.Equals("Sunday") || OT.TypeOT.Equals("Saturday")) && DetailOT.TimeStart.Hour < 17)
+            {
+                check = 1;
+                ModelState.AddModelError("timeError1", "Time to start working overtime at 5 PM o'clock.");
+
+            }
+
+
+            if (!(OT.TypeOT.Equals("Sunday") || OT.TypeOT.Equals("Saturday")) && DetailOT.TimeEnd.Hour < 17)
+            {
+                check = 1;
+                ModelState.AddModelError("timeError2", "Time to start working overtime at 17.00 o'clock.");
+
+            }
+            ////
+            ///
+            if ((OT.TypeOT.Equals("Sunday") || OT.TypeOT.Equals("Saturday")) && DetailOT.TimeStart.Hour < 8)
+            {
+                check = 1;
+                ModelState.AddModelError("timeError1", "Time to start working overtime at 8.00 o'clock.");
+
+            }
+
+
+
+
+            return check;
         }
 
         private async Task returnPage()
@@ -120,7 +160,7 @@ namespace tbkk.Pages.listOTs
                          .Include(e => e.EmployeeType)
                          .Include(e => e.Location)
                          .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == DetailOT.Employee_EmpID);
-            OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
+            
 
 
 
@@ -131,18 +171,6 @@ namespace tbkk.Pages.listOTs
             ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
             
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

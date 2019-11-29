@@ -27,7 +27,7 @@ namespace tbkk.Models
 
 
 
-        public double Hour { get; set; }
+        public TimeSpan Hour { get; set; }
         public string Type { get; set; }
         public string CarNumber { get; set; }
 

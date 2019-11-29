@@ -10,7 +10,7 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20191126050341_Initial")]
+    [Migration("20191129012926_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -445,8 +445,8 @@ namespace tbkk.Migrations
                     b.Property<int>("FoodSet_FoodSetID")
                         .HasColumnType("int");
 
-                    b.Property<double>("Hour")
-                        .HasColumnType("float");
+                    b.Property<TimeSpan>("Hour")
+                        .HasColumnType("time");
 
                     b.Property<int>("OT_OTID")
                         .HasColumnType("int");
