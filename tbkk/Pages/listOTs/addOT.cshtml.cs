@@ -102,6 +102,7 @@ namespace tbkk.Pages.listOTs
             _context.DetailOT.Add(DetailOT);
             await _context.SaveChangesAsync();
 
+           
             return RedirectToPage("./../listOTs/listOT", new { id = DetailOT.Employee_EmpID });
 
         }

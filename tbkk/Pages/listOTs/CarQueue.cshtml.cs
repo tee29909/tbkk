@@ -40,11 +40,9 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-            ViewData["Company_CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID");
-            ViewData["Department_DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
-            ViewData["Employee_EmployeeTypeID"] = new SelectList(_context.EmployeeType, "EmployeeTypeID", "EmployeeTypeID");
-            ViewData["Location_LocationID"] = new SelectList(_context.Location, "LocationID", "LocationID");
-            ViewData["Employee_PositionID"] = new SelectList(_context.Position, "PositionID", "PositionID");
+
+
+            
 
             DetailOT = await _context.DetailOT
                 .Include(d => d.CarType)
@@ -55,6 +53,7 @@ namespace tbkk.Pages.listOTs
 
 
             DetailOT = DetailOT.Where(e => e.Employee_EmpID==id).ToList();
+            DetailOT = DetailOT.Where(e => e.CarType_CarTypeID != 1).ToList();
 
             return Page();
         }

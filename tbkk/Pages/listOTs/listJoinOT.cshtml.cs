@@ -13,18 +13,23 @@ namespace tbkk.Pages.listOTs
     public class listJoinOTModel : PageModel
     {
         private readonly tbkk.Models.tbkkdbContext _context;
-
+          
         public listJoinOTModel(tbkk.Models.tbkkdbContext context)
         {
             _context = context;
         }
 
         public Employee Employee { get; set; }
+        
         public IList<DetailOT> DetailOT { get;set; }
 
-        
+        public TimeSpan countHourOT { get; set; }
 
-       
+
+
+
+
+
 
         public async Task<IActionResult> OnGetAsync(int? id )
         {
@@ -46,6 +51,13 @@ namespace tbkk.Pages.listOTs
 
             DetailOT = DetailOT.Where(d => d.Employee_EmpID.Equals(id)).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Approved")).ToList();
+            countHourOT = new TimeSpan();
+            foreach (var item in DetailOT)
+            {
+                countHourOT = countHourOT + item.Hour;
+            }
+
+            
 
             Employee = await _context.Employee
                 .Include(e => e.Company)

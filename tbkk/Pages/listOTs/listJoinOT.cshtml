@@ -84,6 +84,7 @@
 
 
                         //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
+                        
 
 
 
@@ -115,121 +116,166 @@
 
             <h1>List Join OT</h1>
 
-
-            
-
-
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Date
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].TimeEnd)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].Type)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].CarNumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].Status)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].Part)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DetailOT[0].CarType)
-                        </th>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <dl class="row">
+                            <dt class="col-sm-6 text-right">
+                                Name:
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.Employee.FirstName)  @Html.DisplayFor(model => model.Employee.LastName)
+                            </dd>
 
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.DetailOT)
-                    {
+
+                            <dt class="col-sm-6 text-right">
+                                @Html.DisplayNameFor(model => model.Employee.Employee_CompanyID):
+                            </dt>
+                            <dd class="col-sm-6 ">
+                                @Html.DisplayFor(model => model.Employee.Company.CompanyName)
+                            </dd>
+
+                            <dt class="col-sm-6 text-right">
+                                @Html.DisplayNameFor(model => model.Employee.Employee_DepartmentNameID):
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.Employee.Department.DepartmentName)
+                            </dd>
+
+                            <dt class="col-sm-6 text-right">
+                                @Html.DisplayNameFor(model => model.Employee.Employee_PositionID):
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.Employee.Position.PositionName)
+                            </dd>
+                            <dt class="col-sm-6 text-right">
+                                Hour OT:
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.countHourOT) Hour
+                            </dd>
+                        </dl>
+
+
+                    </div>
+
+                    <div class="col">
+                        <div>
+
+                            <img src="~/Upload/@Model.Employee.Image" class="rounded mx-auto d-block" alt="@Model.Employee.Image">
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <br />
+
+
+
+
+
+
+
+
+
+            <div class="row">
+
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>
 
-                                @{
-                                    DateTime date = item.TimeStart;
-                                }
+                            <th>
+                                Date
+                            </th>
 
-                                @date.ToString("dddd, dd MMMM yyyy")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Employee.FirstName)
-                                @Html.DisplayFor(modelItem => item.Employee.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TimeStart)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TimeEnd)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Hour)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Type)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CarNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Part.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetcoManul)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CarType.NameCar)
-                            </td>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT[0].CarType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT[0].CarNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT[0].Part)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
+                            </th>
+
 
 
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DetailOT)
+                        {
+                            <tr>
+                                <td>
+
+                                    @{
+                                        DateTime date = item.TimeStart;
+                                    }
+
+                                    @date.ToString("dddd, dd MMMM yyyy")
+                                </td>
+
+
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hour)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarType.NameCar)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarNumber)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Part.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FoodSet.NameSet)
+                                </td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
 
 
 
 
         </div>
-        <!-- /.container-fluid
-         <td>
-                            <a asp-page="./../listOTs/EditJoinOT" asp-route-id="item.DetailOTID">Edit</a> |
+            <!-- /.container-fluid
+     <td>
+                        <a asp-page="./../listOTs/EditJoinOT" asp-route-id="item.DetailOTID">Edit</a> |
 
-                            <a asp-page="./Delete" asp-route-id="item.DetailOTID">Delete</a>
-                        </td>
-        -->
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2019</span>
+                        <a asp-page="./Delete" asp-route-id="item.DetailOTID">Delete</a>
+                    </td>
+    -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2019</span>
+                    </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
     <!-- /.content-wrapper -->
 </div>
 <!-- /#wrapper -->
