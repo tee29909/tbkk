@@ -220,6 +220,7 @@ namespace tbkk.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TimeStart = table.Column<DateTime>(nullable: false),
                     TimeEnd = table.Column<DateTime>(nullable: false),
+                    date = table.Column<DateTime>(nullable: false),
                     TypeOT = table.Column<string>(nullable: true),
                     TypStatus = table.Column<string>(nullable: true)
                 },

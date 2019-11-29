@@ -10,7 +10,7 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20191129012926_Initial")]
+    [Migration("20191129160418_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1046,6 +1046,9 @@ namespace tbkk.Migrations
 
                     b.Property<string>("TypeOT")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("OTID");
 

@@ -1045,6 +1045,9 @@ namespace tbkk.Migrations
                     b.Property<string>("TypeOT")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("OTID");
 
                     b.ToTable("OT");

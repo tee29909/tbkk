@@ -169,7 +169,7 @@ namespace tbkk.Models
                 new Department
                 {
                     DepartmentName = "Information Technology",
-                    Image = "null",
+                    Image = "Emp1.jpg",
                     Status = "open"
                 }
                 );
@@ -177,7 +177,7 @@ namespace tbkk.Models
                 new Department
                 {
                     DepartmentName = "Production Department",
-                    Image = "null",
+                    Image = "Emp1.jpg",
                     Status = "open"
                 }
                 );
@@ -185,7 +185,7 @@ namespace tbkk.Models
                     new Department
                     {
                         DepartmentName = "Sales Department",
-                        Image = "null",
+                        Image = "Emp1.jpg",
                         Status = "open"
                     }
                     );
@@ -193,7 +193,7 @@ namespace tbkk.Models
                     new Department
                     {
                         DepartmentName = "Accounting Department",
-                        Image = "null",
+                        Image = "Emp1.jpg",
                         Status = "open"
                     }
                     );
@@ -201,7 +201,7 @@ namespace tbkk.Models
                     new Department
                     {
                         DepartmentName = "Human Resource",
-                        Image = "null",
+                        Image = "Emp1.jpg",
                         Status = "open"
                     }
                     );
@@ -212,7 +212,7 @@ namespace tbkk.Models
                     new Company
                     {
                         CompanyName = "Tbkk",
-                        Image = "null",
+                        Image = "Emp1.jpg",
                         Status = "open"
                     }
                     );
@@ -258,7 +258,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -309,7 +309,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -345,7 +345,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -381,7 +381,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -417,7 +417,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -453,7 +453,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -488,7 +488,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -524,7 +524,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -560,7 +560,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -598,7 +598,7 @@ namespace tbkk.Models
 
                         Line = "tee29909",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -636,7 +636,7 @@ namespace tbkk.Models
 
                         Line = "brooke152",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -673,7 +673,7 @@ namespace tbkk.Models
 
                         Line = "aliceWTF",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -710,7 +710,7 @@ namespace tbkk.Models
 
                         Line = "avaava",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -747,7 +747,7 @@ namespace tbkk.Models
 
                         Line = "opal6322",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -784,7 +784,7 @@ namespace tbkk.Models
 
                         Line = "mimimax",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -821,7 +821,7 @@ namespace tbkk.Models
 
                         Line = "laylala",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -858,7 +858,7 @@ namespace tbkk.Models
 
                         Line = "morgenrohan",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -895,7 +895,7 @@ namespace tbkk.Models
 
                         Line = "oscarcar",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -932,7 +932,7 @@ namespace tbkk.Models
 
                         Line = "evanTH",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -969,7 +969,7 @@ namespace tbkk.Models
 
                         Line = "harry",
 
-                        Image = "null",
+                        Image = "Emp1.jpg",
 
                         Addr = "tbkk",
 
@@ -1285,7 +1285,8 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Monday",
-                    TypStatus = "Open"
+                    TypStatus = "Open",
+                    date = DateTime.Parse("15:00 PM"),
 
 
                 }
@@ -1298,7 +1299,8 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Saturday",
-                    TypStatus = "Open"
+                    TypStatus = "Open",
+                    date = DateTime.Parse("15:00 PM")
 
 
                 }
@@ -1310,7 +1312,8 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Monday",
-                    TypStatus = "Cloes"
+                    TypStatus = "Cloes",
+                    date = DateTime.Parse("15:00 PM"),
 
 
                 }
@@ -1322,7 +1325,8 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Saturday",
-                     TypStatus = "Cloes"
+                    TypStatus = "Cloes",
+                    date = DateTime.Parse("15:00 PM")
 
                 }
                 );
@@ -1332,9 +1336,10 @@ namespace tbkk.Models
 
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
-                     TypeOT = "Monday",
-                     TypStatus = "Cloes"
-                 }
+                    TypeOT = "Monday",
+                    TypStatus = "Cloes",
+                    date = DateTime.Parse("15:00 PM")
+                }
                  );
                 context.OT.AddRange(
                 new OT
@@ -1343,7 +1348,8 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Monday",
-                    TypStatus = "Cloes"
+                    TypStatus = "Cloes",
+                    date = DateTime.Parse("15:00 PM")
                 }
                 );
                 context.OT.AddRange(
@@ -1352,8 +1358,9 @@ namespace tbkk.Models
                     TimeStart = DateTime.Parse("8:00 AM"),
                     TimeEnd = DateTime.Parse("15:00 PM"),
                     TypeOT = "Monday",
-                    TypStatus = "Cloes"
-                 }
+                    TypStatus = "Cloes",
+                    date = DateTime.Parse("15:00 PM")
+                }
                  );
                 /*context.DetailOT.AddRange(
                new DetailOT

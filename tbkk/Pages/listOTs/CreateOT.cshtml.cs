@@ -13,25 +13,15 @@ namespace tbkk.Pages.listOTs
     public class CreateOTModel : PageModel
     {
         private readonly tbkk.Models.tbkkdbContext _context;
-        private static int? a;
+        
         public CreateOTModel(tbkk.Models.tbkkdbContext context)
         {
             _context = context;
         }
         public Employee Employee { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? id,int? Did)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
-            {
-                return NotFound();
-            }
-
-
-            a = id;
-
-            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
-
-            if (OT == null)
             {
                 return NotFound();
             }
@@ -45,12 +35,7 @@ namespace tbkk.Pages.listOTs
             .Include(e => e.Location)
             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
 
-
-            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
-            ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
-            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
-            ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
-            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
+            
 
             return Page();
         }
@@ -60,17 +45,22 @@ namespace tbkk.Pages.listOTs
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            string date = OT.date.ToString("dddd");
+            OT.TypeOT = date;
+
+
+
             _context.OT.Add(OT);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./../listOTs/manageOT", new { id = a });
+            return RedirectToPage("./../listOTs/manageOT", new { id = id });
         }
     }
 }

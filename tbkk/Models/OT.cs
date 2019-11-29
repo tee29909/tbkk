@@ -20,9 +20,10 @@ namespace tbkk.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeEnd { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        public DateTime date { get; set; }
 
-
-        
         public string TypeOT { get; set; }
         
         [Display(Name = "TypeStatus")]
