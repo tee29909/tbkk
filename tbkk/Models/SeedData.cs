@@ -236,8 +236,6 @@ namespace tbkk.Models
                     return;   // DB has been seeded
                 }
 
-                
-                /*---------------------------------*/
 
                 context.Employee.AddRange(
                     new Employee
@@ -1005,7 +1003,7 @@ namespace tbkk.Models
 
                     Password = "admin",
 
-                    Login_EmployeeID = 1
+                    Login_EmployeeID = 20
                 }
                 );
 
@@ -1197,7 +1195,7 @@ namespace tbkk.Models
 
                    Password = "employee20",
 
-                   Login_EmployeeID = 20
+                   Login_EmployeeID = 1
                }
                );
 
@@ -1273,122 +1271,12 @@ namespace tbkk.Models
                     NameSet = "B",
                     Canteen_CanteenID = 1
 
-
                 }
                 );
-
-
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Monday",
-                    TypStatus = "Open",
-                    date = DateTime.Parse("15:00 PM"),
-
-
-                }
-                );
-
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Saturday",
-                    TypStatus = "Open",
-                    date = DateTime.Parse("15:00 PM")
-
-
-                }
-                );
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Monday",
-                    TypStatus = "Cloes",
-                    date = DateTime.Parse("15:00 PM"),
-
-
-                }
-                );
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Saturday",
-                    TypStatus = "Cloes",
-                    date = DateTime.Parse("15:00 PM")
-
-                }
-                );
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Monday",
-                    TypStatus = "Cloes",
-                    date = DateTime.Parse("15:00 PM")
-                }
-                 );
-                context.OT.AddRange(
-                new OT
-                {
-
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Monday",
-                    TypStatus = "Cloes",
-                    date = DateTime.Parse("15:00 PM")
-                }
-                );
-                context.OT.AddRange(
-                new OT
-                {
-                    TimeStart = DateTime.Parse("8:00 AM"),
-                    TimeEnd = DateTime.Parse("15:00 PM"),
-                    TypeOT = "Monday",
-                    TypStatus = "Cloes",
-                    date = DateTime.Parse("15:00 PM")
-                }
-                 );
-                /*context.DetailOT.AddRange(
-               new DetailOT
-               {
-
-                   TimeStart = DateTime.Parse("16:00"),
-                   TimeEnd = DateTime.Parse("18:00"),
-                   Hour = "2",
-                   Type = "One-way",
-                   CarNumber = "1",
-                   Status = "pending",
-                   Part_PaetID = 1,
-                   FoodSet_FoodSetID = 2,
-                   CarType_CarTypeID = 2, 
-                   OT_OTID = 1, 
-                   Employee_EmpID = 2 
-               }
-                );*/
-                
-
-
-
-
-
-
 
                 context.SaveChanges();
             }
+
         }
     }
 }

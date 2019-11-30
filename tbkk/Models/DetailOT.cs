@@ -36,22 +36,17 @@ namespace tbkk.Models
         [ForeignKey("Part")]
         public int Part_PaetID { get; set; }
         public Part Part { get; set; }
-
         [ForeignKey("FoodSet")]
         public int FoodSet_FoodSetID { get; set; }
         public FoodSet FoodSet { get; set; }
-        
         [ForeignKey("CarType")]
         public int CarType_CarTypeID { get; set; }
         public CarType CarType { get; set; }
         [ForeignKey("OT")]
         public int OT_OTID { get; set; }
         public OT OT { get; set; }
-
-
         [ForeignKey("Employee")]
         public int Employee_EmpID { get; set; }
         public Employee Employee { get; set; }
-
     }
 }

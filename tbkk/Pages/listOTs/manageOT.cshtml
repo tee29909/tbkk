@@ -178,16 +178,13 @@
                 <tbody>
                     @foreach (var item in Model.OT)
                     {
+                       
                         <tr>
                             <td>
 
                                 @{
                                     DateTime date = item.date;
-
-
-
                                 }
-
                                 @date.ToString("dddd, dd MMMM yyyy")
                             </td>
                             <td>
@@ -203,46 +200,12 @@
                                 @Html.DisplayFor(modelItem => item.TypStatus)
                             </td>
                             <td>
-                                <form method="post">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <input type="hidden" value="@item.OTID" asp-for="OTs.OTID" />
-                                    <div class="form-group">
-                                        <label asp-for="OTs.TimeStart" class="control-label"></label>
-                                        <input asp-for="OTs.TimeStart" value="@item.TimeStart.TimeOfDay" class="form-control" />
-                                        <span asp-validation-for="OTs.TimeStart.TimeOfDay" value="@item.TimeStart" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="OTs.TimeEnd" class="control-label"></label>
-                                        <input asp-for="OTs.TimeEnd" value="@item.TimeEnd.TimeOfDay" class="form-control" />
-                                        <span asp-validation-for="OTs.TimeEnd" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="OTs.TypeOT" class="control-label"></label>
-                                        <input asp-for="OTs.TypeOT" value="@item.TypeOT" class="form-control" />
-                                        <span asp-validation-for="OTs.TypeOT" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="OTs.TypStatus" class="control-label"></label>
-                                        <input asp-for="OTs.TypStatus" value="Close" class="form-control" />
-                                        <span asp-validation-for="OTs.TypStatus" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Save" class="btn btn-primary" />
-                                    </div>
-                                </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                @{
+                                    if (item.TypStatus.Equals("Open"))
+                                    {
+                                        <a class="btn btn-outline-dark" asp-page="./../listOTs/ConfirmShuttle" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Close</a>
+                                    }
+                                }
 
 
 

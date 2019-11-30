@@ -21,7 +21,7 @@ namespace tbkk.Models
 
         public DateTime TimeEnd { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        
         public DateTime date { get; set; }
 
         public string TypeOT { get; set; }
