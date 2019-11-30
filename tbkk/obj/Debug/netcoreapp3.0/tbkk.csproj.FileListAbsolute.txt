@@ -1708,3 +1708,4 @@ C:\Users\Master\Desktop\TBKKnew\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.dll
 C:\Users\Master\Desktop\TBKKnew\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.pdb
 C:\Users\Master\Desktop\TBKKnew\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\ConfirmShuttle.cshtml.g.cs
 C:\Users\Master\Desktop\TBKKnew\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\test.cshtml.g.cs
+C:\Users\Master\Desktop\TBKKnew\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\ManageList.cshtml.g.cs

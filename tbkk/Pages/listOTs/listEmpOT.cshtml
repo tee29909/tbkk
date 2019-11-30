@@ -8,13 +8,6 @@
 
 
 
-
-
-
-
-
-
-
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" asp-page="./../Home/Home" asp-route-id=@Model.Employee.EmployeeID>TBKK</a>
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -169,7 +162,8 @@
                                     </td>
                                     <td>
                                         <a asp-page="./Edit" class="btn btn-outline-dark" asp-route-id="@item.OTID">Edit</a>
-                                        
+                                        <a asp-page="./Edit" class="btn btn-outline-danger" asp-route-id="@item.OTID">Edit</a>
+
                                     </td>
                                 </tr>
                                 break;
