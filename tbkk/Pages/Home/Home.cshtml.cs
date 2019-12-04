@@ -33,7 +33,9 @@ namespace tbkk.Pages.Home
                 .Include(e => e.EmployeeType)
                 .Include(e => e.Location)
                 .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
-            
+
+           
+
             if (Employee == null)
             {
                 return NotFound();

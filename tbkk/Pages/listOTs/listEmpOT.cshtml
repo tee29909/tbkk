@@ -161,8 +161,9 @@
                                         @Html.DisplayFor(modelItem => item.TypStatus)
                                     </td>
                                     <td>
-                                        <a asp-page="./Edit" class="btn btn-outline-dark" asp-route-id="@item.OTID">Edit</a>
-                                        <a asp-page="./Edit" class="btn btn-outline-danger" asp-route-id="@item.OTID">Edit</a>
+                                        
+                                        <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-dark">Edit</a> |
+                                        <a asp-page="./Edit" class="btn btn-outline-danger" asp-route-id="@item.OTID">All allowed</a>
 
                                     </td>
                                 </tr>

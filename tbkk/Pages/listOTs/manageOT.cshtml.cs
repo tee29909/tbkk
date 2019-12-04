@@ -22,11 +22,11 @@ namespace tbkk.Pages.listOTs
         [BindProperty]
         public OT OTs { get; set; }
 
-        private static int? a;
+        
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            a = id;
+            
             OT = await _context.OT.ToListAsync();
             Employee = await _context.Employee
                .Include(e => e.Company)
@@ -48,26 +48,14 @@ namespace tbkk.Pages.listOTs
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id,int? Did)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
+            OTs = await _context.OT.FirstOrDefaultAsync(o => o.OTID == Did);
+            OTs.TypStatus = "Close";
             _context.Attach(OTs).State = EntityState.Modified;
 
             try
@@ -86,15 +74,14 @@ namespace tbkk.Pages.listOTs
                 }
             }
 
-            return Page();
+
+
+            return RedirectToPage("./../listOTs/ConfirmShuttle", new { id = id ,Did = Did });
         }
 
         private bool OTExists(int id)
         {
             return _context.OT.Any(e => e.OTID == id);
         }
-
-
-
     }
 }

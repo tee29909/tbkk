@@ -203,8 +203,15 @@
                                 @{
                                     if (item.TypStatus.Equals("Open"))
                                     {
-                                        <a class="btn btn-outline-dark" asp-page="./../listOTs/ConfirmShuttle" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Close</a>
+                                                                <form method="post">                                                                   
+                                                                    <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Close</button>
+                                                                </form>
                                     }
+                                    else
+                                    {
+                                        <a asp-page="./../listOTs/ConfirmShuttle" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID"  class="btn btn-outline-danger">Hit</a>
+                                    }
+
                                 }
 
 
@@ -219,9 +226,6 @@
 
 
         </div>
-
-
-
 
     </div>
 

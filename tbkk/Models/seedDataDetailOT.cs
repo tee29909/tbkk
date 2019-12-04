@@ -61,7 +61,7 @@ namespace tbkk.Models
                                      Part_PaetID = 2,
                                      FoodSet_FoodSetID = 2,
                                      CarType_CarTypeID = 1,
-                                     OT_OTID = 2,
+                                     OT_OTID = 1,
                                      Employee_EmpID = i
                                  }
                                  );
