@@ -57,7 +57,7 @@ namespace tbkk.Pages.listOTs
              .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
             DetailOT = await _context.DetailOT
-                .Include(d => d.CarType)
+                
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)

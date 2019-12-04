@@ -56,11 +56,11 @@ namespace tbkk.Models
                                  {
 
                                      Type = "Go",
-                                     CarNumber = "0",
+                                    
                                      Status = "Pending for approval",
                                      Part_PaetID = 2,
                                      FoodSet_FoodSetID = 2,
-                                     CarType_CarTypeID = 1,
+                                     
                                      OT_OTID = 1,
                                      Employee_EmpID = i
                                  }

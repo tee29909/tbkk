@@ -45,7 +45,7 @@ namespace tbkk.Pages.listOTs
             
 
             DetailOT = await _context.DetailOT
-                .Include(d => d.CarType)
+                
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
@@ -53,7 +53,7 @@ namespace tbkk.Pages.listOTs
 
 
             DetailOT = DetailOT.Where(e => e.Employee_EmpID==id).ToList();
-            DetailOT = DetailOT.Where(e => e.CarType_CarTypeID != 1).ToList();
+            
 
             return Page();
         }

@@ -39,12 +39,12 @@ namespace tbkk.Pages.listOTs
                 .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == id);
 
             DetailOT = await _context.DetailOT
-                .Include(d => d.CarType)
+                
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).Where(d => d.OT_OTID == Did).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentNameID == Employee.Employee_DepartmentNameID).ToList();
+            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
 
             if (DetailOT == null)
             {
@@ -58,7 +58,7 @@ namespace tbkk.Pages.listOTs
         {
             
             DetailOTs = await _context.DetailOT
-               .Include(d => d.CarType)
+               
                .Include(d => d.Employee)
                .Include(d => d.FoodSet)
                .Include(d => d.OT)
@@ -89,12 +89,12 @@ namespace tbkk.Pages.listOTs
                 .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == id);
 
             DetailOT = await _context.DetailOT
-               .Include(d => d.CarType)
+               
                .Include(d => d.Employee)
                .Include(d => d.FoodSet)
                .Include(d => d.OT)
                .Include(d => d.Part).Where(d => d.OT_OTID == DetailOTs.OT_OTID).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentNameID == Employee.Employee_DepartmentNameID).ToList();
+            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
 
             return Page();
         }
@@ -103,7 +103,7 @@ namespace tbkk.Pages.listOTs
         {
 
             DetailOTs = await _context.DetailOT
-               .Include(d => d.CarType)
+               
                .Include(d => d.Employee)
                .Include(d => d.FoodSet)
                .Include(d => d.OT)
@@ -134,12 +134,12 @@ namespace tbkk.Pages.listOTs
                 .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == id);
 
             DetailOT = await _context.DetailOT
-               .Include(d => d.CarType)
+               
                .Include(d => d.Employee)
                .Include(d => d.FoodSet)
                .Include(d => d.OT)
                .Include(d => d.Part).Where(d => d.OT_OTID == DetailOTs.OT_OTID).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentNameID == Employee.Employee_DepartmentNameID).ToList();
+            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
 
             return Page();
         }

@@ -65,6 +65,9 @@ namespace tbkk.Models
         public DbSet<tbkk.Models.Report_Cock> Report_Cock { get; set; }
         public DbSet<tbkk.Models.Supplier_Cock> Supplier_Cock { get; set; }
 
+        public DbSet<tbkk.Models.CarQueue> CarQueue { get; set; }
+        public DbSet<tbkk.Models.DetailCarQueue> DetailCarQueue { get; set; }
+
         public DbSet<tbkk.Models.Model> Models { get; set; }
     }
 }

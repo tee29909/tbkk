@@ -266,7 +266,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 1,
+                        Employee_DepartmentID = 1,
 
                         Employee_LocationID = 1,
 
@@ -317,7 +317,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 5,
+                        Employee_DepartmentID = 5,
 
                         Employee_LocationID = 1,
 
@@ -353,7 +353,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 5,
+                        Employee_DepartmentID = 5,
 
                         Employee_LocationID = 1,
 
@@ -389,7 +389,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 5,
+                        Employee_DepartmentID = 5,
 
                         Employee_LocationID = 1,
 
@@ -425,7 +425,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 4,
+                        Employee_DepartmentID = 4,
 
                         Employee_LocationID = 1,
 
@@ -461,7 +461,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 4,
+                        Employee_DepartmentID = 4,
 
                         Employee_LocationID = 1,
 
@@ -496,7 +496,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 3,
+                        Employee_DepartmentID = 3,
 
                         Employee_LocationID = 1,
 
@@ -532,7 +532,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 3,
+                        Employee_DepartmentID = 3,
 
                         Employee_LocationID = 1,
 
@@ -568,7 +568,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 2,
+                        Employee_DepartmentID = 2,
 
                         Employee_LocationID = 1,
 
@@ -606,7 +606,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 2,
+                        Employee_DepartmentID = 2,
 
                         Employee_LocationID = 1,
 
@@ -644,7 +644,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 2,
+                        Employee_DepartmentID = 2,
 
                         Employee_LocationID = 1,
 
@@ -681,7 +681,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 5,
+                        Employee_DepartmentID = 5,
 
                         Employee_LocationID = 1,
 
@@ -718,7 +718,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 4,
+                        Employee_DepartmentID = 4,
 
                         Employee_LocationID = 1,
 
@@ -755,7 +755,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 4,
+                        Employee_DepartmentID = 4,
 
                         Employee_LocationID = 1,
 
@@ -792,7 +792,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 3,
+                        Employee_DepartmentID = 3,
 
                         Employee_LocationID = 1,
 
@@ -829,7 +829,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 2,
+                        Employee_DepartmentID = 2,
 
                         Employee_LocationID = 1,
 
@@ -866,7 +866,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 3,
+                        Employee_DepartmentID = 3,
 
                         Employee_LocationID = 1,
 
@@ -903,7 +903,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 1,
+                        Employee_DepartmentID = 1,
 
                         Employee_LocationID = 1,
 
@@ -940,7 +940,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 2,
+                        Employee_DepartmentID = 2,
 
                         Employee_LocationID = 1,
 
@@ -977,7 +977,7 @@ namespace tbkk.Models
 
                         Employee_CompanyID = 1,
 
-                        Employee_DepartmentNameID = 5,
+                        Employee_DepartmentID = 5,
 
                         Employee_LocationID = 1,
 

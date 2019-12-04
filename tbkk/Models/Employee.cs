@@ -29,7 +29,7 @@ namespace tbkk.Models
 
 
         [ForeignKey("Department")]
-        public int Employee_DepartmentNameID { get; set; }
+        public int Employee_DepartmentID { get; set; }
 
         public Department Department { get; set; }
 

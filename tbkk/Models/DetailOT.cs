@@ -29,7 +29,7 @@ namespace tbkk.Models
 
         public TimeSpan Hour { get; set; }
         public string Type { get; set; }
-        public string CarNumber { get; set; }
+        
 
         public string Status { get; set; }
 
@@ -39,9 +39,12 @@ namespace tbkk.Models
         [ForeignKey("FoodSet")]
         public int FoodSet_FoodSetID { get; set; }
         public FoodSet FoodSet { get; set; }
-        [ForeignKey("CarType")]
-        public int CarType_CarTypeID { get; set; }
-        public CarType CarType { get; set; }
+
+
+
+        
+
+
         [ForeignKey("OT")]
         public int OT_OTID { get; set; }
         public OT OT { get; set; }

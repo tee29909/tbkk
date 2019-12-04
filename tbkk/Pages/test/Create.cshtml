@@ -33,11 +33,7 @@
                 <input asp-for="DetailOT.Type" class="form-control" />
                 <span asp-validation-for="DetailOT.Type" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.CarNumber" class="control-label"></label>
-                <input asp-for="DetailOT.CarNumber" class="form-control" />
-                <span asp-validation-for="DetailOT.CarNumber" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <label asp-for="DetailOT.Status" class="control-label"></label>
                 <input asp-for="DetailOT.Status" class="form-control" />
@@ -51,10 +47,7 @@
                 <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
                 <select asp-for="DetailOT.FoodSet_FoodSetID" class ="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.CarType_CarTypeID" class="control-label"></label>
-                <select asp-for="DetailOT.CarType_CarTypeID" class ="form-control" asp-items="ViewBag.CarType_CarTypeID"></select>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="DetailOT.OT_OTID" class="control-label"></label>
                 <select asp-for="DetailOT.OT_OTID" class ="form-control" asp-items="ViewBag.OT_OTID"></select>

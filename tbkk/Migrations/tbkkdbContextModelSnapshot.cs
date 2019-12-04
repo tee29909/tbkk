@@ -226,6 +226,42 @@ namespace tbkk.Migrations
                     b.ToTable("Canteen");
                 });
 
+            modelBuilder.Entity("tbkk.Models.CarQueue", b =>
+                {
+                    b.Property<int>("CarQueueID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarQueue_CarTypeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarQueue_OTID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarQueue_PartID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CarQueueID");
+
+                    b.HasIndex("CarQueue_CarTypeID");
+
+                    b.HasIndex("CarQueue_OTID");
+
+                    b.HasIndex("CarQueue_PartID");
+
+                    b.ToTable("CarQueue");
+                });
+
             modelBuilder.Entity("tbkk.Models.CarType", b =>
                 {
                     b.Property<int>("CarTypeID")
@@ -424,18 +460,34 @@ namespace tbkk.Migrations
                     b.ToTable("Department_Cock");
                 });
 
+            modelBuilder.Entity("tbkk.Models.DetailCarQueue", b =>
+                {
+                    b.Property<int>("DetailCarQueueID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DetailCarQueue_CarQueueID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DetailCarQueue_EmployeeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("DetailCarQueueID");
+
+                    b.HasIndex("DetailCarQueue_CarQueueID");
+
+                    b.HasIndex("DetailCarQueue_EmployeeID");
+
+                    b.ToTable("DetailCarQueue");
+                });
+
             modelBuilder.Entity("tbkk.Models.DetailOT", b =>
                 {
                     b.Property<int>("DetailOTID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CarNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CarType_CarTypeID")
-                        .HasColumnType("int");
 
                     b.Property<int>("Employee_EmpID")
                         .HasColumnType("int");
@@ -465,8 +517,6 @@ namespace tbkk.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DetailOTID");
-
-                    b.HasIndex("CarType_CarTypeID");
 
                     b.HasIndex("Employee_EmpID");
 
@@ -553,7 +603,7 @@ namespace tbkk.Migrations
                     b.Property<int>("Employee_CompanyID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Employee_DepartmentNameID")
+                    b.Property<int>("Employee_DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<int>("Employee_EmployeeTypeID")
@@ -587,7 +637,7 @@ namespace tbkk.Migrations
 
                     b.HasIndex("Employee_CompanyID");
 
-                    b.HasIndex("Employee_DepartmentNameID");
+                    b.HasIndex("Employee_DepartmentID");
 
                     b.HasIndex("Employee_EmployeeTypeID");
 
@@ -1648,6 +1698,27 @@ namespace tbkk.Migrations
                         .HasForeignKey("SupplierIDSupplier_CockID");
                 });
 
+            modelBuilder.Entity("tbkk.Models.CarQueue", b =>
+                {
+                    b.HasOne("tbkk.Models.CarType", "CarType")
+                        .WithMany()
+                        .HasForeignKey("CarQueue_CarTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.OT", "OT")
+                        .WithMany()
+                        .HasForeignKey("CarQueue_OTID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("tbkk.Models.Part", "Part")
+                        .WithMany()
+                        .HasForeignKey("CarQueue_PartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("tbkk.Models.CarType", b =>
                 {
                     b.HasOne("tbkk.Models.CompanyCar", "CompanyCar")
@@ -1668,14 +1739,23 @@ namespace tbkk.Migrations
                         .HasForeignKey("Competency_GradeHistoryIDGradeHistoryID");
                 });
 
-            modelBuilder.Entity("tbkk.Models.DetailOT", b =>
+            modelBuilder.Entity("tbkk.Models.DetailCarQueue", b =>
                 {
-                    b.HasOne("tbkk.Models.CarType", "CarType")
+                    b.HasOne("tbkk.Models.CarQueue", "CarQueue")
                         .WithMany()
-                        .HasForeignKey("CarType_CarTypeID")
+                        .HasForeignKey("DetailCarQueue_CarQueueID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("tbkk.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("DetailCarQueue_EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("tbkk.Models.DetailOT", b =>
+                {
                     b.HasOne("tbkk.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("Employee_EmpID")
@@ -1734,7 +1814,7 @@ namespace tbkk.Migrations
 
                     b.HasOne("tbkk.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("Employee_DepartmentNameID")
+                        .HasForeignKey("Employee_DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

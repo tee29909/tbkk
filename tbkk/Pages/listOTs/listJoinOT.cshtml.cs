@@ -43,7 +43,7 @@ namespace tbkk.Pages.listOTs
            
 
             DetailOT = await _context.DetailOT
-                .Include(d => d.CarType)
+                
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)

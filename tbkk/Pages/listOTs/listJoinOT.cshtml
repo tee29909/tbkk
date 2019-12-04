@@ -136,9 +136,7 @@
                                 @Html.DisplayFor(model => model.Employee.Company.CompanyName)
                             </dd>
 
-                            <dt class="col-sm-6 text-right">
-                                @Html.DisplayNameFor(model => model.Employee.Employee_DepartmentNameID):
-                            </dt>
+                           
                             <dd class="col-sm-6">
                                 @Html.DisplayFor(model => model.Employee.Department.DepartmentName)
                             </dd>
@@ -197,12 +195,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT[0].CarType)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT[0].CarNumber)
-                            </th>
+                          
                             <th>
                                 @Html.DisplayNameFor(model => model.DetailOT[0].Part)
                             </th>
@@ -233,13 +226,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Hour)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarType.NameCar)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarNumber)
-                                </td>
+                                
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Part.Name)
