@@ -55,7 +55,7 @@ namespace tbkk.Pages.listOTs
                 return Page();
             }
             OTs = await _context.OT.FirstOrDefaultAsync(o => o.OTID == Did);
-            OTs.TypStatus = "Close";
+            OTs.TypStatus = "Manage Car";
             _context.Attach(OTs).State = EntityState.Modified;
 
             try

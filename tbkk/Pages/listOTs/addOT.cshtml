@@ -131,11 +131,14 @@
                         <div class="form-group">
                             <label asp-for="DetailOT.TimeStart" class="control-label"></label>
                             <input asp-for="DetailOT.TimeStart" class="form-control" />
+
+                            
+
                             <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
-                            <lable class="text-danger" >
+                            <lable class="text-danger">
                                 @Html.ValidationMessage("timeError1")
                             </lable>
-                            
+
 
 
 

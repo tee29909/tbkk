@@ -204,7 +204,8 @@
     </ul>
     <div id="content-wrapper">
         <div name="55555" class="card-layout">
-            <h1>Confirm Shuttle</h1> 
+            <h1>Confirm Shuttle</h1>
+
 
             <div class="card">
                 <div class="card-header">
@@ -220,25 +221,29 @@
                             Date :
                         </dd>
                         <dd class="col-sm-6">
-                            25 November 2019
+                            @{
+                                DateTime date = Model.OT.date;
+                            }
+
+                            @date.ToString("dddd, dd MMMM yyyy")
                         </dd>
                         <dd class="col-sm 6 text-right">
                             Personnel OT :
                         </dd>
                         <dd class="col-sm-6">
-                            50 Person
+                            @Model.OTs.countEmp Person
                         </dd>
                         <dd class="col-sm-6 text-right">
                             Personnel need Shuttle :
                         </dd>
                         <dd class="col-sm-6">
-                            36 Person
+                            @Model.OTs.countCar Person
                         </dd>
                         <dd class="col-sm-6 text-right">
                             Personnel need Food :
                         </dd>
                         <dd class="col-sm-6">
-                            42 Person
+                            @Model.OTs.countFood Person
                         </dd>
                     </dl>
 
@@ -264,262 +269,74 @@
             </div>
 
             <br />
-            @* ------------ department 1 ------------- *@
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-11"><dt>Department 1  :  Personnel OT : 8 Person</dt></div>
-                        <div class="col-sm-1">
-                            <button onclick="myFunction1()" type="button" class="btn"><i class="fa fa-bars"></i></button>
-                        </div>
-                    </div>
-                    <br />
-
-                    <div id="myDIV1" style="display:none">
 
 
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 8 Shuttle
+            @{
+                foreach (var i in Model.Depasments)
+                {
+
+
+
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <dt>@i.DepasmentsName  :  Personnel OT : @i.DepasmentsCount Person</dt>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button onclick="myFunction1(@i.DepasmentsID)" type="button" class="btn">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p>Bangsan : 5 Shuttle</p>
-                                <p>Panatnikom : 3 Shuttle</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Food : 6 Person
-                            </div>
-                            <div class="card-body">
-                                <p>Food set A : 3 Person</p>
-                                <p>Food set B : 3 Person</p>
-                            </div>
-                        </div>
-
-                    </div>
+                            <br />
+                            <div id="@i.DepasmentsID" style="display:none">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Personnel need Car : @i.CarCount Shuttle
+                                    </div>
+                                    <div class="card-body">
+                                        @foreach (var j in i.Parts)
+                                        {
+                                            <p>@j.PartName : @j.PartsCount Shuttle</p>
+                                        }
 
 
-                    <script>
-                        function myFunction1() {
-                            var x = document.getElementById("myDIV1");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
-            <br />
-            @* ------------ department 2 ------------- *@
-
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-11"><dt>Department 2  :  Personnel OT : 14 Person</dt></div>
-                        <div class="col-sm-1">
-                            <button onclick="myFunction2()" type="button" class="btn"><i class="fa fa-bars"></i></button>
-                        </div>
-                    </div>
-                    <br />
-
-
-                    <div id="myDIV2" style="display:none">
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 14 Shuttle
-                            </div>
-                            <div class="card-body">
-                                <p>Bangsan : 4 Shuttle</p>
-                                <p>Panatnikom : 4 Shuttle</p>
-                                <p>Sriracha : 1 Shuttle</p>
-                                <p>Pattaya : 6 Shuttle</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Food : 14 Person
-                            </div>
-                            <div class="card-body">
-                                <p>Food set A : 8 Person</p>
-                                <p>Food set B : 6 Person</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        Personnel need Food : @i.FoodCount Person
+                                    </div>
+                                    <div class="card-body">
+                                        @foreach (var j in i.Foods)
+                                        {
+                                            <p>@j.FoodName: @j.FoodsCount Person</p>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
-                    <script>
-                        function myFunction2() {
-                            var x = document.getElementById("myDIV2");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
+
+
+                }
+            }
+
+
             <br />
 
-            @* ------------ department 3 ------------- *@
-
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-11"><dt>Department 3  :  Personnel OT : 19 Person</dt></div>
-                        <div class="col-sm-1">
-                            <button onclick="myFunction3()" type="button" class="btn"><i class="fa fa-bars"></i></button>
-                        </div>
-                    </div>
-                    <br />
 
 
-                    <div id="myDIV3" style="display:none">
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 16 Shuttle
-                            </div>
-                            <div class="card-body">
-                                <p>Sriracha : 12 Shuttle</p>
-                                <p>Pattaya : 4 Shuttle</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 11 Person
-                            </div>
-                            <div class="card-body">
-                                <p>Food set A : 5 Person</p>
-                                <p>Food set B : 6 Person</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <script>
-                        function myFunction3() {
-                            var x = document.getElementById("myDIV3");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
-            <br />
-
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-11"><dt>Department 4  :  Personnel OT : 17 Person</dt></div>
-                        <div class="col-sm-1">
-                            <button onclick="myFunction4()" type="button" class="btn"><i class="fa fa-bars"></i></button>
-                        </div>
-                    </div>
-                    <br />
-
-
-                    <div id="myDIV4" style="display:none">
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 14 Shuttle
-                            </div>
-                            <div class="card-body">
-                                <p>Bangsan : 4 Shuttle</p>
-                                <p>Panatnikom : 4 Shuttle</p>
-                                <p>Sriracha : 1 Shuttle</p>
-                                <p>Pattaya : 6 Shuttle</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 14 Person
-                            </div>
-                            <div class="card-body">
-                                <p>Food set A : 8 Person</p>
-                                <p>Food set B : 6 Person</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <script>
-                        function myFunction4() {
-                            var x = document.getElementById("myDIV4");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
-            <br />
-
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-11"><dt>Department 5  :  Personnel OT : 8 Person<dt></div>
-                        <div class="col-sm-1">
-                            <button onclick="myFunction5()" type="button" class="btn"><i class="fa fa-bars"></i></button>
-                        </div>
-                    </div>
-                    <br />
-
-
-                    <div id="myDIV5" style="display:none">
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 7 Shuttle
-                            </div>
-                            <div class="card-body">
-                                <p>Sriracha : 4 Shuttle</p>
-                                <p>Pattaya : 1 Shuttle</p>
-                                <p>Chalermthai : 2 Shuttle</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                Personnel need Shuttle : 2 Person
-                            </div>
-                            <div class="card-body">
-                                <p>Food set A : 0 Person</p>
-                                <p>Food set B : 2 Person</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <script>
-                        function myFunction5() {
-                            var x = document.getElementById("myDIV5");
-                            if (x.style.display === "none") {
-                                x.style.display = "block";
-                            } else {
-                                x.style.display = "none";
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
-            <br />
 
             <div class="text-center col-12">
                 <a class="btn btn-success" asp-page="./../listOTs/OTcar" asp-route-id="@Model.Employee.EmployeeID">Confirm</a>
             </div>
             <br />
-            
+
 
 
 
@@ -530,16 +347,16 @@
 
         </div>
     </div>
-<!-- /.container-fluid -->
-<!-- Sticky Footer -->
-<footer class="sticky-footer">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+    <!-- /.container-fluid -->
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © Your Website 2019</span>
+            </div>
         </div>
-    </div>
-</footer>
-    </div>
+    </footer>
+</div>
 <!-- /.content-wrapper -->
 </div>
 <!-- /#wrapper -->
@@ -566,3 +383,41 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function myFunction1(i) {
+        var x = document.getElementById(i);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
