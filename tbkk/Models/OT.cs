@@ -20,6 +20,8 @@ namespace tbkk.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
 
         public DateTime TimeEnd { get; set; }
+
+
         [DataType(DataType.Date)]
         
         public DateTime date { get; set; }

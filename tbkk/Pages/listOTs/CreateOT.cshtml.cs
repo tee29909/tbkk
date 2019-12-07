@@ -51,7 +51,9 @@ namespace tbkk.Pages.listOTs
             {
                 return Page();
             }
-
+            DateTime datenew = OT.date;
+            int newyear = OT.date.Year + 543;
+            OT.date =  new DateTime(newyear, datenew.Month, datenew.Day);
             string date = OT.date.ToString("dddd");
             OT.TypeOT = date;
 
