@@ -39,7 +39,7 @@ namespace tbkk.Pages.listOTs
             DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Pending for approval")).ToList();
             OT = await _context.OT.ToListAsync();
-            OT = OT.Where(o => o.TypStatus.Equals("Close")).ToList();
+            OT = OT.Where(o => o.TypStatus.Equals("Manage Car")).ToList();
             
 
            

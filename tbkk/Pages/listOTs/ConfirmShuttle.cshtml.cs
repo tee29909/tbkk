@@ -40,9 +40,11 @@ namespace tbkk.Pages.listOTs
         public OTs OTs { get; set; }
         public IList<Depasments> Depasments { get; set; }
         public IList<Cars> Cars { get; set; }
+        
 
         public async Task<IActionResult> OnGetAsync(int? id, int? Did)
         {
+
 
             if (id == null)
             {
@@ -57,12 +59,20 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
+
+            FromDataManage(Did);
+
+            return Page();
+        }
+
+        private void FromDataManage(int? Did)
+        {
             OTs OTsnew = new OTs();
             DetailOT = DetailOT.Where(d => d.OT_OTID == Did).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Allow")).ToList();
             DetailOTnew = DetailOT;
             OTsnew.countEmp = DetailOTnew.Count;
-            
+
             foreach (var i in DetailOTnew)
             {
                 if (i.FoodSet_FoodSetID != 1)
@@ -121,10 +131,20 @@ namespace tbkk.Pages.listOTs
                 add.Add(DataDepasments);
             }
             Depasments = add;
-
-
-            return Page();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private async Task onLoad(int? id, int? Did)
         {
@@ -142,15 +162,55 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
             Part = await _context.Part.ToListAsync();
-            FoodSet =await _context.FoodSet.ToListAsync(); 
+            FoodSet =await _context.FoodSet.ToListAsync();
+
+            
 
         }
+        public async Task OnPostLineAsync(int id,int Did)
+        {
+            //food
+            lineNotify("test food", "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV");
+            //car
+            lineNotify("test car", "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk");
+            await onLoad(id, Did);
+            FromDataManage(Did);
+        }
 
-        private void lineNotify(string msg)
+
+
+
+
+
+        private void notifyPicture(string url, string TOKEN)
 
         {
 
-            string token = "9IBnp37LVHj0a6W5HLq2dF7sqIjGyEVn2DQtpQq7wYv";
+            _lineNotify(" ", 0, 0, url, TOKEN);
+
+        }
+
+        private void notifySticker(int stickerID, int stickerPackageID,string TOKEN)
+
+        {
+
+            _lineNotify(" ", stickerPackageID, stickerID, "",TOKEN);
+
+        }
+
+        private void lineNotify(string msg,string TOKEN)
+
+        {
+
+            _lineNotify(msg, 0, 0, "",TOKEN);
+
+        }
+
+        private void _lineNotify(string msg, int stickerPackageID, int stickerID, string pictureUrl,string TOKEN)
+
+        {
+
+            string token = TOKEN;
 
             try
 
@@ -158,7 +218,33 @@ namespace tbkk.Pages.listOTs
 
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
 
+
+
                 var postData = string.Format("message={0}", msg);
+
+                if (stickerPackageID > 0 && stickerID > 0)
+
+                {
+
+                    var stickerPackageId = string.Format("stickerPackageId={0}", stickerPackageID);
+
+                    var stickerId = string.Format("stickerId={0}", stickerID);
+
+                    postData += "&" + stickerPackageId.ToString() + "&" + stickerId.ToString();
+
+                }
+
+                if (pictureUrl != "")
+
+                {
+
+                    var imageThumbnail = string.Format("imageThumbnail={0}", pictureUrl);
+
+                    var imageFullsize = string.Format("imageFullsize={0}", pictureUrl);
+
+                    postData += "&" + imageThumbnail.ToString() + "&" + imageFullsize.ToString();
+
+                }
 
                 var data = Encoding.UTF8.GetBytes(postData);
 

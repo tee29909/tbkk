@@ -331,10 +331,15 @@
 
 
 
+            <form  method="post">
 
-            <div class="text-center col-12">
-                <a class="btn btn-success" asp-page="./../listOTs/OTcar" asp-route-id="@Model.Employee.EmployeeID">Confirm</a>
-            </div>
+                <div class="text-center col-12">
+                    <button type="submit" asp-page-handler="Line" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success" >Confirm</button>
+                </div>
+                
+
+            </form>
+           
             <br />
 
 
