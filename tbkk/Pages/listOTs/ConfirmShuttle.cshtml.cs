@@ -30,7 +30,8 @@ namespace tbkk.Pages.listOTs
         public Employee Employee { get; set; }
 
 
-
+        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
+        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
 
         public IList<FoodSet> FoodSet { get; set; }
         public IList<Part> Part { get; set; }
@@ -169,10 +170,13 @@ namespace tbkk.Pages.listOTs
         }
         public async Task OnPostLineAsync(int id,int Did)
         {
+            
             //food
-            lineNotify("test food", "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV");
+            lineNotify("test food", foodToken);
+            notifySticker("อาหารมาแล้ว",150,2, foodToken);
             //car
-            lineNotify("test car", "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk");
+            lineNotify("test car", carToken);
+            notifySticker("รถมาแล้ว", 160, 2, carToken);
             await onLoad(id, Did);
             FromDataManage(Did);
         }
@@ -182,19 +186,19 @@ namespace tbkk.Pages.listOTs
 
 
 
-        private void notifyPicture(string url, string TOKEN)
+        private void notifyPicture(string msg,string url, string TOKEN)
 
         {
 
-            _lineNotify(" ", 0, 0, url, TOKEN);
+            _lineNotify(msg, 0, 0, url, TOKEN);
 
         }
 
-        private void notifySticker(int stickerID, int stickerPackageID,string TOKEN)
+        private void notifySticker(string msg,int stickerID, int stickerPackageID,string TOKEN)
 
         {
 
-            _lineNotify(" ", stickerPackageID, stickerID, "",TOKEN);
+            _lineNotify(msg, stickerPackageID, stickerID, "",TOKEN);
 
         }
 
