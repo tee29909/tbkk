@@ -34,10 +34,11 @@ namespace tbkk.Pages.listOTs
         public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
 
         public IList<FoodSet> FoodSet { get; set; }
+        public IList<CarsPart> CarsPart { get; set; }
         public IList<Part> Part { get; set; }
         public IList<DetailOT> DetailOTnew { get; set; }
         public IList<Department> Department { get; set; }
-        
+        public IList<CarType> CarType { get; set; }
         public OTs OTs { get; set; }
         public IList<Depasments> Depasments { get; set; }
         public IList<Cars> Cars { get; set; }
@@ -63,7 +64,81 @@ namespace tbkk.Pages.listOTs
 
             FromDataManage(Did);
 
-            return Page();
+
+
+           
+
+            DetailOTnew = DetailOT;
+            DetailOTnew = DetailOTnew.Where(d => d.Type.Equals("Go")||d.Type.Equals("Go and Back")).ToList();
+            List<CarsPart> CarsParts = new List<CarsPart>();
+            foreach (var i in Part)
+            {
+                
+                CarsPart CarsPartNew = new CarsPart();
+                CarsPartNew.PartID = i.PartID;
+                CarsPartNew.namePart = i.Name;
+                List<Cars> CarsNew = new List<Cars>();
+                int count = DetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
+                foreach (var j in CarType)
+                {
+                    if (j.Seat <=count) { 
+                    Cars cars = new Cars();
+                    cars.CarTypeID = j.CarTypeID;
+                    cars.CarTypeName = j.NameCar;
+                        if (j.Seat != 0)
+                        {
+                            int add = count / j.Seat;
+                            count = count % j.Seat;
+                            cars.countCar = add;
+                            CarsNew.Add(cars);
+                        }
+                    }
+                }
+                Cars min = new Cars();
+                int seedMon = 9999;
+                foreach (var j in CarType)
+                { 
+                    if(j.Seat != 0)
+                    {
+                        if(j.Seat < seedMon)
+                        {
+                            seedMon = j.Seat;
+                            min.CarTypeID = j.CarTypeID;
+                            min.CarTypeName = j.NameCar;
+                            min.countCar = 1;
+                        }
+                    }
+                }
+
+                if (count > 0)
+                {
+                    int check = 0;
+                    foreach (var j in CarsNew)
+                    {
+                        if (j.CarTypeID ==min.CarTypeID)
+                        {
+                            check = +1;
+                            j.countCar = j.countCar + 1;
+                            break;
+                        }
+                    }
+                    if (check == 0)
+                    {
+                        CarsNew.Add(min);
+                    }
+
+                }
+
+
+                    CarsPartNew.Cars = CarsNew;
+                if (DetailOTnew.Where(d => d.Part_PaetID == i.PartID).ToList().Count !=0) {
+                    CarsParts.Add(CarsPartNew);
+                }
+            }
+            CarsPart = CarsParts;
+
+
+                return Page();
         }
 
         private void FromDataManage(int? Did)
@@ -132,19 +207,11 @@ namespace tbkk.Pages.listOTs
                 add.Add(DataDepasments);
             }
             Depasments = add;
+
+
+
+
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private async Task onLoad(int? id, int? Did)
@@ -164,8 +231,13 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Part).ToListAsync();
             Part = await _context.Part.ToListAsync();
             FoodSet =await _context.FoodSet.ToListAsync();
+            CarType = await _context.CarType.ToListAsync();
+            CarType = CarType.OrderByDescending(o => o.Seat).ToList();
 
-            
+
+
+
+
 
         }
         public async Task OnPostLineAsync(int id,int Did)
@@ -180,10 +252,6 @@ namespace tbkk.Pages.listOTs
             await onLoad(id, Did);
             FromDataManage(Did);
         }
-
-
-
-
 
 
         private void notifyPicture(string msg,string url, string TOKEN)
@@ -293,9 +361,6 @@ namespace tbkk.Pages.listOTs
     }
 
 
-
-
-
     public class OTs
     {
         public int countEmp { get; set; }
@@ -306,13 +371,9 @@ namespace tbkk.Pages.listOTs
 
     public class Cars
     {
-        
         public int CarTypeID { get; set; }
-        public int CarTypeName { get; set; }
+        public string CarTypeName { get; set; }
         public int countCar { get; set; }
-
-
-        
     }
 
 
@@ -326,7 +387,6 @@ namespace tbkk.Pages.listOTs
         public IList<Parts> Parts = new List<Parts>();
         public IList<Foods> Foods  = new List<Foods>();
     }
-
 
     public class Parts
     {
@@ -345,26 +405,6 @@ namespace tbkk.Pages.listOTs
 
         
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
 
 
 }

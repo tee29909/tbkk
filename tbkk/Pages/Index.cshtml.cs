@@ -50,11 +50,7 @@ namespace tbkk.Pages
             ViewData["Login_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
             Debug.WriteLine(Login.Login_EmployeeID);
             
-           
-            
-            
             return RedirectToPage("./Home/Home", new { id = Login.Employee.EmployeeID });
-
 
         }
 

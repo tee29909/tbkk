@@ -160,14 +160,14 @@
                             <label asp-for="DetailOT.Type" class="control-label"></label>
                             <select asp-for="DetailOT.Type" class="form-control">
                                 <option>No</option>
-                                <option>back</option>
+                                <option>Back</option>
 
                                 @{
                                     if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
                                     {
-                                        <option>go</option>
+                                        <option>Go</option>
 
-                                        <option>go and back</option>
+                                        <option>Go and Back</option>
 
                                     }
                                 }

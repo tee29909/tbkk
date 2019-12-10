@@ -5,98 +5,6 @@
     ViewData["Title"] = "ConfirmShuttle";
 }
 
-@*<h1>ConfirmShuttle</h1>
-
-    <p>
-        <a asp-page="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].TimeEnd)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].CarNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].Part)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].CarType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].OT)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.DetailOT)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TimeStart)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TimeEnd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hour)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CarNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Part.PartID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CarType.CarTypeID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OT.OTID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.DetailOTID">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.DetailOTID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
-
 
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -164,8 +72,6 @@
                         <h6 class="dropdown-header">Management</h6>
 
                         <a class="dropdown-item" asp-page="./../listOTs/listEmpOT" asp-route-id=@Model.Employee.EmployeeID>List Employer</a>
-
-
                     }
 
 
@@ -175,12 +81,7 @@
                         //<a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>List OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/manageOT" asp-route-id=@Model.Employee.EmployeeID>Manage OT</a>
                         <a class="dropdown-item" asp-page="./../listOTs/OTcar" asp-route-id=@Model.Employee.EmployeeID>Car Management</a>
-
-
                         //<a class="dropdown-item" asp-page="./../listOTs/addOT" asp-route-id=@Model.Employee.EmployeeID>Report OT</a>
-
-
-
                     }
 
                 }
@@ -248,23 +149,6 @@
                     </dl>
 
 
-
-                    <div class="form-group row">
-                        <label for="example-number-input" class="col-sm-5 col-form-label text-right">8 seat shuttle :</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" type="number" value="6" id="example-number-input">
-                        </div>
-                        <label for="example-number-input" class="col-sm-5 col-form-label">shuttle</label>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="example-number-input" class="col-sm-5 col-form-label text-right">6 seat shuttle :</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" type="number" value="7" id="example-number-input">
-                        </div>
-                        <label for="example-number-input" class="col-sm-6 col-form-label">shuttle</label>
-                    </div>
-
                 </div>
             </div>
 
@@ -320,26 +204,97 @@
                         </div>
                     </div>
 
-
-
-
                 }
             }
+
+
+
+
+
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Part
+                        </th>
+                        <th>
+                            CarType
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var item in Model.CarsPart)
+                        {
+
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.namePart)
+                            </td>
+
+                            @foreach (var j in item.Cars)
+                            {
+
+                    <td>
+                        <div class="col">
+                            @Html.DisplayFor(modelItem => j.CarTypeName)
+                        </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
+                            </div>
+                            
+
+                    </td>
+
+
+                               
+
+                            }
+
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+            
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <br />
 
 
 
-            <form  method="post">
+            <form method="post">
 
                 <div class="text-center col-12">
-                    <button type="submit" asp-page-handler="Line" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success" >Confirm</button>
+                    <button type="submit" asp-page-handler="Line" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
                 </div>
-                
+
 
             </form>
-           
+
             <br />
 
 
