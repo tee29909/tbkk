@@ -25,7 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DetailOT[0].Type)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.DetailOT[0].Status)
             </th>
@@ -35,7 +35,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.DetailOT[0].OT)
             </th>
@@ -46,43 +46,47 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.DetailOT) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Part.PartID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.OT.OTID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.DetailOTID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.DetailOTID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.DetailOT)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Part.PartID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.OT.OTID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.DetailOTID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.DetailOTID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

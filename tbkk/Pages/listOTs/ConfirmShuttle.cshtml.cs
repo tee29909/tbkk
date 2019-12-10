@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
+using Newtonsoft.Json;
 
 namespace tbkk.Pages.listOTs
 {
@@ -30,6 +31,16 @@ namespace tbkk.Pages.listOTs
         public Employee Employee { get; set; }
 
 
+
+        public IList<test> test { get; set; }
+
+
+        public string json { get; set; }
+
+
+
+
+
         public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
         public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
 
@@ -46,6 +57,17 @@ namespace tbkk.Pages.listOTs
 
         public async Task<IActionResult> OnGetAsync(int? id, int? Did)
         {
+            List<test> test1 = new List<test>();
+            
+            for (int i=0;i<3;i++)
+            {
+                test testNew = new test();
+                testNew.testID = i;
+                testNew.testname = "k";
+
+                test1.Add(testNew);
+            }
+            test = test1;
 
 
             if (id == null)
@@ -254,6 +276,8 @@ namespace tbkk.Pages.listOTs
         }
 
 
+       
+
         private void notifyPicture(string msg,string url, string TOKEN)
 
         {
@@ -404,6 +428,16 @@ namespace tbkk.Pages.listOTs
         public int FoodsCount { get; set; }
 
         
+    }
+
+    public class test
+    {
+        public int testID { get; set; }
+        public string testname { get; set; }
+
+       
+
+
     }
 
 
