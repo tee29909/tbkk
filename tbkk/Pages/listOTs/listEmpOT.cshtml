@@ -159,6 +159,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach (var item in Model.OT)
                                 {
                                     @foreach (var i in Model.DetailOT)
@@ -183,7 +184,12 @@
                                                 </td>
                                                 <td>
                                                     <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-dark">Edit</a> |
-                                                    <a asp-page="./Edit" class="btn btn-outline-danger" asp-route-id="@item.OTID">All allowed</a>
+
+
+                                                    <form method="post">
+                                                        <button asp-page-handler="AddAll" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">All allowed</button>
+
+                                                    </form>
 
                                                 </td>
                                             </tr>
@@ -191,6 +197,7 @@
                                         }
                                     }
                                 }
+
                             </tbody>
                         </table>
 
