@@ -131,12 +131,9 @@
                 <div class="card-header">
                     Register
                 </div>
-
                 <div class="card-body">
-
                     <div class="row ">
                         <div class="col">
-
                             <form method="post">
                                 <div class="row ">
                                     <div class="col-lg-6">
@@ -144,9 +141,6 @@
                                         <div class="form-group">
                                             <label asp-for="DetailOT.TimeStart" class="control-label"></label>
                                             <input asp-for="DetailOT.TimeStart" class="form-control" />
-
-
-
                                             <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
                                             <lable class="text-danger">
                                                 @Html.ValidationMessage("timeError1")

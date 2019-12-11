@@ -228,12 +228,12 @@
 
 
 
-
+            <br />
 
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Data Table Example
+                    Part Table
                 </div>
 
                 <div class="card-body">
@@ -255,32 +255,18 @@
                                 <tr>
                                     @foreach (var item in Model.CarsPart)
                                     {
-
-
-
                                         <td>
                                             @Html.DisplayFor(modelItem => item.namePart)
                                         </td>
-
-                                        @foreach (var j in item.Cars)
-                                        {
-
-                                            <td>
-                                                <div class="col">
-                                                    @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
-                                                </div>
-
-
-                                            </td>
-
-
-
-
-                                        }
-
+                                        <td>
+                                            @foreach (var j in item.Cars)
+                                            { 
+                                            <div class="col-sm-4">
+                                                @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
+                                            </div>
+                                            }
+                                        </td>
                                     }
                                 </tr>
                             </tbody>
@@ -289,9 +275,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
 
 
