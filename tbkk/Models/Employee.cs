@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,30 +23,31 @@ namespace tbkk.Models
         public string Status { get; set; }
 
 
-
+        [Display(Name = "Company")]
         [ForeignKey("Company")]
         public int Employee_CompanyID { get; set; }
         public Company Company { get; set; }
 
-
+        [Display(Name = "Department")]
         [ForeignKey("Department")]
         public int Employee_DepartmentID { get; set; }
 
         public Department Department { get; set; }
 
 
-
+        [Display(Name = "Location")]
         [ForeignKey("Location")]
         public int Employee_LocationID { get; set; }
         public Location Location { get; set; }
 
-        
 
+        [Display(Name = "Employee Type")]
         [ForeignKey("EmployeeType")]
         public int Employee_EmployeeTypeID { get; set; }
         public EmployeeType EmployeeType { get; set; }
 
 
+        [Display(Name = "Position")]
         [ForeignKey("Position")]
         public int Employee_PositionID { get; set; }
         public Position Position { get; set; }

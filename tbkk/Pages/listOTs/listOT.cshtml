@@ -120,138 +120,139 @@
 
 
             <h1>List OT</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Overtime</li>
-                <li class="breadcrumb-item active">List OT</li>
-                
-            </ol>
+            <div class="container-fluid">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Overtime</li>
+                    <li class="breadcrumb-item active">List OT</li>
+
+                </ol>
 
 
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-table"></i>
-                    OT Table
-                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        OT Table
+                    </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT[0].TimeStart)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT[0].TypeOT)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT[0].TypStatus)
-                                    </th>
-                                    <th>
-                                       Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.OT)
-                                {
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <td>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.OT[0].TimeStart)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.OT[0].TypeOT)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.OT[0].TypStatus)
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OT)
+                                    {
+                                        <tr>
+                                            <td>
 
 
-                                            @{
-                                                DateTime date = item.date;
-                                            }
+                                                @{
+                                                    DateTime date = item.date;
+                                                }
 
-                                            @date.ToString("dddd, dd MMMM yyyy")
-
-
-
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TimeStart)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TimeEnd)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TypeOT)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TypStatus)
-                                        </td>
-                                        <td>
-
-
-                                            @{
+                                                @date.ToString("dddd, dd MMMM yyyy")
 
 
 
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TimeStart)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TimeEnd)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TypeOT)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TypStatus)
+                                            </td>
+                                            <td>
 
-                                                int check = 0;
-                                                int IDdetail = 0;
-                                                foreach (var i in Model.DetailOT)
-                                                {
-                                                    if (i.Employee_EmpID == Model.Employee.EmployeeID && i.OT_OTID == item.OTID)
+
+                                                @{
+
+
+
+
+                                                    int check = 0;
+                                                    int IDdetail = 0;
+                                                    foreach (var i in Model.DetailOT)
                                                     {
-                                                        check = 1;
-                                                        IDdetail = i.DetailOTID;
-                                                        break;
+                                                        if (i.Employee_EmpID == Model.Employee.EmployeeID && i.OT_OTID == item.OTID)
+                                                        {
+                                                            check = 1;
+                                                            IDdetail = i.DetailOTID;
+                                                            break;
+                                                        }
+
                                                     }
 
+                                                    if (check == 0)
+                                                    {
+                                                        <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Register</a>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-page="./../listOTs/detailOTView" asp-route-id="@IDdetail" asp-route-Did="@Model.Employee.EmployeeID">Detail</a>
+                                                    }
+
+
+
+
+
+
+
+
+
+
+
                                                 }
 
-                                                if (check == 0)
-                                                {
-                                                    <a asp-page="./../listOTs/addOT" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Register</a>
-
-                                                }
-                                                else
-                                                {
-                                                    <a asp-page="./../listOTs/detailOTView" asp-route-id="@IDdetail" asp-route-Did="@Model.Employee.EmployeeID">Detail</a>
-                                                }
-
-
-
-
-
-
-
-
-
-
-
-                                            }
-
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
 
-
-
-        </div>
-        <!-- /.container-fluid -->
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2019</span>
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2019</span>
+                    </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
     <!-- /.content-wrapper -->
 </div>
 <!-- /#wrapper -->

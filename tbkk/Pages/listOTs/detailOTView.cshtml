@@ -147,132 +147,145 @@
                     </dd>
                 </h4>
                 <hr />
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.TimeStart)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.TimeEnd)
-                    </dd>
 
+                <div class="card " style="margin-top:1%">
+                    <div class="card-header">
+                        Detail
+                    </div>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.Hour)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.Hour)
-                    </dd>
+                    <div class="card-body">
 
 
 
 
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.TimeStart)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.TimeEnd)
+                            </dd>
 
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.Type)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.Type)
-                    </dd>
-
-
-
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.Status)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.Status)
-                    </dd>
-
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.Part)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.Part.Name)
-                    </dd>
-
-
-
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.FoodSet.NameSet)
-                    </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.Hour)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.Hour)
+                            </dd>
 
 
 
 
 
 
-
-
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DetailOT.Employee)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.DetailOT.Employee.FirstName)
-                        @Html.DisplayFor(model => model.DetailOT.Employee.LastName)
-                    </dd>
-                </dl>
-            </div>
-            <div>
-                <a asp-page="./Edit" asp-route-id="@Model.DetailOT.DetailOTID">Edit</a> |
-                <a asp-page="./../listOTs/listOT" asp-route-id="@Model.Employee.EmployeeID">Back to List</a>
-            </div>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.Type)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.Type)
+                            </dd>
 
 
 
 
-        </div>
-        <!-- /.container-fluid -->
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2019</span>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.Status)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.Status)
+                            </dd>
+
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.Part)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.Part.Name)
+                            </dd>
+
+
+
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.FoodSet.NameSet)
+                            </dd>
+
+
+
+
+
+
+
+
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.DetailOT.Employee)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.DetailOT.Employee.FirstName)
+                                @Html.DisplayFor(model => model.DetailOT.Employee.LastName)
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
-            </div>
-        </footer>
-    </div>
-    <!-- /.content-wrapper -->
-</div>
-<!-- /#wrapper -->
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" asp-page="./../Index">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+                            </div>
+                            <div>
+                                <a asp-page="./Edit" asp-route-id="@Model.DetailOT.DetailOTID">Edit</a> |
+                                <a asp-page="./../listOTs/listOT" asp-route-id="@Model.Employee.EmployeeID">Back to List</a>
+                            </div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+
+                        </div>
+                        <!-- /.container-fluid -->
+                        <!-- Sticky Footer -->
+                        <footer class="sticky-footer">
+                            <div class="container my-auto">
+                                <div class="copyright text-center my-auto">
+                                    <span>Copyright © Your Website 2019</span>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                    <!-- /.content-wrapper -->
+                </div>
+                <!-- /#wrapper -->
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" asp-page="./../Index">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }

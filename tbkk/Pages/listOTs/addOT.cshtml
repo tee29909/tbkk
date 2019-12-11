@@ -115,7 +115,7 @@
         </li>
     </ul>
     <div id="content-wrapper">
-        <div name="55555" class="card-layout">
+        <div name="55555" class="card-layout ">
 
 
 
@@ -127,104 +127,123 @@
                 <li class="breadcrumb-item active">Register OT</li>
             </ol>
             <hr />
+            <div class="card " style="margin-top:1%">
+                <div class="card-header">
+                    Register
+                </div>
 
+                <div class="card-body">
 
-            <div class="row">
-                <div class="col-md-4">
+                    <div class="row ">
+                        <div class="col">
 
-                    <form method="post">
-
-
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group">
-                            <label asp-for="DetailOT.TimeStart" class="control-label"></label>
-                            <input asp-for="DetailOT.TimeStart" class="form-control" />
-
-
-
-                            <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
-                            <lable class="text-danger">
-                                @Html.ValidationMessage("timeError1")
-                            </lable>
-
+                            <form method="post">
+                                <div class="row ">
+                                    <div class="col-lg-6">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="DetailOT.TimeStart" class="control-label"></label>
+                                            <input asp-for="DetailOT.TimeStart" class="form-control" />
 
 
 
+                                            <span asp-validation-for="DetailOT.TimeStart.TimeOfDay" class="text-danger"></span>
+                                            <lable class="text-danger">
+                                                @Html.ValidationMessage("timeError1")
+                                            </lable>
 
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
+                                            <input asp-for="DetailOT.TimeEnd" class="form-control" />
+                                            <span asp-validation-for="DetailOT.TimeEnd.TimeOfDay" class="text-danger"></span>
+                                            <lable class="text-danger">
+                                                @Html.ValidationMessage("timeError2")
+                                            </lable>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row ">
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            <label asp-for="DetailOT.Type" class="control-label"></label>
+                                            <select asp-for="DetailOT.Type" class="form-control">
+                                                <option>No</option>
+                                                <option>Back</option>
+
+                                                @{
+                                                    if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
+                                                    {
+                                                        <option>Go</option>
+
+                                                        <option>Go and Back</option>
+
+                                                    }
+                                                }
+
+                                            </select>
+
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                       
+                                            <input hidden asp-for="DetailOT.Status" class="form-control" value="Pending for approval" />
+                                       
+                                       
+                                            <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
+                                        
+
+                                        <div class="form-group">
+                                            <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
+                                            <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
+                                            <lable class="text-danger">
+                                                @Html.ValidationMessage("partError")
+                                            </lable>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row ">
+                                    <div class="col-lg">
+                                        <div class="form-group">
+                                            <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
+                                            <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+
+
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="DetailOT.Employee_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
+
+                                    </div>
+
+
+
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+</form>
                         </div>
-                        <div class="form-group">
-                            <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
-                            <input asp-for="DetailOT.TimeEnd" class="form-control" />
-                            <span asp-validation-for="DetailOT.TimeEnd.TimeOfDay" class="text-danger"></span>
-                            <lable class="text-danger">
-                                @Html.ValidationMessage("timeError2")
-                            </lable>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label asp-for="DetailOT.Type" class="control-label"></label>
-                            <select asp-for="DetailOT.Type" class="form-control">
-                                <option>No</option>
-                                <option>Back</option>
-
-                                @{
-                                    if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
-                                    {
-                                        <option>Go</option>
-
-                                        <option>Go and Back</option>
-
-                                    }
-                                }
-
-                            </select>
-
-
-
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <input hidden asp-for="DetailOT.Status" class="form-control" value="Pending for approval" />
-                        </div>
-                        <div class="form-group">
-                            <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                            <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
-                            <lable class="text-danger">
-                                @Html.ValidationMessage("partError")
-                            </lable>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
-                            <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
-                        </div>
-
-
-
-
-
-                        <div class="form-group">
-
-                            <input hidden asp-for="DetailOT.Employee_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
-
-                        </div>
-
-
-
-
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
