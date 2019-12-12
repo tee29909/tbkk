@@ -57,17 +57,8 @@ namespace tbkk.Pages.listOTs
 
         public async Task<IActionResult> OnGetAsync(int? id, int? Did)
         {
-            List<test> test1 = new List<test>();
-            
-            for (int i=0;i<3;i++)
-            {
-                test testNew = new test();
-                testNew.testID = i;
-                testNew.testname = "k";
 
-                test1.Add(testNew);
-            }
-            test = test1;
+
 
 
             if (id == null)
@@ -84,87 +75,6 @@ namespace tbkk.Pages.listOTs
                 return NotFound();
             }
 
-            FromDataManage(Did);
-
-
-
-           
-
-            DetailOTnew = DetailOT;
-            DetailOTnew = DetailOTnew.Where(d => d.Type.Equals("Go")||d.Type.Equals("Go and Back")).ToList();
-            List<CarsPart> CarsParts = new List<CarsPart>();
-            foreach (var i in Part)
-            {
-                
-                CarsPart CarsPartNew = new CarsPart();
-                CarsPartNew.PartID = i.PartID;
-                CarsPartNew.namePart = i.Name;
-                List<Cars> CarsNew = new List<Cars>();
-                int count = DetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
-                foreach (var j in CarType)
-                {
-                    if (j.Seat <=count) { 
-                    Cars cars = new Cars();
-                    cars.CarTypeID = j.CarTypeID;
-                    cars.CarTypeName = j.NameCar;
-                        if (j.Seat != 0)
-                        {
-                            int add = count / j.Seat;
-                            count = count % j.Seat;
-                            cars.countCar = add;
-                            CarsNew.Add(cars);
-                        }
-                    }
-                }
-                Cars min = new Cars();
-                int seedMon = 9999;
-                foreach (var j in CarType)
-                { 
-                    if(j.Seat != 0)
-                    {
-                        if(j.Seat < seedMon)
-                        {
-                            seedMon = j.Seat;
-                            min.CarTypeID = j.CarTypeID;
-                            min.CarTypeName = j.NameCar;
-                            min.countCar = 1;
-                        }
-                    }
-                }
-
-                if (count > 0)
-                {
-                    int check = 0;
-                    foreach (var j in CarsNew)
-                    {
-                        if (j.CarTypeID ==min.CarTypeID)
-                        {
-                            check = +1;
-                            j.countCar = j.countCar + 1;
-                            break;
-                        }
-                    }
-                    if (check == 0)
-                    {
-                        CarsNew.Add(min);
-                    }
-
-                }
-
-
-                    CarsPartNew.Cars = CarsNew;
-                if (DetailOTnew.Where(d => d.Part_PaetID == i.PartID).ToList().Count !=0) {
-                    CarsParts.Add(CarsPartNew);
-                }
-            }
-            CarsPart = CarsParts;
-
-
-                return Page();
-        }
-
-        private void FromDataManage(int? Did)
-        {
             OTs OTsnew = new OTs();
             DetailOT = DetailOT.Where(d => d.OT_OTID == Did).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Allow")).ToList();
@@ -186,6 +96,38 @@ namespace tbkk.Pages.listOTs
             OTs = OTsnew;
 
 
+            List<Depasments> add = OTDetailOTList();
+            Depasments = add;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            DetailOTnew = DetailOT;
+            DetailOTnew = DetailOTnew.Where(d => d.Type.Equals("Go") || d.Type.Equals("Go and Back")).ToList();
+
+
+
+
+            List<CarsPart> CarsParts = ManageCar();
+            CarsPart = CarsParts;
+
+
+            return Page();
+        }
+
+        private List<Depasments> OTDetailOTList()
+        {
             List<Depasments> add = new List<Depasments>();
             foreach (var i in Department)
             {
@@ -193,8 +135,8 @@ namespace tbkk.Pages.listOTs
                 DataDepasments.DepasmentsName = i.DepartmentName;
                 DataDepasments.DepasmentsID = i.DepartmentID;
                 DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No")).ToList().Count;
-                DataDepasments.FoodCount = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1).ToList().Count;
+                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.FoodCount = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1 && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
 
                 foreach (var j in Part)
                 {
@@ -228,12 +170,85 @@ namespace tbkk.Pages.listOTs
                 }
                 add.Add(DataDepasments);
             }
-            Depasments = add;
 
-
-
-
+            return add;
         }
+
+        private List<CarsPart> ManageCar()
+        {
+            List<CarsPart> CarsParts = new List<CarsPart>();
+
+            foreach (var i in Part)
+            {
+
+                CarsPart CarsPartNew = new CarsPart();
+                CarsPartNew.PartID = i.PartID;
+                CarsPartNew.namePart = i.Name;
+                List<Cars> CarsNew = new List<Cars>();
+                int count = DetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
+                foreach (var j in CarType)
+                {
+                    if (j.Seat <= count)
+                    {
+                        Cars cars = new Cars();
+                        cars.CarTypeID = j.CarTypeID;
+                        cars.CarTypeName = j.NameCar;
+                        if (j.Seat != 0)
+                        {
+                            int add = count / j.Seat;
+                            count = count % j.Seat;
+                            cars.countCar = add;
+                            CarsNew.Add(cars);
+                        }
+                    }
+                }
+                Cars min = new Cars();
+                int seedMon = 9999;
+                foreach (var j in CarType)
+                {
+                    if (j.Seat != 0)
+                    {
+                        if (j.Seat < seedMon)
+                        {
+                            seedMon = j.Seat;
+                            min.CarTypeID = j.CarTypeID;
+                            min.CarTypeName = j.NameCar;
+                            min.countCar = 1;
+                        }
+                    }
+                }
+
+                if (count > 0)
+                {
+                    int check = 0;
+                    foreach (var j in CarsNew)
+                    {
+                        if (j.CarTypeID == min.CarTypeID)
+                        {
+                            check = +1;
+                            j.countCar = j.countCar + 1;
+                            break;
+                        }
+                    }
+                    if (check == 0)
+                    {
+                        CarsNew.Add(min);
+                    }
+
+                }
+
+
+                CarsPartNew.Cars = CarsNew;
+                if (DetailOTnew.Where(d => d.Part_PaetID == i.PartID).ToList().Count != 0)
+                {
+                    CarsParts.Add(CarsPartNew);
+                }
+            }
+
+            return CarsParts;
+        }
+
+       
 
 
         private async Task onLoad(int? id, int? Did)
@@ -272,7 +287,7 @@ namespace tbkk.Pages.listOTs
             lineNotify("test car", carToken);
             notifySticker("รถมาแล้ว", 160, 2, carToken);
             await onLoad(id, Did);
-            FromDataManage(Did);
+            //FromDataManage(Did);
         }
 
 
@@ -408,6 +423,15 @@ namespace tbkk.Pages.listOTs
         public int DepasmentsCount { get; set; }
         public int CarCount { get; set; }
         public int FoodCount { get; set; }
+
+
+
+
+
+
+
+
+
         public IList<Parts> Parts = new List<Parts>();
         public IList<Foods> Foods  = new List<Foods>();
     }
@@ -436,9 +460,5 @@ namespace tbkk.Pages.listOTs
         public string testname { get; set; }
 
        
-
-
     }
-
-
 }

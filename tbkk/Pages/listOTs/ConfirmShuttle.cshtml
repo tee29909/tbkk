@@ -177,49 +177,53 @@
                 {
 
 
-
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <dt>@i.DepasmentsName  :  Personnel OT : @i.DepasmentsCount Person</dt>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button onclick="myFunction1(@i.DepasmentsID)" type="button" class="btn">
-                                        <i class="fa fa-bars"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <br />
-                            <div id="@i.DepasmentsID" style="display:none">
-                                <div class="card">
-                                    <div class="card-header">
-                                        Personnel need Car : @i.CarCount Shuttle
+                    if (@i.DepasmentsCount != 0)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <dt>@i.DepasmentsName  :  Personnel OT : @i.DepasmentsCount Person</dt>
                                     </div>
-                                    <div class="card-body">
-                                        @foreach (var j in i.Parts)
-                                        {
-                                            <p>@j.PartName : @j.PartsCount Shuttle</p>
-                                        }
-
-
+                                    <div class="col-sm-1">
+                                        <button onclick="myFunction1(@i.DepasmentsID)" type="button" class="btn">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        Personnel need Food : @i.FoodCount Person
+                                <br />
+                                <div id="@i.DepasmentsID" style="display:none">
+                                    <div class="card">
+                                        <div class="card-header">
+                                           
+                                            Personnel need Car : @i.CarCount Shuttle
+                                        </div>
+                                        <div class="card-body">
+                                            @foreach (var j in i.Parts)
+                                            {
+                                                <p>@j.PartName : @j.PartsCount Shuttle</p>
+                                            }
+
+
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        @foreach (var j in i.Foods)
-                                        {
-                                            <p>@j.FoodName: @j.FoodsCount Person</p>
-                                        }
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Personnel need Food : @i.FoodCount Person
+                                        </div>
+                                        <div class="card-body">
+                                            @foreach (var j in i.Foods)
+                                            {
+                                                <p>@j.FoodName: @j.FoodsCount Person</p>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
+
+
 
                 }
             }
@@ -260,11 +264,11 @@
                                         </td>
                                         <td>
                                             @foreach (var j in item.Cars)
-                                            { 
-                                            <div class="col-sm-4">
-                                                @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
-                                            </div>
+                                            {
+                                                <div class="col-sm-4">
+                                                    @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                    <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
+                                                </div>
                                             }
                                         </td>
                                     }

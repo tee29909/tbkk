@@ -79,7 +79,7 @@ namespace tbkk.Pages.listOTs
 
             
 
-            return RedirectToPage("./../listOTs/listOT", new { id = Employee.EmployeeID });
+            return RedirectToPage("./../listOTs/listEmpOT", new { id = Employee.EmployeeID });
         }
 
         private bool DetailOTExists(int id)
