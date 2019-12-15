@@ -25,7 +25,19 @@ namespace tbkk
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            ///lodSesstion
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddMemoryCache();
+           
+
+
+            ///razor start
             services.AddRazorPages();
+            
+            //DBcotext
             services.AddDbContext<tbkkdbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("tbkkdbContext")));
 
@@ -48,6 +60,11 @@ namespace tbkk
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+           
+            //session start
+            app.UseSession();
+
 
             app.UseRouting();
 
