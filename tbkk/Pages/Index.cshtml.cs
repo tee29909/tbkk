@@ -48,8 +48,9 @@ namespace tbkk.Pages
             {
                 return Page();
             }
-            ViewData["Login_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
+            //ViewData["Login_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
             Debug.WriteLine(Login.Login_EmployeeID);
+
 
 
 

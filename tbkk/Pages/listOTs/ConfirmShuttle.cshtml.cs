@@ -32,7 +32,7 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public IList<test> test { get; set; }
+       
 
 
         public string json { get; set; }
@@ -45,7 +45,16 @@ namespace tbkk.Pages.listOTs
         public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
 
         public IList<FoodSet> FoodSet { get; set; }
-        public IList<CarsPart> CarsPart { get; set; }
+
+
+
+        public IList<CarsPart> Round_8 { get; set; }
+        public IList<CarsPart> Round_17 { get; set; }
+        public IList<CarsPart> Round_20 { get; set; }
+
+
+
+
         public IList<Part> Part { get; set; }
         public IList<DetailOT> DetailOTnew { get; set; }
         public IList<Department> Department { get; set; }
@@ -75,10 +84,38 @@ namespace tbkk.Pages.listOTs
                 return NotFound();
             }
 
+            
+            OTs = ListOTDetail(Did);
+
+
+            
+            Depasments = OTDetailOTList();
+
+            IList<DetailOT> mDetailOTnew;
+            if (OT.TypeOT.Equals("Saturday")&& OT.TypeOT.Equals("Sunday"))
+            {
+                mDetailOTnew = DetailOT.Where(d => (d.Type.Equals("Go") || d.Type.Equals("Go and Back"))&& d.TimeStart.Hour==8 && d.TimeStart.Minute == 0).ToList();
+                Round_8 = ManageCar(mDetailOTnew);
+                mDetailOTnew = DetailOT.Where(d => (d.Type.Equals("Back") || d.Type.Equals("Go and Back")) && d.TimeEnd.Hour == 17 && d.TimeEnd.Minute == 0).ToList();
+                Round_17 = ManageCar(mDetailOTnew);
+                mDetailOTnew = DetailOT.Where(d => (d.Type.Equals("Back") || d.Type.Equals("Go and Back")) && d.TimeEnd.Hour == 20 && d.TimeEnd.Minute == 0).ToList();
+                Round_20 = ManageCar(mDetailOTnew);
+            }
+            else
+            {
+                mDetailOTnew = DetailOT.Where(d => d.Type.Equals("Back") && d.TimeEnd.Hour == 20 && d.TimeEnd.Minute == 0).ToList();
+                Round_20 = ManageCar(mDetailOTnew);
+            }
+            
+            return Page();
+        }
+
+        private OTs ListOTDetail(int? Did)
+        {
             OTs OTsnew = new OTs();
-            DetailOT = DetailOT.Where(d => d.OT_OTID == Did).ToList();
-            DetailOT = DetailOT.Where(d => d.Status.Equals("Allow")).ToList();
-            DetailOTnew = DetailOT;
+            
+           
+            DetailOTnew = DetailOT.Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToList();
             OTsnew.countEmp = DetailOTnew.Count;
 
             foreach (var i in DetailOTnew)
@@ -93,37 +130,8 @@ namespace tbkk.Pages.listOTs
                 }
 
             }
-            OTs = OTsnew;
 
-
-            List<Depasments> add = OTDetailOTList();
-            Depasments = add;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            DetailOTnew = DetailOT;
-            DetailOTnew = DetailOTnew.Where(d => d.Type.Equals("Go") || d.Type.Equals("Go and Back")).ToList();
-
-
-
-
-            List<CarsPart> CarsParts = ManageCar();
-            CarsPart = CarsParts;
-
-
-            return Page();
+            return OTsnew;
         }
 
         private List<Depasments> OTDetailOTList()
@@ -174,7 +182,7 @@ namespace tbkk.Pages.listOTs
             return add;
         }
 
-        private List<CarsPart> ManageCar()
+        private List<CarsPart> ManageCar(IList<DetailOT> mDetailOTnew)
         {
             List<CarsPart> CarsParts = new List<CarsPart>();
 
@@ -185,7 +193,7 @@ namespace tbkk.Pages.listOTs
                 CarsPartNew.PartID = i.PartID;
                 CarsPartNew.namePart = i.Name;
                 List<Cars> CarsNew = new List<Cars>();
-                int count = DetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
+                int count = mDetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
                 foreach (var j in CarType)
                 {
                     if (j.Seat <= count)
@@ -454,11 +462,5 @@ namespace tbkk.Pages.listOTs
         
     }
 
-    public class test
-    {
-        public int testID { get; set; }
-        public string testname { get; set; }
-
-       
-    }
+    
 }

@@ -35,14 +35,6 @@ namespace tbkk.Pages.Home
             //    .Include(e => e.Location)
             //    .Include(e => e.Position)
             //    .FirstOrDefaultAsync(m => m.EmployeeID == id);
-               
-
-
-
-
-
-
-           
             //return RedirectToPage("./../Home/Home", new { id = Employee.EmployeeID });
             return Page();
         }
