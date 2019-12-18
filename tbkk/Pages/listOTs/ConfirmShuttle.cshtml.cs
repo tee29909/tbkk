@@ -90,7 +90,6 @@ namespace tbkk.Pages.listOTs
 
             
             Depasments = OTDetailOTList();
-
             IList<DetailOT> mDetailOTnew;
             if (OT.TypeOT.Equals("Saturday")&& OT.TypeOT.Equals("Sunday"))
             {
@@ -145,7 +144,7 @@ namespace tbkk.Pages.listOTs
                 DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
                 DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
                 DataDepasments.FoodCount = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1 && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-
+                List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
                     Parts parts = new Parts();
@@ -157,10 +156,14 @@ namespace tbkk.Pages.listOTs
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (parts.PartsCount != 0)
                     {
-                        DataDepasments.Parts.Add(parts);
+                        Listparts.Add(parts);
+                       
                     }
 
                 }
+                DataDepasments.ListParts = Listparts;
+                List<Foods> Listfoods = new List<Foods>();
+
                 foreach (var j in FoodSet)
                 {
                     Foods foods = new Foods();
@@ -172,10 +175,12 @@ namespace tbkk.Pages.listOTs
                     foods.FoodsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (foods.FoodsCount != 0)
                     {
-                        DataDepasments.Foods.Add(foods);
+                        Listfoods.Add(foods);
+                       
                     }
 
                 }
+                DataDepasments.ListFoods = Listfoods;
                 add.Add(DataDepasments);
             }
 
@@ -246,7 +251,7 @@ namespace tbkk.Pages.listOTs
                 }
 
 
-                CarsPartNew.Cars = CarsNew;
+                CarsPartNew.ListCars = CarsNew;
                 if (DetailOTnew.Where(d => d.Part_PaetID == i.PartID).ToList().Count != 0)
                 {
                     CarsParts.Add(CarsPartNew);
@@ -285,6 +290,7 @@ namespace tbkk.Pages.listOTs
 
 
         }
+
         public async Task OnPostLineAsync(int id,int Did)
         {
             
@@ -297,9 +303,6 @@ namespace tbkk.Pages.listOTs
             await onLoad(id, Did);
             //FromDataManage(Did);
         }
-
-
-       
 
         private void notifyPicture(string msg,string url, string TOKEN)
 
@@ -399,15 +402,21 @@ namespace tbkk.Pages.listOTs
 
 
 
+
+
+
+
+
+
+
     public class CarsPart
     {
         public int PartID { get; set; }
         public string namePart { get; set; }
 
-        public IList<Cars> Cars = new List<Cars>();
+        public IList<Cars> ListCars { get; set; }
     }
-
-
+    
     public class OTs
     {
         public int countEmp { get; set; }
@@ -423,7 +432,6 @@ namespace tbkk.Pages.listOTs
         public int countCar { get; set; }
     }
 
-
     public class Depasments
     {
         public int DepasmentsID { get; set; }
@@ -433,15 +441,8 @@ namespace tbkk.Pages.listOTs
         public int FoodCount { get; set; }
 
 
-
-
-
-
-
-
-
-        public IList<Parts> Parts = new List<Parts>();
-        public IList<Foods> Foods  = new List<Foods>();
+        public IList<Parts> ListParts { get; set; }
+        public IList<Foods> ListFoods { get; set; }
     }
 
     public class Parts
@@ -462,5 +463,4 @@ namespace tbkk.Pages.listOTs
         
     }
 
-    
 }
