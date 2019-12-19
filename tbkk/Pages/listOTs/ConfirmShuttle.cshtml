@@ -228,115 +228,18 @@
                 }
             }
 
-            <form method="post">
+        <form method="post">
 
-                @{
-                    if (Model.OT.TypeOT.Equals("Saturday") && Model.OT.TypeOT.Equals("Sunday"))
-                    {
-                        if (Model.Round_8.Any())
-                        {
-                            <br />
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fas fa-table"></i>
-                                    8:00 Part Table
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Part
-                                                    </th>
-                                                    <th>
-                                                        CarType
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    @foreach (var item in Model.Round_8)
-                                                    {
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.namePart)
-                                                        </td>
-                                                        <td>
-                                                            @foreach (var j in item.ListCars)
-                                                            {
-                                                                <div class="col-sm-4">
-                                                                    @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                                    <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
-                                                                </div>
-                                                            }
-                                                        </td>
-                                                    }
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        if (Model.Round_17.Any())
-                        {
-                            <br />
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fas fa-table"></i>
-                                    17:00 Part Table
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Part
-                                                    </th>
-                                                    <th>
-                                                        CarType
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    @foreach (var item in Model.Round_17)
-                                                    {
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.namePart)
-                                                        </td>
-                                                        <td>
-                                                            @foreach (var j in item.ListCars)
-                                                            {
-                                                                <div class="col-sm-4">
-                                                                    @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                                    <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
-                                                                </div>
-                                                            }
-                                                        </td>
-                                                    }
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                    }
-
-                }
-                @{
-                    if (Model.Round_20.Any())
+            @{
+                if (Model.OT.TypeOT.Equals("Saturday") && Model.OT.TypeOT.Equals("Sunday"))
+                {
+                    if (Model.Round_8.Any())
                     {
                         <br />
                         <div class="card mb-3">
                             <div class="card-header">
                                 <i class="fas fa-table"></i>
-                                20:00 Part Table
+                                8:00 Part Table
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -353,7 +256,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                @foreach (var item in Model.Round_20)
+                                                @foreach (var item in Model.Round_8)
                                                 {
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.namePart)
@@ -375,17 +278,156 @@
                                 </div>
                             </div>
                         </div>
-                    } }
+                    }
+                    if (Model.Round_17.Any())
+                    {
+                        <br />
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fas fa-table"></i>
+                                17:00 Part Table
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Part
+                                                </th>
+                                                <th>
+                                                    CarType
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @foreach (var item in Model.Round_17)
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.namePart)
+                                                    </td>
+                                                    <td>
+                                                        @foreach (var j in item.ListCars)
+                                                        {
+                                                            <div class="col-sm-4">
+                                                                @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                                <input class="form-control" type="number" value="@j.countCar" id="example-number-input">
+                                                            </div>
+                                                        }
+                                                    </td>
+                                                }
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            }
+            @{
+                if (Model.Round_20.Any())
+                {
+                    <br />
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            20:00 Part Table
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Part
+                                            </th>
+                                            <th>
+                                                CarType
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @foreach (var item in Model.Round_20)
+                                            {
+
+                                                int index = Model.Round_20.IndexOf(item);
+
+                                                <input hidden asp-for="Round_20[index].PartID" />
+                                                <input hidden asp-for="Round_20[index].namePart" />
 
 
-                <br />
+                                                @foreach (var j in item.DetailOT)
+                                                {
+                                                    int index2 = Model.Round_20[index].DetailOT.IndexOf(j);
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].TimeStart " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].Hour  " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].Type  " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].Status  " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
+                                                    <input  asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
 
 
-                <div class="text-center col-12">
-                    <button type="submit" asp-page-handler="Line" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
-                </div>
 
-            </form>
+
+
+
+
+
+
+
+                                                }
+
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.namePart)
+                                                </td>
+                                                <td>
+                                                    @foreach (var j in item.ListCars)
+                                                    {
+                                                        int index2 = Model.Round_20[index].ListCars.IndexOf(j);
+
+                                                        <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeID" />
+                                                        <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeName" />
+                                                        <input  asp-for="Round_20[index].ListCars[index2].seed" />
+                                                        <div class="col-sm-4">
+                                                            @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                            <input asp-for="Round_20[index].ListCars[index2].countCar" />
+                                                        </div>
+                                                    }
+                                                </td>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                } }
+
+
+            <br />
+
+
+            @*<div class="text-center col-12">
+                <button type="submit" asp-page-handler="Line" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+            </div>*@
+
+            
+
+            <div class="text-center col-12">
+                <button type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+            </div>
+
+        </form>
 
             <br />
 
@@ -450,6 +492,8 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
 
 
 

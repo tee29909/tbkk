@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace tbkk.Pages.listOTs
 {
@@ -41,15 +42,15 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
-        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
-
+       
         public IList<FoodSet> FoodSet { get; set; }
 
 
-
+        [BindProperty]
         public IList<CarsPart> Round_8 { get; set; }
+        [BindProperty]
         public IList<CarsPart> Round_17 { get; set; }
+        [BindProperty]
         public IList<CarsPart> Round_20 { get; set; }
 
 
@@ -66,9 +67,6 @@ namespace tbkk.Pages.listOTs
 
         public async Task<IActionResult> OnGetAsync(int? id, int? Did)
         {
-
-
-
 
             if (id == null)
             {
@@ -193,12 +191,15 @@ namespace tbkk.Pages.listOTs
 
             foreach (var i in Part)
             {
-
                 CarsPart CarsPartNew = new CarsPart();
                 CarsPartNew.PartID = i.PartID;
                 CarsPartNew.namePart = i.Name;
+                
                 List<Cars> CarsNew = new List<Cars>();
+               
+                CarsPartNew.DetailOT = mDetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList();
                 int count = mDetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
+                
                 foreach (var j in CarType)
                 {
                     if (j.Seat <= count)
@@ -206,6 +207,10 @@ namespace tbkk.Pages.listOTs
                         Cars cars = new Cars();
                         cars.CarTypeID = j.CarTypeID;
                         cars.CarTypeName = j.NameCar;
+                        cars.seed = j.Seat;
+
+
+
                         if (j.Seat != 0)
                         {
                             int add = count / j.Seat;
@@ -226,7 +231,9 @@ namespace tbkk.Pages.listOTs
                             seedMon = j.Seat;
                             min.CarTypeID = j.CarTypeID;
                             min.CarTypeName = j.NameCar;
+                            min.seed = j.Seat;
                             min.countCar = 1;
+                            
                         }
                     }
                 }
@@ -261,9 +268,6 @@ namespace tbkk.Pages.listOTs
             return CarsParts;
         }
 
-       
-
-
         private async Task onLoad(int? id, int? Did)
         {
             Department = await _context.Department.ToListAsync();
@@ -291,176 +295,138 @@ namespace tbkk.Pages.listOTs
 
         }
 
+
+
+        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
+        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
+
         public async Task OnPostLineAsync(int id,int Did)
         {
+            Line l = new Line();
             
             //food
-            lineNotify("test food", foodToken);
-            notifySticker("อาหารมาแล้ว",150,2, foodToken);
+            l.lineNotify("test food", foodToken);
+            l.notifySticker("อาหารมาแล้ว",150,2, foodToken);
             //car
-            lineNotify("test car", carToken);
-            notifySticker("รถมาแล้ว", 160, 2, carToken);
+            l.lineNotify("test car", carToken);
+            l.notifySticker("รถมาแล้ว", 160, 2, carToken);
             await onLoad(id, Did);
             //FromDataManage(Did);
         }
 
-        private void notifyPicture(string msg,string url, string TOKEN)
-
+        public async Task<ActionResult> OnPostAsync(int id,int Did)
         {
-
-            _lineNotify(msg, 0, 0, url, TOKEN);
-
-        }
-
-        private void notifySticker(string msg,int stickerID, int stickerPackageID,string TOKEN)
-
-        {
-
-            _lineNotify(msg, stickerPackageID, stickerID, "",TOKEN);
-
-        }
-
-        private void lineNotify(string msg,string TOKEN)
-
-        {
-
-            _lineNotify(msg, 0, 0, "",TOKEN);
-
-        }
-
-        private void _lineNotify(string msg, int stickerPackageID, int stickerID, string pictureUrl,string TOKEN)
-
-        {
-
-            string token = TOKEN;
-
-            try
-
+            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
+            if (Round_20.Any())
             {
-
-                var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
-
-
-
-                var postData = string.Format("message={0}", msg);
-
-                if (stickerPackageID > 0 && stickerID > 0)
-
+                foreach (var item in Round_20)
                 {
+                    int index = Round_20.IndexOf(item);
+                    Debug.WriteLine("มาแล้ว " + Round_20[index].PartID);
+                    Debug.WriteLine("มาแล้ว " + Round_20[index].namePart);
+                    foreach (var j in item.ListCars)
+                    {
+                        int index2 = Round_20[index].ListCars.IndexOf(j);
+                        CarQueue createCarQueue = new CarQueue();
+                        int Emp = 0;
+                        for (int i =1;i<= Round_20[index].ListCars[index2].countCar;i++)
+                        {
+                            createCarQueue.CarNumber = i;
+                            createCarQueue.Type = "Back";
+                            createCarQueue.CarQueue_OTID = Did;
+                            createCarQueue.Time = new DateTime(OT.date.Year, OT.date.Month, OT.date.Day,20,0,0);
+                            createCarQueue.CarQueue_PartID = item.PartID;
+                            createCarQueue.CarQueue_CarTypeID = j.CarTypeID;
 
-                    var stickerPackageId = string.Format("stickerPackageId={0}", stickerPackageID);
 
-                    var stickerId = string.Format("stickerId={0}", stickerID);
+                            _context.CarQueue.Add(createCarQueue);
+                            int returnID = await _context.SaveChangesAsync();
+                            Debug.WriteLine("มาดิครับ555 "+ j.seed);
 
-                    postData += "&" + stickerPackageId.ToString() + "&" + stickerId.ToString();
 
+                            for (int q = 1; q <= j.seed; q++)
+                            {
+                                if (Emp == item.DetailOT.Count)
+                                {
+                                    break;
+                                }
+
+                                Debug.WriteLine("มาดิครับ555");
+                                DetailCarQueue createDetailCarQueue = new DetailCarQueue();
+                                createDetailCarQueue.DetailCarQueue_EmployeeID = item.DetailOT[Emp].Employee_EmpID;
+                                createDetailCarQueue.DetailCarQueue_CarQueueID = returnID;
+                                _context.DetailCarQueue.Add(createDetailCarQueue);
+                                await _context.SaveChangesAsync();
+                                Emp = Emp + 1;
+                            }
+                            Debug.WriteLine("มาแล้ว สินะ" + item.DetailOT.Count);
+                        }
+                        
+                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].CarTypeID);
+                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].CarTypeName);
+                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].countCar);
+                    }
                 }
-
-                if (pictureUrl != "")
-
-                {
-
-                    var imageThumbnail = string.Format("imageThumbnail={0}", pictureUrl);
-
-                    var imageFullsize = string.Format("imageFullsize={0}", pictureUrl);
-
-                    postData += "&" + imageThumbnail.ToString() + "&" + imageFullsize.ToString();
-
-                }
-
-                var data = Encoding.UTF8.GetBytes(postData);
-
-
-
-                request.Method = "POST";
-
-                request.ContentType = "application/x-www-form-urlencoded";
-
-                request.ContentLength = data.Length;
-
-                request.Headers.Add("Authorization", "Bearer " + token);
-
-
-
-                using (var stream = request.GetRequestStream()) stream.Write(data, 0, data.Length);
-
-                var response = (HttpWebResponse)request.GetResponse();
-
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
+                
+            }
+            else
+            {
+                Debug.WriteLine("Round_20 Null");
             }
 
-            catch (Exception ex)
+            if (Round_8.Any())
             {
-
-                Console.WriteLine(ex.ToString());
+                foreach (var item in Round_8)
+                {
+                    int index = Round_8.IndexOf(item);
+                    Debug.WriteLine("มาแล้ว " + Round_8[index].PartID);
+                    Debug.WriteLine("มาแล้ว " + Round_8[index].namePart);
+                    foreach (var j in item.ListCars)
+                    {
+                        int index2 = Round_8[index].ListCars.IndexOf(j);
+                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].CarTypeID);
+                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].CarTypeName);
+                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].countCar);
+                    }
+                }
 
             }
+            else
+            {
+                Debug.WriteLine("Round_8 Null");
+            }
 
+
+            if (Round_17.Any())
+            {
+                foreach (var item in Round_17)
+                {
+                    int index = Round_17.IndexOf(item);
+                    Debug.WriteLine("มาแล้ว " + Round_17[index].PartID);
+                    Debug.WriteLine("มาแล้ว " + Round_17[index].namePart);
+                    foreach (var j in item.ListCars)
+                    {
+                        int index2 = Round_17[index].ListCars.IndexOf(j);
+                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].CarTypeID);
+                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].CarTypeName);
+                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].countCar);
+                    }
+                }
+
+            }
+            else
+            {
+                Debug.WriteLine("Round_17 Null");
+            }
+
+            //_context.CarsPart.Add(Round_8);
+
+
+            //Your logic here using Products and statusId 
+            return Page();
         }
-    }
 
 
-
-
-
-
-
-
-
-
-    public class CarsPart
-    {
-        public int PartID { get; set; }
-        public string namePart { get; set; }
-
-        public IList<Cars> ListCars { get; set; }
-    }
-    
-    public class OTs
-    {
-        public int countEmp { get; set; }
-        public int countCar { get; set; }
-        public int countFood { get; set; }
-        
-    }
-
-    public class Cars
-    {
-        public int CarTypeID { get; set; }
-        public string CarTypeName { get; set; }
-        public int countCar { get; set; }
-    }
-
-    public class Depasments
-    {
-        public int DepasmentsID { get; set; }
-        public string DepasmentsName { get; set; }
-        public int DepasmentsCount { get; set; }
-        public int CarCount { get; set; }
-        public int FoodCount { get; set; }
-
-
-        public IList<Parts> ListParts { get; set; }
-        public IList<Foods> ListFoods { get; set; }
-    }
-
-    public class Parts
-    {
-        public int PartID { get; set; }
-        public string PartName { get; set; }
-        public int PartsCount { get; set; }
-         
-    }
-
-    public class Foods
-    {
-        public int FoodID { get; set; }
-        public string FoodName { get; set; }
-        
-        public int FoodsCount { get; set; }
-
-        
     }
 
 }

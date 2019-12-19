@@ -12,8 +12,6 @@ namespace tbkk.Models
         [Key]
         public int DetailCarQueueID { get; set; }
 
-
-
         [ForeignKey("Employee")]
         public int DetailCarQueue_EmployeeID { get; set; }
         public Employee Employee { get; set; }
