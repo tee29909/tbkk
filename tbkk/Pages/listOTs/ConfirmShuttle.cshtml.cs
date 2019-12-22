@@ -43,7 +43,7 @@ namespace tbkk.Pages.listOTs
 
 
        
-        public IList<FoodSet> FoodSet { get; set; }
+        
 
 
         [BindProperty]
@@ -55,7 +55,7 @@ namespace tbkk.Pages.listOTs
 
 
 
-
+        public IList<FoodSet> FoodSet { get; set; }
         public IList<Part> Part { get; set; }
         public IList<DetailOT> DetailOTnew { get; set; }
         public IList<Department> Department { get; set; }
@@ -88,8 +88,10 @@ namespace tbkk.Pages.listOTs
 
             
             Depasments = OTDetailOTList();
+
+
             IList<DetailOT> mDetailOTnew;
-            if (OT.TypeOT.Equals("Saturday")&& OT.TypeOT.Equals("Sunday"))
+            if (OT.TypeOT.Equals("Saturday")|| OT.TypeOT.Equals("Sunday"))
             {
                 mDetailOTnew = DetailOT.Where(d => (d.Type.Equals("Go") || d.Type.Equals("Go and Back"))&& d.TimeStart.Hour==8 && d.TimeStart.Minute == 0).ToList();
                 Round_8 = ManageCar(mDetailOTnew);
@@ -103,9 +105,11 @@ namespace tbkk.Pages.listOTs
                 mDetailOTnew = DetailOT.Where(d => d.Type.Equals("Back") && d.TimeEnd.Hour == 20 && d.TimeEnd.Minute == 0).ToList();
                 Round_20 = ManageCar(mDetailOTnew);
             }
-            
+             
             return Page();
         }
+
+
 
         private OTs ListOTDetail(int? Did)
         {
@@ -130,6 +134,9 @@ namespace tbkk.Pages.listOTs
 
             return OTsnew;
         }
+
+
+
 
         private List<Depasments> OTDetailOTList()
         {
@@ -297,77 +304,20 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
-        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
-
-        public async Task OnPostLineAsync(int id,int Did)
-        {
-            Line l = new Line();
-            
-            //food
-            l.lineNotify("test food", foodToken);
-            l.notifySticker("อาหารมาแล้ว",150,2, foodToken);
-            //car
-            l.lineNotify("test car", carToken);
-            l.notifySticker("รถมาแล้ว", 160, 2, carToken);
-            await onLoad(id, Did);
-            //FromDataManage(Did);
-        }
+       
 
         public async Task<ActionResult> OnPostAsync(int id,int Did)
         {
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
+
             if (Round_20.Any())
             {
-                foreach (var item in Round_20)
-                {
-                    int index = Round_20.IndexOf(item);
-                    Debug.WriteLine("มาแล้ว " + Round_20[index].PartID);
-                    Debug.WriteLine("มาแล้ว " + Round_20[index].namePart);
-                    foreach (var j in item.ListCars)
-                    {
-                        int index2 = Round_20[index].ListCars.IndexOf(j);
-                        CarQueue createCarQueue = new CarQueue();
-                        int Emp = 0;
-                        for (int i =1;i<= Round_20[index].ListCars[index2].countCar;i++)
-                        {
-                            createCarQueue.CarNumber = i;
-                            createCarQueue.Type = "Back";
-                            createCarQueue.CarQueue_OTID = Did;
-                            createCarQueue.Time = new DateTime(OT.date.Year, OT.date.Month, OT.date.Day,20,0,0);
-                            createCarQueue.CarQueue_PartID = item.PartID;
-                            createCarQueue.CarQueue_CarTypeID = j.CarTypeID;
+                int time = 20;
+                string type = "Back";
+                IList<CarsPart> managecarNEW = Round_20;
 
+                await createDetailCarQ(Did, time, type, managecarNEW);
 
-                            _context.CarQueue.Add(createCarQueue);
-                            int returnID = await _context.SaveChangesAsync();
-                            Debug.WriteLine("มาดิครับ555 "+ j.seed);
-
-
-                            for (int q = 1; q <= j.seed; q++)
-                            {
-                                if (Emp == item.DetailOT.Count)
-                                {
-                                    break;
-                                }
-
-                                Debug.WriteLine("มาดิครับ555");
-                                DetailCarQueue createDetailCarQueue = new DetailCarQueue();
-                                createDetailCarQueue.DetailCarQueue_EmployeeID = item.DetailOT[Emp].Employee_EmpID;
-                                createDetailCarQueue.DetailCarQueue_CarQueueID = returnID;
-                                _context.DetailCarQueue.Add(createDetailCarQueue);
-                                await _context.SaveChangesAsync();
-                                Emp = Emp + 1;
-                            }
-                            Debug.WriteLine("มาแล้ว สินะ" + item.DetailOT.Count);
-                        }
-                        
-                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].CarTypeID);
-                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].CarTypeName);
-                        Debug.WriteLine("มาแล้ว " + Round_20[index].ListCars[index2].countCar);
-                    }
-                }
-                
             }
             else
             {
@@ -376,19 +326,11 @@ namespace tbkk.Pages.listOTs
 
             if (Round_8.Any())
             {
-                foreach (var item in Round_8)
-                {
-                    int index = Round_8.IndexOf(item);
-                    Debug.WriteLine("มาแล้ว " + Round_8[index].PartID);
-                    Debug.WriteLine("มาแล้ว " + Round_8[index].namePart);
-                    foreach (var j in item.ListCars)
-                    {
-                        int index2 = Round_8[index].ListCars.IndexOf(j);
-                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].CarTypeID);
-                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].CarTypeName);
-                        Debug.WriteLine("มาแล้ว " + Round_8[index].ListCars[index2].countCar);
-                    }
-                }
+                int time = 8;
+                string type = "Go";
+                IList<CarsPart> managecarNEW = Round_8;
+
+                await createDetailCarQ(Did, time, type, managecarNEW);
 
             }
             else
@@ -399,19 +341,11 @@ namespace tbkk.Pages.listOTs
 
             if (Round_17.Any())
             {
-                foreach (var item in Round_17)
-                {
-                    int index = Round_17.IndexOf(item);
-                    Debug.WriteLine("มาแล้ว " + Round_17[index].PartID);
-                    Debug.WriteLine("มาแล้ว " + Round_17[index].namePart);
-                    foreach (var j in item.ListCars)
-                    {
-                        int index2 = Round_17[index].ListCars.IndexOf(j);
-                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].CarTypeID);
-                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].CarTypeName);
-                        Debug.WriteLine("มาแล้ว " + Round_17[index].ListCars[index2].countCar);
-                    }
-                }
+                int time = 17;
+                string type = "Go";
+                IList<CarsPart> managecarNEW = Round_17;
+
+                await createDetailCarQ(Did, time, type, managecarNEW);
 
             }
             else
@@ -423,10 +357,74 @@ namespace tbkk.Pages.listOTs
 
 
             //Your logic here using Products and statusId 
-            return Page();
+
+            OT.TypStatus = "Close";
+            _context.Attach(OT).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!OTExists(OT.OTID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            
+            return RedirectToPage("./../listOTs/ContactCarFood", new { id = id, Did = Did });
+
+           
         }
 
 
+        private bool OTExists(int id)
+        {
+            return _context.OT.Any(e => e.OTID == id);
+        }
+
+        private async Task createDetailCarQ(int Did, int time, string type, IList<CarsPart> managecarNEW)
+        {
+            foreach (var item in managecarNEW)
+            {
+                int index = managecarNEW.IndexOf(item);
+                int Emp = 0;
+                foreach (var j in item.ListCars)
+                {
+                    int index2 = managecarNEW[index].ListCars.IndexOf(j);
+                    for (int i = 1; i <= managecarNEW[index].ListCars[index2].countCar; i++)
+                    {
+                        CarQueue createCarQueue = new CarQueue();
+                        createCarQueue.CarNumber = i;
+                        createCarQueue.Type = type;
+                        createCarQueue.CarQueue_OTID = Did;
+                        createCarQueue.Time = new DateTime(OT.date.Year, OT.date.Month, OT.date.Day, time, 0, 0);
+                        createCarQueue.CarQueue_PartID = item.PartID;
+                        createCarQueue.CarQueue_CarTypeID = j.CarTypeID;
+                        _context.CarQueue.Add(createCarQueue);
+                        await _context.SaveChangesAsync();
+                        for (int q = 1; q <= j.seed; q++)
+                        {
+                            if (Emp == item.DetailOT.Count)
+                            {
+                                break;
+                            }
+                            DetailCarQueue createDetailCarQueue = new DetailCarQueue();
+                            createDetailCarQueue.DetailCarQueue_EmployeeID = item.DetailOT[Emp].Employee_EmpID;
+                            createDetailCarQueue.DetailCarQueue_CarQueueID = createCarQueue.CarQueueID;
+                            _context.DetailCarQueue.Add(createDetailCarQueue);
+                            Emp = Emp + 1;
+                        }
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -115,7 +115,16 @@
         </li>
     </ul>
     <div id="content-wrapper">
+
+
+
         <div name="55555" class="card-layout">
+
+
+
+
+
+
             <h1>Confirm Shuttle</h1>
 
             <ol class="breadcrumb">
@@ -365,24 +374,15 @@
                                                 @foreach (var j in item.DetailOT)
                                                 {
                                                     int index2 = Model.Round_20[index].DetailOT.IndexOf(j);
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].TimeStart " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].Hour  " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].Type  " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].Status  " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
-                                                    <input  asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
-
-
-
-
-
-
-
-
-
-
+                                                    <input asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].TimeStart " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].Hour  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].Type  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].Status  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].Employee_EmpID  " />
+                                                    <input asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
                                                 }
 
 
@@ -396,7 +396,7 @@
 
                                                         <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeID" />
                                                         <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeName" />
-                                                        <input  asp-for="Round_20[index].ListCars[index2].seed" />
+                                                        <input asp-for="Round_20[index].ListCars[index2].seed" />
                                                         <div class="col-sm-4">
                                                             @Html.DisplayFor(modelItem => j.CarTypeName)
                                                             <input asp-for="Round_20[index].ListCars[index2].countCar" />
