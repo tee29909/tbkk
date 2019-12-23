@@ -36,8 +36,7 @@ namespace tbkk.Pages.listOTs
        
 
 
-        public string json { get; set; }
-
+        
 
 
 
@@ -81,8 +80,7 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-
-            
+                    
             OTs = ListOTDetail(Did);
 
 
@@ -290,6 +288,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
+            DetailOT = DetailOT.Where(d =>d.OT_OTID==Did).ToList();
             Part = await _context.Part.ToListAsync();
             FoodSet =await _context.FoodSet.ToListAsync();
             CarType = await _context.CarType.ToListAsync();
@@ -302,9 +301,6 @@ namespace tbkk.Pages.listOTs
 
         }
 
-
-
-       
 
         public async Task<ActionResult> OnPostAsync(int id,int Did)
         {

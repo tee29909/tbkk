@@ -374,15 +374,15 @@
                                                 @foreach (var j in item.DetailOT)
                                                 {
                                                     int index2 = Model.Round_20[index].DetailOT.IndexOf(j);
-                                                    <input asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].TimeStart " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].Hour  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].Type  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].Status  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].Employee_EmpID  " />
-                                                    <input asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].TimeStart " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Hour  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Type  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Status  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_EmpID  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
                                                 }
 
 

@@ -29,8 +29,27 @@ namespace tbkk
         public IList<DetailCarQueue> DetailCarQueue { get; set; }
         public OTs OTs { get; set; }
         public OT OT { get; set; }
-        
 
+        public string mass { get; set; }
+
+
+
+        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
+        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
+
+        public async Task OnPostLineAsync(int id, int Did)
+        {
+            Line l = new Line();
+
+            //food
+            l.lineNotify(mass, foodToken);
+            l.notifySticker(mass, 150, 2, foodToken);
+            //car
+            l.lineNotify(mass, carToken);
+            l.notifySticker(mass, 160, 2, carToken);
+            
+            //FromDataManage(Did);
+        }
 
 
 
@@ -220,6 +239,8 @@ namespace tbkk
             return OTsnew;
         }
     }
+
+
 
 
 

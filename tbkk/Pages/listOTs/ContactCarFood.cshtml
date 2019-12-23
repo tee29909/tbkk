@@ -235,8 +235,6 @@
                         </div>
                     }
 
-
-
                 }
             }
 
@@ -259,54 +257,62 @@
             <thead>
                 <tr>
                     <th>
-                       part
+                        part
                     </th>
                     <th>
-                       list
+                        list
                     </th>
-                    
-                    
+
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.CatList)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Parts.Name)
-                    </td>
-                    <td>
-                        @foreach (var i in item.carListNumber)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Parts.Name)
+                        </td>
+                        <td>
+                            @foreach (var i in item.carListNumber)
+                            {
+
+                                @Html.DisplayFor(modelItem => i.CarType.NameCar)
+                                @Html.DisplayFor(modelItem => i.maxCar)
+                            }
+                        </td>
+
+                        @foreach (var i in item.DetailCarQueue)
                         {
+                            <td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Employee.FirstName)
+                                @Html.DisplayFor(modelItem => i.Employee.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.CarQueue.CarNumber)
+                            </td>
 
-                            @Html.DisplayFor(modelItem => i.CarType.NameCar)
-                            @Html.DisplayFor(modelItem => i.maxCar)
+
+                            </td>
+
                         }
-                    </td>
 
-                    @foreach (var i in item.DetailCarQueue)
-                    {
-                        <td>
-                        <td>
-                            @Html.DisplayFor(modelItem => i.Employee.FirstName)
-                            @Html.DisplayFor(modelItem => i.Employee.LastName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => i.CarQueue.CarNumber)
-                        </td>
-
-
-                        </td>
-
-                    }
-
-
-
-
-                </tr>
+                    </tr>
                 }
             </tbody>
         </table>
+
+        <form method="post">
+            @{
+                Model.mass = "54654";
+            }
+            <input type="text" value="@Model.mass"/>
+            <div class="text-center col-12">
+                <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+            </div>
+
+        </form>
 
 
 

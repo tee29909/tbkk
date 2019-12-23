@@ -22,19 +22,21 @@ namespace tbkk.Models
                 }
 
 
-                context.OT.AddRange(
-                 new OT
-                 {
 
-                     TimeStart = DateTime.Parse("8:00 AM"),
-                     TimeEnd = DateTime.Parse("15:00 PM"),
-                     date = DateTime.Now,
-                     TypeOT = DateTime.Now.ToString("dddd"),
-                     TypStatus = "Open"
+                for(int i = 1;i<=7;i++)
+                {
+                      context.OT.AddRange(
+                     new OT
+                     {
+                         TimeStart = new DateTime(2019,12,i,8,0,0),
+                         TimeEnd = new DateTime(2019, 12, i, 15, 0, 0),
+                         date = new DateTime(2019, 12, i),
+                         TypeOT = new DateTime(2019, 12, i).ToString("dddd"),
+                         TypStatus = "Manage Car"
+                     }
+                     );
+                }
 
-
-                 }
-                 );
                 context.SaveChanges();
             }
             using (var context = new tbkkdbContext(
@@ -48,26 +50,30 @@ namespace tbkk.Models
                     return;
                 }
 
-
-                for (int i = 1; i <= 20; i++)
+                for (int i = 1; i <= 7; i++)
                 {
-                    context.DetailOT.AddRange(
+                    for (int j = 1; j <= 20; j++)
+                {
+
+                    int random = new Random().Next(1, 4);
+                    DateTime Start = (i != 1 && i != 7) ? new DateTime(2019, 12, i, 17, 0, 0) : new DateTime(2019, 12, i, 8, 0, 0);
+                    DateTime End = (i != 1 && i != 7) ? new DateTime(2019, 12, i, 20, 0, 0) : (random % 2 == 0) ? new DateTime(2019, 12, i, 17, 0, 0) : new DateTime(2019, 12, i, 20, 0, 0);
+                        context.DetailOT.AddRange(
                                  new DetailOT
                                  {
-
-                                     Type = "Go",
-                                    
-                                     Status = "Pending for approval",
-                                     Part_PaetID = 2,
-                                     FoodSet_FoodSetID = 2,
-                                     
-                                     OT_OTID = 1,
-                                     Employee_EmpID = i
+                                     TimeStart = Start,
+                                     TimeEnd = End,
+                                     Hour = End - Start,
+                                     Type = (i != 1 && i!=7) ? "Back" : (random == 1) ? "Go" : (random == 2) ? "Back" : "Go and Back",
+                                     Status = "Allow",
+                                     Part_PaetID = new Random().Next(2, 6),
+                                     FoodSet_FoodSetID = new Random().Next(2, 4),
+                                     OT_OTID = i,
+                                     Employee_EmpID = j
                                  }
                                  );
                 }
-
-
+                }
                 context.SaveChanges();
             }
         }
