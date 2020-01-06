@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 
-namespace tbkk.Pages.test
+namespace tbkk
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace tbkk.Pages.test
             _context = context;
         }
 
-        public DetailOT DetailOT { get; set; }
+        public DetailCarQueue DetailCarQueue { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,14 +27,11 @@ namespace tbkk.Pages.test
                 return NotFound();
             }
 
-            DetailOT = await _context.DetailOT
-                
-                .Include(d => d.Employee)
-                .Include(d => d.FoodSet)
-                .Include(d => d.OT)
-                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
+            DetailCarQueue = await _context.DetailCarQueue
+                .Include(d => d.CarQueue)
+                .Include(d => d.Employee).FirstOrDefaultAsync(m => m.DetailCarQueueID == id);
 
-            if (DetailOT == null)
+            if (DetailCarQueue == null)
             {
                 return NotFound();
             }

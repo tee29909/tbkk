@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace tbkk.Models
                          TimeStart = new DateTime(2019,12,i,8,0,0),
                          TimeEnd = new DateTime(2019, 12, i, 15, 0, 0),
                          date = new DateTime(2019, 12, i),
-                         TypeOT = new DateTime(2019, 12, i).ToString("dddd"),
+                         TypeOT = new DateTime(2019, 12, i).ToString("dddd",new CultureInfo("en-US")),
                          TypStatus = "Manage Car"
                      }
                      );

@@ -1,5 +1,5 @@
 ﻿@page
-@model tbkk.Pages.test.EditModel
+@model tbkk.EditModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,58 +7,22 @@
 
 <h1>Edit</h1>
 
-<h4>DetailOT</h4>
+<h4>DetailCarQueue</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="DetailOT.DetailOTID" />
+            <input type="hidden" asp-for="DetailCarQueue.DetailCarQueueID" />
             <div class="form-group">
-                <label asp-for="DetailOT.TimeStart" class="control-label"></label>
-                <input asp-for="DetailOT.TimeStart" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeStart" class="text-danger"></span>
+                <label asp-for="DetailCarQueue.DetailCarQueue_EmployeeID" class="control-label"></label>
+                <select asp-for="DetailCarQueue.DetailCarQueue_EmployeeID" class="form-control" asp-items="ViewBag.DetailCarQueue_EmployeeID"></select>
+                <span asp-validation-for="DetailCarQueue.DetailCarQueue_EmployeeID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DetailOT.TimeEnd" class="control-label"></label>
-                <input asp-for="DetailOT.TimeEnd" class="form-control" />
-                <span asp-validation-for="DetailOT.TimeEnd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Hour" class="control-label"></label>
-                <input asp-for="DetailOT.Hour" class="form-control" />
-                <span asp-validation-for="DetailOT.Hour" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Type" class="control-label"></label>
-                <input asp-for="DetailOT.Type" class="form-control" />
-                <span asp-validation-for="DetailOT.Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Status" class="control-label"></label>
-                <input asp-for="DetailOT.Status" class="form-control" />
-                <span asp-validation-for="DetailOT.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID"></select>
-                <span asp-validation-for="DetailOT.Part_PaetID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.FoodSet_FoodSetID" class="control-label"></label>
-                <select asp-for="DetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID"></select>
-                <span asp-validation-for="DetailOT.FoodSet_FoodSetID" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="DetailOT.OT_OTID" class="control-label"></label>
-                <select asp-for="DetailOT.OT_OTID" class="form-control" asp-items="ViewBag.OT_OTID"></select>
-                <span asp-validation-for="DetailOT.OT_OTID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DetailOT.Employee_EmpID" class="control-label"></label>
-                <select asp-for="DetailOT.Employee_EmpID" class="form-control" asp-items="ViewBag.Employee_EmpID"></select>
-                <span asp-validation-for="DetailOT.Employee_EmpID" class="text-danger"></span>
+                <label asp-for="DetailCarQueue.DetailCarQueue_CarQueueID" class="control-label"></label>
+                <select asp-for="DetailCarQueue.DetailCarQueue_CarQueueID" class="form-control" asp-items="ViewBag.DetailCarQueue_CarQueueID"></select>
+                <span asp-validation-for="DetailCarQueue.DetailCarQueue_CarQueueID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

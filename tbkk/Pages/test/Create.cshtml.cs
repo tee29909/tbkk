@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using tbkk.Models;
 
-namespace tbkk.Pages.test
+namespace tbkk
 {
     public class CreateModel : PageModel
     {
@@ -20,16 +20,13 @@ namespace tbkk.Pages.test
 
         public IActionResult OnGet()
         {
-        ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
-        ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
-        ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
-        ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
-        ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
+        ViewData["DetailCarQueue_CarQueueID"] = new SelectList(_context.CarQueue, "CarQueueID", "CarQueueID");
+        ViewData["DetailCarQueue_EmployeeID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
             return Page();
         }
 
         [BindProperty]
-        public DetailOT DetailOT { get; set; }
+        public DetailCarQueue DetailCarQueue { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -40,7 +37,7 @@ namespace tbkk.Pages.test
                 return Page();
             }
 
-            _context.DetailOT.Add(DetailOT);
+            _context.DetailCarQueue.Add(DetailCarQueue);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -30,7 +30,7 @@ namespace tbkk
         public OTs OTs { get; set; }
         public OT OT { get; set; }
 
-        public string mass { get; set; }
+        
 
 
 
@@ -41,12 +41,15 @@ namespace tbkk
         {
             Line l = new Line();
 
+            string mass = Request.Form["mass"];
+            await onLoad(id, Did);
             //food
-            l.lineNotify(mass, foodToken);
-            l.notifySticker(mass, 150, 2, foodToken);
+            l.lineNotify("5564", foodToken);
+            //l.notifySticker("5564", 150, 2, foodToken);
             //car
             l.lineNotify(mass, carToken);
-            l.notifySticker(mass, 160, 2, carToken);
+            //l.notifySticker("5564", 160, 2, carToken);
+
             
             //FromDataManage(Did);
         }
@@ -64,24 +67,6 @@ namespace tbkk
 
 
             await onLoad(id, Did);
-
-
-
-            OTs = ListOTDetail(Did);
-            Depasments = OTDetailOTList();
-            CatList = DetailPartCarEmp();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -161,6 +146,9 @@ namespace tbkk
                 .Include(e => e.Part)
                 .Include(e => e.CarType)
                 .Where(c => c.CarQueue_OTID == Did).ToListAsync();
+            OTs = ListOTDetail(Did);
+            Depasments = OTDetailOTList();
+            CatList = DetailPartCarEmp();
         }
         private List<Depasments> OTDetailOTList()
         {
@@ -250,6 +238,7 @@ namespace tbkk
         public IList<DetailCarQueue> DetailCarQueue { get; set; }
         public IList<carListNumber> carListNumber { get; set; }
     }
+
     public class carListNumber
     {
         public CarType CarType { get; set; }

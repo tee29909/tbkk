@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 
-namespace tbkk.Pages.test
+namespace tbkk
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace tbkk.Pages.test
         }
 
         [BindProperty]
-        public DetailOT DetailOT { get; set; }
+        public DetailCarQueue DetailCarQueue { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,22 +29,16 @@ namespace tbkk.Pages.test
                 return NotFound();
             }
 
-            DetailOT = await _context.DetailOT
-                
-                .Include(d => d.Employee)
-                .Include(d => d.FoodSet)
-                .Include(d => d.OT)
-                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
+            DetailCarQueue = await _context.DetailCarQueue
+                .Include(d => d.CarQueue)
+                .Include(d => d.Employee).FirstOrDefaultAsync(m => m.DetailCarQueueID == id);
 
-            if (DetailOT == null)
+            if (DetailCarQueue == null)
             {
                 return NotFound();
             }
-           ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
-           ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
-           ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
-           ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
-           ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
+           ViewData["DetailCarQueue_CarQueueID"] = new SelectList(_context.CarQueue, "CarQueueID", "CarQueueID");
+           ViewData["DetailCarQueue_EmployeeID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
             return Page();
         }
 
@@ -57,7 +51,7 @@ namespace tbkk.Pages.test
                 return Page();
             }
 
-            _context.Attach(DetailOT).State = EntityState.Modified;
+            _context.Attach(DetailCarQueue).State = EntityState.Modified;
 
             try
             {
@@ -65,7 +59,7 @@ namespace tbkk.Pages.test
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DetailOTExists(DetailOT.DetailOTID))
+                if (!DetailCarQueueExists(DetailCarQueue.DetailCarQueueID))
                 {
                     return NotFound();
                 }
@@ -78,9 +72,9 @@ namespace tbkk.Pages.test
             return RedirectToPage("./Index");
         }
 
-        private bool DetailOTExists(int id)
+        private bool DetailCarQueueExists(int id)
         {
-            return _context.DetailOT.Any(e => e.DetailOTID == id);
+            return _context.DetailCarQueue.Any(e => e.DetailCarQueueID == id);
         }
     }
 }

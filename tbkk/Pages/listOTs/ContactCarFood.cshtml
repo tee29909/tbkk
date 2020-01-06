@@ -242,6 +242,107 @@
 
             <br />
 
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    List Employee
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueueID)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarNumber)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Time)
+                                    </th>
+
+
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_CarTypeID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_PartID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Type)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueue_EmployeeID)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.DetailCarQueue)
+                                {
+
+                                <tr>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.DetailCarQueueID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.Time.ToString("dddd, dd MMMM yyyy"))
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
+                                    </td>
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <form method="post">
+
+                <div class="text-center col-12">
+                   
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mass" /></textarea>
+                    <script>
+                            document.getElementById("exampleFormControlTextarea1").value = "มาดิครับ";
+                        
+                    </script>
+                    <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+                </div>
+
+
+                <br />
+            </form>
+
 
 
         </div>
@@ -253,66 +354,6 @@
 
 
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        part
-                    </th>
-                    <th>
-                        list
-                    </th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.CatList)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Parts.Name)
-                        </td>
-                        <td>
-                            @foreach (var i in item.carListNumber)
-                            {
-
-                                @Html.DisplayFor(modelItem => i.CarType.NameCar)
-                                @Html.DisplayFor(modelItem => i.maxCar)
-                            }
-                        </td>
-
-                        @foreach (var i in item.DetailCarQueue)
-                        {
-                            <td>
-                            <td>
-                                @Html.DisplayFor(modelItem => i.Employee.FirstName)
-                                @Html.DisplayFor(modelItem => i.Employee.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => i.CarQueue.CarNumber)
-                            </td>
-
-
-                            </td>
-
-                        }
-
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-        <form method="post">
-            @{
-                Model.mass = "54654";
-            }
-            <input type="text" value="@Model.mass"/>
-            <div class="text-center col-12">
-                <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
-            </div>
-
-        </form>
 
 
 
@@ -320,8 +361,7 @@
 
 
 
-
-
+      
 
 
 

@@ -89,7 +89,7 @@ namespace tbkk.Pages.listOTs
 
 
             IList<DetailOT> mDetailOTnew;
-            if (OT.TypeOT.Equals("Saturday")|| OT.TypeOT.Equals("Sunday"))
+            if (OT.TypeOT.Equals("Saturday") || OT.TypeOT.Equals("Sunday"))
             {
                 mDetailOTnew = DetailOT.Where(d => (d.Type.Equals("Go") || d.Type.Equals("Go and Back"))&& d.TimeStart.Hour==8 && d.TimeStart.Minute == 0).ToList();
                 Round_8 = ManageCar(mDetailOTnew);
@@ -103,7 +103,6 @@ namespace tbkk.Pages.listOTs
                 mDetailOTnew = DetailOT.Where(d => d.Type.Equals("Back") && d.TimeEnd.Hour == 20 && d.TimeEnd.Minute == 0).ToList();
                 Round_20 = ManageCar(mDetailOTnew);
             }
-             
             return Page();
         }
 
@@ -114,7 +113,7 @@ namespace tbkk.Pages.listOTs
             OTs OTsnew = new OTs();
             
            
-            DetailOTnew = DetailOT.Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToList();
+            DetailOTnew = DetailOT;
             OTsnew.countEmp = DetailOTnew.Count;
 
             foreach (var i in DetailOTnew)
@@ -193,7 +192,6 @@ namespace tbkk.Pages.listOTs
         private List<CarsPart> ManageCar(IList<DetailOT> mDetailOTnew)
         {
             List<CarsPart> CarsParts = new List<CarsPart>();
-
             foreach (var i in Part)
             {
                 CarsPart CarsPartNew = new CarsPart();
@@ -207,23 +205,36 @@ namespace tbkk.Pages.listOTs
                 
                 foreach (var j in CarType)
                 {
-                    if (j.Seat <= count)
+                    if (j.Seat != 0)
                     {
                         Cars cars = new Cars();
-                        cars.CarTypeID = j.CarTypeID;
-                        cars.CarTypeName = j.NameCar;
-                        cars.seed = j.Seat;
-
-
-
-                        if (j.Seat != 0)
+                        if (j.Seat <= count)
                         {
+                        
+                            cars.CarTypeID = j.CarTypeID;
+                            cars.CarTypeName = j.NameCar;
+                            cars.seed = j.Seat;
+
+
+
+                        
                             int add = count / j.Seat;
                             count = count % j.Seat;
                             cars.countCar = add;
                             CarsNew.Add(cars);
+                        
+                    }
+                        else
+                        {
+                        
+                            cars.CarTypeID = j.CarTypeID;
+                            cars.CarTypeName = j.NameCar;
+                            cars.seed = j.Seat;
+                            cars.countCar = 0;
+                            CarsNew.Add(cars);
                         }
                     }
+                    
                 }
                 Cars min = new Cars();
                 int seedMon = 9999;
@@ -288,7 +299,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
-            DetailOT = DetailOT.Where(d =>d.OT_OTID==Did).ToList();
+            DetailOT = DetailOT.Where(d =>d.OT_OTID==Did && d.Status.Equals("Allow")).ToList();
             Part = await _context.Part.ToListAsync();
             FoodSet =await _context.FoodSet.ToListAsync();
             CarType = await _context.CarType.ToListAsync();
@@ -306,19 +317,7 @@ namespace tbkk.Pages.listOTs
         {
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
 
-            if (Round_20.Any())
-            {
-                int time = 20;
-                string type = "Back";
-                IList<CarsPart> managecarNEW = Round_20;
-
-                await createDetailCarQ(Did, time, type, managecarNEW);
-
-            }
-            else
-            {
-                Debug.WriteLine("Round_20 Null");
-            }
+           
 
             if (Round_8.Any())
             {
@@ -348,6 +347,21 @@ namespace tbkk.Pages.listOTs
             {
                 Debug.WriteLine("Round_17 Null");
             }
+
+            if (Round_20.Any())
+            {
+                int time = 20;
+                string type = "Back";
+                IList<CarsPart> managecarNEW = Round_20;
+
+                await createDetailCarQ(Did, time, type, managecarNEW);
+
+            }
+            else
+            {
+                Debug.WriteLine("Round_20 Null");
+            }
+
 
             //_context.CarsPart.Add(Round_8);
 
@@ -389,14 +403,27 @@ namespace tbkk.Pages.listOTs
             foreach (var item in managecarNEW)
             {
                 int index = managecarNEW.IndexOf(item);
-                int Emp = 0;
+                List<DetailOT> empList;
+
+                try
+                {
+                    empList = item.DetailOT.Where(e => e.Part_PaetID == item.PartID).ToList();
+                }
+                catch (Exception e)
+                {
+                    empList = new List<DetailOT>();
+                }
+              
+
                 foreach (var j in item.ListCars)
                 {
+                    int Emp = 0;
                     int index2 = managecarNEW[index].ListCars.IndexOf(j);
-                    for (int i = 1; i <= managecarNEW[index].ListCars[index2].countCar; i++)
+                    for (int i = 0; i < managecarNEW[index].ListCars[index2].countCar; i++)
                     {
+                        
                         CarQueue createCarQueue = new CarQueue();
-                        createCarQueue.CarNumber = i;
+                        createCarQueue.CarNumber = i+1;
                         createCarQueue.Type = type;
                         createCarQueue.CarQueue_OTID = Did;
                         createCarQueue.Time = new DateTime(OT.date.Year, OT.date.Month, OT.date.Day, time, 0, 0);
@@ -404,19 +431,25 @@ namespace tbkk.Pages.listOTs
                         createCarQueue.CarQueue_CarTypeID = j.CarTypeID;
                         _context.CarQueue.Add(createCarQueue);
                         await _context.SaveChangesAsync();
+
+                       
+
                         for (int q = 1; q <= j.seed; q++)
                         {
-                            if (Emp == item.DetailOT.Count)
+                            if (Emp == empList.Count)
                             {
                                 break;
                             }
                             DetailCarQueue createDetailCarQueue = new DetailCarQueue();
-                            createDetailCarQueue.DetailCarQueue_EmployeeID = item.DetailOT[Emp].Employee_EmpID;
+                            createDetailCarQueue.DetailCarQueue_EmployeeID = empList[Emp].Employee_EmpID;
                             createDetailCarQueue.DetailCarQueue_CarQueueID = createCarQueue.CarQueueID;
                             _context.DetailCarQueue.Add(createDetailCarQueue);
-                            Emp = Emp + 1;
+                            Emp = Emp + 1; 
+                            await _context.SaveChangesAsync();
                         }
-                        await _context.SaveChangesAsync();
+
+
+                       
                     }
                 }
             }

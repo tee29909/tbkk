@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 
-namespace tbkk.Pages.test
+namespace tbkk
 {
     public class IndexModel : PageModel
     {
@@ -18,18 +18,13 @@ namespace tbkk.Pages.test
             _context = context;
         }
 
-        public IList<DetailOT> DetailOT { get;set; }
-
-
+        public IList<DetailCarQueue> DetailCarQueue { get;set; }
 
         public async Task OnGetAsync()
         {
-            DetailOT = await _context.DetailOT
-                
-                .Include(d => d.Employee)
-                .Include(d => d.FoodSet)
-                .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
+            DetailCarQueue = await _context.DetailCarQueue
+                .Include(d => d.CarQueue)
+                .Include(d => d.Employee).ToListAsync();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@page
-@model tbkk.Pages.test.IndexModel
+@model tbkk.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,73 +14,27 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
+                @Html.DisplayNameFor(model => model.DetailCarQueue[0].Employee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].TimeEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].Type)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].Part)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].OT)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
+                @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.DetailOT) {
+@foreach (var item in Model.DetailCarQueue) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Part.PartID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.OT.OTID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.DetailOTID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.DetailOTID">Delete</a>
+                @Html.DisplayFor(modelItem => item.CarQueue.CarQueueID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DetailCarQueueID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DetailCarQueueID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DetailCarQueueID">Delete</a>
             </td>
         </tr>
 }
