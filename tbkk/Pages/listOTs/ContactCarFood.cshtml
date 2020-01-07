@@ -285,32 +285,33 @@
                                 @foreach (var item in Model.DetailCarQueue)
                                 {
 
-                                <tr>
-                                    <td>
+                                    <tr>
+                                        <td>
 
-                                        @Html.DisplayFor(modelItem => item.DetailCarQueueID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.Time.ToString("dddd, dd MMMM yyyy"))
-                                    </td>
-                                    
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
-                                    </td>
+                                            @Html.DisplayFor(modelItem => item.DetailCarQueueID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
+                                        </td>
+                                        <td>
+                                            @item.CarQueue.Time.ToString("H:mm")
 
-                                </tr>
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.Type)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
+                                        </td>
+
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -327,15 +328,107 @@
 
 
 
+
+
+
+            @{
+
+
+                string mass = "\n";
+                mass = mass + "OT Date : " + Model.OT.date.ToString("dddd, dd MMMM yyyy") + "\n";
+            }
+            <div class="card">
+                <div class="card-header">
+                    Personnel & Shuttle
+                </div>
+
+                <div class="card-body">
+
+
+
+
+                    <dl class="row">
+
+                        <dl class="row">
+                            <dd class="col-sm-6 text-right">
+                                <label>OT date :</label>
+
+                            </dd>
+                            <dd class="col-sm-6">
+                                <label>@Model.OT.date.ToString("dddd, dd MMMM yyyy")</label>
+
+                            </dd>
+                        </dl>
+
+
+
+
+
+                        @{
+                            foreach (var item in Model.CatList)
+                            {
+                                mass = mass + "Part : " + item.Parts.Name + "\n";
+                                                <dl class="row">
+                                                    <dd class="col-sm 6 text-right">
+                                                        <label>Part :</label>
+
+                                                    </dd>
+                                                    <dd class="col-sm-6">
+                                                        <label>@item.Parts.Name </label>
+
+                                                    </dd>
+                                                </dl>
+                               
+
+
+
+
+
+                                foreach (var list in item.carListNumber)
+                                {
+                                    if (list.maxCar != 0)
+                                    {
+
+                                        <dd class="col-sm 6 text-right">
+                                            <label> </label>
+                                        </dd>
+                                        <dd class="col-sm-6">
+                                            <label>@list.CarType.NameCar : @list.maxCar Cars</label>
+                                        </dd>
+
+
+                                        mass = mass + "\t" + list.CarType.NameCar + " : " + list.maxCar + "\n";
+                                    }
+
+                                }
+
+                            }
+                        }
+
+
+                    </dl>
+
+
+                </div>
+            </div>
+
+
+
+
             <form method="post">
 
                 <div class="text-center col-12">
-                   
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mass" /></textarea>
+
+
+
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="mass" /></textarea>
+                    
                     <script>
-                            document.getElementById("exampleFormControlTextarea1").value = "มาดิครับ";
-                        
+
+                        document.getElementById("exampleFormControlTextarea1").innerHTML = "@mass";
+
                     </script>
+
                     <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
                 </div>
 
