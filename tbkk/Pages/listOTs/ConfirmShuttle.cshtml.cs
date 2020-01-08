@@ -337,7 +337,7 @@ namespace tbkk.Pages.listOTs
             if (Round_17.Any())
             {
                 int time = 17;
-                string type = "Go";
+                string type = "Back";
                 IList<CarsPart> managecarNEW = Round_17;
 
                 await createDetailCarQ(Did, time, type, managecarNEW);

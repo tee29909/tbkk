@@ -30,9 +30,12 @@ namespace tbkk
         public OTs OTs { get; set; }
         public OT OT { get; set; }
 
+
+
+
+        public IList<timelist> timelist { get; set; }
+
         
-
-
 
         public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
         public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
@@ -56,7 +59,7 @@ namespace tbkk
 
 
 
-        public IList<CatList> CatList { get; set; }
+        //public IList<CatList> CatList { get; set; }
         
         public async Task<IActionResult> OnGetAsync(int? id ,int? Did)
         {
@@ -70,6 +73,82 @@ namespace tbkk
 
 
 
+
+            
+            List<timelist> add = new List<timelist>();
+            for (int a= 0; a<3;a++)
+            {
+                int time;
+                if (a==0)
+                {
+                    time = 8;
+                }
+                else if(a==1){
+                    time = 17;
+                }
+                else
+                {
+                    time = 20;
+                }
+
+                
+            var listAdd = new timelist(); 
+                listAdd.time = time;
+                var addcarq = new List<carQ>();
+            foreach (var item in Part)
+            {
+                
+               
+                
+                if (!item.Name.Equals("No"))
+                {
+                    var list = CarQueue.Where(l => l.CarQueue_PartID == item.PartID && l.Time.Hour == time).ToList();
+
+                    if (list.Count != 0)
+                    {
+                        carQ AddCarQ = new carQ();
+                        AddCarQ.part = item;
+
+                        var addList = new List<carListNumber>();
+                        foreach (var i in CarType)
+                        {
+                            var CarTypePart = list.Where(c => c.CarQueue_CarTypeID == i.CarTypeID).ToList();
+                            if (CarTypePart.Count != 0 && i.Seat != 0 )
+                            {carListNumber carListNumber = new carListNumber();
+
+                                
+                                carListNumber.CarType = i;
+                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
+                                addList.Add(carListNumber);
+
+                            }
+                        }
+                        
+                        AddCarQ.carListNumber = addList;
+                        addcarq.Add(AddCarQ);
+                        
+                        
+                    }
+
+                }
+                
+
+                }
+            listAdd.carQ = addcarq;
+            add.Add(listAdd);
+
+            } 
+            timelist = add;
+
+
+
+
+
+
+
+
+
+
             if (OT == null)
             {
                 return NotFound();
@@ -77,46 +156,46 @@ namespace tbkk
             return Page();
         }
 
-        private List<CatList> DetailPartCarEmp()
-        {
-            List<CatList> addcatListsArr = new List<CatList>();
-            foreach (var item in Part)
-            {
-                if (!item.Name.Equals("No"))
-                {
-                    var list = DetailCarQueue.Where(l => l.CarQueue.CarQueue_PartID == item.PartID).ToList();
+        //private List<CatList> DetailPartCarEmp()
+        //{
+//        List<CatList> addcatListsArr = new List<CatList>();
+//            foreach (var item in Part)
+//            {
+//                if (!item.Name.Equals("No"))
+//                {
+//                    var list = DetailCarQueue.Where(l => l.CarQueue.CarQueue_PartID == item.PartID).ToList();
 
-                    if (list.Count != 0)
-                    {
-                        CatList addcatList = new CatList();
-                        List<carListNumber> carListNumberlist = new List<carListNumber>();
+//                    if (list.Count != 0)
+//                    {
+//                        CatList addcatList = new CatList();
+//        List<carListNumber> carListNumberlist = new List<carListNumber>();
 
-                        addcatList.Parts = item;
-                        addcatList.DetailCarQueue = list;
-                        foreach (var i in CarType)
-                        {
-                            carListNumber carListNumber = new carListNumber();
+//        addcatList.Parts = item;
+//                        addcatList.DetailCarQueue = list;
+//                        foreach (var i in CarType)
+//                        {
+//                            carListNumber carListNumber = new carListNumber();
 
-                            var CarTypePart = CarQueue.Where(c => c.CarQueue_CarTypeID == i.CarTypeID && c.CarQueue_PartID == item.PartID).ToList();
-                            if (CarTypePart.Count != 0)
-                            {
-                                carListNumber.CarType = i;
-                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
-                                carListNumberlist.Add(carListNumber);
+//        var CarTypePart = CarQueue.Where(c => c.CarQueue_CarTypeID == i.CarTypeID && c.CarQueue_PartID == item.PartID).ToList();
+//                            if (CarTypePart.Count != 0)
+//                            {
+//                                carListNumber.CarType = i;
+//                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
+//                                carListNumberlist.Add(carListNumber);
 
-                            }
-                        }
-                        addcatList.carListNumber = carListNumberlist;
+//                            }
+//}
+//addcatList.carListNumber = carListNumberlist;
 
-                        addcatListsArr.Add(addcatList);
-                    }
+//                        addcatListsArr.Add(addcatList);
+//                    }
 
-                }
+//                }
 
-            }
+//            }
 
-            return addcatListsArr;
-        }
+        //    return addcatListsArr;
+        //}
 
         private async Task onLoad(int? id, int? Did)
         {
@@ -148,7 +227,7 @@ namespace tbkk
                 .Where(c => c.CarQueue_OTID == Did).ToListAsync();
             OTs = ListOTDetail(Did);
             Depasments = OTDetailOTList();
-            CatList = DetailPartCarEmp();
+            //CatList = DetailPartCarEmp();
         }
         private List<Depasments> OTDetailOTList()
         {
@@ -229,15 +308,20 @@ namespace tbkk
     }
 
 
+    //public class carQ
+    //{
+    //    public TimeSpan TimeSpan { get; set; }
+    //    public CatList CatList { get; set; }
+    //}
 
 
 
-    public class CatList
-    {
-        public Part Parts { get; set; }
-        public IList<DetailCarQueue> DetailCarQueue { get; set; }
-        public IList<carListNumber> carListNumber { get; set; }
-    }
+    //    public class CatList
+    //{
+    //    public Part Parts { get; set; }
+    //    public IList<DetailCarQueue> DetailCarQueue { get; set; }
+    //    public IList<carListNumber> carListNumber { get; set; }
+    //}
 
     public class carListNumber
     {
@@ -245,5 +329,18 @@ namespace tbkk
         public int maxCar { get; set; }
     }
 
+
+    public class carQ
+    {
+        public Part part { get; set; }
+        public IList<carListNumber> carListNumber { get; set; }
+       
+    }
+
+    public class timelist
+    {
+        public int time { get; set; }
+        public IList<carQ> carQ { get; set; }
+    }
 
 }
