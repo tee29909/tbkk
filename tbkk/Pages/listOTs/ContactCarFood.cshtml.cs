@@ -30,9 +30,9 @@ namespace tbkk
         public OTs OTs { get; set; }
         public OT OT { get; set; }
 
+        public IList<food> food { get; set; }
 
-
-
+        
         public IList<timelist> timelist { get; set; }
 
         
@@ -44,13 +44,14 @@ namespace tbkk
         {
             Line l = new Line();
 
-            string mass = Request.Form["mass"];
+            string massCar = Request.Form["massCar"];
+            string massFood = Request.Form["massFood"];
             await onLoad(id, Did);
             //food
-            l.lineNotify("5564", foodToken);
+            l.lineNotify(massFood, foodToken);
             //l.notifySticker("5564", 150, 2, foodToken);
             //car
-            l.lineNotify(mass, carToken);
+            l.lineNotify(massCar, carToken);
             //l.notifySticker("5564", 160, 2, carToken);
 
             
@@ -70,75 +71,8 @@ namespace tbkk
 
 
             await onLoad(id, Did);
-
-
-
-
             
-            List<timelist> add = new List<timelist>();
-            for (int a= 0; a<3;a++)
-            {
-                int time;
-                if (a==0)
-                {
-                    time = 8;
-                }
-                else if(a==1){
-                    time = 17;
-                }
-                else
-                {
-                    time = 20;
-                }
-
-                
-            var listAdd = new timelist(); 
-                listAdd.time = time;
-                var addcarq = new List<carQ>();
-            foreach (var item in Part)
-            {
-                
-               
-                
-                if (!item.Name.Equals("No"))
-                {
-                    var list = CarQueue.Where(l => l.CarQueue_PartID == item.PartID && l.Time.Hour == time).ToList();
-
-                    if (list.Count != 0)
-                    {
-                        carQ AddCarQ = new carQ();
-                        AddCarQ.part = item;
-
-                        var addList = new List<carListNumber>();
-                        foreach (var i in CarType)
-                        {
-                            var CarTypePart = list.Where(c => c.CarQueue_CarTypeID == i.CarTypeID).ToList();
-                            if (CarTypePart.Count != 0 && i.Seat != 0 )
-                            {carListNumber carListNumber = new carListNumber();
-
-                                
-                                carListNumber.CarType = i;
-                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
-                                addList.Add(carListNumber);
-
-                            }
-                        }
-                        
-                        AddCarQ.carListNumber = addList;
-                        addcarq.Add(AddCarQ);
-                        
-                        
-                    }
-
-                }
-                
-
-                }
-            listAdd.carQ = addcarq;
-            add.Add(listAdd);
-
-            } 
-            timelist = add;
+            
 
 
 
@@ -156,43 +90,165 @@ namespace tbkk
             return Page();
         }
 
+        private List<food> foodMass()
+        {
+            var foodAdd = new List<food>();
+
+            for (int i = 0; i < 2; i++)
+            {
+                var Addfood = new food();
+
+                int timeCheck = 0;
+                if (i == 0)
+                {
+                    timeCheck = 8;
+                }
+                else
+                {
+                    timeCheck = 17;
+                }
+                var foodlist = new List<foodList>();
+                foreach (var item in FoodSet)
+                {
+                    if (!item.NameSet.Equals("No"))
+                    {
+                        var add = new foodList();
+                        if (timeCheck == 8)
+                        {
+                            add.list = DetailOTnew.Where(c => c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
+                            add.set = item;
+                            add.contSet = DetailOTnew.Where(c => c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList().Count;
+                        }
+                        if (timeCheck == 17)
+                        {
+                            add.list = DetailOTnew.Where(c => c.TimeEnd.Hour == timeCheck && c.TimeEnd.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
+                            add.set = item;
+                            add.contSet = DetailOTnew.Where(c => c.TimeEnd.Hour == timeCheck && c.TimeEnd.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList().Count;
+                        }
+                        if (add.contSet != 0)
+                        {
+                            foodlist.Add(add);
+                        }
+                    }
+                }
+                Addfood.time = timeCheck;
+                Addfood.foodList = foodlist;
+
+                if (Addfood.foodList.Count != 0)
+                {
+                    foodAdd.Add(Addfood);
+                }
+
+            }
+
+            return foodAdd;
+        }
+
+        private List<timelist> massCarQ()
+        {
+            List<timelist> add = new List<timelist>();
+            for (int a = 0; a < 3; a++)
+            {
+                int time;
+                if (a == 0)
+                {
+                    time = 8;
+                }
+                else if (a == 1)
+                {
+                    time = 17;
+                }
+                else
+                {
+                    time = 20;
+                }
+
+
+                var listAdd = new timelist();
+                listAdd.time = time;
+                var addcarq = new List<carQ>();
+                foreach (var item in Part)
+                {
+
+                    if (!item.Name.Equals("No"))
+                    {
+                        var list = CarQueue.Where(l => l.CarQueue_PartID == item.PartID && l.Time.Hour == time).ToList();
+
+                        if (list.Count != 0)
+                        {
+                            carQ AddCarQ = new carQ();
+                            AddCarQ.part = item;
+
+                            var addList = new List<carListNumber>();
+                            foreach (var i in CarType)
+                            {
+                                var CarTypePart = list.Where(c => c.CarQueue_CarTypeID == i.CarTypeID).ToList();
+                                if (CarTypePart.Count != 0 && i.Seat != 0)
+                                {
+                                    carListNumber carListNumber = new carListNumber();
+
+
+                                    carListNumber.CarType = i;
+                                    carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
+                                    addList.Add(carListNumber);
+
+                                }
+                            }
+
+                            AddCarQ.carListNumber = addList;
+                            addcarq.Add(AddCarQ);
+
+
+                        }
+
+                    }
+
+
+                }
+                listAdd.carQ = addcarq;
+                add.Add(listAdd);
+            }
+
+            return add;
+        }
+
         //private List<CatList> DetailPartCarEmp()
         //{
-//        List<CatList> addcatListsArr = new List<CatList>();
-//            foreach (var item in Part)
-//            {
-//                if (!item.Name.Equals("No"))
-//                {
-//                    var list = DetailCarQueue.Where(l => l.CarQueue.CarQueue_PartID == item.PartID).ToList();
+        //        List<CatList> addcatListsArr = new List<CatList>();
+        //            foreach (var item in Part)
+        //            {
+        //                if (!item.Name.Equals("No"))
+        //                {
+        //                    var list = DetailCarQueue.Where(l => l.CarQueue.CarQueue_PartID == item.PartID).ToList();
 
-//                    if (list.Count != 0)
-//                    {
-//                        CatList addcatList = new CatList();
-//        List<carListNumber> carListNumberlist = new List<carListNumber>();
+        //                    if (list.Count != 0)
+        //                    {
+        //                        CatList addcatList = new CatList();
+        //        List<carListNumber> carListNumberlist = new List<carListNumber>();
 
-//        addcatList.Parts = item;
-//                        addcatList.DetailCarQueue = list;
-//                        foreach (var i in CarType)
-//                        {
-//                            carListNumber carListNumber = new carListNumber();
+        //        addcatList.Parts = item;
+        //                        addcatList.DetailCarQueue = list;
+        //                        foreach (var i in CarType)
+        //                        {
+        //                            carListNumber carListNumber = new carListNumber();
 
-//        var CarTypePart = CarQueue.Where(c => c.CarQueue_CarTypeID == i.CarTypeID && c.CarQueue_PartID == item.PartID).ToList();
-//                            if (CarTypePart.Count != 0)
-//                            {
-//                                carListNumber.CarType = i;
-//                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
-//                                carListNumberlist.Add(carListNumber);
+        //        var CarTypePart = CarQueue.Where(c => c.CarQueue_CarTypeID == i.CarTypeID && c.CarQueue_PartID == item.PartID).ToList();
+        //                            if (CarTypePart.Count != 0)
+        //                            {
+        //                                carListNumber.CarType = i;
+        //                                carListNumber.maxCar = CarTypePart.Max(z => z.CarNumber);
+        //                                carListNumberlist.Add(carListNumber);
 
-//                            }
-//}
-//addcatList.carListNumber = carListNumberlist;
+        //                            }
+        //}
+        //addcatList.carListNumber = carListNumberlist;
 
-//                        addcatListsArr.Add(addcatList);
-//                    }
+        //                        addcatListsArr.Add(addcatList);
+        //                    }
 
-//                }
+        //                }
 
-//            }
+        //            }
 
         //    return addcatListsArr;
         //}
@@ -227,6 +283,9 @@ namespace tbkk
                 .Where(c => c.CarQueue_OTID == Did).ToListAsync();
             OTs = ListOTDetail(Did);
             Depasments = OTDetailOTList();
+            timelist = massCarQ();
+            food = foodMass();
+
             //CatList = DetailPartCarEmp();
         }
         private List<Depasments> OTDetailOTList()
@@ -265,7 +324,7 @@ namespace tbkk
                     Foods foods = new Foods();
                     foods.FoodID = j.FoodSetID;
                     foods.FoodName = j.NameSet;
-                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1).ToList();
+                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.FoodSet.NameSet.Equals("No")).ToList();
                     DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.FoodSet_FoodSetID == j.FoodSetID).ToList();
                     foods.FoodsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
@@ -292,7 +351,7 @@ namespace tbkk
 
             foreach (var i in DetailOTnew)
             {
-                if (i.FoodSet_FoodSetID != 1)
+                if (i.FoodSet.NameSet.Equals("No"))
                 {
                     OTsnew.countFood = OTsnew.countFood + 1;
                 }
@@ -341,6 +400,21 @@ namespace tbkk
     {
         public int time { get; set; }
         public IList<carQ> carQ { get; set; }
+    }
+
+    public class foodList
+    {
+        public IList<DetailOT>  list { get; set; }
+        public FoodSet set { get; set; }
+        public int contSet { get; set; }
+    }
+
+
+
+    public class food
+    {
+        public int time { get; set; }
+        public IList<foodList> foodList { get; set; }
     }
 
 }
