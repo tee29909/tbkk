@@ -364,7 +364,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach (var item in Model.timelist)
                                 {
 
@@ -393,17 +392,8 @@
                                                 }
 
                                                 }
-
-
-
-                                            
-
                                         </tbody>
                         </table>
-
-
-
-
                     </div>
 
                 </div>
@@ -548,24 +538,35 @@
 
 
 
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            Line Mass
+                        </div>
+
+                        <div class="card-body">
+                            Mass Car
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
+                            Mass Food
+                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
+                        </div>
+                    </div>
+                    <br />
 
 
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
-
-                    <script>
+                            <script>
 
                         document.getElementById("exampleFormControlTextarea1").innerHTML = "@massCar";
                          document.getElementById("exampleFormControlTextarea2").innerHTML = "@massFood";
 
-                    </script>
+                            </script>
 
-                    <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
-                </div>
+                            <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+                        </div>
 
 
-                <br />
-            </form>
+                        <br />
+</form>
 
 
 
