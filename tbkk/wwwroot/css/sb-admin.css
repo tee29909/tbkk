@@ -10776,14 +10776,11 @@ body {
 }
 
 .card-body-icon {
-  position: absolute;
-  z-index: 0;
-  top: -1.25rem;
-  right: -1rem;
-  opacity: 0.4;
-  font-size: 5rem;
-  -webkit-transform: rotate(15deg);
-  transform: rotate(15deg);
+    position: absolute;
+    z-index: 0;
+    text-align: center;
+    
+    font-size: 5rem;
 }
 
 @media (min-width: 576px) {

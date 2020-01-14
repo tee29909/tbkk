@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\tbkk\\tbkk\\tbkk.csproj": {}
+    "C:\\Users\\admin\\Desktop\\สำรอง\\tbkk\\tbkk\\tbkk.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\tbkk\\tbkk\\tbkk.csproj": {
+    "C:\\Users\\admin\\Desktop\\สำรอง\\tbkk\\tbkk\\tbkk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\tbkk\\tbkk\\tbkk.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\สำรอง\\tbkk\\tbkk\\tbkk.csproj",
         "projectName": "tbkk",
-        "projectPath": "C:\\Users\\admin\\Desktop\\tbkk\\tbkk\\tbkk.csproj",
+        "projectPath": "C:\\Users\\admin\\Desktop\\สำรอง\\tbkk\\tbkk\\tbkk.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\tbkk\\tbkk\\obj\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\สำรอง\\tbkk\\tbkk\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

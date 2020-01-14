@@ -119,56 +119,93 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">Management OT</li>
                 <li class="breadcrumb-item active">Report OT</li>
-                
+
             </ol>
 
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OT[0].TimeStart)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OT[0].TypeOT)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OT[0].TypStatus)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.OT)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TimeStart)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TimeEnd)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TypeOT)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TypStatus)
-                            </td>
-                            <td>
-                                @{
-                                    int[] id = new int[2];
-                                }
-                                <a asp-page="./Edit" asp-route-id="@item.OTID">Edit</a> |
-                                <a asp-page="./Details" asp-route-id="@item.OTID">Details</a>
+            <div class="row state-overview">
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card">
+                        <div class="symbol terques">
+                            <i class="fa fa-clipboard-list"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class="count">495</h1>
+                            <p>Times</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card">
+                        <div class="symbol red">
+                            <i class="fa fa-shuttle-van"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count2">947</h1>
+                            <p>Sales</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card">
+                        <div class="symbol yellow">
+                            <i class="fa fa-utensils"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count3">328</h1>
+                            <p>Order Food</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card">
+                        <div class="symbol blue">
+                            <i class="fa fa-dollar-sign"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count4">10328</h1>
+                            <p>Total Cost</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
 
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+
+
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-area"></i>
+                    Area Chart Example
+                </div>
+                <div class="card-body">
+                    <canvas id="myPieChart" width="100%" height="30"></canvas>
+                </div>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,6 +248,10 @@
     </div>
 </div>
 
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/demo/chart-pie-demo.js"></script>
 }
