@@ -55,6 +55,9 @@ namespace tbkk.Pages
 
 
             HttpContext.Session.SetLogin(Login.Employee);
+
+
+
             return RedirectToPage("./Home/Home", new { id = Login.Employee.EmployeeID });
 
         }
