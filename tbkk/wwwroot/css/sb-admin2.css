@@ -51,15 +51,7 @@ a, a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
-::selection {
 
-    background: #FF6C60;
-    color: #fff;
-}
-::-moz-selection {
-    background: #FF6C60;
-    color: #fff;
-}
 
 #container {
     width: 100%;
@@ -4581,12 +4573,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 
 /*multiselect*/
 
-.ms-container .ms-selectable li.ms-hover, .ms-container .ms-selection li.ms-hover {
-    background-color: #2A3542;
-    color: #FFFFFF;
-    cursor: pointer;
-    text-decoration: none;
-}
+
 
 .ms-container .ms-list, .ms-container .ms-list.ms-focus {
     box-shadow: none !important;
@@ -4596,9 +4583,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     border: 1px solid #2A3542;
 }
 
-.ms-selectable .search-input, .ms-selection .search-input{
-    margin-bottom: 10px;
-}
+
 
 /*spinner*/
 
@@ -6468,27 +6453,11 @@ header.blue-bg .search:focus {
 }
 
 
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    padding: 3px;
-}
 
-.select2-container--default .select2-selection--multiple,
-.select2-container--default .select2-selection--single{
-    border: 1px solid #e2e2e4;
-    border-radius: 3px;
-}
 
-.select2-container .select2-selection--single {
-    height: 36px;
-}
 
-.select2-container--default .select2-selection--single .select2-selection__rendered{
-    line-height: 34px;
-}
 
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 34px;
-}
+
 
 /*-----*/
 

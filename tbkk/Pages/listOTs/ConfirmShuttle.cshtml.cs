@@ -303,7 +303,13 @@ namespace tbkk.Pages.listOTs
             Part = await _context.Part.ToListAsync();
             FoodSet =await _context.FoodSet.ToListAsync();
             CarType = await _context.CarType.ToListAsync();
+
+            
+
+
+
             CarType = CarType.OrderByDescending(o => o.Seat).ToList();
+            
 
 
 
