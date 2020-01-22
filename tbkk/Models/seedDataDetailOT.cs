@@ -24,22 +24,61 @@ namespace tbkk.Models
 
 
 
-                for(int i = 1;i<=7;i++)
+                for(DateTime i = new DateTime(2019,1,1);i.Year<2020;i = i.AddDays(1))
                 {
-                      context.OT.AddRange(
+                   
+                    if(!((int)i.DayOfWeek==0 || (int)i.DayOfWeek == 6))
+                    {
+                       
+                        context.OT.AddRange(
                      new OT
                      {
-                         TimeStart = new DateTime(2019,12,i,8,0,0),
-                         TimeEnd = new DateTime(2019, 12, i, 15, 0, 0),
-                         date = new DateTime(2019, 12, i),
-                         TypeOT = new DateTime(2019, 12, i).ToString("dddd",new CultureInfo("en-US")),
+                         TimeStart = new DateTime(i.Year,i.Month,i.Day,8,0,0),
+                         TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
+                         date = new DateTime(i.Year, i.Month, i.Day,0,0,0),
+                         TypeOT = i.ToString("dddd",new CultureInfo("en-US")),
                          TypStatus = "Manage Car"
                      }
                      );
+
+                    }
+                    if ((int)i.DayOfWeek == 5)
+                    {
+                        var a = new DateTime(i.Year, i.Month, i.Day);
+                        a = a.AddDays(1);
+                        var b = new DateTime(i.Year, i.Month, i.Day);
+                        b = b.AddDays(2);
+                        context.OT.AddRange(
+                    new OT
+                    {
+                        TimeStart = new DateTime(i.Year, i.Month, i.Day, 8, 0, 0),
+                        TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
+                        date = a,
+                        TypeOT = a.ToString("dddd", new CultureInfo("en-US")),
+                        TypStatus = "Manage Car"
+                    }
+                    );
+                        
+                        context.OT.AddRange(
+                    new OT
+                    {
+                        TimeStart = new DateTime(i.Year, i.Month, i.Day, 8, 0, 0),
+                        TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
+                        date = b,
+                        TypeOT = b.ToString("dddd", new CultureInfo("en-US")),
+                        TypStatus = "Manage Car"
+                    }
+                    );
+                    }
+
                 }
 
                 context.SaveChanges();
             }
+
+
+
+
             using (var context = new tbkkdbContext(
                serviceProvider.GetRequiredService<
                    DbContextOptions<tbkkdbContext>>()))
@@ -50,31 +89,70 @@ namespace tbkk.Models
                 {
                     return;
                 }
+                List<OT> OT = new List<OT>();
+                OT = context.OT.ToList();
 
-                for (int i = 1; i <= 7; i++)
+                foreach (var item in OT)
                 {
+
+               
+
+               
                     for (int j = 1; j <= 20; j++)
-                {
+                    {
 
-                    int random = new Random().Next(1, 4);
-                    DateTime Start = (i != 1 && i != 7) ? new DateTime(2019, 12, i, 17, 0, 0) : new DateTime(2019, 12, i, 8, 0, 0);
-                    DateTime End = (i != 1 && i != 7) ? new DateTime(2019, 12, i, 20, 0, 0) : (random % 2 == 0) ? new DateTime(2019, 12, i, 17, 0, 0) : new DateTime(2019, 12, i, 20, 0, 0);
+                        int random = new Random().Next(1, 3);
+                        DateTime Start = (!((int)item.date.DayOfWeek == 0 || (int)item.date.DayOfWeek == 6)) ? new DateTime(item.date.Year, item.date.Month, item.date.Day, 17, 0, 0) : new DateTime(item.date.Year, item.date.Month, item.date.Day, 8, 0, 0);
+                        DateTime End = (!((int)item.date.DayOfWeek == 0 || (int)item.date.DayOfWeek == 6)) ? new DateTime(item.date.Year, item.date.Month, item.date.Day, 20, 0, 0) : (random % 2 == 0) ? new DateTime(item.date.Year, item.date.Month, item.date.Day, 17, 0, 0) : new DateTime(item.date.Year, item.date.Month, item.date.Day, 20, 0, 0);
                         context.DetailOT.AddRange(
                                  new DetailOT
                                  {
                                      TimeStart = Start,
                                      TimeEnd = End,
                                      Hour = End - Start,
-                                     Type = (i != 1 && i!=7) ? "Back" : (random == 1) ? "Go" : (random == 2) ? "Back" : "Go and Back",
+                                     Type = (!((int)item.date.DayOfWeek == 0 || (int)item.date.DayOfWeek == 6)) ? "Back" : (random == 1) ? "Go" : (random == 2) ? "Back" : "Go and Back",
                                      Status = "Allow",
                                      Part_PaetID = new Random().Next(2, 6),
                                      FoodSet_FoodSetID = new Random().Next(2, 4),
-                                     OT_OTID = i,
+                                     OT_OTID = item.OTID,
                                      Employee_EmpID = j
                                  }
                                  );
+                    }
+                    
+                
+
+
                 }
+                context.SaveChanges();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            using (var context = new tbkkdbContext(
+              serviceProvider.GetRequiredService<
+                  DbContextOptions<tbkkdbContext>>()))
+            {
+
+
+                if (context.CarQueue.Any())
+                {
+                    return;
                 }
+
+                
                 context.SaveChanges();
             }
         }
