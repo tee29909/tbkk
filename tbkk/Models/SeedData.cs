@@ -1243,8 +1243,8 @@ namespace tbkk.Models
               new FoodSet
               {
 
-                  FoodSetcoManul = "ว่าง",
-                  NameSet = "ไม่เลือก",
+                  FoodSetcoManul = "No",
+                  NameSet = "No",
                   Canteen_CanteenID = 1
 
 
