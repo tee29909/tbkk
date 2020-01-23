@@ -39,20 +39,6 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CarType_Cock",
-                columns: table => new
-                {
-                    CarType_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CerNumber = table.Column<int>(nullable: false),
-                    NameCar = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CarType_Cock", x => x.CarType_CockID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -80,20 +66,6 @@ namespace tbkk.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Company", x => x.CompanyID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Company_Cock",
-                columns: table => new
-                {
-                    Company_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Company_Cock", x => x.Company_CockID);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,20 +101,6 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Department_Cock",
-                columns: table => new
-                {
-                    Department_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentName = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Department_Cock", x => x.Department_CockID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "EmployeeType",
                 columns: table => new
                 {
@@ -153,33 +111,6 @@ namespace tbkk.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmployeeType", x => x.EmployeeTypeID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EmployeeType_Cock",
-                columns: table => new
-                {
-                    EmployeeType_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeTypeName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeeType_Cock", x => x.EmployeeType_CockID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FoodSet_Cock",
-                columns: table => new
-                {
-                    FoodSet_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Manu = table.Column<string>(nullable: true),
-                    NameSet = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FoodSet_Cock", x => x.FoodSet_CockID);
                 });
 
             migrationBuilder.CreateTable(
@@ -230,46 +161,17 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OT_Cock",
-                columns: table => new
-                {
-                    OT_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<string>(nullable: true),
-                    TypeOT = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OT_Cock", x => x.OT_CockID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Part",
                 columns: table => new
                 {
                     PartID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Price = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Part", x => x.PartID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Part_Cock",
-                columns: table => new
-                {
-                    Part_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Part_Cock", x => x.Part_CockID);
+                    table.PrimaryKey("PK_Part", x => x.PartID);
                 });
 
             migrationBuilder.CreateTable(
@@ -283,19 +185,6 @@ namespace tbkk.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Position", x => x.PositionID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Position_Cock",
-                columns: table => new
-                {
-                    Position_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PositionName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Position_Cock", x => x.Position_CockID);
                 });
 
             migrationBuilder.CreateTable(
@@ -318,19 +207,6 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Supplier_Cock",
-                columns: table => new
-                {
-                    Supplier_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SupplierName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supplier_Cock", x => x.Supplier_CockID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "FoodSet",
                 columns: table => new
                 {
@@ -338,6 +214,7 @@ namespace tbkk.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FoodSetcoManul = table.Column<string>(nullable: true),
                     NameSet = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
                     Canteen_CanteenID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -475,48 +352,6 @@ namespace tbkk.Migrations
                         principalTable: "Position",
                         principalColumn: "PositionID",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employee_Cock",
-                columns: table => new
-                {
-                    Employee_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    CompanyIDCompany_CockID = table.Column<int>(nullable: true),
-                    DepartmentNameDepartment_CockID = table.Column<int>(nullable: true),
-                    EmployeeType_CockID = table.Column<int>(nullable: true),
-                    PositionIDPosition_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee_Cock", x => x.Employee_CockID);
-                    table.ForeignKey(
-                        name: "FK_Employee_Cock_Company_Cock_CompanyIDCompany_CockID",
-                        column: x => x.CompanyIDCompany_CockID,
-                        principalTable: "Company_Cock",
-                        principalColumn: "Company_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_Cock_Department_Cock_DepartmentNameDepartment_CockID",
-                        column: x => x.DepartmentNameDepartment_CockID,
-                        principalTable: "Department_Cock",
-                        principalColumn: "Department_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_Cock_EmployeeType_Cock_EmployeeType_CockID",
-                        column: x => x.EmployeeType_CockID,
-                        principalTable: "EmployeeType_Cock",
-                        principalColumn: "EmployeeType_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_Cock_Position_Cock_PositionIDPosition_CockID",
-                        column: x => x.PositionIDPosition_CockID,
-                        principalTable: "Position_Cock",
-                        principalColumn: "Position_CockID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -788,127 +623,6 @@ namespace tbkk.Migrations
                         column: x => x.UpdateNetwork_NetworkIDNetworkID,
                         principalTable: "Network",
                         principalColumn: "NetworkID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Asset_Cock",
-                columns: table => new
-                {
-                    Asset_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AssetName = table.Column<string>(nullable: true),
-                    SerailNumber = table.Column<string>(nullable: true),
-                    InstallDate = table.Column<DateTime>(nullable: false),
-                    ExpireDate = table.Column<DateTime>(nullable: false),
-                    Price = table.Column<double>(nullable: false),
-                    Warranty = table.Column<int>(nullable: false),
-                    Status = table.Column<string>(nullable: true),
-                    DepartmentIDDepartment_CockID = table.Column<int>(nullable: true),
-                    CompanyIDCompany_CockID = table.Column<int>(nullable: true),
-                    SupplierIDSupplier_CockID = table.Column<int>(nullable: true),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Asset_Cock", x => x.Asset_CockID);
-                    table.ForeignKey(
-                        name: "FK_Asset_Cock_Company_Cock_CompanyIDCompany_CockID",
-                        column: x => x.CompanyIDCompany_CockID,
-                        principalTable: "Company_Cock",
-                        principalColumn: "Company_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Asset_Cock_Department_Cock_DepartmentIDDepartment_CockID",
-                        column: x => x.DepartmentIDDepartment_CockID,
-                        principalTable: "Department_Cock",
-                        principalColumn: "Department_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Asset_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Asset_Cock_Supplier_Cock_SupplierIDSupplier_CockID",
-                        column: x => x.SupplierIDSupplier_CockID,
-                        principalTable: "Supplier_Cock",
-                        principalColumn: "Supplier_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetailOT_Cock",
-                columns: table => new
-                {
-                    DetailOT_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Hour = table.Column<int>(nullable: false),
-                    Type = table.Column<string>(nullable: true),
-                    CarNumber = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true),
-                    PartIDPart_CockID = table.Column<int>(nullable: true),
-                    CarType_CockID = table.Column<int>(nullable: true),
-                    FoodSet_CockID = table.Column<int>(nullable: true),
-                    OTIDOT_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetailOT_Cock", x => x.DetailOT_CockID);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Cock_CarType_Cock_CarType_CockID",
-                        column: x => x.CarType_CockID,
-                        principalTable: "CarType_Cock",
-                        principalColumn: "CarType_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Cock_FoodSet_Cock_FoodSet_CockID",
-                        column: x => x.FoodSet_CockID,
-                        principalTable: "FoodSet_Cock",
-                        principalColumn: "FoodSet_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Cock_OT_Cock_OTIDOT_CockID",
-                        column: x => x.OTIDOT_CockID,
-                        principalTable: "OT_Cock",
-                        principalColumn: "OT_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Cock_Part_Cock_PartIDPart_CockID",
-                        column: x => x.PartIDPart_CockID,
-                        principalTable: "Part_Cock",
-                        principalColumn: "Part_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GradeHistory_Cock",
-                columns: table => new
-                {
-                    GradeHistory_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GrahAllPoint = table.Column<int>(nullable: false),
-                    GrahBonus = table.Column<int>(nullable: false),
-                    GrahSalaryUp = table.Column<int>(nullable: false),
-                    GrahYear = table.Column<DateTime>(nullable: false),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GradeHistory_Cock", x => x.GradeHistory_CockID);
-                    table.ForeignKey(
-                        name: "FK_GradeHistory_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -1297,63 +1011,6 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JoinAssetEmp_Cock",
-                columns: table => new
-                {
-                    JoinAssetEmp_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Note = table.Column<string>(nullable: true),
-                    Strint = table.Column<string>(nullable: true),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true),
-                    AssetNameAsset_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JoinAssetEmp_Cock", x => x.JoinAssetEmp_CockID);
-                    table.ForeignKey(
-                        name: "FK_JoinAssetEmp_Cock_Asset_Cock_AssetNameAsset_CockID",
-                        column: x => x.AssetNameAsset_CockID,
-                        principalTable: "Asset_Cock",
-                        principalColumn: "Asset_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_JoinAssetEmp_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Report_Cock",
-                columns: table => new
-                {
-                    Report_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Type = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true),
-                    AssetIDAsset_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Report_Cock", x => x.Report_CockID);
-                    table.ForeignKey(
-                        name: "FK_Report_Cock_Asset_Cock_AssetIDAsset_CockID",
-                        column: x => x.AssetIDAsset_CockID,
-                        principalTable: "Asset_Cock",
-                        principalColumn: "Asset_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Report_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Repair",
                 columns: table => new
                 {
@@ -1390,41 +1047,6 @@ namespace tbkk.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Repair_Cock",
-                columns: table => new
-                {
-                    Repair_CockID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Type = table.Column<string>(nullable: true),
-                    EmployeeIDEmployee_CockID = table.Column<int>(nullable: true),
-                    ReportIDReport_CockID = table.Column<int>(nullable: true),
-                    AssetIDAsset_CockID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Repair_Cock", x => x.Repair_CockID);
-                    table.ForeignKey(
-                        name: "FK_Repair_Cock_Asset_Cock_AssetIDAsset_CockID",
-                        column: x => x.AssetIDAsset_CockID,
-                        principalTable: "Asset_Cock",
-                        principalColumn: "Asset_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Repair_Cock_Employee_Cock_EmployeeIDEmployee_CockID",
-                        column: x => x.EmployeeIDEmployee_CockID,
-                        principalTable: "Employee_Cock",
-                        principalColumn: "Employee_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Repair_Cock_Report_Cock_ReportIDReport_CockID",
-                        column: x => x.ReportIDReport_CockID,
-                        principalTable: "Report_Cock",
-                        principalColumn: "Report_CockID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Asset_Asset_CompanyIDCompanyID",
                 table: "Asset",
@@ -1454,26 +1076,6 @@ namespace tbkk.Migrations
                 name: "IX_Asset_Asset_SupplierIDSupplierID",
                 table: "Asset",
                 column: "Asset_SupplierIDSupplierID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Asset_Cock_CompanyIDCompany_CockID",
-                table: "Asset_Cock",
-                column: "CompanyIDCompany_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Asset_Cock_DepartmentIDDepartment_CockID",
-                table: "Asset_Cock",
-                column: "DepartmentIDDepartment_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Asset_Cock_EmployeeIDEmployee_CockID",
-                table: "Asset_Cock",
-                column: "EmployeeIDEmployee_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Asset_Cock_SupplierIDSupplier_CockID",
-                table: "Asset_Cock",
-                column: "SupplierIDSupplier_CockID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AssetJoinNetworks_AssetJoinNetwork_AssetIDAssetID",
@@ -1546,31 +1148,6 @@ namespace tbkk.Migrations
                 column: "Part_PaetID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Cock_CarType_CockID",
-                table: "DetailOT_Cock",
-                column: "CarType_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Cock_EmployeeIDEmployee_CockID",
-                table: "DetailOT_Cock",
-                column: "EmployeeIDEmployee_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Cock_FoodSet_CockID",
-                table: "DetailOT_Cock",
-                column: "FoodSet_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Cock_OTIDOT_CockID",
-                table: "DetailOT_Cock",
-                column: "OTIDOT_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Cock_PartIDPart_CockID",
-                table: "DetailOT_Cock",
-                column: "PartIDPart_CockID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Employee_Employee_CompanyID",
                 table: "Employee",
                 column: "Employee_CompanyID");
@@ -1596,26 +1173,6 @@ namespace tbkk.Migrations
                 column: "Employee_PositionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Cock_CompanyIDCompany_CockID",
-                table: "Employee_Cock",
-                column: "CompanyIDCompany_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_Cock_DepartmentNameDepartment_CockID",
-                table: "Employee_Cock",
-                column: "DepartmentNameDepartment_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_Cock_EmployeeType_CockID",
-                table: "Employee_Cock",
-                column: "EmployeeType_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_Cock_PositionIDPosition_CockID",
-                table: "Employee_Cock",
-                column: "PositionIDPosition_CockID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_FoodSet_Canteen_CanteenID",
                 table: "FoodSet",
                 column: "Canteen_CanteenID");
@@ -1626,11 +1183,6 @@ namespace tbkk.Migrations
                 column: "GradeHistory_EmployeeIDEmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GradeHistory_Cock_EmployeeIDEmployee_CockID",
-                table: "GradeHistory_Cock",
-                column: "EmployeeIDEmployee_CockID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_JoinAssetEmp_JoinAssetEmp_AssetIDAssetID",
                 table: "JoinAssetEmp",
                 column: "JoinAssetEmp_AssetIDAssetID");
@@ -1639,16 +1191,6 @@ namespace tbkk.Migrations
                 name: "IX_JoinAssetEmp_JoinAssetEmp_EmployeeIDEmployeeID",
                 table: "JoinAssetEmp",
                 column: "JoinAssetEmp_EmployeeIDEmployeeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_JoinAssetEmp_Cock_AssetNameAsset_CockID",
-                table: "JoinAssetEmp_Cock",
-                column: "AssetNameAsset_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_JoinAssetEmp_Cock_EmployeeIDEmployee_CockID",
-                table: "JoinAssetEmp_Cock",
-                column: "EmployeeIDEmployee_CockID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_JoinLicenseAsset_JoinLicenseAsset_AssetIDAssetID",
@@ -1736,21 +1278,6 @@ namespace tbkk.Migrations
                 column: "Repair_ReportIDReportID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Repair_Cock_AssetIDAsset_CockID",
-                table: "Repair_Cock",
-                column: "AssetIDAsset_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Repair_Cock_EmployeeIDEmployee_CockID",
-                table: "Repair_Cock",
-                column: "EmployeeIDEmployee_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Repair_Cock_ReportIDReport_CockID",
-                table: "Repair_Cock",
-                column: "ReportIDReport_CockID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Report_Report_AssetIDAssetID",
                 table: "Report",
                 column: "Report_AssetIDAssetID");
@@ -1759,16 +1286,6 @@ namespace tbkk.Migrations
                 name: "IX_Report_Report_EmployeeIDEmployeeID",
                 table: "Report",
                 column: "Report_EmployeeIDEmployeeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Report_Cock_AssetIDAsset_CockID",
-                table: "Report_Cock",
-                column: "AssetIDAsset_CockID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Report_Cock_EmployeeIDEmployee_CockID",
-                table: "Report_Cock",
-                column: "EmployeeIDEmployee_CockID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Suggestion_Suggestion_EmployeeIDEmployeeID",
@@ -1866,16 +1383,7 @@ namespace tbkk.Migrations
                 name: "DetailOT");
 
             migrationBuilder.DropTable(
-                name: "DetailOT_Cock");
-
-            migrationBuilder.DropTable(
-                name: "GradeHistory_Cock");
-
-            migrationBuilder.DropTable(
                 name: "JoinAssetEmp");
-
-            migrationBuilder.DropTable(
-                name: "JoinAssetEmp_Cock");
 
             migrationBuilder.DropTable(
                 name: "JoinLicenseAsset");
@@ -1896,9 +1404,6 @@ namespace tbkk.Migrations
                 name: "Repair");
 
             migrationBuilder.DropTable(
-                name: "Repair_Cock");
-
-            migrationBuilder.DropTable(
                 name: "Suggestion");
 
             migrationBuilder.DropTable(
@@ -1917,22 +1422,7 @@ namespace tbkk.Migrations
                 name: "FoodSet");
 
             migrationBuilder.DropTable(
-                name: "CarType_Cock");
-
-            migrationBuilder.DropTable(
-                name: "FoodSet_Cock");
-
-            migrationBuilder.DropTable(
-                name: "OT_Cock");
-
-            migrationBuilder.DropTable(
-                name: "Part_Cock");
-
-            migrationBuilder.DropTable(
                 name: "Report");
-
-            migrationBuilder.DropTable(
-                name: "Report_Cock");
 
             migrationBuilder.DropTable(
                 name: "GradeHistory");
@@ -1959,9 +1449,6 @@ namespace tbkk.Migrations
                 name: "Asset");
 
             migrationBuilder.DropTable(
-                name: "Asset_Cock");
-
-            migrationBuilder.DropTable(
                 name: "CompanyCar");
 
             migrationBuilder.DropTable(
@@ -1972,12 +1459,6 @@ namespace tbkk.Migrations
 
             migrationBuilder.DropTable(
                 name: "Supplier");
-
-            migrationBuilder.DropTable(
-                name: "Employee_Cock");
-
-            migrationBuilder.DropTable(
-                name: "Supplier_Cock");
 
             migrationBuilder.DropTable(
                 name: "Company");
@@ -1999,18 +1480,6 @@ namespace tbkk.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "Company_Cock");
-
-            migrationBuilder.DropTable(
-                name: "Department_Cock");
-
-            migrationBuilder.DropTable(
-                name: "EmployeeType_Cock");
-
-            migrationBuilder.DropTable(
-                name: "Position_Cock");
         }
     }
 }

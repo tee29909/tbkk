@@ -52,7 +52,7 @@ namespace tbkk.Models
                {
 
                    Name = "No",
-                   Price = "0",
+                   Price = 0,
 
 
                }
@@ -64,7 +64,7 @@ namespace tbkk.Models
                 {
 
                     Name = "บางแสน",
-                    Price = "200",
+                    Price = 200,
 
 
                 }
@@ -75,7 +75,7 @@ namespace tbkk.Models
                 {
 
                     Name = "พัทยา",
-                    Price = "500",
+                    Price = 500,
 
 
                 }
@@ -86,7 +86,7 @@ namespace tbkk.Models
                 {
 
                     Name = "บ่านบึง",
-                    Price = "400",
+                    Price = 400,
 
 
                 }
@@ -97,7 +97,7 @@ namespace tbkk.Models
                 {
 
                     Name = "พนัสนิคม",
-                    Price = "100",
+                    Price =100,
 
 
                 }
@@ -1245,6 +1245,7 @@ namespace tbkk.Models
 
                   FoodSetcoManul = "No",
                   NameSet = "No",
+                  Price=0,
                   Canteen_CanteenID = 1
 
 
@@ -1257,7 +1258,9 @@ namespace tbkk.Models
 
                     FoodSetcoManul = "อาหาร",
                     NameSet = "A",
+                    Price = 50,
                     Canteen_CanteenID = 1
+
 
 
                 }
@@ -1269,6 +1272,7 @@ namespace tbkk.Models
 
                     FoodSetcoManul = "อาหาร",
                     NameSet = "B",
+                    Price = 50,
                     Canteen_CanteenID = 1
 
                 }

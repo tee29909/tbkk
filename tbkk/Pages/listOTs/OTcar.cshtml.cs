@@ -26,15 +26,33 @@ namespace tbkk.Pages.listOTs
             string TypStatus = "Close";
             OT = await _context.OT.ToListAsync();
             OT = OT.Where(o => o.TypStatus.Equals(TypStatus)&& o.date.Year ==2019 && o.date.Month == 1).ToList();
-            foreach (var item in OT)
+            var part = _context.Part.ToList();
+            var detailListAdd = new detailList();
+            detailListAdd.OT = 0;
+            detailListAdd.car = 0;
+            detailListAdd.food = 0;
+            detailListAdd.total = 0;
+            foreach (var item in OT) 
             {
-                detailList.OT = detailList.OT + _context.DetailOT.Where(o => o.OT_OTID==item.OTID && o.Status.Equals("Allow")).ToList().Count;
-                detailList.car = detailList.car + _context.CarQueue.Where(o => o.CarQueue_OTID == item.OTID).ToList().Count;
-                detailList.food = detailList.OT + _context.DetailOT.Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow") &&(o.TimeStart.Hour ==8|| o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList().Count;
+                var carq = _context.CarQueue.Where(c => c.CarQueue_OTID == item.OTID).ToList();
+                var DetailOT = _context.DetailOT.Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow")).Include(d => d.Employee)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).ToList();
+                detailListAdd.OT = detailListAdd.OT + DetailOT.Count;
+                detailListAdd.car = detailListAdd.car + _context.CarQueue.Where(o => o.CarQueue_OTID == item.OTID).ToList().Count;
+                var food = DetailOT.Where(o => (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList();
+                detailListAdd.food = detailListAdd.food + food.Count;
+                //int totalCar = 0;
+                //foreach (var p in part)
+                //{
 
-
-                detailList.total = detailList.OT + _context.DetailOT.Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow") && (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList().Count;
+                //    totalCar = totalCar + (carq.Where(c => c.CarQueue_PartID == p.PartID).ToList().Count * p.Price);
+                //}
+                detailListAdd.total = detailListAdd.total + carq.Sum(t => t.Part.Price)+ food.Sum(t => t.FoodSet.Price);
             }
+            detailList = detailListAdd;
+
 
 
 

@@ -128,59 +128,6 @@ namespace tbkk.Migrations
                     b.ToTable("AssetJoinNetworks");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Asset_Cock", b =>
-                {
-                    b.Property<int>("Asset_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AssetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CompanyIDCompany_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DepartmentIDDepartment_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("InstallDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("SerailNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SupplierIDSupplier_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Warranty")
-                        .HasColumnType("int");
-
-                    b.HasKey("Asset_CockID");
-
-                    b.HasIndex("CompanyIDCompany_CockID");
-
-                    b.HasIndex("DepartmentIDDepartment_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.HasIndex("SupplierIDSupplier_CockID");
-
-                    b.ToTable("Asset_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.Brand", b =>
                 {
                     b.Property<int>("BrandID")
@@ -285,24 +232,6 @@ namespace tbkk.Migrations
                     b.ToTable("CarType");
                 });
 
-            modelBuilder.Entity("tbkk.Models.CarType_Cock", b =>
-                {
-                    b.Property<int>("CarType_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CerNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NameCar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CarType_CockID");
-
-                    b.ToTable("CarType_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.Category", b =>
                 {
                     b.Property<int>("CategoryID")
@@ -372,24 +301,6 @@ namespace tbkk.Migrations
                     b.ToTable("CompanyCar");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Company_Cock", b =>
-                {
-                    b.Property<int>("Company_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Company_CockID");
-
-                    b.ToTable("Company_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.Competency", b =>
                 {
                     b.Property<int>("CompetencyID")
@@ -440,24 +351,6 @@ namespace tbkk.Migrations
                     b.HasKey("DepartmentID");
 
                     b.ToTable("Department");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Department_Cock", b =>
-                {
-                    b.Property<int>("Department_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("DepartmentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Department_CockID");
-
-                    b.ToTable("Department_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.DetailCarQueue", b =>
@@ -527,55 +420,6 @@ namespace tbkk.Migrations
                     b.HasIndex("Part_PaetID");
 
                     b.ToTable("DetailOT");
-                });
-
-            modelBuilder.Entity("tbkk.Models.DetailOT_Cock", b =>
-                {
-                    b.Property<int>("DetailOT_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CarNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CarType_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FoodSet_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Hour")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OTIDOT_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PartIDPart_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DetailOT_CockID");
-
-                    b.HasIndex("CarType_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.HasIndex("FoodSet_CockID");
-
-                    b.HasIndex("OTIDOT_CockID");
-
-                    b.HasIndex("PartIDPart_CockID");
-
-                    b.ToTable("DetailOT_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.Employee", b =>
@@ -663,59 +507,6 @@ namespace tbkk.Migrations
                     b.ToTable("EmployeeType");
                 });
 
-            modelBuilder.Entity("tbkk.Models.EmployeeType_Cock", b =>
-                {
-                    b.Property<int>("EmployeeType_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("EmployeeTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeType_CockID");
-
-                    b.ToTable("EmployeeType_Cock");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Employee_Cock", b =>
-                {
-                    b.Property<int>("Employee_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CompanyIDCompany_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DepartmentNameDepartment_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeeType_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PositionIDPosition_CockID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Employee_CockID");
-
-                    b.HasIndex("CompanyIDCompany_CockID");
-
-                    b.HasIndex("DepartmentNameDepartment_CockID");
-
-                    b.HasIndex("EmployeeType_CockID");
-
-                    b.HasIndex("PositionIDPosition_CockID");
-
-                    b.ToTable("Employee_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.FoodSet", b =>
                 {
                     b.Property<int>("FoodSetID")
@@ -732,29 +523,14 @@ namespace tbkk.Migrations
                     b.Property<string>("NameSet")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.HasKey("FoodSetID");
 
                     b.HasIndex("Canteen_CanteenID");
 
                     b.ToTable("FoodSet");
-                });
-
-            modelBuilder.Entity("tbkk.Models.FoodSet_Cock", b =>
-                {
-                    b.Property<int>("FoodSet_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Manu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameSet")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FoodSet_CockID");
-
-                    b.ToTable("FoodSet_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.GradeHistory", b =>
@@ -789,35 +565,6 @@ namespace tbkk.Migrations
                     b.ToTable("GradeHistory");
                 });
 
-            modelBuilder.Entity("tbkk.Models.GradeHistory_Cock", b =>
-                {
-                    b.Property<int>("GradeHistory_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahAllPoint")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahBonus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahSalaryUp")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("GrahYear")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("GradeHistory_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.ToTable("GradeHistory_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.JoinAssetEmp", b =>
                 {
                     b.Property<int>("JoinAssetEmpID")
@@ -844,34 +591,6 @@ namespace tbkk.Migrations
                     b.HasIndex("JoinAssetEmp_EmployeeIDEmployeeID");
 
                     b.ToTable("JoinAssetEmp");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinAssetEmp_Cock", b =>
-                {
-                    b.Property<int>("JoinAssetEmp_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AssetNameAsset_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Strint")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("JoinAssetEmp_CockID");
-
-                    b.HasIndex("AssetNameAsset_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.ToTable("JoinAssetEmp_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.JoinLicenseAsset", b =>
@@ -1103,27 +822,6 @@ namespace tbkk.Migrations
                     b.ToTable("OT");
                 });
 
-            modelBuilder.Entity("tbkk.Models.OT_Cock", b =>
-                {
-                    b.Property<int>("OT_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TypeOT")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OT_CockID");
-
-                    b.ToTable("OT_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.Part", b =>
                 {
                     b.Property<int>("PartID")
@@ -1134,30 +832,12 @@ namespace tbkk.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.HasKey("PartID");
 
                     b.ToTable("Part");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Part_Cock", b =>
-                {
-                    b.Property<int>("Part_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("Part_CockID");
-
-                    b.ToTable("Part_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.Point", b =>
@@ -1193,21 +873,6 @@ namespace tbkk.Migrations
                     b.HasKey("PositionID");
 
                     b.ToTable("Position");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Position_Cock", b =>
-                {
-                    b.Property<int>("Position_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("PositionName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Position_CockID");
-
-                    b.ToTable("Position_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.Relationship", b =>
@@ -1274,39 +939,6 @@ namespace tbkk.Migrations
                     b.ToTable("Repair");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Repair_Cock", b =>
-                {
-                    b.Property<int>("Repair_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AssetIDAsset_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReportIDReport_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Repair_CockID");
-
-                    b.HasIndex("AssetIDAsset_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.HasIndex("ReportIDReport_CockID");
-
-                    b.ToTable("Repair_Cock");
-                });
-
             modelBuilder.Entity("tbkk.Models.Report", b =>
                 {
                     b.Property<int>("ReportID")
@@ -1342,37 +974,6 @@ namespace tbkk.Migrations
                     b.HasIndex("Report_EmployeeIDEmployeeID");
 
                     b.ToTable("Report");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Report_Cock", b =>
-                {
-                    b.Property<int>("Report_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AssetIDAsset_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("EmployeeIDEmployee_CockID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Report_CockID");
-
-                    b.HasIndex("AssetIDAsset_CockID");
-
-                    b.HasIndex("EmployeeIDEmployee_CockID");
-
-                    b.ToTable("Report_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.Suggestion", b =>
@@ -1437,21 +1038,6 @@ namespace tbkk.Migrations
                     b.HasKey("SupplierID");
 
                     b.ToTable("Supplier");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Supplier_Cock", b =>
-                {
-                    b.Property<int>("Supplier_CockID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SupplierName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Supplier_CockID");
-
-                    b.ToTable("Supplier_Cock");
                 });
 
             modelBuilder.Entity("tbkk.Models.UpdateAsset", b =>
@@ -1679,25 +1265,6 @@ namespace tbkk.Migrations
                         .HasForeignKey("AssetJoinNetwork_NetworkIDNetworkID");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Asset_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Company_Cock", "CompanyID")
-                        .WithMany()
-                        .HasForeignKey("CompanyIDCompany_CockID");
-
-                    b.HasOne("tbkk.Models.Department_Cock", "DepartmentID")
-                        .WithMany()
-                        .HasForeignKey("DepartmentIDDepartment_CockID");
-
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
-
-                    b.HasOne("tbkk.Models.Supplier_Cock", "SupplierID")
-                        .WithMany()
-                        .HasForeignKey("SupplierIDSupplier_CockID");
-                });
-
             modelBuilder.Entity("tbkk.Models.CarQueue", b =>
                 {
                     b.HasOne("tbkk.Models.CarType", "CarType")
@@ -1781,29 +1348,6 @@ namespace tbkk.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("tbkk.Models.DetailOT_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.CarType_Cock", "CarType")
-                        .WithMany()
-                        .HasForeignKey("CarType_CockID");
-
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
-
-                    b.HasOne("tbkk.Models.FoodSet_Cock", "FoodSet")
-                        .WithMany()
-                        .HasForeignKey("FoodSet_CockID");
-
-                    b.HasOne("tbkk.Models.OT_Cock", "OTID")
-                        .WithMany()
-                        .HasForeignKey("OTIDOT_CockID");
-
-                    b.HasOne("tbkk.Models.Part_Cock", "PartID")
-                        .WithMany()
-                        .HasForeignKey("PartIDPart_CockID");
-                });
-
             modelBuilder.Entity("tbkk.Models.Employee", b =>
                 {
                     b.HasOne("tbkk.Models.Company", "Company")
@@ -1837,25 +1381,6 @@ namespace tbkk.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("tbkk.Models.Employee_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Company_Cock", "CompanyID")
-                        .WithMany()
-                        .HasForeignKey("CompanyIDCompany_CockID");
-
-                    b.HasOne("tbkk.Models.Department_Cock", "DepartmentName")
-                        .WithMany()
-                        .HasForeignKey("DepartmentNameDepartment_CockID");
-
-                    b.HasOne("tbkk.Models.EmployeeType_Cock", "EmployeeType")
-                        .WithMany()
-                        .HasForeignKey("EmployeeType_CockID");
-
-                    b.HasOne("tbkk.Models.Position_Cock", "PositionID")
-                        .WithMany()
-                        .HasForeignKey("PositionIDPosition_CockID");
-                });
-
             modelBuilder.Entity("tbkk.Models.FoodSet", b =>
                 {
                     b.HasOne("tbkk.Models.Canteen", "Canteen")
@@ -1872,13 +1397,6 @@ namespace tbkk.Migrations
                         .HasForeignKey("GradeHistory_EmployeeIDEmployeeID");
                 });
 
-            modelBuilder.Entity("tbkk.Models.GradeHistory_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
-                });
-
             modelBuilder.Entity("tbkk.Models.JoinAssetEmp", b =>
                 {
                     b.HasOne("tbkk.Models.Asset", "JoinAssetEmp_AssetID")
@@ -1888,17 +1406,6 @@ namespace tbkk.Migrations
                     b.HasOne("tbkk.Models.Employee", "JoinAssetEmp_EmployeeID")
                         .WithMany()
                         .HasForeignKey("JoinAssetEmp_EmployeeIDEmployeeID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinAssetEmp_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset_Cock", "AssetName")
-                        .WithMany()
-                        .HasForeignKey("AssetNameAsset_CockID");
-
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
                 });
 
             modelBuilder.Entity("tbkk.Models.JoinLicenseAsset", b =>
@@ -1995,21 +1502,6 @@ namespace tbkk.Migrations
                         .HasForeignKey("Repair_ReportIDReportID");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Repair_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset_Cock", "AssetID")
-                        .WithMany()
-                        .HasForeignKey("AssetIDAsset_CockID");
-
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
-
-                    b.HasOne("tbkk.Models.Report_Cock", "ReportID")
-                        .WithMany()
-                        .HasForeignKey("ReportIDReport_CockID");
-                });
-
             modelBuilder.Entity("tbkk.Models.Report", b =>
                 {
                     b.HasOne("tbkk.Models.Asset", "Report_AssetID")
@@ -2019,17 +1511,6 @@ namespace tbkk.Migrations
                     b.HasOne("tbkk.Models.Employee", "Report_EmployeeID")
                         .WithMany()
                         .HasForeignKey("Report_EmployeeIDEmployeeID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Report_Cock", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset_Cock", "AssetID")
-                        .WithMany()
-                        .HasForeignKey("AssetIDAsset_CockID");
-
-                    b.HasOne("tbkk.Models.Employee_Cock", "EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("EmployeeIDEmployee_CockID");
                 });
 
             modelBuilder.Entity("tbkk.Models.Suggestion", b =>

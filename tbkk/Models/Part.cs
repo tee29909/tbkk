@@ -12,6 +12,6 @@ namespace tbkk.Models
         public int PartID { get; set; }
 
         public string Name { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
     }
 }

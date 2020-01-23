@@ -157,7 +157,7 @@
 							<i class="fa fa-clipboard-list"></i>
 						</div>
 						<div class="value">
-							<h2 class="count">495</h2>
+							<h2 class="count">@Model.detailList.OT</h2>
 							<p>Times</p>
 						</div>
 					</section>
@@ -168,8 +168,8 @@
 							<i class="fa fa-shuttle-van"></i>
 						</div>
 						<div class="value">
-							<h2 class=" count2">947</h2>
-							<p>Sales</p>
+							<h2 class=" count2">@Model.detailList.car</h2>
+							<p>Cars</p>
 						</div>
 					</section>
 				</div>
@@ -179,7 +179,7 @@
 							<i class="fa fa-utensils"></i>
 						</div>
 						<div class="value">
-							<h2 class="count3">328</h2>
+							<h2 class="count3">@Model.detailList.food</h2>
 							<p>Order Food</p>
 						</div>
 					</section>
@@ -190,7 +190,7 @@
 							<i class="fa fa-dollar-sign"></i>
 						</div>
 						<div class="value">
-							<h2 class=" count4">10328</h2>
+							<h2 class=" count4">@Model.detailList.total</h2>
 							<p>Total Cost</p>
 						</div>
 					</section>
@@ -205,9 +205,8 @@
 
 			<div class="row">
 				<div class="col-md-6 charts-grids widget">
-					<h4 class="title">Bar Chart Example</h4>
+					<h4 class="title">Bar Chart OT Work</h4>
 					<div style=" height: 300px;" id="chartContainer"></div>
-
 
 				</div>
 
@@ -409,7 +408,7 @@
 	animationEnabled: true,
 	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Top Oil Reserves"
+		text: "OT Work"
 	},
 	axisY: {
 		//title: "Reserves(MMbbl)"
@@ -418,7 +417,7 @@
 		type: "column",  
 		showInLegend: true, 
 		legendMarkerColor: "grey",
-		legendText: "MMbbl = one million barrels",
+		//legendText: "MMbbl = one million barrels",
 		dataPoints: [      
 			{ y: 300878, label: "Venezuela" },
 			{ y: 266455,  label: "Saudi" },
