@@ -132,8 +132,8 @@
 						<div class="form-group row">
 							<h6>Month :&nbsp;</h6>
 
-							<input class="form-input" type="month" value=@DateTime.Now.ToString("yyyy'-'MM") id="example-month-input">&nbsp;
-							<input class="btn btn-primary" type="submit">
+							<input class="form-input" type="month" value=@DateTime.Now.ToString("yyyy'-'MM") asp-for="search">&nbsp;
+							<input class="btn btn-primary" type="submit" value="Search" >
 
 
 						</div>

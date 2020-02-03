@@ -25,6 +25,8 @@ namespace tbkk.Pages.listOTs
         public IList<chart3> chart3 { get; set; }
         public IList<chart4> chart4 { get; set; }
         public chart5 chart5 { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string search { get; set; }
 
         public detailList detailList { get; set; }
         public int Total { get; set; }
@@ -32,8 +34,19 @@ namespace tbkk.Pages.listOTs
         public int TotalFood { get; set; }
         public async Task OnGetAsync(int? id)
         {
-            int Month = 1;
-            int Year = 2019;
+            DateTime Mout;
+            var t = search;
+            if (!string.IsNullOrEmpty(search))
+            {
+                Mout = DateTime.Parse(t);
+            }
+            else
+            {
+                Mout = DateTime.Now;
+            }
+            
+            int Month = Mout.Month;
+            int Year = Mout.Year;
             var part = _context.Part.ToList();
             var Department = _context.Department.ToList();
             string TypStatus = "Close";
@@ -96,12 +109,13 @@ namespace tbkk.Pages.listOTs
 
 
 
-            Employee = await _context.Employee
-                .Include(e => e.Company)
-                .Include(e => e.Department)
-                .Include(e => e.EmployeeType)
-                .Include(e => e.Location)
-                .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            //Employee = await _context.Employee
+            //    .Include(e => e.Company)
+            //    .Include(e => e.Department)
+            //    .Include(e => e.EmployeeType)
+            //    .Include(e => e.Location)
+            //    .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
         }
 
@@ -148,10 +162,9 @@ namespace tbkk.Pages.listOTs
                 var dataDepartment = listChart.Where(c => c.Employee.Employee_DepartmentID == item.DepartmentID).ToList();
                 char1add.y = dataDepartment.Sum(s => s.Hour.Hours);
                 char1add.label = item.DepartmentName;
-                if (char1add.y != 0)
-                {
-                    chart1List.Add(char1add);
-                }
+               
+                chart1List.Add(char1add);
+                
             }
 
             return chart1List;
