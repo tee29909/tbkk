@@ -64,14 +64,11 @@ namespace tbkk.Pages.listOTs
         public IList<Cars> Cars { get; set; }
         
 
-        public async Task<IActionResult> OnGetAsync(int? id, int? Did)
+        public async Task<IActionResult> OnGetAsync(int? Did)
         {
 
-            if (id == null)
-            {
-                return NotFound();
-            }
-            await onLoad(id, Did);
+           
+            await onLoad(Did);
             if (OT == null)
             {
                 return NotFound();
@@ -284,15 +281,10 @@ namespace tbkk.Pages.listOTs
             return CarsParts;
         }
 
-        private async Task onLoad(int? id, int? Did)
+        private async Task onLoad(int? Did)
         {
             Department = await _context.Department.ToListAsync();
-            Employee = await _context.Employee
-             .Include(e => e.Company)
-             .Include(e => e.Department)
-             .Include(e => e.EmployeeType)
-             .Include(e => e.Location)
-             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
             DetailOT = await _context.DetailOT
                 .Include(d => d.Employee)
@@ -319,7 +311,7 @@ namespace tbkk.Pages.listOTs
         }
 
 
-        public async Task<ActionResult> OnPostAsync(int id,int Did)
+        public async Task<ActionResult> OnPostAsync(int Did)
         {
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
 
@@ -393,7 +385,7 @@ namespace tbkk.Pages.listOTs
             }
 
             
-            return RedirectToPage("./../listOTs/ContactCarFood", new { id = id, Did = Did });
+            return RedirectToPage("./../listOTs/ContactCarFood", new { Did = Did });
 
            
         }

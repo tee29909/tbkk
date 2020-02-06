@@ -31,16 +31,11 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public async Task<IActionResult> OnGetAsync(int? id )
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
             
-
            
-           
+           Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             DetailOT = await _context.DetailOT
                 
@@ -49,7 +44,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.OT)
                 .Include(d => d.Part).ToListAsync();
 
-            DetailOT = DetailOT.Where(d => d.Employee_EmpID.Equals(id)).ToList();
+            DetailOT = DetailOT.Where(d => d.Employee_EmpID==Employee.EmployeeID).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Approved")).ToList();
             countHourOT = new TimeSpan();
             foreach (var item in DetailOT)
@@ -59,17 +54,9 @@ namespace tbkk.Pages.listOTs
 
             
 
-            Employee = await _context.Employee
-                .Include(e => e.Company)
-                .Include(e => e.Department)
-                .Include(e => e.EmployeeType)
-                .Include(e => e.Location)
-                .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            
 
-            if (Employee == null)
-            {
-                return NotFound();
-            }
+           
             return Page();
         }
     }

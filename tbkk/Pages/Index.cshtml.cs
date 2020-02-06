@@ -58,7 +58,7 @@ namespace tbkk.Pages
 
 
 
-            return RedirectToPage("./Home/Home", new { id = Login.Employee.EmployeeID });
+            return RedirectToPage("./Home/Home");
 
         }
 

@@ -32,7 +32,7 @@ namespace tbkk.Pages.listOTs
         public int Total { get; set; }
         public int TotalCar { get; set; }
         public int TotalFood { get; set; }
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync()
         {
             DateTime Mout;
             var t = search;

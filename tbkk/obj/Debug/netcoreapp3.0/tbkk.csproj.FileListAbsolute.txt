@@ -2465,8 +2465,6 @@ C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\P
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\listJoinOT.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\listOT.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\manageCar.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\manageEmpList.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\ManageList.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\manageOT.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\listOTs\OTcar.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Privacy.cshtml.g.cs

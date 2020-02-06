@@ -21,7 +21,9 @@ namespace tbkk.Pages.Home
         [BindProperty]
         public Employee Employee { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+
+       
+        public async Task OnGetAsync()
         {
 
             Employee = HttpContext.Session.GetLogin(_context.Employee);
@@ -36,7 +38,7 @@ namespace tbkk.Pages.Home
             //    .Include(e => e.Position)
             //    .FirstOrDefaultAsync(m => m.EmployeeID == id);
             //return RedirectToPage("./../Home/Home", new { id = Employee.EmployeeID });
-            return Page();
+            
         }
     }
 }

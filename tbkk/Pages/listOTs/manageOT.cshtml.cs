@@ -24,18 +24,13 @@ namespace tbkk.Pages.listOTs
 
         
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync()
         {
             
             OT = await _context.OT.ToListAsync();
-            Employee = await _context.Employee
-               .Include(e => e.Company)
-               .Include(e => e.Department)
-               .Include(e => e.EmployeeType)
-               .Include(e => e.Location)
-               .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
-           
+
 
             if (Employee == null)
             {

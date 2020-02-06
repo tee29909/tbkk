@@ -22,12 +22,9 @@ namespace tbkk.Pages.listOTs
         public IList<OT> OT { get;set; }
         public Employee Employee { get; set; }
         public IList<DetailOT> DetailOT { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+          
            
 
             DetailOT = await _context.DetailOT
@@ -47,12 +44,7 @@ namespace tbkk.Pages.listOTs
 
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 
-            Employee = await _context.Employee
-                 .Include(e => e.Company)
-                 .Include(e => e.Department)
-                 .Include(e => e.EmployeeType)
-                 .Include(e => e.Location)
-                 .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             if (Employee == null)
             {

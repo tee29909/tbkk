@@ -23,20 +23,15 @@ namespace tbkk.Pages.listOTs
         public IList<OT> OT { get; set; }
         public Employee Employee { get; set; }
 
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync()
         {
-            await OnLoad(id);
+            await OnLoad();
 
         }
 
-        private async Task OnLoad(int? id)
+        private async Task OnLoad()
         {
-            Employee = await _context.Employee
-              .Include(e => e.Company)
-              .Include(e => e.Department)
-              .Include(e => e.EmployeeType)
-              .Include(e => e.Location)
-              .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             DetailOT = await _context.DetailOT
 
                 .Include(d => d.Employee)
@@ -49,9 +44,9 @@ namespace tbkk.Pages.listOTs
             OT = OT.Where(o => o.TypStatus.Equals("Manage Car")).ToList();
         }
 
-        public async Task<IActionResult> OnPostAddAllAsync(int id, int Did)
+        public async Task<IActionResult> OnPostAddAllAsync(int Did)
         {
-            await OnLoad(id);
+            await OnLoad();
             List<DetailOT> newDetailOTs = DetailOT.Where(n => n.OT_OTID == Did).ToList();
             foreach (var item in newDetailOTs)
             {
@@ -79,7 +74,7 @@ namespace tbkk.Pages.listOTs
 
             
 
-            return RedirectToPage("./../listOTs/listEmpOT", new { id = Employee.EmployeeID });
+            return RedirectToPage("./../listOTs/listEmpOT");
         }
 
         private bool DetailOTExists(int id)

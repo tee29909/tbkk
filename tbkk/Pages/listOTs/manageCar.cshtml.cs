@@ -21,7 +21,7 @@ namespace tbkk.Pages.listOTs
         public Employee Employee { get; set; }
         public IList<DetailOT> DetailOT { get;set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync()
         {
             DetailOT = await _context.DetailOT
                 
@@ -31,12 +31,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Part).ToListAsync();
             DetailOT = DetailOT.Where(d => d.TimeStart.Month == DateTime.Now.Month).ToList();
 
-            Employee = await _context.Employee
-                 .Include(e => e.Company)
-                 .Include(e => e.Department)
-                 .Include(e => e.EmployeeType)
-                 .Include(e => e.Location)
-                 .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             if (Employee == null)
             {

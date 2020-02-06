@@ -40,13 +40,13 @@ namespace tbkk
         public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
         public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
 
-        public async Task OnPostLineAsync(int id, int Did)
+        public async Task OnPostLineAsync(int Did)
         {
             Line l = new Line();
 
             string massCar = Request.Form["massCar"];
             string massFood = Request.Form["massFood"];
-            await onLoad(id, Did);
+            await onLoad(Did);
             //food
             l.lineNotify(massFood, foodToken);
             //l.notifySticker("5564", 150, 2, foodToken);
@@ -62,15 +62,12 @@ namespace tbkk
 
         //public IList<CatList> CatList { get; set; }
         
-        public async Task<IActionResult> OnGetAsync(int? id ,int? Did)
+        public async Task<IActionResult> OnGetAsync(int? Did)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
 
 
-            await onLoad(id, Did);
+            await onLoad(Did);
             
 
             if (OT == null)
@@ -206,15 +203,10 @@ namespace tbkk
 
     
 
-        private async Task onLoad(int? id, int? Did)
+        private async Task onLoad(int? Did)
         {
             Department = await _context.Department.ToListAsync();
-            Employee = await _context.Employee
-             .Include(e => e.Company)
-             .Include(e => e.Department)
-             .Include(e => e.EmployeeType)
-             .Include(e => e.Location)
-             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
             DetailOT = await _context.DetailOT
                 .Include(d => d.Employee)
@@ -239,8 +231,6 @@ namespace tbkk
             timelist = massCarQ();
             food = foodMass();
 
-
-            
         }
         private List<Depasments> OTDetailOTList()
         {

@@ -33,15 +33,12 @@ namespace tbkk.Pages.listOTs
         public IList<FoodSet> FoodSet { get; set; }
         
 
-        public async Task<IActionResult> OnGetAsync(int? id,int? Did)
+        public async Task<IActionResult> OnGetAsync(int? Did)
         {
 
-            if (id == null)
-            {
-                return NotFound();
-            }
+          
 
-            await onLoad(id, Did); 
+            await onLoad(Did); 
             if (OT == null)
             {
                 return NotFound();
@@ -56,14 +53,9 @@ namespace tbkk.Pages.listOTs
             return Page();
         }
 
-        private async Task onLoad(int? id, int? Did)
+        private async Task onLoad(int? Did)
         {
-            Employee = await _context.Employee
-             .Include(e => e.Company)
-             .Include(e => e.Department)
-             .Include(e => e.EmployeeType)
-             .Include(e => e.Location)
-             .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
 
 
