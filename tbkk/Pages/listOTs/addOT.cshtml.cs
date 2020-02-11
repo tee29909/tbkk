@@ -33,17 +33,14 @@ namespace tbkk.Pages.listOTs
         public IList<FoodSet> FoodSet { get; set; }
         
 
-        public async Task<IActionResult> OnGetAsync(int? Did)
+        public async Task<IActionResult> OnGetAsync()
         {
 
           
 
-            await onLoad(Did); 
-            if (OT == null)
-            {
-                return NotFound();
-            }
-
+            await onLoad(); 
+           
+            
 
             if (Employee == null)
             {
@@ -53,10 +50,10 @@ namespace tbkk.Pages.listOTs
             return Page();
         }
 
-        private async Task onLoad(int? Did)
+        private async Task onLoad()
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
+            
 
 
             ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");

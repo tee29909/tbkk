@@ -65,13 +65,13 @@
                                             <option>Back</option>
 
                                             @{
-                                                if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
-                                                {
+//if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
+//{
                                                     <option>Go</option>
 
                                                     <option>Go and Back</option>
 
-                                                }
+                                                @*}*@
                                             }
 
                                         </select>
@@ -87,7 +87,7 @@
                                     <input hidden asp-for="DetailOT.Status" class="form-control" value="Pending for approval" />
 
 
-                                    <input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />
+                                    @*<input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />*@
 
 
                                     <div class="form-group">
