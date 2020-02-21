@@ -19,26 +19,25 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-
+        
 
         [BindProperty]
         public DetailOT DetailOT { get; set; }
-
+        [BindProperty]
         public OT OT { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
 
         public Employee Employee { get; set; }
-        public IList<FoodSet> FoodSet { get; set; }
-        
+        public IList<Employee>  Employeelist { get; set; }
+        public IList<OTL> OTL { get; set; }
+
 
         public async Task<IActionResult> OnGetAsync()
         {
 
-          
-
-            await onLoad(); 
+            await OnLoad(); 
            
             
 
@@ -50,17 +49,30 @@ namespace tbkk.Pages.listOTs
             return Page();
         }
 
-        private async Task onLoad()
+        private async Task OnLoad()
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            
+            Employeelist = _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            var DetailOTList = _context.DetailOT.Include(d => d.Employee)
+                .Include(d => d.EmployeeAdd)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).Where(d => d.OT.date >= DateTime.Now && d.OT.date.Hour > 15 && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            var OTs = _context.OT.Where(d => d.date >= DateTime.Now).ToList();
+
+            foreach (var item in OTs)
+            {
+                var OTA = new OTL();
+                OTA.OT = item;
+                OTA.DetailOT = DetailOTList.Where(d => d.OT_OTID == item.OTID).ToList();
+                OTL.Add(OTA);
+            }
 
 
             ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");
-            ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
             ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
-            ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
             ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+            
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -68,10 +80,37 @@ namespace tbkk.Pages.listOTs
 
             if (!ModelState.IsValid)
             {
-
+                if (DetailOT.Employee_EmpID == 0)
+                {
+                    ModelState.AddModelError("DetailOT.Employee_EmpID", "The Employee field is required.");
+                }
+                if (DetailOT.Part_PaetID == 0)
+                {
+                    ModelState.AddModelError("DetailOT.Part_PaetID", "The Part field is required.");
+                }
+                if (DetailOT.FoodSet_FoodSetID == 0)
+                {
+                    ModelState.AddModelError("DetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
+                }
+                await OnLoad();
                 return Page();
             }
-            OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
+            var dateOT = _context.OT.FirstOrDefaultAsync(e => e.date == OT.date);
+            if (dateOT.AsyncState==null)
+            {
+
+                OT.TimeStart = OT.date.Date + new TimeSpan(8,0,0);
+                OT.TimeEnd = OT.date.Date + new TimeSpan(15, 0, 0);
+                OT.TypeOT= OT.date.ToString("dddd");
+                
+
+
+            }
+            else
+            {
+                OT = await dateOT;
+            }
+            //OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
 
             DateTime TimeS = OT.TimeStart;
             DetailOT.TimeStart = new DateTime(TimeS.Year, TimeS.Month, TimeS.Day, DetailOT.TimeStart.Hour, DetailOT.TimeStart.Minute, DetailOT.TimeStart.Second);
@@ -79,14 +118,22 @@ namespace tbkk.Pages.listOTs
             TimeSpan hour = DetailOT.TimeEnd - DetailOT.TimeStart;
             DetailOT.Hour = hour;
 
-
+            
             int check = 0;
             check = checkTime(check);
             if (check == 1)
             {
-                await returnPage();
+                await OnLoad();
                 return Page();
             }
+            if (dateOT == null)
+            { 
+                _context.OT.Add(OT); 
+            }
+            
+
+
+            DetailOT.OT_OTID = OT.OTID;
 
             _context.DetailOT.Add(DetailOT);
             await _context.SaveChangesAsync();
@@ -102,6 +149,9 @@ namespace tbkk.Pages.listOTs
 
         private int checkTime(int check)
         {
+
+            
+
             if (DetailOT.TimeStart == DetailOT.TimeEnd)
             {
                 ModelState.AddModelError("timeError1", "The start time is less than the end time.");
@@ -110,7 +160,7 @@ namespace tbkk.Pages.listOTs
 
             }
 
-            if (!DetailOT.Type.Equals("No") && DetailOT.Part_PaetID == 1)
+            if (!DetailOT.Type.Equals("No") && getNamePart(DetailOT.Part_PaetID).Equals("No"))
             {
                 check = 1;
                 ModelState.AddModelError("partError", "Please select a route.");
@@ -149,29 +199,36 @@ namespace tbkk.Pages.listOTs
             }
 
 
+            if (OT.date < DateTime.Now)
+            {
+                check = 1;
+                ModelState.AddModelError("OT.date", "Date is no less than the current.");
+
+            }
+
+
 
 
             return check;
         }
 
-        private async Task returnPage()
+        private string getNamePart(int ID)
         {
-            Employee = await _context.Employee.Include(e => e.Company)
-                         .Include(e => e.Department)
-                         .Include(e => e.EmployeeType)
-                         .Include(e => e.Location)
-                         .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == DetailOT.Employee_EmpID);
-            
-
-
-
-            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");
-            ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
-            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
-            ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
-            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
-            
+            string namePart="";
+            var part = _context.Part.FirstOrDefault(u => u.PartID == ID);
+                if (part.PartID == ID)
+            {
+                namePart = part.Name;
+                
+            }
+            return namePart;
         }
+    }
+
+    public class OTL
+    {
+        public OT OT { get; set; }
+        public List<DetailOT> DetailOT { get; set; }
 
     }
 }

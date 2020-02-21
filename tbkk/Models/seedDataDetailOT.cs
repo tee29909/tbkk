@@ -115,7 +115,8 @@ namespace tbkk.Models
                                      Part_PaetID = new Random().Next(2, 6),
                                      FoodSet_FoodSetID = new Random().Next(2, 4),
                                      OT_OTID = item.OTID,
-                                     Employee_EmpID = j
+                                     Employee_EmpID = j,
+                                     Employee_UserAdd_EmpID = 20
                                  }
                                  );
                     }

@@ -2410,11 +2410,6 @@ C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\P
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Shared\_Login.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\Create.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\Delete.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\Details.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\Edit.cshtml.g.cs
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\test\Index.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\Razor\Pages\_ViewStart.cshtml.g.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.RazorTargetAssemblyInfo.cache

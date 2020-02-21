@@ -29,6 +29,8 @@ namespace tbkk.Pages
         {
             string Username = Request.Form["Username"];
             string Password = Request.Form["Password"];
+            
+
             Debug.WriteLine(Username);
             if (Username == string.Empty && Password == string.Empty)
             {

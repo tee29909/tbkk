@@ -272,7 +272,7 @@ namespace tbkk.Models
 
                         Employee_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 1
+                        Employee_PositionID = 2
                     }
                     );
 
