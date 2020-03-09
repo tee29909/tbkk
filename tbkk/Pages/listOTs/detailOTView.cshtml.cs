@@ -35,12 +35,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.OT)
                 .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
-            Employee = await _context.Employee
-                .Include(e => e.Company)
-                .Include(e => e.Department)
-                .Include(e => e.EmployeeType)
-                .Include(e => e.Location)
-                .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == DetailOT.Employee_EmpID);
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             if (DetailOT == null)
             {

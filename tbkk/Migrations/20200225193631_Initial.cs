@@ -153,7 +153,7 @@ namespace tbkk.Migrations
                     TimeEnd = table.Column<DateTime>(nullable: false),
                     date = table.Column<DateTime>(nullable: false),
                     TypeOT = table.Column<string>(nullable: true),
-                    TypStatus = table.Column<string>(nullable: true)
+                    TypStatus = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -521,24 +521,23 @@ namespace tbkk.Migrations
                     FoodSet_FoodSetID = table.Column<int>(nullable: false),
                     OT_OTID = table.Column<int>(nullable: false),
                     Employee_EmpID = table.Column<int>(nullable: false),
-                    Employee_UserAdd_EmpID = table.Column<int>(nullable: false),
-                    EmployeeAddEmployeeID = table.Column<int>(nullable: true)
+                    Employee_UserAdd_EmpID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DetailOT", x => x.DetailOTID);
-                    table.ForeignKey(
-                        name: "FK_DetailOT_Employee_EmployeeAddEmployeeID",
-                        column: x => x.EmployeeAddEmployeeID,
-                        principalTable: "Employee",
-                        principalColumn: "EmployeeID",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DetailOT_Employee_Employee_EmpID",
                         column: x => x.Employee_EmpID,
                         principalTable: "Employee",
                         principalColumn: "EmployeeID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetailOT_Employee_Employee_UserAdd_EmpID",
+                        column: x => x.Employee_UserAdd_EmpID,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeID",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_DetailOT_FoodSet_FoodSet_FoodSetID",
                         column: x => x.FoodSet_FoodSetID,
@@ -1136,14 +1135,14 @@ namespace tbkk.Migrations
                 column: "DetailCarQueue_EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_EmployeeAddEmployeeID",
-                table: "DetailOT",
-                column: "EmployeeAddEmployeeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DetailOT_Employee_EmpID",
                 table: "DetailOT",
                 column: "Employee_EmpID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetailOT_Employee_UserAdd_EmpID",
+                table: "DetailOT",
+                column: "Employee_UserAdd_EmpID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DetailOT_FoodSet_FoodSetID",

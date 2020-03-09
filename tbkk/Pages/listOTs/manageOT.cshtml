@@ -79,16 +79,16 @@
                                                 if (item.TypStatus.Equals("Open"))
                                                 {
                                                     <form method="post">
-                                                        <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">Close</button>
+                                                        <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-Did="@item.OTID">Close</button>
                                                     </form>
                                                 }
                                                 else if (item.TypStatus.Equals("Manage Car"))
                                                 {
-                                                    <a asp-page="./../listOTs/ConfirmShuttle" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
+                                                    <a asp-page="./../listOTs/ConfirmShuttle"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
                                                 }
                                                 else
                                                 {
-                                                    <a asp-page="./../listOTs/ContactCarFood" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-danger">Hit</a>
+                                                    <a asp-page="./../listOTs/ContactCarFood"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">Hit</a>
                                                 }
                                             }
                                         </td>

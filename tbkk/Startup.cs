@@ -10,6 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
+using System.Threading;
+
+
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace tbkk
 {
@@ -31,15 +37,50 @@ namespace tbkk
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             services.AddMemoryCache();
-           
+
+
+
+            //        services.AddLocalization(options => options.ResourcesPath = "resources");
+            //        services.Configure<RequestLocalizationOptions>(options =>
+            //        {
+            //            var supportedCultures = new[]
+            //             {
+            //    new CultureInfo("en"),
+            //    new CultureInfo("de"),
+            //    new CultureInfo("fr"),
+            //    new CultureInfo("es"),
+            //    new CultureInfo("ru"),
+            //    new CultureInfo("ja"),
+            //    new CultureInfo("ar"),
+            //    new CultureInfo("zh"),
+            //    new CultureInfo("en-GB")
+            //};
+            //            options.DefaultRequestCulture = new RequestCulture("en-GB");
+            //            options.SupportedCultures = supportedCultures;
+            //            options.SupportedUICultures = supportedCultures;
+            //        });
+            //        services.AddSingleton<CommonLocalizationService>();
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+                //By default the below will be set to whatever the server culture is. 
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("en-US") };
+
+                options.RequestCultureProviders = new List<IRequestCultureProvider>();
+            });
+
+
 
 
             ///razor start
             services.AddRazorPages();
-            
+
             //DBcotext
             services.AddDbContext<tbkkdbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("tbkkdbContext")));
+            
+
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
 
         }
@@ -68,12 +109,38 @@ namespace tbkk
 
             app.UseRouting();
 
+
+
+
+
+
+
+
+
+
+
+            //var localizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>().Value;
+            //app.UseRequestLocalization(localizationOptions);
+            app.UseRequestLocalization();
+
+
+
+
+
+
+
+
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
+
+           
+
         }
     }
 }

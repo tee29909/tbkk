@@ -10,7 +10,7 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20200211041828_Initial")]
+    [Migration("20200225193631_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -384,13 +384,10 @@ namespace tbkk.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EmployeeAddEmployeeID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Employee_EmpID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Employee_UserAdd_EmpID")
+                    b.Property<int?>("Employee_UserAdd_EmpID")
                         .HasColumnType("int");
 
                     b.Property<int>("FoodSet_FoodSetID")
@@ -419,9 +416,9 @@ namespace tbkk.Migrations
 
                     b.HasKey("DetailOTID");
 
-                    b.HasIndex("EmployeeAddEmployeeID");
-
                     b.HasIndex("Employee_EmpID");
+
+                    b.HasIndex("Employee_UserAdd_EmpID");
 
                     b.HasIndex("FoodSet_FoodSetID");
 
@@ -819,6 +816,7 @@ namespace tbkk.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TypStatus")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeOT")
@@ -1333,15 +1331,15 @@ namespace tbkk.Migrations
 
             modelBuilder.Entity("tbkk.Models.DetailOT", b =>
                 {
-                    b.HasOne("tbkk.Models.Employee", "EmployeeAdd")
-                        .WithMany()
-                        .HasForeignKey("EmployeeAddEmployeeID");
-
                     b.HasOne("tbkk.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("Employee_EmpID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("tbkk.Models.Employee", "EmployeeAdd")
+                        .WithMany()
+                        .HasForeignKey("Employee_UserAdd_EmpID");
 
                     b.HasOne("tbkk.Models.FoodSet", "FoodSet")
                         .WithMany()

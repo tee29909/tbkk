@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,9 @@ namespace tbkk
 
         public static void Main(string[] args)
         {
+
+            //CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
+            
             //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
 

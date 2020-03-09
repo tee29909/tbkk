@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 
+using System.Globalization;
+
 namespace tbkk.Pages.listOTs
 {
     public class addOTModel : PageModel
@@ -16,13 +18,17 @@ namespace tbkk.Pages.listOTs
 
         public addOTModel(tbkk.Models.tbkkdbContext context)
         {
+            
             _context = context;
+
         }
 
         
 
         [BindProperty]
         public DetailOT DetailOT { get; set; }
+
+
         [BindProperty]
         public OT OT { get; set; }
 
@@ -31,16 +37,32 @@ namespace tbkk.Pages.listOTs
 
         public Employee Employee { get; set; }
         public IList<Employee>  Employeelist { get; set; }
+
+
+
+
+        
+
+
+
+
+        
         public IList<OTL> OTL { get; set; }
+
+        public int Defal { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync()
         {
+            
+            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
+            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+            await OnLoad();
 
-            await OnLoad(); 
-           
             
 
+
+            Defal = 0;
             if (Employee == null)
             {
                 return NotFound();
@@ -51,28 +73,42 @@ namespace tbkk.Pages.listOTs
 
         private async Task OnLoad()
         {
+            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
+            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            Employeelist = _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
-            var DetailOTList = _context.DetailOT.Include(d => d.Employee)
-                .Include(d => d.EmployeeAdd)
+            Employeelist = await _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID).ToListAsync();
+            
+
+
+            var GetDate = DateTime.Now;
+            var date = new DateTime(GetDate.Year, GetDate.Month, GetDate.Day);
+            var DetailOTList = await _context.DetailOT
+                .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.OT.date >= DateTime.Now && d.OT.date.Hour > 15 && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
-            var OTs = _context.OT.Where(d => d.date >= DateTime.Now).ToList();
+                .Include(d => d.Part).Where(d => d.OT.date >= date).ToListAsync();
+            var OTlists = await _context.OT.Where(d => d.date >= date).ToListAsync();
 
-            foreach (var item in OTs)
+            var OTLadd = new List<OTL>();
+            foreach (var item in OTlists)
             {
                 var OTA = new OTL();
                 OTA.OT = item;
-                OTA.DetailOT = DetailOTList.Where(d => d.OT_OTID == item.OTID).ToList();
-                OTL.Add(OTA);
+                OTA.DetailOT = new List<DetailOT>();
+                var detailAdd = DetailOTList.Where(d => d.OT_OTID == item.OTID).ToList();
+                if (detailAdd.Count != 0)
+                {
+                    OTA.DetailOT = detailAdd;
+                }
+                OTLadd.Add(OTA);
+
+
             }
+            OTL = OTLadd;
+
+           
 
 
-            ViewData["CarType_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "NameCar");
-            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
-            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
-            
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -92,23 +128,30 @@ namespace tbkk.Pages.listOTs
                 {
                     ModelState.AddModelError("DetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
                 }
+                if (DetailOT.Type == null)
+                {
+                    ModelState.AddModelError("DetailOT.Type", "The Travel Type field is required.");
+                }
                 await OnLoad();
+
+                Defal = 1;
                 return Page();
             }
-            var dateOT = _context.OT.FirstOrDefaultAsync(e => e.date == OT.date);
-            if (dateOT.AsyncState==null)
-            {
 
+
+            var dateOT =await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date);
+            if (dateOT==null)
+            {
+                
                 OT.TimeStart = OT.date.Date + new TimeSpan(8,0,0);
                 OT.TimeEnd = OT.date.Date + new TimeSpan(15, 0, 0);
-                OT.TypeOT= OT.date.ToString("dddd");
-                
-
+                OT.TypeOT= OT.date.ToString("dddd", CultureInfo.InvariantCulture);
+                OT.TypStatus = "Open";
 
             }
             else
             {
-                OT = await dateOT;
+                OT = dateOT;
             }
             //OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
 
@@ -123,28 +166,54 @@ namespace tbkk.Pages.listOTs
             check = checkTime(check);
             if (check == 1)
             {
+                Defal = 1;
                 await OnLoad();
                 return Page();
             }
+
+
+
             if (dateOT == null)
-            { 
-                _context.OT.Add(OT); 
+            {
+                await addnewOT();
+            }
+            else
+            {
+                DetailOT.OT_OTID = OT.OTID;
+            }
+
+
+            if (await _context.DetailOT.FirstOrDefaultAsync(d=>d.OT_OTID == DetailOT.OT_OTID && d.Employee_EmpID == DetailOT.Employee_EmpID)==null)
+            {
+                await addnewDetailOT();
+
+            }
+            else
+            {
+                ModelState.AddModelError("DetailOT.Employee_EmpID", "The user has been registered.");
+                Defal = 1;
+                await OnLoad();
+                return Page();
             }
             
+            Defal = 0;
 
 
+            return RedirectToPage("./../listOTs/addOT");
+
+        }
+
+        private async Task addnewDetailOT()
+        {
             DetailOT.OT_OTID = OT.OTID;
-
             _context.DetailOT.Add(DetailOT);
             await _context.SaveChangesAsync();
-            
+        }
 
-
-
-
-
-            return RedirectToPage("./../listOTs/listOT", new { id = DetailOT.Employee_EmpID });
-
+        private async Task addnewOT()
+        {
+            _context.OT.Add(OT);
+            await _context.SaveChangesAsync();
         }
 
         private int checkTime(int check)
@@ -160,7 +229,7 @@ namespace tbkk.Pages.listOTs
 
             }
 
-            if (!DetailOT.Type.Equals("No") && getNamePart(DetailOT.Part_PaetID).Equals("No"))
+            if (!DetailOT.Type.Equals("No") && getNamePartAsync(DetailOT.Part_PaetID).Equals("No"))
             {
                 check = 1;
                 ModelState.AddModelError("partError", "Please select a route.");
@@ -199,12 +268,14 @@ namespace tbkk.Pages.listOTs
             }
 
 
-            if (OT.date < DateTime.Now)
+            var GetDate = DateTime.Now;
+            var date = new DateTime(GetDate.Year, GetDate.Month, GetDate.Day);
+            if (OT.date < date)
             {
                 check = 1;
                 ModelState.AddModelError("OT.date", "Date is no less than the current.");
 
-            }
+            } 
 
 
 
@@ -212,10 +283,10 @@ namespace tbkk.Pages.listOTs
             return check;
         }
 
-        private string getNamePart(int ID)
+        private async Task<string> getNamePartAsync(int ID)
         {
             string namePart="";
-            var part = _context.Part.FirstOrDefault(u => u.PartID == ID);
+            var part = await _context.Part.FirstOrDefaultAsync(u => u.PartID == ID);
                 if (part.PartID == ID)
             {
                 namePart = part.Name;

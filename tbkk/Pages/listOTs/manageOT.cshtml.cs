@@ -43,12 +43,9 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public async Task<IActionResult> OnPostAsync(int? id,int? Did)
+        public async Task<IActionResult> OnPostAsync(int? Did)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            
             OTs = await _context.OT.FirstOrDefaultAsync(o => o.OTID == Did);
             OTs.TypStatus = "Manage Car";
             _context.Attach(OTs).State = EntityState.Modified;
@@ -71,7 +68,7 @@ namespace tbkk.Pages.listOTs
 
 
 
-            return RedirectToPage("./../listOTs/ConfirmShuttle", new { id = id ,Did = Did });
+            return RedirectToPage("./../listOTs/ConfirmShuttle", new { Did = Did });
         }
 
         private bool OTExists(int id)
