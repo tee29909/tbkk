@@ -115,7 +115,16 @@ namespace tbkk.Pages.listOTs
             //    .Include(e => e.EmployeeType)
             //    .Include(e => e.Location)
             //    .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception e)
+            {
+                RedirectToPage("./index");
+            }
+            
 
         }
 
@@ -160,6 +169,10 @@ namespace tbkk.Pages.listOTs
             {
                 var char1add = new chart1();
                 var dataDepartment = listChart.Where(c => c.Employee.Employee_DepartmentID == item.DepartmentID).ToList();
+                
+                
+                
+                
                 char1add.y = dataDepartment.Sum(s => s.Hour.Hours);
                 char1add.label = item.DepartmentName;
                

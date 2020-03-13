@@ -25,7 +25,14 @@ namespace tbkk.Pages.listOTs
 
         public async Task OnGetAsync()
         {
-            await OnLoad();
+            try
+            {
+                await OnLoad();
+            }
+            catch (Exception e)
+            {
+                RedirectToPage("./index");
+            }
 
         }
 
@@ -41,12 +48,19 @@ namespace tbkk.Pages.listOTs
             DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
             DetailOT = DetailOT.Where(d => d.Status.Equals("Pending for approval")).ToList();
             OT = await _context.OT.ToListAsync();
-            OT = OT.Where(o => o.TypStatus.Equals("Manage Car")).ToList();
+            OT = OT.Where(o => o.TypStatus.Equals("Open")).ToList();
         }
 
         public async Task<IActionResult> OnPostAddAllAsync(int Did)
         {
-            await OnLoad();
+            try
+            {
+                await OnLoad();
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
             List<DetailOT> newDetailOTs = DetailOT.Where(n => n.OT_OTID == Did).ToList();
             foreach (var item in newDetailOTs)
             {

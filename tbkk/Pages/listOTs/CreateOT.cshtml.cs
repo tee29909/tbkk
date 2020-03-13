@@ -21,11 +21,18 @@ namespace tbkk.Pages.listOTs
         public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
+
+
+
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
            
-
-
-
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
 
 

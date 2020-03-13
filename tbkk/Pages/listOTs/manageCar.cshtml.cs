@@ -31,7 +31,17 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Part).ToListAsync();
             DetailOT = DetailOT.Where(d => d.TimeStart.Month == DateTime.Now.Month).ToList();
 
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+
+            try
+            {
+               Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+            
 
             if (Employee == null)
             {

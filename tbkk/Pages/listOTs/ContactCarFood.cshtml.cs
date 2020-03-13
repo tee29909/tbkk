@@ -46,7 +46,16 @@ namespace tbkk
 
             string massCar = Request.Form["massCar"];
             string massFood = Request.Form["massFood"];
-            await onLoad(Did);
+
+            try
+            {
+                await onLoad(Did);
+            }
+            catch (Exception e)
+            {
+               RedirectToPage("./index");
+            }
+            
             //food
             l.lineNotify(massFood, foodToken);
             //l.notifySticker("5564", 150, 2, foodToken);
@@ -64,11 +73,18 @@ namespace tbkk
         
         public async Task<IActionResult> OnGetAsync(int? Did)
         {
-           
 
 
-            await onLoad(Did);
-            
+
+            try
+            {
+                await onLoad(Did);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+
 
             if (OT == null)
             {

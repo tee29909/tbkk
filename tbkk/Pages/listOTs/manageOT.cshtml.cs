@@ -28,7 +28,16 @@ namespace tbkk.Pages.listOTs
         {
             
             OT = await _context.OT.ToListAsync();
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+            
 
 
 

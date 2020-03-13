@@ -10,171 +10,190 @@
 
 
         <h1>Report OT</h1>
+
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Management OT</li>
             <li class="breadcrumb-item active">Report OT</li>
 
         </ol>
+        <div class="row">
+            <div class="col-3">
 
-        <div class="col">
 
+                <form class="form-inline">
 
-            <form class="form-inline">
-                <p>
-                    <div class="form-group row">
+                    <div class="form-group">
                         <h6>Month :&nbsp;</h6>
 
-                        <input class="form-input" type="month" value=@DateTime.Now.ToString("yyyy'-'MM") asp-for="search">&nbsp;
+                        <input class="form-input" type="month" asp-for="search">&nbsp;
                         <input class="btn btn-primary" type="submit" value="Search">
 
 
                     </div>
 
-                </p>
-            </form>
-        </div>
-        <br />
 
+                </form>
 
-
-
-
-
-
-
-        <div class="row state-overview">
-            <div class="col-lg-3 col-sm-6">
-                <section class="card" style="background-color:azure;">
-                    <div class="symbol terques">
-                        <i class="fa fa-clipboard-list"></i>
-                    </div>
-                    <div class="value">
-                        <h2 class="count">@Model.detailList.OT</h2>
-                        <p>Times</p>
-                    </div>
-                </section>
+                <button class="btn btn-success" onclick="myFunction()">Print</button>
+                @*<button  align="left" onclick="print()" style="margin-left:5px">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>*@
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="card" style="background-color:#FFBAAB;">
-                    <div class="symbol red">
-                        <i class="fa fa-shuttle-van"></i>
-                    </div>
-                    <div class="value">
-                        <h2 class=" count2">@Model.detailList.car</h2>
-                        <p>Cars</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="card" style="background-color:#FFF4AB;">
-                    <div class="symbol yellow">
-                        <i class="fa fa-utensils"></i>
-                    </div>
-                    <div class="value">
-                        <h2 class="count3">@Model.detailList.food</h2>
-                        <p>Order Food</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <section class="card" style="background-color:#ABF7FF;">
-                    <div class="symbol blue">
-                        <i class="fa fa-dollar-sign"></i>
-                    </div>
-                    <div class="value">
-                        <h2 class=" count4">@Model.detailList.total</h2>
-                        <p>Total Cost</p>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-
-
-        <br />
-
-
-
-        <div class="row">
-            <div class="col-md-6 charts-grids widget">
-                <h4 class="title">Bar Chart OT Work</h4>
-                <div style=" height: 300px;" id="chart1"></div>
-
-            </div>
-
-
-            <div class="col-md-6 charts-grids widget states-mdl">
-                <h4 class="title">Line Chart Example</h4>
-                <div style=" height: 300px;" id="chart2"></div>
-            </div>
+           
 
         </div>
-        <div class="row">
-            <div class="col-md-6 charts-grids widget">
-                <h4 class="title">Pie Chart Example</h4>
-                <div style=" height: 300px;" id="chart3"></div>
+        
+
+
+
+            <br />
+
+
+
+
+
+
+
+
+            <div class="row state-overview">
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card" style="background-color:azure;">
+                        <div class="symbol terques">
+                            <i class="fa fa-clipboard-list"></i>
+                        </div>
+                        <div class="value">
+                            <h2 class="count">@Model.detailList.OT</h2>
+                            <p style="color:black">Times</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card" style="background-color:#FFBAAB;">
+                        <div class="symbol red">
+                            <i class="fa fa-shuttle-van"></i>
+                        </div>
+                        <div class="value">
+                            <h2 class=" count2">@Model.detailList.car</h2>
+                            <p style="color:black">Cars</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card" style="background-color:#FFF4AB;">
+                        <div class="symbol yellow">
+                            <i class="fa fa-utensils"></i>
+                        </div>
+                        <div class="value">
+                            <h2 class="count3">@Model.detailList.food</h2>
+                            <p style="color:black">Order Food</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <section class="card" style="background-color:#ABF7FF;">
+                        <div class="symbol blue">
+                            <i class="fa fa-dollar-sign"></i>
+                        </div>
+                        <div class="value">
+                            <h2 class=" count4">@Model.detailList.total.ToString("c2")</h2>
+                            <p style="color:black">Total Cost</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+
+            <br />
+
+
+
+            <div class="row">
+                <div class="col-md-6 charts-grids widget">
+                    <h4 class="title">Bar Chart OT Work</h4>
+                    <div style=" height: 300px;" id="chart1"></div>
+
+                </div>
+
+
+                <div class="col-md-6 charts-grids widget states-mdl">
+                    <h4 class="title">Line Chart Example</h4>
+                    <div style=" height: 300px;" id="chart2"></div>
+                </div>
 
             </div>
-            <div class="col-md-6 charts-grids widget">
-                <h4 class="title">Cost OT</h4>
-                <div style=" height: 300px;" id="chart4"></div>
+            <div class="row">
+                <div class="col-md-6 charts-grids widget">
+                    <h4 class="title">Pie Chart Example</h4>
+                    <div style=" height: 300px;" id="chart3"></div>
 
+                </div>
+                <div class="col-md-6 charts-grids widget">
+                    <h4 class="title">Cost OT</h4>
+                    <div style=" height: 300px;" id="chart4"></div>
+
+                </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-area"></i>
+                    Area Chart Example
+                </div>
+                <div class="card-body">
+                    <div style=" height: 300px;" id="chart5"></div>
+
+                </div>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Area Chart Example-->
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-chart-area"></i>
-                Area Chart Example
-            </div>
-            <div class="card-body">
-                <div style=" height: 300px;" id="chart5"></div>
-
-            </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!-- /.container-fluid -->
 
     </div>
-    <!-- /.container-fluid -->
 
-</div>
+<script>
+    function myFunction() {
+        window.print();
+    }
+</script>
 
 
 
@@ -184,6 +203,8 @@
 
     <script>
 
+
+       
 
 
 
@@ -392,18 +413,11 @@ chart4.render();
 
 
 
-
-
-
-
-
-
-
 var chart5 = new CanvasJS.Chart("chart5", {
 	theme:"light2",
 	animationEnabled: true,
 	title:{
-		text: "Total Cost In Year (@Model.chart5.Total.Sum(e => e.y))"
+		text: "Total Cost In Year (@Model.chart5.Total.Sum(e => e.y).ToString("c2"))"
 	},
 	axisY :{
 		includeZero: false,
@@ -470,7 +484,7 @@ chart5.render();
             }
         }
 
-         var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+        var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
         var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
     </script>
 

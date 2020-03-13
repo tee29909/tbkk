@@ -44,7 +44,16 @@ namespace tbkk.Pages.listOTs
 
             OT = OT.Where(s=> s.TypStatus.Equals("Open")).ToList();
 
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+
+            
 
             if (Employee == null)
             {

@@ -67,8 +67,15 @@ namespace tbkk.Pages.listOTs
         public async Task<IActionResult> OnGetAsync(int? Did)
         {
 
-           
-            await onLoad(Did);
+            try
+            {
+                await onLoad(Did);
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+            
             if (OT == null)
             {
                 return NotFound();

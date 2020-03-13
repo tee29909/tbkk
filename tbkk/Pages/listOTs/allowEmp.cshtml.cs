@@ -31,7 +31,16 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-            Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+            try
+            {Employee = HttpContext.Session.GetLogin(_context.Employee);
+                
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+            
 
             DetailOT = await _context.DetailOT
                 
@@ -77,11 +86,15 @@ namespace tbkk.Pages.listOTs
                 }
             }
 
-            Employee = await _context.Employee
-                .Include(e => e.Department)
-                .Include(e => e.EmployeeType)
-                .Include(e => e.Location)
-                .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == id);
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
 
             DetailOT = await _context.DetailOT
                
@@ -122,11 +135,15 @@ namespace tbkk.Pages.listOTs
                 }
             }
 
-            Employee = await _context.Employee
-                .Include(e => e.Department)
-                .Include(e => e.EmployeeType)
-                .Include(e => e.Location)
-                .Include(e => e.Position).FirstOrDefaultAsync(e => e.EmployeeID == id);
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
 
             DetailOT = await _context.DetailOT
                

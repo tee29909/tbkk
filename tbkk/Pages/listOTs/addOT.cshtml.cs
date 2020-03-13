@@ -35,6 +35,7 @@ namespace tbkk.Pages.listOTs
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
 
+
         public Employee Employee { get; set; }
         public IList<Employee>  Employeelist { get; set; }
 
@@ -57,7 +58,16 @@ namespace tbkk.Pages.listOTs
             
             ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
             ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
-            await OnLoad();
+
+            try
+            {
+                await OnLoad();
+            }
+            catch (Exception e)
+            {
+                return RedirectToPage("./index");
+            }
+            
 
             
 
@@ -75,6 +85,8 @@ namespace tbkk.Pages.listOTs
         {
             ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
             ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+
+           
             Employee = HttpContext.Session.GetLogin(_context.Employee);
             Employeelist = await _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID).ToListAsync();
             
@@ -95,7 +107,7 @@ namespace tbkk.Pages.listOTs
                 var OTA = new OTL();
                 OTA.OT = item;
                 OTA.DetailOT = new List<DetailOT>();
-                var detailAdd = DetailOTList.Where(d => d.OT_OTID == item.OTID).ToList();
+                var detailAdd = DetailOTList.Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID ==Employee.Employee_DepartmentID).ToList();
                 if (detailAdd.Count != 0)
                 {
                     OTA.DetailOT = detailAdd;
@@ -132,7 +144,14 @@ namespace tbkk.Pages.listOTs
                 {
                     ModelState.AddModelError("DetailOT.Type", "The Travel Type field is required.");
                 }
-                await OnLoad();
+                try
+                {
+                    await OnLoad();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToPage("./index");
+                }
 
                 Defal = 1;
                 return Page();
@@ -167,7 +186,14 @@ namespace tbkk.Pages.listOTs
             if (check == 1)
             {
                 Defal = 1;
-                await OnLoad();
+                try
+                {
+                    await OnLoad();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToPage("./index");
+                }
                 return Page();
             }
 
@@ -182,8 +208,8 @@ namespace tbkk.Pages.listOTs
                 DetailOT.OT_OTID = OT.OTID;
             }
 
-
-            if (await _context.DetailOT.FirstOrDefaultAsync(d=>d.OT_OTID == DetailOT.OT_OTID && d.Employee_EmpID == DetailOT.Employee_EmpID)==null)
+            var checkOT = await _context.DetailOT.FirstOrDefaultAsync(d => d.OT_OTID == DetailOT.OT_OTID && d.Employee_EmpID == DetailOT.Employee_EmpID);
+            if (checkOT == null)
             {
                 await addnewDetailOT();
 
@@ -192,7 +218,14 @@ namespace tbkk.Pages.listOTs
             {
                 ModelState.AddModelError("DetailOT.Employee_EmpID", "The user has been registered.");
                 Defal = 1;
-                await OnLoad();
+                try
+                {
+                    await OnLoad();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToPage("./index");
+                }
                 return Page();
             }
             

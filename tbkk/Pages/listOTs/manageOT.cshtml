@@ -24,7 +24,7 @@
                 <div class="card-header">
                     <i class="fas fa-table"></i>
                     OT Table
-                    <a asp-page="./../listOTs/CreateOT" class="btn btn-primary float-right" asp-route-id=@Model.Employee.EmployeeID>Create New</a>
+                   
                 </div>
 
                 <div class="card-body">
@@ -88,7 +88,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <a asp-page="./../listOTs/ContactCarFood"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">Hit</a>
+                                                    <a asp-page="./../listOTs/ContactCarFood"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">View</a>
                                                 }
                                             }
                                         </td>
@@ -128,6 +128,9 @@
         }
          var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
         var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

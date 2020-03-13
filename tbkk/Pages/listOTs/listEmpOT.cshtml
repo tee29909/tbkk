@@ -72,11 +72,12 @@
                                                 @Html.DisplayFor(modelItem => item.TypStatus)
                                             </td>
                                             <td>
-                                                <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-dark">Edit</a> |
-
-
                                                 <form method="post">
-                                                    <button asp-page-handler="AddAll" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">All allowed</button>
+                                                        <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-dark">Edit</a> |
+
+
+
+                                                         <a asp-page-handler="AddAll" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">All allowed</a>
 
                                                 </form>
 
