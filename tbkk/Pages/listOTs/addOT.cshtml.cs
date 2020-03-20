@@ -88,7 +88,7 @@ namespace tbkk.Pages.listOTs
 
            
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            Employeelist = await _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID).ToListAsync();
+            Employeelist = await _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID && d.Employee_CompanyID == Employee.Employee_CompanyID).ToListAsync();
             
 
 
@@ -99,7 +99,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).Where(d => d.OT.date >= date).ToListAsync();
-            var OTlists = await _context.OT.Where(d => d.date >= date).ToListAsync();
+            var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
 
             var OTLadd = new List<OTL>();
             foreach (var item in OTlists)
@@ -156,21 +156,19 @@ namespace tbkk.Pages.listOTs
                 Defal = 1;
                 return Page();
             }
-
-
-            var dateOT =await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date);
-            if (dateOT==null)
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            var dateOT = _context.OT.Any(e => e.date == OT.date && e.OT_CompanyID == Employee.Employee_CompanyID);
+            if (dateOT==false)
             {
-                
+
                 OT.TimeStart = OT.date.Date + new TimeSpan(8,0,0);
                 OT.TimeEnd = OT.date.Date + new TimeSpan(15, 0, 0);
                 OT.TypeOT= OT.date.ToString("dddd", CultureInfo.InvariantCulture);
                 OT.TypStatus = "Open";
-
             }
             else
             {
-                OT = dateOT;
+                OT = await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date && e.OT_CompanyID == Employee.Employee_CompanyID);
             }
             //OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
 
@@ -196,10 +194,7 @@ namespace tbkk.Pages.listOTs
                 }
                 return Page();
             }
-
-
-
-            if (dateOT == null)
+            if (dateOT == false)
             {
                 await addnewOT();
             }
@@ -245,6 +240,7 @@ namespace tbkk.Pages.listOTs
 
         private async Task addnewOT()
         {
+            OT.OT_CompanyID = Employee.Employee_CompanyID;
             _context.OT.Add(OT);
             await _context.SaveChangesAsync();
         }

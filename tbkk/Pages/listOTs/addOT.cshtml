@@ -40,9 +40,6 @@
                             <div class="row ">
                                 <div class="col">
 
-
-
-
                                     <div class="row ">
 
                                         <div class="col-lg-6">
@@ -186,6 +183,7 @@
                                     <div class="form-group">
 
                                         <input hidden asp-for="DetailOT.Employee_UserAdd_EmpID" class="form-control" value=@Model.Employee.EmployeeID />
+                                        <input hidden asp-for="OT.OT_CompanyID" class="form-control" value=@Model.Employee.Employee_CompanyID />
 
                                     </div>
 
@@ -210,6 +208,173 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="edit">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Register</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+                        <div class="modal-body">
+                            <div class="row ">
+                                <div class="col">
+                                    hello word  edit
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Modal footer -->
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="detail">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Register</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+                        <div class="modal-body">
+                            <div class="row ">
+                                <div class="col">
+                                    hello word detail
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Modal footer -->
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -288,14 +453,22 @@
                                 </td>
 
                                 <td>
-                                    @if(item.Employee_EmpID == Model.Employee.EmployeeID)
+                                    @if (item.Employee_EmpID == Model.Employee.EmployeeID)
                                     {
-                                        <a asp-page="./../listOTs/detailOTView" asp-route-id="@item.DetailOTID">Detail</a>
+                                        @*<a asp-page="./../listOTs/detailOTView" asp-route-id="@item.DetailOTID">Detail</a>*@
+
+
+                                        <div id="detailOTclick">
+                                            <samp id="detailDetailOT" class="detailDetailOT" data-id="@item.DetailOTID" data-toggle="modal" data-target="#detail">Detail</samp>
+                                            |
+                                            <samp id="editDetailOT" class="editDetailOT" data-id="@item.DetailOTID" data-toggle="modal" data-target="#edit">
+                                                Edit
+                                            </samp>
+
+                                        </div>
 
                                     }
-                                    
-                                    
-                                    
+
                                 </td>
                             </tr>
                         }
@@ -305,7 +478,8 @@
         }
 
 
-    
+
+
 
 
     </div>
@@ -320,7 +494,7 @@
 
 
 
-    
+
 
 
 
@@ -354,9 +528,9 @@
 
 
     <script>
-        console.log(5555);
-
         
+
+
         $(window).on('load', function () {
 
             //var a = $("#Defal").val();
@@ -366,20 +540,8 @@
             if (a==1){
                 $('#myModal').modal('show');
             }
-       
+
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
         $("#Time").on("input", ".date", function () {
 
@@ -416,8 +578,6 @@
 
         });
 
-
-
                     //$("#")
                     //    .datepicker({
                     //        onSelect: function (dateText) {
@@ -448,6 +608,59 @@
                   //          });
                   //          $.material.init()
                   //      });
+
+
+
+
+
+
+        
+
+            $('#detailOTclick').on('click','.detailDetailOT', function () {
+                console.log(111111111);
+                var cmd = $(this);
+                console.log(cmd);
+                $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (DetailOT) {
+                   
+                  
+                        console.log(66666); 
+                        console.log(DetailOT);
+                    
+                });
+
+
+            });
+
+
+        
+            $('#detailOTclick').on('click', '.editDetailOT', function () {
+                console.log(111111111);
+                var cmd = $(this);
+                console.log(cmd);
+                $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (DetailOT) {
+                   
+                        console.log(55555);
+                        console.log(DetailOT);
+
+                   
+                });
+
+
+            });
+
+
+
+         
+
+
+        
+
+
+
+
+
+
+
 
     </script>
 }

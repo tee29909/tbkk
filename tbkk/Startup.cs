@@ -76,9 +76,15 @@ namespace tbkk
             services.AddRazorPages();
 
             //DBcotext
+
+
+
             services.AddDbContext<tbkkdbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("tbkkdbContext")));
-            
+
+
+
+
 
             //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 

@@ -18,9 +18,16 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-        
-        public IList<DetailOT> DetailOT { get;set; }
-        public IList<OT> OT { get; set; }
+
+        //public IList<DetailOT> DetailOT { get;set; }
+        public OT OT { get; set; }
+
+
+        public IList<listOT> listOT { get; set; }
+
+
+
+
         public Employee Employee { get; set; }
 
         public async Task OnGetAsync()
@@ -31,7 +38,7 @@ namespace tbkk.Pages.listOTs
             }
             catch (Exception e)
             {
-                RedirectToPage("./index");
+                RedirectToPage("../../index");
             }
 
         }
@@ -39,16 +46,46 @@ namespace tbkk.Pages.listOTs
         private async Task OnLoad()
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            DetailOT = await _context.DetailOT
 
+
+
+            var ListOTadd = new List<listOT>();
+
+            var OTs = await _context.OT.Where(o => o.TypStatus.Equals("Open") && o.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            
+
+            foreach (var item in OTs)
+            {
+                var add = new listOT();
+                var detailOTs = await _context.DetailOT
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
-            DetailOT = DetailOT.Where(d => d.Status.Equals("Pending for approval")).ToList();
-            OT = await _context.OT.ToListAsync();
-            OT = OT.Where(o => o.TypStatus.Equals("Open")).ToList();
+                .Include(d => d.Part).Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+                add.OT = item;
+                add.Emp_Cout = detailOTs.Count;
+                detailOTs = detailOTs.Where(d => d.Status.Equals("Pending for approval") ).ToList();
+                add.Emp_Manage = detailOTs.Count;
+
+                ListOTadd.Add(add);
+            }
+
+            listOT = ListOTadd;
+
+
+
+            
+
+
+            //DetailOT = await _context.DetailOT
+            //    .Include(d => d.Employee)
+            //    .Include(d => d.FoodSet)
+            //    .Include(d => d.OT)
+            //    .Include(d => d.Part).ToListAsync();
+            //DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            //DetailOT = DetailOT.Where(d => d.Status.Equals("Pending for approval") && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
+            //OT = await _context.OT.ToListAsync();
+            //OT = OT.Where(o => o.TypStatus.Equals("Open") && o.OT_CompanyID == Employee.Employee_CompanyID).ToList();
         }
 
         public async Task<IActionResult> OnPostAddAllAsync(int Did)
@@ -61,7 +98,9 @@ namespace tbkk.Pages.listOTs
             {
                 return RedirectToPage("./index");
             }
-            List<DetailOT> newDetailOTs = DetailOT.Where(n => n.OT_OTID == Did).ToList();
+
+
+            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == Did && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToArrayAsync();
             foreach (var item in newDetailOTs)
             {
                 DetailOT newDetailOT = item;
@@ -96,4 +135,13 @@ namespace tbkk.Pages.listOTs
             return _context.DetailOT.Any(e => e.DetailOTID == id);
         }
     }
+
+    public class listOT { 
+        public OT OT { get; set; }
+        public int Emp_Cout { get; set; }
+        public int Emp_Manage { get; set; }
+
+
+    }
+
 }

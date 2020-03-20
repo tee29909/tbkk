@@ -26,70 +26,76 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.OT[0].TimeStart)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.OT[0].date)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.OT[0].TypeOT)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.OT[0].TypStatus)
-                                </th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            @foreach (var item in Model.OT)
-                            {
-                                @foreach (var i in Model.DetailOT)
+                    @if (Model.listOT != null)
+                    {
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OT.TimeStart)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OT.TimeEnd)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OT.date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OT.TypeOT)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OT.TypStatus)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.listOT)
                                 {
-                                    if (item.OTID == i.OT_OTID)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TimeStart)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TimeEnd)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.date)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TypeOT)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TypStatus)
-                                            </td>
-                                            <td>
-                                                <form method="post">
-                                                        <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID" class="btn btn-outline-dark">Edit</a> |
+
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TimeStart)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TimeEnd)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TypeOT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TypStatus)
+                                        </td>
+                                        <td>
+                                            <form method="post">
+                                                <a asp-page="./../listOTs/allowEmp" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OT.OTID" class="btn btn-outline-dark">Edit</a> |
 
 
 
-                                                         <a asp-page-handler="AddAll" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OTID">All allowed</a>
+                                                <a asp-page-handler="AddAll" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.OT.OTID">All allowed</a>
 
-                                                </form>
+                                            </form>
 
-                                            </td>
-                                        </tr>
-                                        break;
-                                    }
+                                        </td>
+                                    </tr>
+
+
+
                                 }
-                            }
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+
+                    }
+
+
+
 
                 </div>
             </div>
@@ -97,7 +103,7 @@
 
     </div>
     <!-- /.container-fluid -->
-   
+
 </div>
 
 @section Scripts {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,8 +34,19 @@ namespace tbkk.Models
         [Display(Name = "Day")]
         public string TypeOT { get; set; }
 
-        [Required]
+        
         [Display(Name = "Status")]
         public string TypStatus { get; set; }
+
+
+
+        [Display(Name = "Company")]
+        [ForeignKey("Company")]
+
+        public int? OT_CompanyID { get; set; }
+        public Company Company { get; set; }
+
+
+
     }
 }

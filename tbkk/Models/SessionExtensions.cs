@@ -18,6 +18,7 @@ namespace tbkk.Models
         public static void SetLogin(this ISession session, Employee empLogin)
         {
             session.SetInt32("login", empLogin.EmployeeID);
+
         }
 
         public static Employee GetLogin(this ISession session, DbSet<Employee> dbSet) {

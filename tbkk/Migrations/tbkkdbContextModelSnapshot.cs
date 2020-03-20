@@ -807,6 +807,9 @@ namespace tbkk.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("OT_CompanyID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TimeEnd")
                         .HasColumnType("datetime2");
 
@@ -814,7 +817,6 @@ namespace tbkk.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TypStatus")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeOT")
@@ -824,6 +826,8 @@ namespace tbkk.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("OTID");
+
+                    b.HasIndex("OT_CompanyID");
 
                     b.ToTable("OT");
                 });
@@ -1477,6 +1481,13 @@ namespace tbkk.Migrations
                     b.HasOne("tbkk.Models.Category", "Model_CategoryID")
                         .WithMany()
                         .HasForeignKey("Model_CategoryIDCategoryID");
+                });
+
+            modelBuilder.Entity("tbkk.Models.OT", b =>
+                {
+                    b.HasOne("tbkk.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("OT_CompanyID");
                 });
 
             modelBuilder.Entity("tbkk.Models.Point", b =>
