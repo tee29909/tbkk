@@ -459,7 +459,7 @@
 
 
                                         <div id="detailOTclick">
-                                            <samp id="detailDetailOT" class="detailDetailOT" data-id="@item.DetailOTID" data-toggle="modal" data-target="#detail">Detail</samp>
+                                            <samp id="detailDetailOT" class="detailDetailOT" onclick="onclickDetailOT(@item.DetailOTID)" data-toggle="modal" data-target="#detail">Detail</samp>
                                             |
                                             <samp id="editDetailOT" class="editDetailOT" data-id="@item.DetailOTID" data-toggle="modal" data-target="#edit">
                                                 Edit
@@ -528,7 +528,7 @@
 
 
     <script>
-        
+
 
 
         $(window).on('load', function () {
@@ -614,46 +614,76 @@
 
 
 
-        
 
-            $('#detailOTclick').on('click','.detailDetailOT', function () {
-                console.log(111111111);
-                var cmd = $(this);
-                console.log(cmd);
-                $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (DetailOT) {
-                   
-                  
-                        console.log(66666); 
-                        console.log(DetailOT);
-                    
-                });
+
+        //$('#detailOTclick').click('.detailDetailOT', function () {
+
+        //    var cmd = $(this);
+
+        //        $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (response) {
+
+
+        //                console.log(66666);
+        //                console.log(response);
+
+        //        });
+
+
+
+
+
+
+
+
+
+
+
+        //    });
+
+
+
+        //$('#detailOTclick').click('.editDetailOT', function () {
+        //        console.log(111111111);
+
+
+        //        $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (response) {
+
+        //                console.log(55555);
+        //                console.log(DetailOT);
+
+
+        //        });
+
+
+        //    });
+
+        function onclickDetailOT(id) {
+            $.ajax({
+                type: "GET",
+            url: "/api/DetailOTs/"+id,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                
+                console.log(data);
+                },
+             failure: function (data) {  
+                alert(data.responseText);  
+            }, //End of AJAX failure function  
+            error: function (data) {  
+                alert(data.responseText);  
+            }
 
 
             });
-
-
-        
-            $('#detailOTclick').on('click', '.editDetailOT', function () {
-                console.log(111111111);
-                var cmd = $(this);
-                console.log(cmd);
-                $.get(`/api/DetailOTs/${cmd.data('id')}`).done(function (DetailOT) {
-                   
-                        console.log(55555);
-                        console.log(DetailOT);
-
-                   
-                });
-
-
-            });
+        }
 
 
 
-         
 
 
-        
+
+
 
 
 

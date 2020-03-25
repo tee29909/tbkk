@@ -2310,7 +2310,6 @@ C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\runtime
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.csprojAssemblyReference.cache
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\staticwebassets\tbkk.StaticWebAssets.Manifest.cache
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\staticwebassets\tbkk.StaticWebAssets.xml
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.RazorAssemblyInfo.cache
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.RazorAssemblyInfo.cs
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.AssemblyInfoInputs.cache
@@ -2389,13 +2388,16 @@ C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microso
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Debug.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Options.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
-C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.Collections.Immutable.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.ComponentModel.Annotations.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.Text.Encodings.Web.dll
 C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\System.Text.Json.dll
+C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\bin\Debug\netcoreapp3.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\admin\Desktop\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.0\tbkk.genruntimeconfig.cache

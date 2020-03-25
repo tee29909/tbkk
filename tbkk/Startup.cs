@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+
 using tbkk.Models;
-using System.Threading;
 
 
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 
 namespace tbkk
 {
@@ -72,6 +69,13 @@ namespace tbkk
 
 
 
+            
+
+
+
+
+
+
             ///razor start
             services.AddRazorPages();
 
@@ -88,7 +92,7 @@ namespace tbkk
 
             //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -132,7 +136,7 @@ namespace tbkk
 
 
 
-
+            
 
 
 
@@ -143,9 +147,12 @@ namespace tbkk
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
-           
+
+
+
 
         }
     }
