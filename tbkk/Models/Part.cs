@@ -10,7 +10,7 @@ namespace tbkk.Models
     {
         [Key]
         public int PartID { get; set; }
-
+        [Display(Name = "Part Name")]
         public string Name { get; set; }
         public int Price { get; set; }
     }

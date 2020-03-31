@@ -36,7 +36,7 @@ namespace tbkk.Pages.listOTs
             {
                 await OnLoad();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 RedirectToPage("../../index");
             }
@@ -64,7 +64,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Part).Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
                 add.OT = item;
                 add.Emp_Cout = detailOTs.Count;
-                detailOTs = detailOTs.Where(d => d.Status.Equals("Pending for approval") ).ToList();
+                detailOTs = detailOTs.Where(d => d.Status.Equals("Allow") && d.Status.Equals("Disallow")).ToList();
                 add.Emp_Manage = detailOTs.Count;
 
                 ListOTadd.Add(add);
@@ -88,52 +88,7 @@ namespace tbkk.Pages.listOTs
             //OT = OT.Where(o => o.TypStatus.Equals("Open") && o.OT_CompanyID == Employee.Employee_CompanyID).ToList();
         }
 
-        public async Task<IActionResult> OnPostAddAllAsync(int Did)
-        {
-            try
-            {
-                await OnLoad();
-            }
-            catch (Exception e)
-            {
-                return RedirectToPage("./index");
-            }
-
-
-            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == Did && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToArrayAsync();
-            foreach (var item in newDetailOTs)
-            {
-                DetailOT newDetailOT = item;
-                newDetailOT.Status = "Allow";
-
-                _context.Attach(newDetailOT).State = EntityState.Modified;
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DetailOTExists(newDetailOT.DetailOTID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-
-            
-
-            return RedirectToPage("./../listOTs/listEmpOT");
-        }
-
-        private bool DetailOTExists(int id)
-        {
-            return _context.DetailOT.Any(e => e.DetailOTID == id);
-        }
+       
     }
 
     public class listOT { 

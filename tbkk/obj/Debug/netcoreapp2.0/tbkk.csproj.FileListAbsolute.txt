@@ -1,0 +1,4 @@
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp2.0\tbkk.csprojAssemblyReference.cache
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp2.0\tbkk.csproj.CoreCompileInputs.cache
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp2.0\tbkk.AssemblyInfoInputs.cache
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp2.0\tbkk.AssemblyInfo.cs

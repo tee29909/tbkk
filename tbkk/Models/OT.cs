@@ -15,19 +15,19 @@ namespace tbkk.Models
         
         [Display(Name = "Time Start")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: hh:mm tt}")]
         public DateTime TimeStart { get; set; }
 
         
         [Display(Name = "Time End")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0: hh:mm tt}")]
         public DateTime TimeEnd { get; set; }
 
         
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
 
         

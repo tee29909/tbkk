@@ -37,9 +37,18 @@
 
             <div class="card-body">
                 <div class="table-responsive">
+
+                    <form method="post">
+                        <a asp-page-handler="AddAllowed" class="btn btn-outline-success" type="submit" asp-route-id="Model.Employee.EmployeeID" asp-route-Did="item.OT.OTID">All Allowed</a>
+                        <a asp-page-handler="AddDisallow" class="btn btn-outline-danger" type="submit" asp-route-id="Model.Employee.EmployeeID" asp-route-Did="item.OT.OTID">All Disallow</a>
+                    </form>
+                    <br />
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                         <thead>
+
                             <tr>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
                                 </th>
@@ -73,6 +82,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach (var item in Model.DetailOT)
                             {
                                 <tr>
@@ -110,11 +120,11 @@
                                             @{
                                                 if (!item.Status.Equals("Allow"))
                                                 {
-                                                    <button asp-page-handler="Allow" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.DetailOTID" class="btn btn-primary">Allow</button>
+                                                    <button asp-page-handler="Allow" type="submit"  asp-route-id="@item.DetailOTID" class="btn btn-primary">Allow</button>
                                                 }
                                                 if (!item.Status.Equals("Disallow"))
                                                 {
-                                                    <button asp-page-handler="Remove" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@item.DetailOTID" class="btn btn-danger">No Allow</button>
+                                                    <button asp-page-handler="Remove" type="submit" asp-route-id="@item.DetailOTID" class="btn btn-danger">Disallow</button>
                                                 }
                                             }
                                         </form>

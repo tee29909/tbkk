@@ -37,7 +37,8 @@ namespace tbkk.Models
                          TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
                          date = new DateTime(i.Year, i.Month, i.Day,0,0,0),
                          TypeOT = i.ToString("dddd",new CultureInfo("en-US")),
-                         TypStatus = "Close"
+                         TypStatus = "Close",
+                         OT_CompanyID = 1
                      }
                      );
 
@@ -55,7 +56,8 @@ namespace tbkk.Models
                         TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
                         date = a,
                         TypeOT = a.ToString("dddd", new CultureInfo("en-US")),
-                        TypStatus = "Close"
+                        TypStatus = "Close",
+                         OT_CompanyID = 1
                     }
                     );
                         
@@ -66,7 +68,9 @@ namespace tbkk.Models
                         TimeEnd = new DateTime(i.Year, i.Month, i.Day, 15, 0, 0),
                         date = b,
                         TypeOT = b.ToString("dddd", new CultureInfo("en-US")),
-                        TypStatus = "Close"
+                        TypStatus = "Close",
+                        OT_CompanyID = 1
+
                     }
                     );
                     }
@@ -211,7 +215,7 @@ namespace tbkk.Models
                             {
                                 empList = list.DetailOT.Where(e => e.Part_PaetID == list.PartID).ToList();
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 empList = new List<DetailOT>();
                             }
@@ -219,7 +223,7 @@ namespace tbkk.Models
 
                             foreach (var j in list.ListCars)
                             {
-                                int Emp = 0;
+                                
                                 int index2 = managecarNEW[index].ListCars.IndexOf(j);
                                 for (int i = 0; i < managecarNEW[index].ListCars[index2].countCar; i++)
                                 {
@@ -288,7 +292,7 @@ namespace tbkk.Models
                             {
                                 empList = list.DetailOT.Where(e => e.Part_PaetID == list.PartID).ToList();
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 empList = new List<DetailOT>();
                             }
@@ -358,7 +362,7 @@ namespace tbkk.Models
                             {
                                 empList = list.DetailOT.Where(e => e.Part_PaetID == list.PartID).ToList();
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 empList = new List<DetailOT>();
                             }
@@ -366,7 +370,7 @@ namespace tbkk.Models
 
                             foreach (var j in list.ListCars)
                             {
-                                int Emp = 0;
+                                
                                 int index2 = managecarNEW[index].ListCars.IndexOf(j);
                                 for (int i = 0; i < managecarNEW[index].ListCars[index2].countCar; i++)
                                 {

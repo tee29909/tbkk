@@ -28,6 +28,7 @@ namespace tbkk.Models
 
         
         [Display(Name = "Hour")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c} Hour")]
         public TimeSpan Hour { get; set; }
 
         

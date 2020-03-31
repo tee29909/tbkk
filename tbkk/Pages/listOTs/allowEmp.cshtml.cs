@@ -24,31 +24,22 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public async Task<IActionResult> OnGetAsync(int? Did)
+        public async Task<IActionResult> OnGetAsync(int Did)
         {
             
-            if (Did == null)
-            {
-                return NotFound();
-            }
+            
 
             try
-            {Employee = HttpContext.Session.GetLogin(_context.Employee);
-                
+            {
+                await OnLoad(Did);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
             
 
-            DetailOT = await _context.DetailOT
-                
-                .Include(d => d.Employee)
-                .Include(d => d.FoodSet)
-                .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.OT_OTID == Did).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            
 
             if (DetailOT == null)
             {
@@ -58,15 +49,13 @@ namespace tbkk.Pages.listOTs
             return Page();
         }
 
-        public async Task<IActionResult> OnPostRemoveAsync(int id, int Did)
+
+
+        public async Task<IActionResult> OnPostRemoveAsync(int id)
         {
             
             DetailOTs = await _context.DetailOT
-               
-               .Include(d => d.Employee)
-               .Include(d => d.FoodSet)
-               .Include(d => d.OT)
-               .Include(d => d.Part).FirstOrDefaultAsync(e => e.DetailOTID == Did);
+               .FirstOrDefaultAsync(e => e.DetailOTID == id);
             DetailOTs.Status = "Disallow";
             _context.Attach(DetailOTs).State = EntityState.Modified;
 
@@ -88,34 +77,25 @@ namespace tbkk.Pages.listOTs
 
             try
             {
-                Employee = HttpContext.Session.GetLogin(_context.Employee);
+                await OnLoad(DetailOTs.OT_OTID);
+                
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
 
-            DetailOT = await _context.DetailOT
-               
-               .Include(d => d.Employee)
-               .Include(d => d.FoodSet)
-               .Include(d => d.OT)
-               .Include(d => d.Part).Where(d => d.OT_OTID == DetailOTs.OT_OTID).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+          
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAllowAsync(int id, int Did)
+        public async Task<IActionResult> OnPostAllowAsync(int id)
         {
 
             DetailOTs = await _context.DetailOT
-               
-               .Include(d => d.Employee)
-               .Include(d => d.FoodSet)
-               .Include(d => d.OT)
-               .Include(d => d.Part).FirstOrDefaultAsync(e => e.DetailOTID == Did);
+               .FirstOrDefaultAsync(e => e.DetailOTID == id);
             DetailOTs.Status = "Allow";
             _context.Attach(DetailOTs).State = EntityState.Modified;
 
@@ -137,24 +117,84 @@ namespace tbkk.Pages.listOTs
 
             try
             {
-                Employee = HttpContext.Session.GetLogin(_context.Employee);
+                await OnLoad(DetailOTs.OT_OTID);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
 
-            DetailOT = await _context.DetailOT
-               
-               .Include(d => d.Employee)
-               .Include(d => d.FoodSet)
-               .Include(d => d.OT)
-               .Include(d => d.Part).Where(d => d.OT_OTID == DetailOTs.OT_OTID).ToListAsync();
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            
 
             return Page();
         }
+
+
+
+
+
+
+        public async Task<IActionResult> OnPostAddAllAsync(int id)
+        {
+            try
+            {
+                await OnLoad(id);
+            }
+            catch (Exception)
+            {
+                return RedirectToPage("./index");
+            }
+
+
+            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToArrayAsync();
+            foreach (var item in newDetailOTs)
+            {
+                DetailOT newDetailOT = item;
+                newDetailOT.Status = "Allow";
+
+                _context.Attach(newDetailOT).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DetailOTExists(newDetailOT.DetailOTID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+
+
+            return RedirectToPage("./../listOTs/listEmpOT");
+        }
+
+
+
+
+
+        private async Task OnLoad(int Did)
+        {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            DetailOT = await _context.DetailOT
+            .Include(d => d.Employee)
+            .Include(d => d.FoodSet)
+            .Include(d => d.OT)
+            .Include(d => d.Part).Where(d => d.OT_OTID == Did).ToListAsync();
+            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+        }
+
+
+
+
 
         private bool DetailOTExists(int id)
         {

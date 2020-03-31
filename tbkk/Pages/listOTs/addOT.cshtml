@@ -236,7 +236,7 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Register</h4>
+                        <h4 class="modal-title">Edit</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
@@ -245,7 +245,153 @@
                         <div class="modal-body">
                             <div class="row ">
                                 <div class="col">
-                                    hello word  edit
+
+                                    <div class="row ">
+
+                                        <div class="col-lg-6">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+
+                                                <label asp-for="EditDetailOT.OT.date" class="control-label"></label>
+                                                <input readonly asp-for="OTset.date" id="EditDetailOTDate" class="form-control" />
+                                                <span asp-validation-for="EditDetailOT.OT.date" class="text-danger"></span>
+
+                                                <lable class="text-danger">
+                                                    @Html.ValidationMessage("timeError1")
+                                                </lable>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="EditDetailOT.Employee_EmpID" class="control-label"></label>
+
+                                                <input hidden class="form-control" asp-for="EditDetailOT.Employee_EmpID" />
+                                                <input readonly class="form-control" id="ShowEmpName" />
+
+                                                <span asp-validation-for="EditDetailOT.Employee_EmpID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="Time2">
+                                        <div class="row ">
+                                            <div class="col-lg-6">
+
+                                                <div class="form-group">
+                                                    <label asp-for="EditDetailOT.TimeStart" class="control-label"></label>
+                                                    <input asp-for="EditDetailOT.TimeStart" class="form-control date" />
+                                                    <span asp-validation-for="EditDetailOT.TimeStart" class="text-danger"></span>
+                                                    <lable class="text-danger">
+                                                        @Html.ValidationMessage("timeError1")
+                                                    </lable>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label asp-for="EditDetailOT.TimeEnd" class="control-label"></label>
+                                                    <input asp-for="EditDetailOT.TimeEnd" class="form-control date" />
+                                                    <span asp-validation-for="EditDetailOT.TimeEnd" class="text-danger"></span>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row ">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label asp-for="EditDetailOT.Hour" class="control-label"></label>
+                                                    <label id="hour2" class="control-label">00:00 Hour</label>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row ">
+                                        <div class="col-lg-6">
+
+                                            <div class="form-group">
+                                                <label asp-for="EditDetailOT.Type" class="control-label"></label>
+                                                <select asp-for="EditDetailOT.Type" class="form-control">
+                                                    <option disabled selected value=""> -- </option>
+                                                    <option>No</option>
+                                                    <option>Back</option>
+
+                                                    @{
+                                                        //if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
+                                                        //{
+                                                        <option>Go</option>
+
+                                                        <option>Go and Back</option>
+
+                                                        @*}*@
+                                                    }
+
+                                                </select>
+                                                <span asp-validation-for="EditDetailOT.Type" class="text-danger"></span>
+
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+
+
+
+
+                                            @*<input hidden asp-for="DetailOT.OT_OTID" class="form-control" value=@Model.OT.OTID />*@
+
+
+                                            <div class="form-group">
+                                                <label asp-for="EditDetailOT.Part_PaetID" class="control-label"></label>
+                                                <select asp-for="EditDetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID">
+                                                    <option disabled selected value=""> -- </option>
+                                                </select>
+                                                <span asp-validation-for="EditDetailOT.Part_PaetID" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row ">
+                                        <div class="col-lg">
+                                            <div class="form-group">
+                                                <label asp-for="EditDetailOT.FoodSet_FoodSetID" class="control-label"></label>
+                                                <select asp-for="EditDetailOT.FoodSet_FoodSetID" class="form-control" asp-items="ViewBag.FoodSet_FoodSetID">
+                                                    <option disabled selected value=""> -- </option>
+                                                </select>
+                                                <span asp-validation-for="EditDetailOT.FoodSet_FoodSetID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input hidden asp-for="EditDetailOT.Employee_UserAdd_EmpID" />
+                                        <input hidden asp-for="EditDetailOT.OT_OTID" />
+                                        <input hidden asp-for="EditDetailOT.Status" value="" />
+                                        <input hidden asp-for="EditDetailOT.DetailOTID" />
+
+                                    </div>
+
+
+
+
 
 
                                 </div>
@@ -256,7 +402,7 @@
                         <!-- Modal footer -->
 
                         <div class="modal-footer">
-
+                            <input type="submit" asp-page-handler="Edit" value="Save" class="btn btn-primary" />
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
 
@@ -292,77 +438,116 @@
 
 
         <div class="modal fade" id="detail">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Register</h4>
+                        <h4 class="modal-title">Detail</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
+                    <br />
+
                     <!-- Modal body -->
-                    <form method="post">
-                        <div class="modal-body">
-                            <div class="row ">
-                                <div class="col">
-                                    hello word detail
+                    <dl class="row">
 
 
-                                </div>
-                            </div>
-                        </div>
 
 
-                        <!-- Modal footer -->
 
-                        <div class="modal-footer">
 
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
 
-                    </form>
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.OT.date):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showDate"></label>
+                        </dd>
+
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.Employee_EmpID):
+                        </dt>
+                        <dd class="col-sm-6 ">
+                            <label class="label" id="showEmployee"></label>
+
+                        </dd>
+
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.Hour):
+                        </dt>
+                        <dd class="col-sm-6">
+
+                            <label class="label" id="showHour"></label>
+
+                        </dd>
+
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.TimeStart):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showTimeStart"></label>
+
+                        </dd>
+
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.TimeEnd):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showTimeEnd"></label>
+
+                        </dd>
+
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.Part.Name):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showPartName"></label>
+
+                        </dd>
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.FoodSet.NameSet):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showNameSet"></label>
+
+                        </dd>
+
+
+                        <dt class="col-sm-6 text-right">
+                            @Html.DisplayNameFor(model => model.DetailOT.Status):
+                        </dt>
+                        <dd class="col-sm-6">
+                            <label class="label" id="showStatus"></label>
+                        </dd>
+                    </dl>
+
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -383,96 +568,83 @@
             @foreach (var OTS in Model.OTL)
             {
                 <br />
-                @OTS.OT.date
+               
+                <h3>@Html.DisplayFor(modelItem => OTS.OT.date)</h3>
 
+                
 
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.Hour)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.Type)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.Status)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.Part)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DetailOT.OT)
+                                No.
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.DetailOT.Employee)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT.Hour)
+                            </th>
 
-                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DetailOT.Status)
+                            </th>
+
+
+
+
+
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @{int index = 1; }
                         @foreach (var item in OTS.DetailOT)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TimeStart)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TimeEnd)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Hour)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Type)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Part.PartID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.OT.TypStatus)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
-                                </td>
+                        <tr>
+                            <td>
+                               @index
 
-                                <td>
-                                    @if (item.Employee_EmpID == Model.Employee.EmployeeID)
-                                    {
-                                        @*<a asp-page="./../listOTs/detailOTView" asp-route-id="@item.DetailOTID">Detail</a>*@
+                                @{
+                                    index++;
+
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Hour)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
 
 
-                                        <div id="detailOTclick">
-                                            <samp id="detailDetailOT" class="detailDetailOT" onclick="onclickDetailOT(@item.DetailOTID)" data-toggle="modal" data-target="#detail">Detail</samp>
-                                            |
-                                            <samp id="editDetailOT" class="editDetailOT" data-id="@item.DetailOTID" data-toggle="modal" data-target="#edit">
-                                                Edit
-                                            </samp>
 
-                                        </div>
 
-                                    }
+                            <td>
+                                @if (item.Employee_EmpID == Model.Employee.EmployeeID)
+                                {
+                                    @*<a asp-page="./../listOTs/detailOTView" asp-route-id="@item.DetailOTID">Detail</a>*@
 
-                                </td>
-                            </tr>
+
+                                    <div id="detailOTclick">
+                                        <samp id="detailDetailOT" class="detailDetailOT btn btn-outline-primary" onclick="onclickDetailOT(@item.DetailOTID)" data-toggle="modal" data-target="#detail">Detail</samp>
+                                        |
+                                        <samp id="editDetailOT" class="editDetailOT btn btn-outline-secondary" onclick="onclickEdit(@item.DetailOTID)" data-toggle="modal" data-target="#edit">
+                                            Edit
+                                        </samp>
+
+                                    </div>
+
+                                }
+
+                            </td>
+                        </tr>
                         }
-                </table>
+</table>
             }
 
         }
@@ -536,9 +708,12 @@
             //var a = $("#Defal").val();
              var a = @Model.Defal;
             console.log(a);
-
-            if (a==1){
+            if (a == 1) {
+                timeSubtract2()
                 $('#myModal').modal('show');
+            } else if (a == 2) {
+                timeSubtract()
+                $('#edit').modal('show');
             }
 
     });
@@ -547,7 +722,7 @@
 
             //var TimeStart = document.getElementById("DetailOT_TimeStart").value;
             //var TimeEnd = document.getElementById("DetailOT_TimeEnd").value;
-            //var time1 = new Date(TimeStart);
+            //var time1 = new Date(TimeStart);  
             //var time2 = new Date(TimeEnd);
             //var a = TimeEnd - TimeStart;
             //console.log(a.);
@@ -556,25 +731,9 @@
             //document.getElementById("DetailOT_Hour").value = time1;
 
 
+            timeSubtract2()
 
-
-            var timeOfCall = $('#DetailOT_TimeStart').val(),
-                timeOfResponse = $('#DetailOT_TimeEnd').val(),
-                hours = timeOfResponse.split(':')[0] - timeOfCall.split(':')[0],
-                minutes = timeOfResponse.split(':')[1] - timeOfCall.split(':')[1];
-
-            minutes = minutes.toString().length < 2 ? '0' + minutes : minutes;
-            if (minutes < 0) {
-                hours--;
-                minutes = 60 + minutes;
-            }
-            hours = hours.toString().length < 2 ? '0' + hours : hours;
-            if (hours >= 0) {
-                $('#hour').html(hours + ':' + minutes + ' Hour');
-            }
-            else {
-                $('#hour').html('00:00 Hour');
-            }
+            
 
         });
 
@@ -663,9 +822,25 @@
             url: "/api/DetailOTs/"+id,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (data) {
-                
-                console.log(data);
+                success: function (data) {
+                    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    
+
+                    var date = new Date(data.ot.date);
+                    $('#showDate').html(date.getDate() + " " + months[date.getMonth()]  + " " + date.getFullYear());
+                    $('#showEmployee').html(data.employee.firstName + " " + data.employee.lastName);
+                    //var time = new date(data.hour.getTi);
+                    //$('#showHour').html(addZero(data.hour.getHours(), 2) + ":" + addZero(data.hour.getMinutes(), 2));
+                    $('#showHour').html(addZero(data.hour.hours, 2) + ":" + addZero(data.hour.milliseconds, 2));
+                    var start = new Date(data.timeStart);
+                    $('#showTimeStart').html(addZero(start.getHours(), 2) + ":" + addZero(start.getMinutes(), 2));
+                    var end = new Date(data.timeEnd);
+                    $('#showTimeEnd').html(addZero(end.getHours(), 2) + ":" + addZero(end.getMinutes(), 2));
+                    $('#showPartName').html(data.part.name);
+                    $('#showNameSet').html(data.foodSet.nameSet);
+                    $('#showStatus').html(data.status);
+                    console.log(data);
+                    console.log(data.hour);
                 },
              failure: function (data) {  
                 alert(data.responseText);  
@@ -679,6 +854,122 @@
         }
 
 
+        function onclickEdit(id) {
+            $.ajax({
+                type: "GET",
+                url: "/api/DetailOTs/" + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var date = new Date(data.ot.date);
+                    
+                    $('#EditDetailOT_Status').val(data.status);
+                    $('#EditDetailOT_DetailOTID').val(data.detailOTID);
+                    $('#EditDetailOT_Employee_UserAdd_EmpID').val(data.employee_UserAdd_EmpID);
+                    $('#EditDetailOT_OT_OTID').val(data.oT_OTID);
+                    $('#EditDetailOT_FoodSet_FoodSetID').val(data.foodSet_FoodSetID);
+                    $('#EditDetailOT_Type').val(data.type);
+
+                    $('#EditDetailOTDate').val(getdate(date));
+                    
+                    var timeStart = new Date(data.timeStart);
+                    var timeEnd = new Date(data.timeEnd);
+
+                    $('#ShowEmpName').val(data.employee.firstName + " " + data.employee.lastName);
+                    
+                    
+                    $('#EditDetailOT_Part_PaetID').val(data.part_PaetID);
+                    $('#EditDetailOT_TimeStart').val(timeStart.toLocaleTimeString('en-US', {
+                        hour12: false,
+                        hour: "numeric",
+                        minute: "numeric"
+                    }));
+                    $('#EditDetailOT_TimeEnd').val(timeEnd.toLocaleTimeString('en-US', {
+                        hour12: false,
+                        hour: "numeric",
+                        minute: "numeric"
+                    }));
+                    $('#EditDetailOT_Employee_EmpID').val(data.employee_EmpID);
+
+                    console.log(data);
+                    timeSubtract();
+                   
+                    
+                   
+                },
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function  
+                error: function (data) {
+                    alert(data.responseText);
+                }
+
+
+            });
+
+
+            
+           
+        }
+
+        function addZero(x, n) {
+            while (x.toString().length < n) {
+                x = "0" + x;
+            }
+            return x;
+        }
+        function getdate(date) {
+            var fullDate = addZero(date.getFullYear(), 4) + "-" + addZero(date.getMonth() + 1, 2) + "-" + addZero(date.getDate(), 2);
+            return fullDate;
+        }
+
+        $("#Time2").on("input", ".date", function () {
+
+            timeSubtract();
+
+        });
+
+        function timeSubtract() {
+            var timeOfCall = $('#EditDetailOT_TimeStart').val(),
+                timeOfResponse = $('#EditDetailOT_TimeEnd').val(),
+                hours = timeOfResponse.split(':')[0] - timeOfCall.split(':')[0],
+                minutes = timeOfResponse.split(':')[1] - timeOfCall.split(':')[1];
+
+            minutes = minutes.toString().length < 2 ? '0' + minutes : minutes;
+            if (minutes < 0) {
+                hours--;
+                minutes = 60 + minutes;
+            }
+            hours = hours.toString().length < 2 ? '0' + hours : hours;
+            if (hours >= 0) {
+                $('#hour2').html(hours + ':' + minutes + ' Hour');
+            }
+            else {
+                $('#hour2').html('00:00 Hour');
+            }
+        }
+
+
+        function timeSubtract2() {
+            var timeOfCall = $('#DetailOT_TimeStart').val(),
+                timeOfResponse = $('#DetailOT_TimeEnd').val(),
+                hours = timeOfResponse.split(':')[0] - timeOfCall.split(':')[0],
+                minutes = timeOfResponse.split(':')[1] - timeOfCall.split(':')[1];
+
+            minutes = minutes.toString().length < 2 ? '0' + minutes : minutes;
+            if (minutes < 0) {
+                hours--;
+                minutes = 60 + minutes;
+            }
+            hours = hours.toString().length < 2 ? '0' + hours : hours;
+            if (hours >= 0) {
+                $('#hour').html(hours + ':' + minutes + ' Hour');
+            }
+            else {
+                $('#hour').html('00:00 Hour');
+            }
+           
+        }
 
 
 

@@ -22,13 +22,13 @@ namespace tbkk.Pages.Home
         public Employee Employee { get; set; }
 
 
-       
-        public async Task OnGetAsync()
+
+        public void OnGet()
         {
 
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            
-           
+
+
             //id = HttpContext.Session.GetID();
             //Employee = await _context.Employee
             //     .Include(e => e.Company)
@@ -38,7 +38,7 @@ namespace tbkk.Pages.Home
             //    .Include(e => e.Position)
             //    .FirstOrDefaultAsync(m => m.EmployeeID == id);
             //return RedirectToPage("./../Home/Home", new { id = Employee.EmployeeID });
-            
+
         }
     }
 }

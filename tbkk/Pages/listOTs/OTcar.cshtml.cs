@@ -120,7 +120,7 @@ namespace tbkk.Pages.listOTs
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 RedirectToPage("./index");
             }
