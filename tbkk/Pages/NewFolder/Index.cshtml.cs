@@ -18,12 +18,16 @@ namespace tbkk.Pages.NewFolder
             _context = context;
         }
 
-        public IList<OT> OT { get;set; }
+        public IList<DetailOT> DetailOT { get;set; }
 
         public async Task OnGetAsync()
         {
-            OT = await _context.OT
-                .Include(o => o.Company).ToListAsync();
+            DetailOT = await _context.DetailOT
+                .Include(d => d.Employee)
+                .Include(d => d.EmployeeAdd)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).ToListAsync();
         }
     }
 }

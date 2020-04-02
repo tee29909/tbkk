@@ -25,6 +25,7 @@ namespace tbkk.Pages.listOTs
         public IList<chart3> chart3 { get; set; }
         public IList<chart4> chart4 { get; set; }
         public chart5 chart5 { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public string search { get; set; }
 
@@ -39,10 +40,12 @@ namespace tbkk.Pages.listOTs
             if (!string.IsNullOrEmpty(search))
             {
                 Mout = DateTime.Parse(t);
+                search = Mout.ToString("MMM-yyyy");
             }
             else
             {
                 Mout = DateTime.Now;
+                search = Mout.ToString("MMM-yyyy");
             }
             
             int Month = Mout.Month;

@@ -107,7 +107,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Part).Where(d => d.OT.date >= date).ToListAsync();
-            var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Employee_CompanyID && d.TypStatus.Equals("Open")).ToListAsync();
 
             var OTLadd = new List<OTL>();
             foreach (var item in OTlists)
@@ -324,7 +324,24 @@ namespace tbkk.Pages.listOTs
             }
             else
             {
+
+                
                 OT = await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date && e.OT_CompanyID == Employee.Employee_CompanyID);
+                if (OT.TypStatus.Equals("Close") || OT.TypStatus.Equals("Manage Car"))
+                {
+                    
+                    ModelState.AddModelError("OT.date", "OT has Close.");
+                    Defal = 1;
+                    try
+                    {
+                        await OnLoad();
+                    }
+                    catch (Exception)
+                    {
+                        return RedirectToPage("./index");
+                    }
+                    return Page();
+                }
             }
             //OT = await _context.OT.FirstOrDefaultAsync(e => e.OTID == DetailOT.OT_OTID);
 

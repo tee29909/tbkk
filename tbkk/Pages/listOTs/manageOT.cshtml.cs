@@ -19,36 +19,32 @@ namespace tbkk.Pages.listOTs
         }
         public Employee Employee { get; set; }
         public IList<OT> OT { get;set; }
-        [BindProperty]
+
+        public IList<OT> OTa { get; set; }
+
         public OT OTs { get; set; }
 
         
 
         public async Task<IActionResult> OnGetAsync()
         {
-            
-            OT = await _context.OT.ToListAsync();
-
+            OT = await _context.OT.Where(e => e.TypStatus.Equals("Close")).ToListAsync();
+            OTa = await _context.OT.Where(e => e.TypStatus.Equals("Open") || e.TypStatus.Equals("Manage Car")).ToListAsync();
+          
             try
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
-            
-
-
-
             if (Employee == null)
             {
                 return NotFound();
             }
             return Page();
         }
-
-
 
 
 
@@ -74,12 +70,8 @@ namespace tbkk.Pages.listOTs
                     throw;
                 }
             }
-
-
-
             return RedirectToPage("./../listOTs/ConfirmShuttle", new { Did = Did });
         }
-
         private bool OTExists(int id)
         {
             return _context.OT.Any(e => e.OTID == id);

@@ -20,18 +20,19 @@ namespace tbkk.Pages.listOTs
         }
         public IList<DetailOT>  DetailOT { get; set; }
         public Employee Employee { get; set; }
-        public DetailOT DetailOTs { get; set; }
+        
+        public OT OT { get; set; }
 
 
 
-        public async Task<IActionResult> OnGetAsync(int Did)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             
             
 
             try
             {
-                await OnLoad(Did);
+                await OnLoad(id);
             }
             catch (Exception)
             {
@@ -54,7 +55,7 @@ namespace tbkk.Pages.listOTs
         public async Task<IActionResult> OnPostRemoveAsync(int id)
         {
             
-            DetailOTs = await _context.DetailOT
+            var DetailOTs = await _context.DetailOT
                .FirstOrDefaultAsync(e => e.DetailOTID == id);
             DetailOTs.Status = "Disallow";
             _context.Attach(DetailOTs).State = EntityState.Modified;
@@ -94,7 +95,7 @@ namespace tbkk.Pages.listOTs
         public async Task<IActionResult> OnPostAllowAsync(int id)
         {
 
-            DetailOTs = await _context.DetailOT
+            var DetailOTs = await _context.DetailOT
                .FirstOrDefaultAsync(e => e.DetailOTID == id);
             DetailOTs.Status = "Allow";
             _context.Attach(DetailOTs).State = EntityState.Modified;
@@ -135,8 +136,9 @@ namespace tbkk.Pages.listOTs
 
 
 
-        public async Task<IActionResult> OnPostAddAllAsync(int id)
+        public async Task<IActionResult> OnPostAddAllowedAsync(int id)
         {
+
             try
             {
                 await OnLoad(id);
@@ -146,8 +148,8 @@ namespace tbkk.Pages.listOTs
                 return RedirectToPage("./index");
             }
 
-
             var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToArrayAsync();
+            
             foreach (var item in newDetailOTs)
             {
                 DetailOT newDetailOT = item;
@@ -174,22 +176,70 @@ namespace tbkk.Pages.listOTs
 
 
 
-            return RedirectToPage("./../listOTs/listEmpOT");
+            return Page();
         }
 
 
 
 
+        public async Task<IActionResult> OnPostAddDisallowAsync(int id)
+        {
 
-        private async Task OnLoad(int Did)
+            try
+            {
+                 await OnLoad(id);
+            }
+            catch (Exception)
+            {
+                return RedirectToPage("./index");
+            }
+
+            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && n.Status.Equals("Pending for approval")).ToArrayAsync();
+
+            foreach (var item in newDetailOTs)
+            {
+                DetailOT newDetailOT = item;
+                newDetailOT.Status = "Disallow";
+
+                _context.Attach(newDetailOT).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DetailOTExists(newDetailOT.DetailOTID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+
+
+            return Page();
+        }
+
+
+
+
+        private async Task OnLoad(int id)
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
             DetailOT = await _context.DetailOT
             .Include(d => d.Employee)
             .Include(d => d.FoodSet)
             .Include(d => d.OT)
-            .Include(d => d.Part).Where(d => d.OT_OTID == Did).ToListAsync();
+            .Include(d => d.Part).Where(d => d.OT_OTID == id).ToListAsync();
             DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            OT = await _context.OT
+              .FirstOrDefaultAsync(e => e.OTID == id);
+
         }
 
 

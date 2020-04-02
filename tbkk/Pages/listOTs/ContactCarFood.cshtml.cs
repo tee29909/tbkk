@@ -51,7 +51,7 @@ namespace tbkk
             {
                 await onLoad(Did);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                RedirectToPage("./index");
             }
@@ -80,7 +80,7 @@ namespace tbkk
             {
                 await onLoad(Did);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
@@ -113,26 +113,25 @@ namespace tbkk
                 var foodlist = new List<foodList>();
                 foreach (var item in FoodSet)
                 {
-                    if (!item.NameSet.Equals("No"))
-                    {
+                    
                         var add = new foodList();
                         if (timeCheck == 8)
                         {
-                            add.list = DetailOTnew.Where(c => c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
+                            add.list = DetailOTnew.Where(c => (c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0) && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
                             add.set = item;
                             add.contSet = DetailOTnew.Where(c => c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList().Count;
                         }
-                        if (timeCheck == 17)
+                        else if (timeCheck == 17)
                         {
-                            add.list = DetailOTnew.Where(c => c.TimeEnd.Hour == timeCheck && c.TimeEnd.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
+                            add.list = DetailOTnew.Where(c => c.TimeStart.Hour == timeCheck && c.TimeStart.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList();
                             add.set = item;
-                            add.contSet = DetailOTnew.Where(c => c.TimeEnd.Hour == timeCheck && c.TimeEnd.Minute == 0 && c.FoodSet_FoodSetID == item.FoodSetID).ToList().Count;
+                            add.contSet = add.list.Count;
                         }
                         if (add.contSet != 0)
                         {
                             foodlist.Add(add);
                         }
-                    }
+                    
                 }
                 Addfood.time = timeCheck;
                 Addfood.foodList = foodlist;
@@ -228,9 +227,9 @@ namespace tbkk
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
-            Part = await _context.Part.ToListAsync();
-            FoodSet = await _context.FoodSet.ToListAsync();
+                .Include(d => d.Part).Where(a => a.OT_OTID == Did).ToListAsync();
+            Part = await _context.Part.Where(a => !a.Name.Equals("No")).ToListAsync();
+            FoodSet = await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
             CarType = await _context.CarType.ToListAsync();
             CarType = CarType.OrderByDescending(o => o.Seat).ToList();
             DetailCarQueue = await _context.DetailCarQueue
@@ -253,19 +252,22 @@ namespace tbkk
             List<Depasments> add = new List<Depasments>();
             foreach (var i in Department)
             {
+                var DataParts = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
                 Depasments DataDepasments = new Depasments();
                 DataDepasments.DepasmentsName = i.DepartmentName;
                 DataDepasments.DepasmentsID = i.DepartmentID;
-                DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.DepasmentsCount = DataParts.Count;
+
+
                 DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.FoodCount = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1 && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.FoodCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID && !d.FoodSet.NameSet.Equals("No")).ToList().Count;
                 List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
                     Parts parts = new Parts();
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
-                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.Part_PaetID != 1).ToList();
+                    IList<DetailOT> DataPart = DataParts.Where(d => d.Part_PaetID != 1).ToList();
                     DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.Part_PaetID == j.PartID).ToList();
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
@@ -279,15 +281,18 @@ namespace tbkk
                 DataDepasments.ListParts = Listparts;
                 List<Foods> Listfoods = new List<Foods>();
 
+
+
+                
                 foreach (var j in FoodSet)
                 {
                     Foods foods = new Foods();
                     foods.FoodID = j.FoodSetID;
                     foods.FoodName = j.NameSet;
-                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.FoodSet.NameSet.Equals("No")).ToList();
-                    DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
-                    DataPart = DataPart.Where(d => d.FoodSet_FoodSetID == j.FoodSetID).ToList();
-                    foods.FoodsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
+                    var DataPart = DataParts;
+                    
+                    DataPart = DataPart.Where(d => d.FoodSet_FoodSetID == j.FoodSetID && ((d.TimeEnd.Hour == 17 && d.TimeEnd.Minute == 0)|| (d.TimeStart.Hour == 8 && d.TimeStart.Minute == 0))).ToList();
+                    foods.FoodsCount = DataPart.Count;
                     if (foods.FoodsCount != 0)
                     {
                         Listfoods.Add(foods); 
@@ -308,19 +313,20 @@ namespace tbkk
 
             DetailOTnew = DetailOT.Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToList();
             OTsnew.countEmp = DetailOTnew.Count;
+            OTsnew.countCar = DetailCarQueue.Count;
+            OTsnew.countFood = DetailOTnew.Where(e => !e.FoodSet.NameSet.Equals("No")).ToList().Count;
+            //foreach (var i in DetailOTnew)
+            //{
+            //    if (i.FoodSet.NameSet.Equals("No"))
+            //    {
+            //        OTsnew.countFood = OTsnew.countFood + 1;
+            //    }
+            //    if (!i.Type.Equals("No"))
+            //    {
+            //        OTsnew.countCar = OTsnew.countCar + 1;
+            //    }
 
-            foreach (var i in DetailOTnew)
-            {
-                if (i.FoodSet.NameSet.Equals("No"))
-                {
-                    OTsnew.countFood = OTsnew.countFood + 1;
-                }
-                if (!i.Type.Equals("No"))
-                {
-                    OTsnew.countCar = OTsnew.countCar + 1;
-                }
-
-            }
+            //}
 
             return OTsnew;
         }

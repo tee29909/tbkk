@@ -14,28 +14,40 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].TimeStart)
+                @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
+                @Html.DisplayNameFor(model => model.DetailOT[0].TimeEnd)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].date)
+                @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].TypeOT)
+                @Html.DisplayNameFor(model => model.DetailOT[0].Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].TypStatus)
+                @Html.DisplayNameFor(model => model.DetailOT[0].Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OT[0].Company)
+                @Html.DisplayNameFor(model => model.DetailOT[0].Part)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].OT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetailOT[0].EmployeeAdd)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.OT) {
+@foreach (var item in Model.DetailOT) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeStart)
@@ -44,21 +56,33 @@
                 @Html.DisplayFor(modelItem => item.TimeEnd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.date)
+                @Html.DisplayFor(modelItem => item.Hour)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeOT)
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypStatus)
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Company.CompanyID)
+                @Html.DisplayFor(modelItem => item.Part.PartID)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.OTID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OTID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OTID">Delete</a>
+                @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OT.OTID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeAdd.EmployeeID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DetailOTID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DetailOTID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DetailOTID">Delete</a>
             </td>
         </tr>
 }

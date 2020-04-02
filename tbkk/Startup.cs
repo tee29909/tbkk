@@ -30,9 +30,7 @@ namespace tbkk
         {
 
             ///lodSesstion
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-            });
+            services.AddSession();
             services.AddMemoryCache();
 
 

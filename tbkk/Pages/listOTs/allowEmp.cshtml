@@ -20,7 +20,7 @@
 
 
 
-        <h1>Allow</h1>
+        <h1>OT @Html.DisplayFor(modelItem => Model.OT.date)</h1>
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Management</li>
@@ -39,8 +39,8 @@
                 <div class="table-responsive">
 
                     <form method="post">
-                        <a asp-page-handler="AddAllowed" class="btn btn-outline-success" type="submit" asp-route-id="Model.Employee.EmployeeID" asp-route-Did="item.OT.OTID">All Allowed</a>
-                        <a asp-page-handler="AddDisallow" class="btn btn-outline-danger" type="submit" asp-route-id="Model.Employee.EmployeeID" asp-route-Did="item.OT.OTID">All Disallow</a>
+                        <button asp-page-handler="AddAllowed" class="btn btn-outline-success" type="submit"  asp-route-id="@Model.OT.OTID">All Allowed</button>
+                        <button asp-page-handler="AddDisallow" class="btn btn-outline-danger" type="submit"  asp-route-id="@Model.OT.OTID">All Disallow</button>
                     </form>
                     <br />
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -133,11 +133,6 @@
                             }
                         </tbody>
                     </table>
-
-
-
-
-
                 </div>
             </div>
         </div>

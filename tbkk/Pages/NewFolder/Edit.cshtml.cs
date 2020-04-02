@@ -20,7 +20,7 @@ namespace tbkk.Pages.NewFolder
         }
 
         [BindProperty]
-        public OT OT { get; set; }
+        public DetailOT DetailOT { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,14 +29,22 @@ namespace tbkk.Pages.NewFolder
                 return NotFound();
             }
 
-            OT = await _context.OT
-                .Include(o => o.Company).FirstOrDefaultAsync(m => m.OTID == id);
+            DetailOT = await _context.DetailOT
+                .Include(d => d.Employee)
+                .Include(d => d.EmployeeAdd)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
-            if (OT == null)
+            if (DetailOT == null)
             {
                 return NotFound();
             }
-           ViewData["OT_CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID");
+           ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+           ViewData["Employee_UserAdd_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+           ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
+           ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
+           ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "PartID");
             return Page();
         }
 
@@ -49,7 +57,7 @@ namespace tbkk.Pages.NewFolder
                 return Page();
             }
 
-            _context.Attach(OT).State = EntityState.Modified;
+            _context.Attach(DetailOT).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +65,7 @@ namespace tbkk.Pages.NewFolder
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OTExists(OT.OTID))
+                if (!DetailOTExists(DetailOT.DetailOTID))
                 {
                     return NotFound();
                 }
@@ -70,9 +78,9 @@ namespace tbkk.Pages.NewFolder
             return RedirectToPage("./Index");
         }
 
-        private bool OTExists(int id)
+        private bool DetailOTExists(int id)
         {
-            return _context.OT.Any(e => e.OTID == id);
+            return _context.DetailOT.Any(e => e.DetailOTID == id);
         }
     }
 }

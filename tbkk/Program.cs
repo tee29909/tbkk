@@ -39,6 +39,10 @@ namespace tbkk
 
                     SeedData.Initialize(services);
                     seedDataDetailOT.Initialize(services);
+
+
+
+                    seedDataDetailOTDateNow.Initialize(services);
                 }
                 catch (Exception ex)
                 {

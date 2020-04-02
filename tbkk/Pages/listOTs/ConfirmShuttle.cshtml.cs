@@ -33,17 +33,6 @@ namespace tbkk.Pages.listOTs
 
 
 
-       
-
-
-        
-
-
-
-
-       
-        
-
 
         [BindProperty]
         public IList<CarsPart> Round_8 { get; set; }
@@ -71,7 +60,7 @@ namespace tbkk.Pages.listOTs
             {
                 await onLoad(Did);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
@@ -153,6 +142,7 @@ namespace tbkk.Pages.listOTs
                 List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
+
                     Parts parts = new Parts();
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
@@ -295,25 +285,15 @@ namespace tbkk.Pages.listOTs
             OT = await _context.OT.FirstOrDefaultAsync(m => m.OTID == Did);
             DetailOT = await _context.DetailOT
                 .Include(d => d.Employee)
+                .Include(d => d.EmployeeAdd)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
-            DetailOT = DetailOT.Where(d =>d.OT_OTID==Did && d.Status.Equals("Allow")).ToList();
-            Part = await _context.Part.ToListAsync();
-            FoodSet =await _context.FoodSet.ToListAsync();
+                .Include(d => d.Part).Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToListAsync();
+            Part = await _context.Part.Where(a=> !a.Name.Equals("No")).ToListAsync();
+            FoodSet =await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
             CarType = await _context.CarType.ToListAsync();
-
-            
-
-
-
             CarType = CarType.OrderByDescending(o => o.Seat).ToList();
             
-
-
-
-
-
 
         }
 
@@ -414,7 +394,7 @@ namespace tbkk.Pages.listOTs
                 {
                     empList = item.DetailOT.Where(e => e.Part_PaetID == item.PartID).ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     empList = new List<DetailOT>();
                 }

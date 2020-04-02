@@ -8,15 +8,7 @@
 
 <div id="content-wrapper">
 
-
-
-
     <div name="55555" class="card-layout">
-
-
-
-
-
 
         <h1>Confirm Shuttle</h1>
 
@@ -41,11 +33,9 @@
                         Date :
                     </dd>
                     <dd class="col-sm-6">
-                        @{
-                            DateTime date = Model.OT.date;
-                        }
 
-                        @date.ToString("dddd, dd MMMM yyyy")
+
+                        @Html.DisplayNameFor(model => Model.OT.date)
                     </dd>
                     <dd class="col-sm 6 text-right">
                         Personnel OT :
@@ -130,165 +120,168 @@
 
 
 
-        <br />
 
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-table"></i>
-                List Employee
+        @if (Model.DetailCarQueue.Count != 0)
+        {
+            <br />
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    List Employee
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueueID)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarNumber)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Time)
+                                    </th>
+
+
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_CarTypeID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_PartID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Type)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueue_EmployeeID)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.DetailCarQueue)
+                                {
+
+                                    <tr>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.DetailCarQueueID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
+                                        </td>
+                                        <td>
+                                            @item.CarQueue.Time.ToString("H:mm")
+
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CarQueue.Type)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueueID)
-                                </th>
-
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarNumber)
-                                </th>
-
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Time)
-                                </th>
 
 
 
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_CarTypeID)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.CarQueue_PartID)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].CarQueue.Type)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailCarQueue[0].DetailCarQueue_EmployeeID)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.DetailCarQueue)
-                            {
 
+            <br />
+
+
+
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Car List Employee
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>
+                                    <th>
+                                        time
+                                    </th>
 
-                                        @Html.DisplayFor(modelItem => item.DetailCarQueueID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
-                                    </td>
-                                    <td>
-                                        @item.CarQueue.Time.ToString("H:mm")
+                                    <th>
+                                        part
+                                    </th>
 
-                                    </td>
+                                    <th>
+                                        CarType
+                                    </th>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CarQueue.Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
-                                    </td>
+                                    <th>
+                                        maxCar
+                                    </th>
 
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-
-
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-
-
-        <br />
-
-
-
-
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-table"></i>
-                Car List Employee
-            </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>
-                                    time
-                                </th>
-
-                                <th>
-                                    part
-                                </th>
-
-                                <th>
-                                    CarType
-                                </th>
-
-                                <th>
-                                    maxCar
-                                </th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.timelist)
-                            {
-
-                                @foreach (var i in item.carQ)
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.timelist)
                                 {
-                                    @foreach (var q in i.carListNumber)
+
+                                    @foreach (var i in item.carQ)
                                     {
-                                        <tr>
-                                            <td>
+                                        @foreach (var q in i.carListNumber)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.time):00
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => i.part.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => q.CarType.NameCar)
 
-                                                @Html.DisplayFor(modelItem => item.time):00
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => i.part.Name)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => q.CarType.NameCar)
-
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(modelItem => q.maxCar)
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => q.maxCar)
+                                                </td>
+                                            </tr>
+                                        }
                                     }
-                                }
 
-                            }
-                        </tbody>
-                    </table>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
+        }
+
 
 
 
@@ -320,104 +313,125 @@
                     }
                 }
                 massCar = massCar + "\n";
+                foreach (var i in Model.CarType)
+                {
+                    var count = 0;
+                    foreach (var d in item.carQ)
+                    {
+                        foreach (var q in d.carListNumber)
+                        {
+                            if(q.CarType.CarTypeID == i.CarTypeID)
+                            {
+                                count = count + q.maxCar;
+                            }
 
+                        }
+                    }
+                    if(count != 0)
+                    {
+                        massCar = massCar + i.NameCar + " " + count+"\n";
+                    }
+                }
 
 
 
             }
 
+
             string massFood = "\n";
             massFood = massFood + "OT Date : " + Model.OT.date.ToString("dddd, dd MMMM yyyy") + "\n";
             foreach (var item in Model.food)
             {
+                var count = 0;
                 massFood = massFood + "Time : " + item.time + ":00\n";
                 foreach (var i in item.foodList)
                 {
                     massFood = massFood + "\tFood set " + i.set.NameSet + " : " + i.contSet + " set\n";
+                    count = count + i.contSet;
 
                 }
                 massFood = massFood + "\n";
 
-
+                massFood = massFood + "Food " + count + " set";
 
 
             }
 
         }
         @*<div class="card">
-                <div class="card-header">
-                    Personnel & Shuttle
-                </div>
+            <div class="card-header">
+                Personnel & Shuttle
+            </div>
 
-                <div class="card-body">
+            <div class="card-body">
 
 
 
+
+                <dl class="row">
 
                     <dl class="row">
+                        <dd class="col-sm-6 text-right">
+                            <label>OT date :</label>
 
-                        <dl class="row">
-                            <dd class="col-sm-6 text-right">
-                                <label>OT date :</label>
+                        </dd>
+                        <dd class="col-sm-6">
+                            <label>@Model.OT.date.ToString("dddd, dd MMMM yyyy")</label>
 
-                            </dd>
-                            <dd class="col-sm-6">
-                                <label>@Model.OT.date.ToString("dddd, dd MMMM yyyy")</label>
-
-                            </dd>
-                        </dl>
-
-
-
-
-
-                        @{
-                            foreach (var item in Model.CatList)
-                            {
-                                mass = mass + "Part : " + item.Parts.Name + "\n";
-                                                <dl class="row">
-                                                    <dd class="col-sm 6 text-right">
-                                                        <label>Part :</label>
-
-                                                    </dd>
-                                                    <dd class="col-sm-6">
-                                                        <label>@item.Parts.Name </label>
-
-                                                    </dd>
-                                                </dl>
-
-
-
-
-
-
-                                foreach (var list in item.carListNumber)
-                                {
-                                    if (list.maxCar != 0)
-                                    {
-
-                                        <dd class="col-sm 6 text-right">
-                                            <label> </label>
-                                        </dd>
-                                        <dd class="col-sm-6">
-                                            <label>@list.CarType.NameCar : @list.maxCar Cars</label>
-                                        </dd>
-
-
-                                        mass = mass + "\t" + list.CarType.NameCar + " : " + list.maxCar + "\n";
-                                    }
-
-                                }
-
-                            }
-                        }
-
-
+                        </dd>
                     </dl>
 
 
-                </div>
-            </div>*@
+
+
+
+                    @{
+                        foreach (var item in Model.CatList)
+                        {
+                            mass = mass + "Part : " + item.Parts.Name + "\n";
+                                            <dl class="row">
+                                                <dd class="col-sm 6 text-right">
+                                                    <label>Part :</label>
+
+                                                </dd>
+                                                <dd class="col-sm-6">
+                                                    <label>@item.Parts.Name </label>
+
+                                                </dd>
+                                            </dl>
+
+
+
+
+
+
+                            foreach (var list in item.carListNumber)
+                            {
+                                if (list.maxCar != 0)
+                                {
+
+                                    <dd class="col-sm 6 text-right">
+                                        <label> </label>
+                                    </dd>
+                                    <dd class="col-sm-6">
+                                        <label>@list.CarType.NameCar : @list.maxCar Cars</label>
+                                    </dd>
+
+
+                                    mass = mass + "\t" + list.CarType.NameCar + " : " + list.maxCar + "\n";
+                                }
+
+                            }
+
+                        }
+                    }
+
+
+                </dl>
+
+
+            </div>
+        </div>*@
 
 
 
@@ -436,9 +450,9 @@
 
                     <div class="card-body">
                         Mass Car
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
+                        <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
                         Mass Food
-                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
+                        <textarea readonly class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
                     </div>
                 </div>
                 <br />
@@ -447,11 +461,11 @@
                 <script>
 
                         document.getElementById("exampleFormControlTextarea1").innerHTML = "@massCar";
-                         document.getElementById("exampleFormControlTextarea2").innerHTML = "@massFood";
+                        document.getElementById("exampleFormControlTextarea2").innerHTML = "@massFood";
 
                 </script>
 
-                <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Confirm</button>
+                <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Line Mass</button>
             </div>
 
 

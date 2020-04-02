@@ -19,7 +19,7 @@ namespace tbkk.Pages.NewFolder
         }
 
         [BindProperty]
-        public OT OT { get; set; }
+        public DetailOT DetailOT { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,14 @@ namespace tbkk.Pages.NewFolder
                 return NotFound();
             }
 
-            OT = await _context.OT
-                .Include(o => o.Company).FirstOrDefaultAsync(m => m.OTID == id);
+            DetailOT = await _context.DetailOT
+                .Include(d => d.Employee)
+                .Include(d => d.EmployeeAdd)
+                .Include(d => d.FoodSet)
+                .Include(d => d.OT)
+                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
-            if (OT == null)
+            if (DetailOT == null)
             {
                 return NotFound();
             }
@@ -45,11 +49,11 @@ namespace tbkk.Pages.NewFolder
                 return NotFound();
             }
 
-            OT = await _context.OT.FindAsync(id);
+            DetailOT = await _context.DetailOT.FindAsync(id);
 
-            if (OT != null)
+            if (DetailOT != null)
             {
-                _context.OT.Remove(OT);
+                _context.DetailOT.Remove(DetailOT);
                 await _context.SaveChangesAsync();
             }
 

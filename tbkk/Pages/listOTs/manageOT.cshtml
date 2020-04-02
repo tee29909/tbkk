@@ -8,8 +8,6 @@
 <div id="content-wrapper">
     <div name="55555" class="card-layout">
 
-
-
         <h1>Manage OT</h1>
         <div class="container-fluid">
 
@@ -19,12 +17,76 @@
 
             </ol>
 
+            @if (Model.OTa.Count != 0)
+            {
+                <h2>OT Open</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OT[0].TimeStart)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OT[0].TypeOT)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OT[0].TypStatus)
+                            </th>
+                            <th>Allow</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OTa)
+                        {
+
+                            <tr>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TimeStart)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TimeEnd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TypeOT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TypStatus)
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.TypStatus.Equals("Open"))
+                                        {
+                                            <form method="post">
+                                                <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-Did="@item.OTID">Close</button>
+                                            </form>
+                                        }
+                                        else if (item.TypStatus.Equals("Manage Car"))
+                                        {
+                                            <a asp-page="./../listOTs/ConfirmShuttle" asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                </table>
+            }
+
+
 
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
                     OT Table
-                   
                 </div>
 
                 <div class="card-body">
@@ -57,10 +119,7 @@
                                     <tr>
                                         <td>
 
-                                            @{
-                                                DateTime date = item.date;
-                                            }
-                                            @date.ToString("dddd, dd MMMM yyyy")
+                                            @Html.DisplayFor(modelItem => item.date)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.TimeStart)
@@ -76,41 +135,20 @@
                                         </td>
                                         <td>
                                             @{
-                                                if (item.TypStatus.Equals("Open"))
-                                                {
-                                                    <form method="post">
-                                                        <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-Did="@item.OTID">Close</button>
-                                                    </form>
-                                                }
-                                                else if (item.TypStatus.Equals("Manage Car"))
-                                                {
-                                                    <a asp-page="./../listOTs/ConfirmShuttle"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
-                                                }
-                                                else
-                                                {
-                                                    <a asp-page="./../listOTs/ContactCarFood"  asp-route-Did="@item.OTID" class="btn btn-outline-danger">View</a>
-                                                }
+
+                                                <a asp-page="./../listOTs/ContactCarFood" asp-route-Did="@item.OTID" class="btn btn-outline-danger">View</a>
+
                                             }
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
-
-
-
-
                     </div>
-
                 </div>
-
             </div>
         </div>
-
-
     </div>
-    <!-- /.container-fluid -->
-   
 </div>
 
 @section Scripts {
