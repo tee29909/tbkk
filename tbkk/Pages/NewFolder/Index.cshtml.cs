@@ -27,7 +27,7 @@ namespace tbkk.Pages.NewFolder
                 .Include(d => d.EmployeeAdd)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
+               .Include(d => d.Point.Part).ToListAsync();
         }
     }
 }

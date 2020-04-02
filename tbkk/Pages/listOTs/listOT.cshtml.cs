@@ -32,7 +32,7 @@ namespace tbkk.Pages.listOTs
               .Include(d => d.Employee)
               .Include(d => d.FoodSet)
               .Include(d => d.OT)
-              .Include(d => d.Part).ToListAsync();
+              .Include(d => d.Point.Part).ToListAsync();
 
 
            
@@ -48,7 +48,7 @@ namespace tbkk.Pages.listOTs
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }

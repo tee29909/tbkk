@@ -227,7 +227,7 @@ namespace tbkk
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(a => a.OT_OTID == Did).ToListAsync();
+                .Include(d => d.Point.Part).Where(a => a.OT_OTID == Did).ToListAsync();
             Part = await _context.Part.Where(a => !a.Name.Equals("No")).ToListAsync();
             FoodSet = await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
             CarType = await _context.CarType.ToListAsync();
@@ -267,9 +267,9 @@ namespace tbkk
                     Parts parts = new Parts();
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
-                    IList<DetailOT> DataPart = DataParts.Where(d => d.Part_PaetID != 1).ToList();
+                    IList<DetailOT> DataPart = DataParts.Where(d => !d.Point.Part.Name.Equals("No")).ToList();
                     DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
-                    DataPart = DataPart.Where(d => d.Part_PaetID == j.PartID).ToList();
+                    DataPart = DataPart.Where(d => d.Point.Point_PartID == j.PartID).ToList();
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (parts.PartsCount != 0)
                     {

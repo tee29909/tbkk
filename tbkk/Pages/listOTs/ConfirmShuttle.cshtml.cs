@@ -146,9 +146,9 @@ namespace tbkk.Pages.listOTs
                     Parts parts = new Parts();
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
-                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.Part_PaetID != 1).ToList();
+                    IList<DetailOT> DataPart = DetailOTnew.Where(d => !d.Point.Part.Name.Equals("No")).ToList();
                     DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
-                    DataPart = DataPart.Where(d => d.Part_PaetID == j.PartID).ToList();
+                    DataPart = DataPart.Where(d => d.Point.Point_PartID == j.PartID).ToList();
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (parts.PartsCount != 0)
                     {
@@ -194,8 +194,8 @@ namespace tbkk.Pages.listOTs
                 
                 List<Cars> CarsNew = new List<Cars>();
                
-                CarsPartNew.DetailOT = mDetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList();
-                int count = mDetailOTnew.Where(c => c.Part_PaetID == i.PartID).ToList().Count;
+                CarsPartNew.DetailOT = mDetailOTnew.Where(c => c.Point.Point_PartID == i.PartID).ToList();
+                int count = mDetailOTnew.Where(c => c.Point.Point_PartID == i.PartID).ToList().Count;
                 
                 foreach (var j in CarType)
                 {
@@ -269,7 +269,7 @@ namespace tbkk.Pages.listOTs
 
 
                 CarsPartNew.ListCars = CarsNew;
-                if (DetailOTnew.Where(d => d.Part_PaetID == i.PartID).ToList().Count != 0)
+                if (DetailOTnew.Where(d => d.Point.Point_PartID == i.PartID).ToList().Count != 0)
                 {
                     CarsParts.Add(CarsPartNew);
                 }
@@ -288,7 +288,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.EmployeeAdd)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToListAsync();
+                .Include(d => d.Point.Part).Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToListAsync();
             Part = await _context.Part.Where(a=> !a.Name.Equals("No")).ToListAsync();
             FoodSet =await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
             CarType = await _context.CarType.ToListAsync();
@@ -383,6 +383,12 @@ namespace tbkk.Pages.listOTs
             return _context.OT.Any(e => e.OTID == id);
         }
 
+
+        private int getIDPart(int id)
+        {
+            return _context.Point.FirstOrDefault(e => e.PointID == id).Point_PartID;
+        }
+
         private async Task createDetailCarQ(int Did, int time, string type, IList<CarsPart> managecarNEW)
         {
             foreach (var item in managecarNEW)
@@ -392,7 +398,7 @@ namespace tbkk.Pages.listOTs
 
                 try
                 {
-                    empList = item.DetailOT.Where(e => e.Part_PaetID == item.PartID).ToList();
+                    empList = item.DetailOT.Where(e => getIDPart(e.Point_PointID) == item.PartID).ToList();
                 }
                 catch (Exception)
                 {

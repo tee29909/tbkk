@@ -149,49 +149,50 @@
                                         <tbody>
                                             @foreach (var item in Model.Round_8)
                                             {
-                                                <tr>
+                                            <tr>
 
 
-                                                    @{int index = Model.Round_8.IndexOf(item);
-                                                    }
-                                                    <input hidden asp-for="Round_8[index].PartID" />
-                                                    <input hidden asp-for="Round_8[index].namePart" />
+                                                @{int index = Model.Round_8.IndexOf(item);
+                                                }
+                                                <input hidden asp-for="Round_8[index].PartID" />
+                                                <input hidden asp-for="Round_8[index].namePart" />
 
 
-                                                    @foreach (var j in item.DetailOT)
+                                                @foreach (var j in item.DetailOT)
+                                                {
+
+                                                    int index2 = Model.Round_8[index].DetailOT.IndexOf(j);
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].DetailOTID " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].TimeStart " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].TimeEnd  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].Hour  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].Type  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].Status  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].Point_PointID  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].Employee_EmpID  " />
+                                                    <input hidden asp-for="Round_8[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_UserAdd_EmpID  " />
+                                                }
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
+                                                </td>
+                                                <td>
+                                                    @foreach (var j in item.ListCars)
                                                     {
+                                                        int index2 = Model.Round_8[index].ListCars.IndexOf(j);
 
-                                                        int index2 = Model.Round_8[index].DetailOT.IndexOf(j);
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].DetailOTID " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].TimeStart " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].TimeEnd  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].Hour  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].Type  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].Status  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].Part_PaetID  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].Employee_EmpID  " />
-                                                        <input hidden asp-for="Round_8[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                        <input hidden asp-for="Round_8[index].ListCars[index2].CarTypeID" />
+                                                        <input hidden asp-for="Round_8[index].ListCars[index2].CarTypeName" />
+                                                        <input hidden asp-for="Round_8[index].ListCars[index2].seed" />
+                                                        <div>
+                                                            @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                            <input readonly class="form-control" type="number" asp-for="Round_8[index].ListCars[index2].countCar" />
+                                                        </div>
                                                     }
+                                                </td>
 
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
-                                                    </td>
-                                                    <td>
-                                                        @foreach (var j in item.ListCars)
-                                                        {
-                                                            int index2 = Model.Round_8[index].ListCars.IndexOf(j);
-
-                                                            <input hidden asp-for="Round_8[index].ListCars[index2].CarTypeID" />
-                                                            <input hidden asp-for="Round_8[index].ListCars[index2].CarTypeName" />
-                                                            <input hidden asp-for="Round_8[index].ListCars[index2].seed" />
-                                                            <div>
-                                                                @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                                <input readonly class="form-control" type="number" asp-for="Round_8[index].ListCars[index2].countCar" />
-                                                            </div>
-                                                        }
-                                                    </td>
-
-                                                </tr>
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -226,47 +227,48 @@
                                         <tbody>
                                             @foreach (var item in Model.Round_17)
                                             {
-                                                <tr>
+                                            <tr>
 
 
-                                                    @{int index = Model.Round_17.IndexOf(item);
-                                                    }
-                                                    <input hidden asp-for="Round_17[index].PartID" />
-                                                    <input hidden asp-for="Round_17[index].namePart" />
+                                                @{int index = Model.Round_17.IndexOf(item);
+                                                }
+                                                <input hidden asp-for="Round_17[index].PartID" />
+                                                <input hidden asp-for="Round_17[index].namePart" />
 
 
-                                                    @foreach (var j in item.DetailOT)
+                                                @foreach (var j in item.DetailOT)
+                                                {
+                                                    int index2 = Model.Round_17[index].DetailOT.IndexOf(j);
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].DetailOTID " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].TimeStart " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].TimeEnd  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].Hour  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].Type  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].Status  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].Point_PointID  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].Employee_EmpID  " />
+                                                    <input hidden asp-for="Round_17[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_UserAdd_EmpID  " />
+                                                }
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
+                                                </td>
+                                                <td>
+                                                    @foreach (var j in item.ListCars)
                                                     {
-                                                        int index2 = Model.Round_17[index].DetailOT.IndexOf(j);
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].DetailOTID " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].TimeStart " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].TimeEnd  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].Hour  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].Type  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].Status  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].Part_PaetID  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].Employee_EmpID  " />
-                                                        <input hidden asp-for="Round_17[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                        int index2 = Model.Round_17[index].ListCars.IndexOf(j);
+
+                                                        <input hidden asp-for="Round_17[index].ListCars[index2].CarTypeID" />
+                                                        <input hidden asp-for="Round_17[index].ListCars[index2].CarTypeName" />
+                                                        <input hidden asp-for="Round_17[index].ListCars[index2].seed" />
+                                                        <div>
+                                                            @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                            <input readonly class="form-control" type="number" asp-for="Round_17[index].ListCars[index2].countCar" />
+                                                        </div>
                                                     }
-
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
-                                                    </td>
-                                                    <td>
-                                                        @foreach (var j in item.ListCars)
-                                                        {
-                                                            int index2 = Model.Round_17[index].ListCars.IndexOf(j);
-
-                                                            <input hidden asp-for="Round_17[index].ListCars[index2].CarTypeID" />
-                                                            <input hidden asp-for="Round_17[index].ListCars[index2].CarTypeName" />
-                                                            <input hidden asp-for="Round_17[index].ListCars[index2].seed" />
-                                                            <div>
-                                                                @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                                <input readonly class="form-control" type="number" asp-for="Round_17[index].ListCars[index2].countCar" />
-                                                            </div>
-                                                        }
-                                                    </td>
-                                                </tr>
+                                                </td>
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -301,48 +303,49 @@
                                     <tbody>
                                         @foreach (var item in Model.Round_20)
                                         {
-                                            <tr>
+                                        <tr>
 
 
-                                                @{int index = Model.Round_20.IndexOf(item);
-                                                }
-                                                <input hidden asp-for="Round_20[index].PartID" />
-                                                <input hidden asp-for="Round_20[index].namePart" />
+                                            @{int index = Model.Round_20.IndexOf(item);
+                                            }
+                                            <input hidden asp-for="Round_20[index].PartID" />
+                                            <input hidden asp-for="Round_20[index].namePart" />
 
 
-                                                @foreach (var j in item.DetailOT)
+                                            @foreach (var j in item.DetailOT)
+                                            {
+                                                int index2 = Model.Round_20[index].DetailOT.IndexOf(j);
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].TimeStart " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Hour  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Type  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Status  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Point_PointID  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_EmpID  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_UserAdd_EmpID  " />
+                                            }
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
+                                            </td>
+                                            <td>
+                                                @foreach (var j in item.ListCars)
                                                 {
-                                                    int index2 = Model.Round_20[index].DetailOT.IndexOf(j);
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].DetailOTID " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].TimeStart " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].TimeEnd  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Hour  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Type  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Status  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Part_PaetID  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].Employee_EmpID  " />
-                                                    <input hidden asp-for="Round_20[index].DetailOT[index2].FoodSet_FoodSetID  " />
+                                                    int index2 = Model.Round_20[index].ListCars.IndexOf(j);
+
+                                                    <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeID" />
+                                                    <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeName" />
+                                                    <input hidden asp-for="Round_20[index].ListCars[index2].seed" />
+                                                    <div>
+                                                        @Html.DisplayFor(modelItem => j.CarTypeName)
+                                                        <input readonly class="form-control" type="number" asp-for="Round_20[index].ListCars[index2].countCar" />
+                                                    </div>
                                                 }
+                                            </td>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.namePart) @item.DetailOT.Count Person
-                                                </td>
-                                                <td>
-                                                    @foreach (var j in item.ListCars)
-                                                    {
-                                                        int index2 = Model.Round_20[index].ListCars.IndexOf(j);
-
-                                                        <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeID" />
-                                                        <input hidden asp-for="Round_20[index].ListCars[index2].CarTypeName" />
-                                                        <input hidden asp-for="Round_20[index].ListCars[index2].seed" />
-                                                        <div>
-                                                            @Html.DisplayFor(modelItem => j.CarTypeName)
-                                                            <input readonly class="form-control" type="number" asp-for="Round_20[index].ListCars[index2].countCar" />
-                                                        </div>
-                                                    }
-                                                </td>
-
-                                            </tr>
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>
@@ -382,7 +385,7 @@
                                         @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
                                     </th>            
                                     <th>
-                                        @Html.DisplayNameFor(model => model.DetailOT[0].Part)
+                                        @Html.DisplayNameFor(model => model.DetailOT[0].Point)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
@@ -412,7 +415,7 @@
                                     </td>
                                    
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Part.Name)
+                                        @Html.DisplayFor(modelItem => item.Point.Part.Name) => @Html.DisplayFor(modelItem => item.Point.NamePoint)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.FoodSet.NameSet)

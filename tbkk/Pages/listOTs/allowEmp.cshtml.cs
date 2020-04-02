@@ -235,7 +235,7 @@ namespace tbkk.Pages.listOTs
             .Include(d => d.Employee)
             .Include(d => d.FoodSet)
             .Include(d => d.OT)
-            .Include(d => d.Part).Where(d => d.OT_OTID == id).ToListAsync();
+            .Include(d => d.Point.Part).Where(d => d.OT_OTID == id).ToListAsync();
             DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
             OT = await _context.OT
               .FirstOrDefaultAsync(e => e.OTID == id);

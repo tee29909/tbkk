@@ -44,7 +44,7 @@ namespace tbkk.Controllers.DetailOTs
             var detailOT = await _context.DetailOT.Include(d => d.OT)
                                                     .Include(d => d.Employee)
                                                     .Include(d => d.FoodSet)
-                                                    .Include(d => d.Part)
+                                                    .Include(d => d.Point.Part)
                                                     .Include(d => d.EmployeeAdd)
                                                     .FirstOrDefaultAsync(e => e.DetailOTID == id);
 

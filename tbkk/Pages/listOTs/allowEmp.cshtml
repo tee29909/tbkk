@@ -66,7 +66,7 @@
                                     @Html.DisplayNameFor(model => model.DetailOT[0].Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Part)
+                                    @Html.DisplayNameFor(model => model.DetailOT[0].Point)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
@@ -103,17 +103,29 @@
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Part.PartID)
+                                        @{ if (item.Point.Part.Name.Equals("No"))
+                                            {
+                                                @:No
+                                            }
+                                            else
+                                            {
+                                                @:@Html.DisplayFor(modelItem => item.Point.Part.Name) :=>  @Html.DisplayFor(modelItem => item.Point.NamePoint)
+
+                                            }
+                                        }
+
+
+
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FoodSet.FoodSetID)
+                                        @Html.DisplayFor(modelItem => item.FoodSet.NameSet)
                                     </td>
 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.OT.OTID)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Employee.EmployeeID)
+                                        @Html.DisplayFor(modelItem => item.Employee.FirstName)  @Html.DisplayFor(modelItem => item.Employee.LastName)
                                     </td>
                                     <td>
                                         <form method="post">

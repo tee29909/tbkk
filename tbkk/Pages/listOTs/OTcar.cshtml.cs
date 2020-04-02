@@ -59,26 +59,27 @@ namespace tbkk.Pages.listOTs
 
             int Month = Mout.Month;
             int Year = Mout.Year;
-            var part = _context.Part.ToList();
+            var part = _context.Part.Where(a =>!a.Name.Equals("No")).ToList();
+            var point = _context.Point.Where(a => !a.NamePoint.Equals("No")).ToList();
             var Department = _context.Department.ToList();
             string TypStatus = "Close";
             OT = await _context.OT.Where(o => o.TypStatus.Equals(TypStatus) && o.date.Year == Year && o.date.Month == Month && o.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
             var detailOT = _context.DetailOT
                 .Include(e => e.OT)
-                .Include(e => e.Part)
+                .Include(d => d.Point.Part)
                 .Include(e => e.Employee)
                 .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == Month && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
             var detailCarQ = _context.DetailCarQueue
                 .Include(e => e.CarQueue)
                 .Include(e => e.Employee).Where(d => d.CarQueue.OT.date.Year == Year && d.CarQueue.OT.date.Month == Month && d.CarQueue.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
-
+            
 
 
 
             detailList = detailListPage();
             chart1 = Chart1(Department, detailOT);
+            chart2 = Chart2(point, detailOT);
 
-            
             chart3 = Chart3(part, detailCarQ);
             chart4 = Chart4();
 
@@ -94,7 +95,7 @@ namespace tbkk.Pages.listOTs
                 var detailCar = _context.CarQueue.Where(c => c.OT.date.Year == Year && c.OT.date.Month == i).ToList();
                 var detailadd = _context.DetailOT
                     .Include(e => e.OT)
-                    .Include(e => e.Part)
+                    .Include(d => d.Point.Part)
                     .Include(e => e.Employee)
                     .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == i && d.Status.Equals("Allow")).ToList();
                 var costFoodAdd = detailadd.Where(o => (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList().Sum(s => s.FoodSet.Price);
@@ -158,6 +159,24 @@ namespace tbkk.Pages.listOTs
             return chart4add;
         }
 
+        private List<chart2> Chart2(List<Point> point, List<DetailOT> detailOT)
+        {
+            var chart2add = new List<chart2>();
+            var count = detailOT.Count();
+            foreach (var item in point)
+            { 
+                var countpoint = detailOT.Where(e => e.Point_PointID == item.PointID).Count();
+                if (countpoint !=0)
+                {
+                    double persen = ((double)countpoint / (double)count) * 100;
+                    chart2add.Add(new chart2() { y = persen, label = item.NamePoint });
+                }
+            }
+
+            
+            return chart2add;
+        }
+
         private List<chart1> Chart1(List<Department> Department , List<DetailOT> DetailOT)
         {
             var listChart = new List<DetailOT>();
@@ -202,7 +221,7 @@ namespace tbkk.Pages.listOTs
                     .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow") && o.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
+                .Include(d => d.Point.Part).Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow") && o.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
                 detailListAdd.OT = detailListAdd.OT + DetailOT.Count;
                 detailListAdd.car = detailListAdd.car + _context.CarQueue.Where(o => o.CarQueue_OTID == item.OTID).ToList().Count;
                 var food = DetailOT.Where(o => (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList();

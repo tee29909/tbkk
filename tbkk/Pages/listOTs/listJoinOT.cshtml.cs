@@ -49,7 +49,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.Employee_EmpID == Employee.EmployeeID && d.Status.Equals("Allow")).ToListAsync();
+                .Include(d => d.Point.Part).Where(d => d.Employee_EmpID == Employee.EmployeeID && d.Status.Equals("Allow")).ToListAsync();
 
            
             

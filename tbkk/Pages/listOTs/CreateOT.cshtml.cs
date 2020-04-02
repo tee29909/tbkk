@@ -19,20 +19,17 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
         public Employee Employee { get; set; }
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-
-
-
             try
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
-           
+
 
 
 

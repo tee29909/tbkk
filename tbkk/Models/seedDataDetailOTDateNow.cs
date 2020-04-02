@@ -58,7 +58,7 @@ namespace tbkk.Models
                                  Hour = End - Start,
                                  Type = (!((int)OT.date.DayOfWeek == 0 || (int)OT.date.DayOfWeek == 6)) ? "Back" : (random == 1) ? "Go" : (random == 2) ? "Back" : "Go and Back",
                                  Status = "Allow",
-                                 Part_PaetID = new Random().Next(2, 6),
+                                 Point_PointID = new Random().Next(2, 6),
                                  FoodSet_FoodSetID = new Random().Next(2, 4),
                                  OT_OTID = OT.OTID,
                                  Employee_EmpID = j,

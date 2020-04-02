@@ -61,7 +61,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+                .Include(d => d.Point.Part).Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
                 add.OT = item;
                 add.Emp_Cout = detailOTs.Count;
                 detailOTs = detailOTs.Where(d => d.Status.Equals("Allow") || d.Status.Equals("Disallow")).ToList();

@@ -34,7 +34,7 @@ namespace tbkk.Pages.NewFolder
                 .Include(d => d.EmployeeAdd)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
+                .Include(d => d.Point.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
 
             if (DetailOT == null)
             {

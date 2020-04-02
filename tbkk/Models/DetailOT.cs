@@ -40,11 +40,11 @@ namespace tbkk.Models
         public string Status { get; set; }
 
         
-        [Display(Name = "Part")]
-        [ForeignKey("Part")]
+        [Display(Name = "Point")]
+        [ForeignKey("Point")]
         
-        public int Part_PaetID { get; set; }
-        public Part Part { get; set; }
+        public int Point_PointID { get; set; }
+        public Point Point { get; set; }
 
         
         [Display(Name = "Food Set")]

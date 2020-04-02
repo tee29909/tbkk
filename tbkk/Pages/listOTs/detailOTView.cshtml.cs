@@ -33,12 +33,12 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
+                .Include(d => d.Point.Part).FirstOrDefaultAsync(m => m.DetailOTID == id);
             try
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }

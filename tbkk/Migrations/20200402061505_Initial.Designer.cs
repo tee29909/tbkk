@@ -10,7 +10,7 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20200402031608_Initial")]
+    [Migration("20200402061505_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -399,7 +399,7 @@ namespace tbkk.Migrations
                     b.Property<int>("OT_OTID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Part_PaetID")
+                    b.Property<int>("Point_PointID")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -424,7 +424,7 @@ namespace tbkk.Migrations
 
                     b.HasIndex("OT_OTID");
 
-                    b.HasIndex("Part_PaetID");
+                    b.HasIndex("Point_PointID");
 
                     b.ToTable("DetailOT");
                 });
@@ -1357,9 +1357,9 @@ namespace tbkk.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("tbkk.Models.Part", "Part")
+                    b.HasOne("tbkk.Models.Point", "Point")
                         .WithMany()
-                        .HasForeignKey("Part_PaetID")
+                        .HasForeignKey("Point_PointID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

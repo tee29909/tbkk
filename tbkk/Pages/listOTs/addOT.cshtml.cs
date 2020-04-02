@@ -92,7 +92,7 @@ namespace tbkk.Pages.listOTs
         private async Task OnLoad()
         {
             ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "NameSet");
-            ViewData["Part_PaetID"] = new SelectList(_context.Part, "PartID", "Name");
+            ViewData["Point_PointID"] = new SelectList(_context.Point, "PointID", "NamePoint");
 
            
             Employee = HttpContext.Session.GetLogin(_context.Employee);
@@ -106,7 +106,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).Where(d => d.OT.date >= date).ToListAsync();
+                .Include(d => d.Point.Part).Where(d => d.OT.date >= date).ToListAsync();
             var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Employee_CompanyID && d.TypStatus.Equals("Open")).ToListAsync();
 
             var OTLadd = new List<OTL>();
@@ -139,7 +139,7 @@ namespace tbkk.Pages.listOTs
                 {
                     ModelState.AddModelError("EditDetailOT.Employee_EmpID", "The Employee field is required.");
                 }
-                if (EditDetailOT.Part_PaetID == 0)
+                if (EditDetailOT.Point_PointID == 0)
                 {
                     ModelState.AddModelError("EditDetailOT.Part_PaetID", "The Part field is required.");
                 }
@@ -233,7 +233,7 @@ namespace tbkk.Pages.listOTs
             } 
             if (!EditDetailOT.Type.Equals("No"))
             {
-                var partName = await getNamePartAsync(EditDetailOT.Part_PaetID);
+                var partName = await getNamePartAsync(EditDetailOT.Point_PointID);
                 if (partName.Equals("No"))
                 {
                     check = 1;
@@ -288,7 +288,7 @@ namespace tbkk.Pages.listOTs
                 {
                     ModelState.AddModelError("DetailOT.Employee_EmpID", "The Employee field is required.");
                 }
-                if (DetailOT.Part_PaetID == 0)
+                if (DetailOT.Point_PointID == 0)
                 {
                     ModelState.AddModelError("DetailOT.Part_PaetID", "The Part field is required.");
                 }
@@ -428,9 +428,9 @@ namespace tbkk.Pages.listOTs
 
             }
 
-            if (!DetailOT.Type.Equals("No") &&  getNamePartAsync(DetailOT.Part_PaetID).Equals("No"))
+            if (!DetailOT.Type.Equals("No") &&  getNamePartAsync(DetailOT.Point_PointID).Equals("No"))
             {
-                var partName = await getNamePartAsync(DetailOT.Part_PaetID);
+                var partName = await getNamePartAsync(DetailOT.Point_PointID);
                 if (partName.Equals("No"))
                 {
                     check = 1;
@@ -486,9 +486,9 @@ namespace tbkk.Pages.listOTs
         private async Task<String> getNamePartAsync(int ID)
         {
             string namePart="";
-            var part = await _context.Part.FirstOrDefaultAsync(u => u.PartID == ID);
+            var part = await _context.Point.FirstOrDefaultAsync(u => u.PointID == ID);
                
-            namePart = part.Name;
+            namePart = part.NamePoint;
                 
             
             return namePart;

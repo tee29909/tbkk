@@ -151,11 +151,11 @@
 
 
                                             <div class="form-group">
-                                                <label asp-for="DetailOT.Part_PaetID" class="control-label"></label>
-                                                <select asp-for="DetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID">
+                                                <label asp-for="DetailOT.Point_PointID" class="control-label"></label>
+                                                <select asp-for="DetailOT.Point_PointID" class="form-control" asp-items="ViewBag.Point_PointID">
                                                     <option disabled selected value=""> -- </option>
                                                 </select>
-                                                <span asp-validation-for="DetailOT.Part_PaetID" class="text-danger"></span>
+                                                <span asp-validation-for="DetailOT.Point_PointID" class="text-danger"></span>
                                                 <lable class="text-danger">
                                                     @Html.ValidationMessage("partError")
                                                 </lable>
@@ -352,11 +352,11 @@
 
 
                                             <div class="form-group">
-                                                <label asp-for="EditDetailOT.Part_PaetID" class="control-label"></label>
-                                                <select asp-for="EditDetailOT.Part_PaetID" class="form-control" asp-items="ViewBag.Part_PaetID">
+                                                <label asp-for="EditDetailOT.Point_PointID" class="control-label"></label>
+                                                <select asp-for="EditDetailOT.Point_PointID" class="form-control" asp-items="ViewBag.Point_PointID">
                                                     <option disabled selected value=""> -- </option>
                                                 </select>
-                                                <span asp-validation-for="EditDetailOT.Part_PaetID" class="text-danger"></span>
+                                                <span asp-validation-for="EditDetailOT.Point_PointID" class="text-danger"></span>
 
                                             </div>
                                         </div>
@@ -480,7 +480,7 @@
 
 
                         <dt class="col-sm-6 text-right">
-                            @Html.DisplayNameFor(model => model.DetailOT.Part.Name):
+                            @Html.DisplayNameFor(model => model.DetailOT.Point_PointID):
                         </dt>
                         <dd class="col-sm-6">
                             <label class="label" id="showPartName"></label>
@@ -794,7 +794,7 @@
                 success: function (data) {
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     
-
+                    console.log(data);
                     var date = new Date(data.ot.date);
                     $('#showDate').html(date.getDate() + " " + months[date.getMonth()]  + " " + date.getFullYear());
                     $('#showEmployee').html(data.employee.firstName + " " + data.employee.lastName);
@@ -805,10 +805,10 @@
                     $('#showTimeStart').html(addZero(start.getHours(), 2) + ":" + addZero(start.getMinutes(), 2));
                     var end = new Date(data.timeEnd);
                     $('#showTimeEnd').html(addZero(end.getHours(), 2) + ":" + addZero(end.getMinutes(), 2));
-                    $('#showPartName').html(data.part.name);
+                    $('#showPartName').html(data.point.namePoint);
                     $('#showNameSet').html(data.foodSet.nameSet);
                     $('#showStatus').html(data.status);
-                    console.log(data);
+                   
                     console.log(data.hour);
                 },
              failure: function (data) {  
@@ -847,7 +847,7 @@
                     $('#ShowEmpName').val(data.employee.firstName + " " + data.employee.lastName);
                     
                     
-                    $('#EditDetailOT_Part_PaetID').val(data.part_PaetID);
+                    $('#EditDetailOT_Point_PointID').val(data.point_PointID);
                     $('#EditDetailOT_TimeStart').val(timeStart.toLocaleTimeString('en-US', {
                         hour12: false,
                         hour: "numeric",

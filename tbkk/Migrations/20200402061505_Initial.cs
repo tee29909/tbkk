@@ -524,7 +524,7 @@ namespace tbkk.Migrations
                     Hour = table.Column<TimeSpan>(nullable: false),
                     Type = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),
-                    Part_PaetID = table.Column<int>(nullable: false),
+                    Point_PointID = table.Column<int>(nullable: false),
                     FoodSet_FoodSetID = table.Column<int>(nullable: false),
                     OT_OTID = table.Column<int>(nullable: false),
                     Employee_EmpID = table.Column<int>(nullable: false),
@@ -558,10 +558,10 @@ namespace tbkk.Migrations
                         principalColumn: "OTID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DetailOT_Part_Part_PaetID",
-                        column: x => x.Part_PaetID,
-                        principalTable: "Part",
-                        principalColumn: "PartID",
+                        name: "FK_DetailOT_Point_Point_PointID",
+                        column: x => x.Point_PointID,
+                        principalTable: "Point",
+                        principalColumn: "PointID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -1162,9 +1162,9 @@ namespace tbkk.Migrations
                 column: "OT_OTID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetailOT_Part_PaetID",
+                name: "IX_DetailOT_Point_PointID",
                 table: "DetailOT",
-                column: "Part_PaetID");
+                column: "Point_PointID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_Employee_CompanyID",
@@ -1419,9 +1419,6 @@ namespace tbkk.Migrations
                 name: "Login");
 
             migrationBuilder.DropTable(
-                name: "Point");
-
-            migrationBuilder.DropTable(
                 name: "Relationship");
 
             migrationBuilder.DropTable(
@@ -1446,6 +1443,9 @@ namespace tbkk.Migrations
                 name: "FoodSet");
 
             migrationBuilder.DropTable(
+                name: "Point");
+
+            migrationBuilder.DropTable(
                 name: "Report");
 
             migrationBuilder.DropTable(
@@ -1464,10 +1464,10 @@ namespace tbkk.Migrations
                 name: "OT");
 
             migrationBuilder.DropTable(
-                name: "Part");
+                name: "Canteen");
 
             migrationBuilder.DropTable(
-                name: "Canteen");
+                name: "Part");
 
             migrationBuilder.DropTable(
                 name: "Asset");
