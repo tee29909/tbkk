@@ -54,7 +54,10 @@
                         Hour OT:
                     </dt>
                     <dd class="col-sm-6">
-                        @Html.DisplayFor(model => model.countHourOT) Hour
+                        @{
+                            var totalHour = (int)Model.countHourOT.TotalHours;
+                        }
+                        @totalHour:@Model.countHourOT.ToString(@"mm\:ss") Hour
                     </dd>
                 </dl>
 
@@ -98,7 +101,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Date
+                                    @Html.DisplayNameFor(model => model.DetailOT[0].OT.date)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
@@ -118,11 +121,13 @@
                                 <tr>
                                     <td>
 
-                                        @{
+                                        @*@{
                                             DateTime date = item.TimeStart;
                                         }
 
-                                        @date.ToString("dddd, dd MMMM yyyy")
+                                        @date.ToString("dddd, dd MMMM yyyy")*@
+
+                                        @Html.DisplayFor(model => item.OT.date)
                                     </td>
 
                                     <td>

@@ -11,10 +11,13 @@ namespace tbkk.Models
     {
         [Key]
         public int DetailCarQueueID { get; set; }
+
         [Display(Name = "Employee")]
         [ForeignKey("Employee")]
         public int DetailCarQueue_EmployeeID { get; set; }
         public Employee Employee { get; set; }
+
+
 
         [ForeignKey("CarQueue")]
         public int DetailCarQueue_CarQueueID { get; set; }

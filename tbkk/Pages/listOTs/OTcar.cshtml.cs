@@ -47,22 +47,30 @@ namespace tbkk.Pages.listOTs
                 Mout = DateTime.Now;
                 search = Mout.ToString("MMM-yyyy");
             }
-            
+
+            try
+            {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
+            }
+            catch (Exception)
+            {
+                RedirectToPage("./index");
+            }
+
             int Month = Mout.Month;
             int Year = Mout.Year;
             var part = _context.Part.ToList();
             var Department = _context.Department.ToList();
             string TypStatus = "Close";
-            OT = await _context.OT.ToListAsync();
-            OT = OT.Where(o => o.TypStatus.Equals(TypStatus) && o.date.Year == Year && o.date.Month == Month).ToList();
+            OT = await _context.OT.Where(o => o.TypStatus.Equals(TypStatus) && o.date.Year == Year && o.date.Month == Month && o.OT_CompanyID == Employee.Employee_CompanyID).ToListAsync();
             var detailOT = _context.DetailOT
                 .Include(e => e.OT)
                 .Include(e => e.Part)
                 .Include(e => e.Employee)
-                .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == Month && d.Status.Equals("Allow")).ToList();
+                .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == Month && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
             var detailCarQ = _context.DetailCarQueue
                 .Include(e => e.CarQueue)
-                .Include(e => e.Employee).Where(d => d.CarQueue.OT.date.Year == Year && d.CarQueue.OT.date.Month == Month).ToList();
+                .Include(e => e.Employee).Where(d => d.CarQueue.OT.date.Year == Year && d.CarQueue.OT.date.Month == Month && d.CarQueue.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
 
 
 
@@ -119,14 +127,7 @@ namespace tbkk.Pages.listOTs
             //    .Include(e => e.Location)
             //    .Include(e => e.Position).FirstOrDefaultAsync(m => m.EmployeeID == id);
 
-            try
-            {
-                Employee = HttpContext.Session.GetLogin(_context.Employee);
-            }
-            catch (Exception)
-            {
-                RedirectToPage("./index");
-            }
+           
             
 
         }
@@ -162,10 +163,9 @@ namespace tbkk.Pages.listOTs
             var listChart = new List<DetailOT>();
             foreach (var item in OT)
             {
-                var detailOTAdd = DetailOT.Where(d => d.OT_OTID == item.OTID && d.Status.Equals("Allow")).ToList();
+                var detailOTAdd = DetailOT.Where(d => d.OT_OTID == item.OTID && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
                 listChart.AddRange(detailOTAdd);
             }
-
             var chart1List = new List<chart1>();
 
             foreach (var item in Department)
@@ -198,11 +198,11 @@ namespace tbkk.Pages.listOTs
             foreach (var item in OT)
             {
                 var carq = _context.CarQueue.Where(c => c.CarQueue_OTID == item.OTID).ToList();
-                var DetailOT = _context.DetailOT.Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow"))
+                var DetailOT = _context.DetailOT
                     .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToList();
+                .Include(d => d.Part).Where(o => o.OT_OTID == item.OTID && o.Status.Equals("Allow") && o.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
                 detailListAdd.OT = detailListAdd.OT + DetailOT.Count;
                 detailListAdd.car = detailListAdd.car + _context.CarQueue.Where(o => o.CarQueue_OTID == item.OTID).ToList().Count;
                 var food = DetailOT.Where(o => (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList();

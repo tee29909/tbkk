@@ -19,7 +19,7 @@ namespace tbkk.Pages.listOTs
             _context = context;
         }
 
-        public IList<DetailOT> DetailOT { get; set; }
+        public IList<DetailCarQueue> DetailCarQueue { get; set; }
 
         public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync()
@@ -31,7 +31,7 @@ namespace tbkk.Pages.listOTs
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
@@ -40,21 +40,12 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-
-
-            
-
-            DetailOT = await _context.DetailOT
-                
+            DetailCarQueue = await _context.DetailCarQueue
                 .Include(d => d.Employee)
-                .Include(d => d.FoodSet)
-                .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
-
-
-            DetailOT = DetailOT.Where(e => e.Employee_EmpID==Employee.EmployeeID).ToList();
-            
-
+                .Include(d => d.CarQueue.Part)
+                .Include(d => d.CarQueue.CarType)
+                .Where(e => e.DetailCarQueue_EmployeeID == Employee.EmployeeID)
+                .ToListAsync();
             return Page();
         }
     }

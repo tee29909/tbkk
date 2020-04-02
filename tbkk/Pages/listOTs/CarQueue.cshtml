@@ -30,46 +30,52 @@
                                 <th>
                                     Date
                                 </th>
-
                                 <th>
                                     Time
                                 </th>
                                 <th>
                                     Part
-
                                 </th>
+                                <th>
+                                    Number Car
+                                </th>
+                                <th>
+                                    Type Car
+                                </th>
+
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.DetailOT)
+                            @foreach (var item in Model.DetailCarQueue)
                             {
+                            <tr>
+                                <td>
+                                    @{
+                                        DateTime date = item.CarQueue.Time;
+                                    }
+
+                                    @date.ToString("dd-MMM-yyyy")
 
 
+                                </td>
 
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarQueue.Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
+                                </td>
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
+                                </td>
 
-
-
-                                <tr>
-                                    <td>
-                                        @{
-                                            DateTime date = item.TimeStart;
-                                        }
-
-                                        @date.ToString("dddd, dd MMMM yyyy")
-                                    </td>
-
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TimeEnd)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Part.Name)
-                                    </td>
-
-                                </tr>
+                            </tr>
                             }
                         </tbody>
                     </table>

@@ -15,7 +15,7 @@ namespace tbkk.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -860,12 +860,12 @@ namespace tbkk.Migrations
                     b.Property<string>("NamePoint")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Point_PartIDPartID")
+                    b.Property<int>("Point_PartID")
                         .HasColumnType("int");
 
                     b.HasKey("PointID");
 
-                    b.HasIndex("Point_PartIDPartID");
+                    b.HasIndex("Point_PartID");
 
                     b.ToTable("Point");
                 });
@@ -1492,9 +1492,11 @@ namespace tbkk.Migrations
 
             modelBuilder.Entity("tbkk.Models.Point", b =>
                 {
-                    b.HasOne("tbkk.Models.Part", "Point_PartID")
+                    b.HasOne("tbkk.Models.Part", "Part")
                         .WithMany()
-                        .HasForeignKey("Point_PartIDPartID");
+                        .HasForeignKey("Point_PartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tbkk.Models.Relationship", b =>

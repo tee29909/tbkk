@@ -290,17 +290,17 @@ namespace tbkk.Migrations
                     PointID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NamePoint = table.Column<string>(nullable: true),
-                    Point_PartIDPartID = table.Column<int>(nullable: true)
+                    Point_PartID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Point", x => x.PointID);
                     table.ForeignKey(
-                        name: "FK_Point_Part_Point_PartIDPartID",
-                        column: x => x.Point_PartIDPartID,
+                        name: "FK_Point_Part_Point_PartID",
+                        column: x => x.Point_PartID,
                         principalTable: "Part",
                         principalColumn: "PartID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1272,9 +1272,9 @@ namespace tbkk.Migrations
                 column: "OT_CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Point_Point_PartIDPartID",
+                name: "IX_Point_Point_PartID",
                 table: "Point",
-                column: "Point_PartIDPartID");
+                column: "Point_PartID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Relationship_Relationship_AssetIDmomAssetID",

@@ -37,7 +37,7 @@ namespace tbkk.Pages.listOTs
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToPage("./index");
             }
@@ -49,10 +49,10 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Employee)
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
-                .Include(d => d.Part).ToListAsync();
+                .Include(d => d.Part).Where(d => d.Employee_EmpID == Employee.EmployeeID && d.Status.Equals("Allow")).ToListAsync();
 
-            DetailOT = DetailOT.Where(d => d.Employee_EmpID==Employee.EmployeeID).ToList();
-            DetailOT = DetailOT.Where(d => d.Status.Equals("Approved")).ToList();
+           
+            
             countHourOT = new TimeSpan();
             foreach (var item in DetailOT)
             {
