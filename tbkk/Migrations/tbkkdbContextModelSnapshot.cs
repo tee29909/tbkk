@@ -19,133 +19,6 @@ namespace tbkk.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("tbkk.Models.Asset", b =>
-                {
-                    b.Property<int>("AssetID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AssetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Asset_CompanyIDCompanyID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Asset_DepartmentIDDepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Asset_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Asset_LocationIDLocationID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Asset_ModelIDModelID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Asset_SupplierIDSupplierID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InstallDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MACAddr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PONumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SerailNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Warranty")
-                        .HasColumnType("int");
-
-                    b.HasKey("AssetID");
-
-                    b.HasIndex("Asset_CompanyIDCompanyID");
-
-                    b.HasIndex("Asset_DepartmentIDDepartmentID");
-
-                    b.HasIndex("Asset_EmployeeIDEmployeeID");
-
-                    b.HasIndex("Asset_LocationIDLocationID");
-
-                    b.HasIndex("Asset_ModelIDModelID");
-
-                    b.HasIndex("Asset_SupplierIDSupplierID");
-
-                    b.ToTable("Asset");
-                });
-
-            modelBuilder.Entity("tbkk.Models.AssetJoinNetwork", b =>
-                {
-                    b.Property<int>("AssetJoinNetworkID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AssetJoinNetwork_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AssetJoinNetwork_NetworkIDNetworkID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AssetJoinNetworkID");
-
-                    b.HasIndex("AssetJoinNetwork_AssetIDAssetID");
-
-                    b.HasIndex("AssetJoinNetwork_NetworkIDNetworkID");
-
-                    b.ToTable("AssetJoinNetworks");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Brand", b =>
-                {
-                    b.Property<int>("BrandID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrandName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BrandID");
-
-                    b.ToTable("Brand");
-                });
-
             modelBuilder.Entity("tbkk.Models.Canteen", b =>
                 {
                     b.Property<int>("CanteenID")
@@ -232,27 +105,6 @@ namespace tbkk.Migrations
                     b.ToTable("CarType");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryID");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("tbkk.Models.Company", b =>
                 {
                     b.Property<int>("CompanyID")
@@ -264,9 +116,11 @@ namespace tbkk.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompanyID");
@@ -284,6 +138,9 @@ namespace tbkk.Migrations
                     b.Property<string>("Call")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Company_CompanyID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Line")
                         .HasColumnType("nvarchar(max)");
 
@@ -298,38 +155,9 @@ namespace tbkk.Migrations
 
                     b.HasKey("CompanyCarID");
 
+                    b.HasIndex("Company_CompanyID");
+
                     b.ToTable("CompanyCar");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Competency", b =>
-                {
-                    b.Property<int>("CompetencyID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CompDetaill")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CompSumPoint")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Competency_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Competency_GradeHistoryIDGradeHistoryID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CompetencyID");
-
-                    b.HasIndex("Competency_EmployeeIDEmployeeID");
-
-                    b.HasIndex("Competency_GradeHistoryIDGradeHistoryID");
-
-                    b.ToTable("Competency");
                 });
 
             modelBuilder.Entity("tbkk.Models.Department", b =>
@@ -340,12 +168,15 @@ namespace tbkk.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DepartmentName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DepartmentID");
@@ -437,9 +268,6 @@ namespace tbkk.Migrations
                     b.Property<string>("Addr")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Call")
                         .HasColumnType("nvarchar(max)");
 
@@ -459,6 +287,9 @@ namespace tbkk.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Employee_LocationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Employee_Num")
                         .HasColumnType("int");
 
                     b.Property<int>("Employee_PositionID")
@@ -538,176 +369,29 @@ namespace tbkk.Migrations
                     b.ToTable("FoodSet");
                 });
 
-            modelBuilder.Entity("tbkk.Models.GradeHistory", b =>
+            modelBuilder.Entity("tbkk.Models.LineToken", b =>
                 {
-                    b.Property<int>("GradeHistoryID")
+                    b.Property<int>("LineTokenID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Count")
+                    b.Property<int>("Company_CompanyID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GradeHistory_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahAllPoint")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahBonus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GrahSalaryUp")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("GrahYear")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("GradeHistoryID");
-
-                    b.HasIndex("GradeHistory_EmployeeIDEmployeeID");
-
-                    b.ToTable("GradeHistory");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinAssetEmp", b =>
-                {
-                    b.Property<int>("JoinAssetEmpID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("JoinAssetEmp_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("JoinAssetEmp_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
+                    b.Property<string>("TokenCar")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("TokenFood")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("JoinAssetEmpID");
+                    b.HasKey("LineTokenID");
 
-                    b.HasIndex("JoinAssetEmp_AssetIDAssetID");
+                    b.HasIndex("Company_CompanyID");
 
-                    b.HasIndex("JoinAssetEmp_EmployeeIDEmployeeID");
-
-                    b.ToTable("JoinAssetEmp");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinLicenseAsset", b =>
-                {
-                    b.Property<int>("JoinLicenseAssetID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("JoinLicenseAsset_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("JoinLicenseAsset_LicenseLicenseID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("JoinLicenseAssetID");
-
-                    b.HasIndex("JoinLicenseAsset_AssetIDAssetID");
-
-                    b.HasIndex("JoinLicenseAsset_LicenseLicenseID");
-
-                    b.ToTable("JoinLicenseAsset");
-                });
-
-            modelBuilder.Entity("tbkk.Models.KPI", b =>
-                {
-                    b.Property<int>("KPIID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("KPIDetail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KPISumPoint")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("KPI_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("KPI_GradeHistoryIDGradeHistoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("KPIID");
-
-                    b.HasIndex("KPI_EmployeeIDEmployeeID");
-
-                    b.HasIndex("KPI_GradeHistoryIDGradeHistoryID");
-
-                    b.ToTable("KPI");
-                });
-
-            modelBuilder.Entity("tbkk.Models.License", b =>
-                {
-                    b.Property<int>("LicenseID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Attachfiles")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LicenseName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("License_CompanyIDCompanyID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("License_DepartmentIDDepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("License_ModelIDModelID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("License_SupplierIDSupplierID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PONumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SoftewareName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LicenseID");
-
-                    b.HasIndex("License_CompanyIDCompanyID");
-
-                    b.HasIndex("License_DepartmentIDDepartmentID");
-
-                    b.HasIndex("License_ModelIDModelID");
-
-                    b.HasIndex("License_SupplierIDSupplierID");
-
-                    b.ToTable("License");
+                    b.ToTable("LineToken");
                 });
 
             modelBuilder.Entity("tbkk.Models.Location", b =>
@@ -718,9 +402,15 @@ namespace tbkk.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("LocationName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LocationID");
@@ -749,55 +439,6 @@ namespace tbkk.Migrations
                     b.HasIndex("Login_EmployeeID");
 
                     b.ToTable("Login");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Model", b =>
-                {
-                    b.Property<int>("ModelID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ModelName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Model_BrandIDBrandID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Model_CategoryIDCategoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ModelID");
-
-                    b.HasIndex("Model_BrandIDBrandID");
-
-                    b.HasIndex("Model_CategoryIDCategoryID");
-
-                    b.ToTable("Models");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Network", b =>
-                {
-                    b.Property<int>("NetworkID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("IpAddr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NetworkName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("NetworkID");
-
-                    b.ToTable("Network");
                 });
 
             modelBuilder.Entity("tbkk.Models.OT", b =>
@@ -885,396 +526,6 @@ namespace tbkk.Migrations
                     b.ToTable("Position");
                 });
 
-            modelBuilder.Entity("tbkk.Models.Relationship", b =>
-                {
-                    b.Property<int>("RelationshipID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("Relationship_AssetIDmomAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Relationship_AssetIDsonAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RelationshipID");
-
-                    b.HasIndex("Relationship_AssetIDmomAssetID");
-
-                    b.HasIndex("Relationship_AssetIDsonAssetID");
-
-                    b.ToTable("Relationship");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Repair", b =>
-                {
-                    b.Property<int>("RepairID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Repair_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Repair_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Repair_ReportIDReportID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RepairID");
-
-                    b.HasIndex("Repair_AssetIDAssetID");
-
-                    b.HasIndex("Repair_EmployeeIDEmployeeID");
-
-                    b.HasIndex("Repair_ReportIDReportID");
-
-                    b.ToTable("Repair");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Report", b =>
-                {
-                    b.Property<int>("ReportID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Report_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Report_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ReportID");
-
-                    b.HasIndex("Report_AssetIDAssetID");
-
-                    b.HasIndex("Report_EmployeeIDEmployeeID");
-
-                    b.ToTable("Report");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Suggestion", b =>
-                {
-                    b.Property<int>("SuggestionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SugDetail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SugSumPoint")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Suggestion_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Suggestion_GradeHistoryIDGradeHistoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("SuggestionID");
-
-                    b.HasIndex("Suggestion_EmployeeIDEmployeeID");
-
-                    b.HasIndex("Suggestion_GradeHistoryIDGradeHistoryID");
-
-                    b.ToTable("Suggestion");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Supplier", b =>
-                {
-                    b.Property<int>("SupplierID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupplierName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SupplierID");
-
-                    b.ToTable("Supplier");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateAsset", b =>
-                {
-                    b.Property<int>("UpdateAssetID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AssetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InstallDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MACAddr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PONumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SerailNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UpdateAsset_AssetIDAssetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_CompanyIDCompanyID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_LocationIDLocationID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_ModelIDModelID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_SepartmentIDDepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateAsset_SupplierIDSupplierID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Warranty")
-                        .HasColumnType("int");
-
-                    b.HasKey("UpdateAssetID");
-
-                    b.HasIndex("UpdateAsset_AssetIDAssetID");
-
-                    b.HasIndex("UpdateAsset_CompanyIDCompanyID");
-
-                    b.HasIndex("UpdateAsset_EmployeeIDEmployeeID");
-
-                    b.HasIndex("UpdateAsset_LocationIDLocationID");
-
-                    b.HasIndex("UpdateAsset_ModelIDModelID");
-
-                    b.HasIndex("UpdateAsset_SepartmentIDDepartmentID");
-
-                    b.HasIndex("UpdateAsset_SupplierIDSupplierID");
-
-                    b.ToTable("UpdateAsset");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateLicense", b =>
-                {
-                    b.Property<int>("UpdateLicenseID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Attachfiles")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LicenseName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PONumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SoftwareName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateLicense_CompanyIDCompanyID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateLicense_DepartmentIDDepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateLicense_LicenseIDLicenseID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateLicense_ModelIDModelID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateLicense_SupplierIDSupplierID")
-                        .HasColumnType("int");
-
-                    b.HasKey("UpdateLicenseID");
-
-                    b.HasIndex("UpdateLicense_CompanyIDCompanyID");
-
-                    b.HasIndex("UpdateLicense_DepartmentIDDepartmentID");
-
-                    b.HasIndex("UpdateLicense_LicenseIDLicenseID");
-
-                    b.HasIndex("UpdateLicense_ModelIDModelID");
-
-                    b.HasIndex("UpdateLicense_SupplierIDSupplierID");
-
-                    b.ToTable("UpdateLicense");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateNetwork", b =>
-                {
-                    b.Property<int>("UpdateNetworkID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IpAddr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UpdateNetwork_EmployeeIDEmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateNetwork_NetworkIDNetworkID")
-                        .HasColumnType("int");
-
-                    b.HasKey("UpdateNetworkID");
-
-                    b.HasIndex("UpdateNetwork_EmployeeIDEmployeeID");
-
-                    b.HasIndex("UpdateNetwork_NetworkIDNetworkID");
-
-                    b.ToTable("UpdateNetwork");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Asset", b =>
-                {
-                    b.HasOne("tbkk.Models.Company", "Asset_CompanyID")
-                        .WithMany()
-                        .HasForeignKey("Asset_CompanyIDCompanyID");
-
-                    b.HasOne("tbkk.Models.Department", "Asset_DepartmentID")
-                        .WithMany()
-                        .HasForeignKey("Asset_DepartmentIDDepartmentID");
-
-                    b.HasOne("tbkk.Models.Employee", "Asset_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("Asset_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.Location", "Asset_LocationID")
-                        .WithMany()
-                        .HasForeignKey("Asset_LocationIDLocationID");
-
-                    b.HasOne("tbkk.Models.Model", "Asset_ModelID")
-                        .WithMany()
-                        .HasForeignKey("Asset_ModelIDModelID");
-
-                    b.HasOne("tbkk.Models.Supplier", "Asset_SupplierID")
-                        .WithMany()
-                        .HasForeignKey("Asset_SupplierIDSupplierID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.AssetJoinNetwork", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "AssetJoinNetwork_AssetID")
-                        .WithMany()
-                        .HasForeignKey("AssetJoinNetwork_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.Network", "AssetJoinNetwork_NetworkID")
-                        .WithMany()
-                        .HasForeignKey("AssetJoinNetwork_NetworkIDNetworkID");
-                });
-
             modelBuilder.Entity("tbkk.Models.CarQueue", b =>
                 {
                     b.HasOne("tbkk.Models.CarType", "CarType")
@@ -1305,15 +556,11 @@ namespace tbkk.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("tbkk.Models.Competency", b =>
+            modelBuilder.Entity("tbkk.Models.CompanyCar", b =>
                 {
-                    b.HasOne("tbkk.Models.Employee", "Competency_EmployeeID")
+                    b.HasOne("tbkk.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("Competency_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.GradeHistory", "Competency_GradeHistoryID")
-                        .WithMany()
-                        .HasForeignKey("Competency_GradeHistoryIDGradeHistoryID");
+                        .HasForeignKey("Company_CompanyID");
                 });
 
             modelBuilder.Entity("tbkk.Models.DetailCarQueue", b =>
@@ -1404,63 +651,13 @@ namespace tbkk.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("tbkk.Models.GradeHistory", b =>
+            modelBuilder.Entity("tbkk.Models.LineToken", b =>
                 {
-                    b.HasOne("tbkk.Models.Employee", "GradeHistory_EmployeeID")
+                    b.HasOne("tbkk.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("GradeHistory_EmployeeIDEmployeeID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinAssetEmp", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "JoinAssetEmp_AssetID")
-                        .WithMany()
-                        .HasForeignKey("JoinAssetEmp_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.Employee", "JoinAssetEmp_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("JoinAssetEmp_EmployeeIDEmployeeID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.JoinLicenseAsset", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "JoinLicenseAsset_AssetID")
-                        .WithMany()
-                        .HasForeignKey("JoinLicenseAsset_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.License", "JoinLicenseAsset_License")
-                        .WithMany()
-                        .HasForeignKey("JoinLicenseAsset_LicenseLicenseID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.KPI", b =>
-                {
-                    b.HasOne("tbkk.Models.Employee", "KPI_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("KPI_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.GradeHistory", "KPI_GradeHistoryID")
-                        .WithMany()
-                        .HasForeignKey("KPI_GradeHistoryIDGradeHistoryID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.License", b =>
-                {
-                    b.HasOne("tbkk.Models.Company", "License_CompanyID")
-                        .WithMany()
-                        .HasForeignKey("License_CompanyIDCompanyID");
-
-                    b.HasOne("tbkk.Models.Department", "License_DepartmentID")
-                        .WithMany()
-                        .HasForeignKey("License_DepartmentIDDepartmentID");
-
-                    b.HasOne("tbkk.Models.Model", "License_ModelID")
-                        .WithMany()
-                        .HasForeignKey("License_ModelIDModelID");
-
-                    b.HasOne("tbkk.Models.Supplier", "License_SupplierID")
-                        .WithMany()
-                        .HasForeignKey("License_SupplierIDSupplierID");
+                        .HasForeignKey("Company_CompanyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tbkk.Models.Login", b =>
@@ -1470,17 +667,6 @@ namespace tbkk.Migrations
                         .HasForeignKey("Login_EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("tbkk.Models.Model", b =>
-                {
-                    b.HasOne("tbkk.Models.Brand", "Model_BrandID")
-                        .WithMany()
-                        .HasForeignKey("Model_BrandIDBrandID");
-
-                    b.HasOne("tbkk.Models.Category", "Model_CategoryID")
-                        .WithMany()
-                        .HasForeignKey("Model_CategoryIDCategoryID");
                 });
 
             modelBuilder.Entity("tbkk.Models.OT", b =>
@@ -1497,119 +683,6 @@ namespace tbkk.Migrations
                         .HasForeignKey("Point_PartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("tbkk.Models.Relationship", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "Relationship_AssetIDmom")
-                        .WithMany()
-                        .HasForeignKey("Relationship_AssetIDmomAssetID");
-
-                    b.HasOne("tbkk.Models.Asset", "Relationship_AssetIDson")
-                        .WithMany()
-                        .HasForeignKey("Relationship_AssetIDsonAssetID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Repair", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "Repair_AssetID")
-                        .WithMany()
-                        .HasForeignKey("Repair_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.Employee", "Repair_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("Repair_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.Report", "Repair_ReportID")
-                        .WithMany()
-                        .HasForeignKey("Repair_ReportIDReportID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Report", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "Report_AssetID")
-                        .WithMany()
-                        .HasForeignKey("Report_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.Employee", "Report_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("Report_EmployeeIDEmployeeID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.Suggestion", b =>
-                {
-                    b.HasOne("tbkk.Models.Employee", "Suggestion_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("Suggestion_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.GradeHistory", "Suggestion_GradeHistoryID")
-                        .WithMany()
-                        .HasForeignKey("Suggestion_GradeHistoryIDGradeHistoryID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateAsset", b =>
-                {
-                    b.HasOne("tbkk.Models.Asset", "UpdateAsset_AssetID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_AssetIDAssetID");
-
-                    b.HasOne("tbkk.Models.Company", "UpdateAsset_CompanyID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_CompanyIDCompanyID");
-
-                    b.HasOne("tbkk.Models.Employee", "UpdateAsset_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.Location", "UpdateAsset_LocationID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_LocationIDLocationID");
-
-                    b.HasOne("tbkk.Models.Model", "UpdateAsset_ModelID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_ModelIDModelID");
-
-                    b.HasOne("tbkk.Models.Department", "UpdateAsset_SepartmentID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_SepartmentIDDepartmentID");
-
-                    b.HasOne("tbkk.Models.Supplier", "UpdateAsset_SupplierID")
-                        .WithMany()
-                        .HasForeignKey("UpdateAsset_SupplierIDSupplierID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateLicense", b =>
-                {
-                    b.HasOne("tbkk.Models.Company", "UpdateLicense_CompanyID")
-                        .WithMany()
-                        .HasForeignKey("UpdateLicense_CompanyIDCompanyID");
-
-                    b.HasOne("tbkk.Models.Department", "UpdateLicense_DepartmentID")
-                        .WithMany()
-                        .HasForeignKey("UpdateLicense_DepartmentIDDepartmentID");
-
-                    b.HasOne("tbkk.Models.License", "UpdateLicense_LicenseID")
-                        .WithMany()
-                        .HasForeignKey("UpdateLicense_LicenseIDLicenseID");
-
-                    b.HasOne("tbkk.Models.Model", "UpdateLicense_ModelID")
-                        .WithMany()
-                        .HasForeignKey("UpdateLicense_ModelIDModelID");
-
-                    b.HasOne("tbkk.Models.Supplier", "UpdateLicense_SupplierID")
-                        .WithMany()
-                        .HasForeignKey("UpdateLicense_SupplierIDSupplierID");
-                });
-
-            modelBuilder.Entity("tbkk.Models.UpdateNetwork", b =>
-                {
-                    b.HasOne("tbkk.Models.Employee", "UpdateNetwork_EmployeeID")
-                        .WithMany()
-                        .HasForeignKey("UpdateNetwork_EmployeeIDEmployeeID");
-
-                    b.HasOne("tbkk.Models.Network", "UpdateNetwork_NetworkID")
-                        .WithMany()
-                        .HasForeignKey("UpdateNetwork_NetworkIDNetworkID");
                 });
 #pragma warning restore 612, 618
         }

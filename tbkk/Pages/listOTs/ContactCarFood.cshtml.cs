@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using tbkk.Models;
 
@@ -28,6 +29,8 @@ namespace tbkk
         public IList<CarQueue> CarQueue { get; set; }
         public IList<DetailCarQueue> DetailCarQueue { get; set; }
         public OTs OTs { get; set; }
+        [BindProperty]
+        public LineToken LineToken { get; set; }
         public OT OT { get; set; }
 
         public IList<food> food { get; set; }
@@ -37,8 +40,14 @@ namespace tbkk
 
         
 
-        public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
-        public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
+        //public string foodToken = "gpLcFbnpq8RcdSP67A4vFdZMKlfz9vBDlI0IVB2TsXV";
+        //public string carToken = "YGWdtLg5mavVWPlBmU0CT2WcZspAguWgZljx7FXBIEk";
+
+
+
+
+
+
 
         public async Task OnPostLineAsync(int Did)
         {
@@ -53,15 +62,28 @@ namespace tbkk
             }
             catch (Exception)
             {
-               RedirectToPage("./index");
+                RedirectToPage("./index");
             }
+
+            if (LineToken == null)
+            {
+                ModelState.AddModelError("Error", "Line Token is null.");
+
+            }
+            else
+            {
+                //food
+                l.lineNotify(massFood, LineToken.TokenFood);
+                //l.notifySticker("5564", 150, 2, foodToken);
+                //car
+                l.lineNotify(massCar, LineToken.TokenCar);
+                //l.notifySticker("5564", 160, 2, carToken);
+            }
+
+
+           
             
-            //food
-            l.lineNotify(massFood, foodToken);
-            //l.notifySticker("5564", 150, 2, foodToken);
-            //car
-            l.lineNotify(massCar, carToken);
-            //l.notifySticker("5564", 160, 2, carToken);
+            
 
             
             //FromDataManage(Did);
@@ -245,7 +267,9 @@ namespace tbkk
             Depasments = OTDetailOTList();
             timelist = massCarQ();
             food = foodMass();
-
+            LineToken = await _context.LineToken
+                .Include(l => l.Company).FirstOrDefaultAsync(e => e.Company_CompanyID == Employee.Employee_CompanyID);
+            ViewData["Company_CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyName");
         }
         private List<Depasments> OTDetailOTList()
         {

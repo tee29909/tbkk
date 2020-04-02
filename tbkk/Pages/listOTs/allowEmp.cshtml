@@ -50,66 +50,79 @@
                             <tr>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].TimeStart)
+                                    @Html.DisplayNameFor(model => model.DetailOT.Employee)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].TimeEnd)
+                                    @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Hour)
+                                    @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Type)
+                                    @Html.DisplayNameFor(model => model.DetailOT.Hour)
+                                </th>
+                                <th>
+                                    OT Hour
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Status)
+                                    @Html.DisplayNameFor(model => model.DetailOT.Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Point)
+                                    @Html.DisplayNameFor(model => model.DetailOT.Point)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].FoodSet)
+                                    @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
                                 </th>
 
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].OT)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DetailOT[0].Employee)
-                                </th>
-                                <th>Allow</th>
+
+                                <th>Manage</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach (var item in Model.DetailOT)
+                            @foreach (var item in Model.list)
                             {
                                 <tr>
+                                     
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TimeStart)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.Employee.FirstName)  @Html.DisplayFor(modelItem => item.DetailOT.Employee.LastName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TimeEnd)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.TimeStart)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Hour)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.TimeEnd)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Type)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.Hour)
+                                    </td>
+                                    <td>
+                                        @{int CostHour = (int)item.CostHour.TotalHours;}
+
+                                        @{ if (CostHour < 600)
+                                            {
+                                                @:<label style="color:green">@CostHour</label>/ 600 Hour
+                                            }
+                                            else
+                                            {
+                                                @:<label style="color:red">@CostHour</label>/ 600 Hour
+                                            }
+                                        }
+
                                     </td>
 
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Status)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.Status)
                                     </td>
                                     <td>
-                                        @{ if (item.Point.Part.Name.Equals("No"))
+                                        @{ if (item.DetailOT.Point.Part.Name.Equals("No"))
                                             {
                                                 @:No
                                             }
                                             else
                                             {
-                                                @:@Html.DisplayFor(modelItem => item.Point.Part.Name) :=>  @Html.DisplayFor(modelItem => item.Point.NamePoint)
+                                                @:@Html.DisplayFor(modelItem => item.DetailOT.Point.Part.Name) :=>  @Html.DisplayFor(modelItem => item.DetailOT.Point.NamePoint)
 
                                             }
                                         }
@@ -118,25 +131,20 @@
 
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FoodSet.NameSet)
+                                        @Html.DisplayFor(modelItem => item.DetailOT.FoodSet.NameSet)
                                     </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.OTID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Employee.FirstName)  @Html.DisplayFor(modelItem => item.Employee.LastName)
-                                    </td>
+                                  
                                     <td>
                                         <form method="post">
                                             @{
-                                                if (!item.Status.Equals("Allow"))
+                                                if (!item.DetailOT.Status.Equals("Allow"))
                                                 {
-                                                    <button asp-page-handler="Allow" type="submit"  asp-route-id="@item.DetailOTID" class="btn btn-primary">Allow</button>
+                                                    <button asp-page-handler="Allow" type="submit"  asp-route-id="@item.DetailOT.DetailOTID" class="btn btn-primary">Allow</button>
                                                 }
-                                                if (!item.Status.Equals("Disallow"))
+                                                if (!item.DetailOT.Status.Equals("Disallow"))
                                                 {
-                                                    <button asp-page-handler="Remove" type="submit" asp-route-id="@item.DetailOTID" class="btn btn-danger">Disallow</button>
+                                                    <button asp-page-handler="Remove" type="submit" asp-route-id="@item.DetailOT.DetailOTID" class="btn btn-danger">Disallow</button>
                                                 }
                                             }
                                         </form>

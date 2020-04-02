@@ -1,0 +1,55 @@
+﻿@page
+@model tbkk.Pages.CompanyCars.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CompanyCar</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.NameCompanyCar)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.NameCompanyCar)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.Seat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.Seat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.Line)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.Line)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.Call)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.Call)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyCar.Company)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyCar.Company.Image)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.CompanyCar.CompanyCarID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -18,9 +18,13 @@ namespace tbkk.Pages.listOTs
         {
             _context = context;
         }
-        public IList<DetailOT>  DetailOT { get; set; }
-        public Employee Employee { get; set; }
         
+        public IList<list> list { get; set; }
+        
+        public Employee Employee { get; set; }
+
+        public DetailOT DetailOT { get; set; }
+
         public OT OT { get; set; }
 
 
@@ -37,14 +41,6 @@ namespace tbkk.Pages.listOTs
             catch (Exception)
             {
                 return RedirectToPage("./index");
-            }
-            
-
-            
-
-            if (DetailOT == null)
-            {
-                return NotFound();
             }
             
             return Page();
@@ -130,11 +126,6 @@ namespace tbkk.Pages.listOTs
 
             return Page();
         }
-
-
-
-
-
 
         public async Task<IActionResult> OnPostAddAllowedAsync(int id)
         {
@@ -231,14 +222,39 @@ namespace tbkk.Pages.listOTs
         private async Task OnLoad(int id)
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            DetailOT = await _context.DetailOT
+            OT = await _context.OT
+             .FirstOrDefaultAsync(e => e.OTID == id);
+            var DetailOT = await _context.DetailOT
             .Include(d => d.Employee)
             .Include(d => d.FoodSet)
             .Include(d => d.OT)
             .Include(d => d.Point.Part).Where(d => d.OT_OTID == id).ToListAsync();
+
+
             DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
-            OT = await _context.OT
-              .FirstOrDefaultAsync(e => e.OTID == id);
+            var add = new List<list>();
+            foreach (var item in DetailOT)
+            {
+                var addlist = new list();
+                addlist.DetailOT = item;
+                IList<DetailOT> cout = await _context.DetailOT
+                    .Include(d => d.Employee)
+            .Include(d => d.FoodSet)
+            .Include(d => d.OT)
+            .Include(d => d.Point.Part).Where(e => e.Employee_EmpID == item.Employee_EmpID && e.OT.TypStatus.Equals("Close") && e.Status.Equals("Allow") ).ToArrayAsync();
+                cout = cout.Where(e => e.OT.date.Year == OT.date.Year).ToList();
+                
+                TimeSpan CostHour = new TimeSpan();
+                foreach (var i in cout)
+                {
+                    CostHour = CostHour + i.Hour;
+                }
+                addlist.CostHour = CostHour;
+                add.Add(addlist);
+            }
+            list = add;
+
+           
 
         }
 
@@ -250,5 +266,13 @@ namespace tbkk.Pages.listOTs
         {
             return _context.DetailOT.Any(e => e.DetailOTID == id);
         }
+    }
+
+    public class list
+    {
+        public DetailOT DetailOT { get; set; }
+        public TimeSpan CostHour { get; set; }
+
+
     }
 }

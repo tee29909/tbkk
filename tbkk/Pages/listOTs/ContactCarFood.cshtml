@@ -320,16 +320,16 @@
                     {
                         foreach (var q in d.carListNumber)
                         {
-                            if(q.CarType.CarTypeID == i.CarTypeID)
+                            if (q.CarType.CarTypeID == i.CarTypeID)
                             {
                                 count = count + q.maxCar;
                             }
 
                         }
                     }
-                    if(count != 0)
+                    if (count != 0)
                     {
-                        massCar = massCar + i.NameCar + " " + count+"\n";
+                        massCar = massCar + i.NameCar + " " + count + "\n";
                     }
                 }
 
@@ -445,13 +445,19 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
-                        Line Mass
+                        <label class="float-left">Line Mass</label>
+
                     </div>
 
                     <div class="card-body">
-                        Mass Car
+                        @{var status = "";
+                            if (Model.LineToken == null)
+                            { status = "Fail"; }
+                            else { status = "True"; } }
+
+                        <label class="float-left">Mass Car</label>
                         <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
-                        Mass Food
+                        <label class="float-left">Mass Food</label>
                         <textarea readonly class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
                     </div>
                 </div>
@@ -465,7 +471,34 @@
 
                 </script>
 
-                <button asp-page-handler="Line" type="submit" asp-route-id="@Model.Employee.EmployeeID" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Line Mass</button>
+
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div hidden class="form-group">
+                    <label asp-for="LineToken.LineTokenID" class="control-label"></label>
+                    <input asp-for="LineToken.LineTokenID" class="form-control" />
+                    <span asp-validation-for="LineToken.LineTokenID" class="text-danger"></span>
+                </div>
+                <div hidden class="form-group">
+                    <label asp-for="LineToken.TokenCar" class="control-label"></label>
+                    <input asp-for="LineToken.TokenCar" class="form-control" />
+                    <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+                </div>
+                <div hidden class="form-group">
+                    <label asp-for="LineToken.TokenFood" class="control-label"></label>
+                    <input asp-for="LineToken.TokenFood" class="form-control" />
+                    <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
+                </div>
+                <div hidden class="form-group">
+                    <label asp-for="LineToken.Company_CompanyID" class="control-label"></label>
+                    <select asp-for="LineToken.Company_CompanyID" class="form-control" asp-items="ViewBag.Company_CompanyID"></select>
+                </div>
+
+
+
+                <h4>Line Status : @status </h4>
+                @Html.ValidationMessage("Error")
+                <button asp-page-handler="Line" type="submit"  asp-route-Did="@Model.OT.OTID" class="btn btn-success">Line Mass</button>
             </div>
 
 

@@ -36,11 +36,27 @@ namespace tbkk
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogDebug( "22222222222222222222222222222");
 
-                    
+
+                    SeedDataCanteen.Initialize(services);
+                    SeedDataPart.Initialize(services);
+                    SeedDataPosition.Initialize(services);
+                    SeedDataEmployeeType.Initialize(services);
+                    SeedDataLocation.Initialize(services);
+                    SeedDataDepartment.Initialize(services);
+                    SeedDataCompany.Initialize(services);
+
+
+                    SeedDataCompanyCar.Initialize(services);
+                    SeedDataEmployee.Initialize(services);
+
+
                     SeedData.Initialize(services);
+
+
                     SeedDataPoint.Initialize(services);
                     seedDataDetailOT.Initialize(services);
-                    
+                    SeedDataLineToken.Initialize(services);
+
                     //seedDataDetailOTDateNow.Initialize(services);
                 }
                 catch (Exception ex)

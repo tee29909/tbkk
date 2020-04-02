@@ -10,15 +10,20 @@ namespace tbkk.Models
     public class Employee
     {
         public int EmployeeID { get; set; }
+
+        public int Employee_Num { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
-        public DateTime Birthday { get; set; }
+
         public string Email { get; set; }
-        public string Line { get; set; }
+
         public string Call { get; set; }
-        public string Addr { get; set; }
+        public string Line { get; set; }
         public string Image { get; set; }
+        public string Addr { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
         public string Status { get; set; }
 

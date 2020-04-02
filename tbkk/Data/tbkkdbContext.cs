@@ -13,43 +13,25 @@ namespace tbkk.Models
         {
         }
 
-        public DbSet<tbkk.Models.Asset> Asset { get; set; }
-        public DbSet<tbkk.Models.AssetJoinNetwork> AssetJoinNetworks { get; set; }
-        public DbSet<tbkk.Models.Brand> Brand { get; set; }
         public DbSet<tbkk.Models.Canteen> Canteen { get; set; }
         public DbSet<tbkk.Models.CarType> CarType { get; set; }
-        public DbSet<tbkk.Models.Category> Category { get; set; }
         public DbSet<tbkk.Models.Company> Company { get; set; }
         public DbSet<tbkk.Models.CompanyCar> CompanyCar { get; set; }
-        public DbSet<tbkk.Models.Competency> Competency { get; set; }
         public DbSet<tbkk.Models.Department> Department { get; set; }
         public DbSet<tbkk.Models.DetailOT> DetailOT { get; set; }
         public DbSet<tbkk.Models.Employee> Employee { get; set; }
         public DbSet<tbkk.Models.EmployeeType> EmployeeType { get; set; }
         public DbSet<tbkk.Models.FoodSet> FoodSet { get; set; }
-        public DbSet<tbkk.Models.GradeHistory> GradeHistory { get; set; }
-        public DbSet<tbkk.Models.JoinAssetEmp> JoinAssetEmp { get; set; }
-        public DbSet<tbkk.Models.JoinLicenseAsset> JoinLicenseAsset { get; set; }
-        public DbSet<tbkk.Models.KPI> KPI { get; set; }
-        public DbSet<tbkk.Models.License> License { get; set; }
         public DbSet<tbkk.Models.Location> Location { get; set; }
         public DbSet<tbkk.Models.Login> Login { get; set; }
-        
-        public DbSet<tbkk.Models.Network> Network { get; set; }
         public DbSet<tbkk.Models.OT> OT { get; set; }
         public DbSet<tbkk.Models.Part> Part { get; set; }
         public DbSet<tbkk.Models.Point> Point { get; set; }
         public DbSet<tbkk.Models.Position> Position { get; set; }
-        public DbSet<tbkk.Models.Relationship> Relationship { get; set; }
-        public DbSet<tbkk.Models.Repair> Repair { get; set; }
-        public DbSet<tbkk.Models.Report> Report { get; set; }
-        public DbSet<tbkk.Models.Suggestion> Suggestion { get; set; }
-        public DbSet<tbkk.Models.Supplier> Supplier { get; set; }
-        public DbSet<tbkk.Models.UpdateAsset> UpdateAsset { get; set; }
-        public DbSet<tbkk.Models.UpdateLicense> UpdateLicense { get; set; }
-        public DbSet<tbkk.Models.UpdateNetwork> UpdateNetwork { get; set; }
         public DbSet<tbkk.Models.CarQueue> CarQueue { get; set; }
         public DbSet<tbkk.Models.DetailCarQueue> DetailCarQueue { get; set; }
-        public DbSet<tbkk.Models.Model> Models { get; set; }
+        public DbSet<tbkk.Models.LineToken> LineToken { get; set; }
+        
+
     }
 }
