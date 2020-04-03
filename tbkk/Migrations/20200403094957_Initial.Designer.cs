@@ -10,7 +10,7 @@ using tbkk.Models;
 namespace tbkk.Migrations
 {
     [DbContext(typeof(tbkkdbContext))]
-    [Migration("20200402131459_Initial")]
+    [Migration("20200403094957_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace tbkk.Migrations
                     b.Property<string>("Call")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Canteen_CompanyID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -44,6 +47,8 @@ namespace tbkk.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CanteenID");
+
+                    b.HasIndex("Canteen_CompanyID");
 
                     b.ToTable("Canteen");
                 });
@@ -99,6 +104,9 @@ namespace tbkk.Migrations
 
                     b.Property<int>("Seat")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CarTypeID");
 
@@ -364,6 +372,9 @@ namespace tbkk.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("FoodSetID");
 
                     b.HasIndex("Canteen_CanteenID");
@@ -526,6 +537,13 @@ namespace tbkk.Migrations
                     b.HasKey("PositionID");
 
                     b.ToTable("Position");
+                });
+
+            modelBuilder.Entity("tbkk.Models.Canteen", b =>
+                {
+                    b.HasOne("tbkk.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("Canteen_CompanyID");
                 });
 
             modelBuilder.Entity("tbkk.Models.CarQueue", b =>

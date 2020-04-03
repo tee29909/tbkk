@@ -8,23 +8,6 @@ namespace tbkk.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Canteen",
-                columns: table => new
-                {
-                    CanteenID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Line = table.Column<string>(nullable: true),
-                    Call = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Canteen", x => x.CanteenID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Company",
                 columns: table => new
                 {
@@ -110,25 +93,27 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodSet",
+                name: "Canteen",
                 columns: table => new
                 {
-                    FoodSetID = table.Column<int>(nullable: false)
+                    CanteenID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodSetcoManul = table.Column<string>(nullable: true),
-                    NameSet = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
-                    Canteen_CanteenID = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Line = table.Column<string>(nullable: true),
+                    Call = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    Canteen_CompanyID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodSet", x => x.FoodSetID);
+                    table.PrimaryKey("PK_Canteen", x => x.CanteenID);
                     table.ForeignKey(
-                        name: "FK_FoodSet_Canteen_Canteen_CanteenID",
-                        column: x => x.Canteen_CanteenID,
-                        principalTable: "Canteen",
-                        principalColumn: "CanteenID",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Canteen_Company_Canteen_CompanyID",
+                        column: x => x.Canteen_CompanyID,
+                        principalTable: "Company",
+                        principalColumn: "CompanyID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,6 +264,29 @@ namespace tbkk.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FoodSet",
+                columns: table => new
+                {
+                    FoodSetID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FoodSetcoManul = table.Column<string>(nullable: true),
+                    NameSet = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    Status = table.Column<string>(nullable: true),
+                    Canteen_CanteenID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodSet", x => x.FoodSetID);
+                    table.ForeignKey(
+                        name: "FK_FoodSet_Canteen_Canteen_CanteenID",
+                        column: x => x.Canteen_CanteenID,
+                        principalTable: "Canteen",
+                        principalColumn: "CanteenID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CarType",
                 columns: table => new
                 {
@@ -286,6 +294,7 @@ namespace tbkk.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameCar = table.Column<string>(nullable: true),
                     Seat = table.Column<int>(nullable: false),
+                    Status = table.Column<string>(nullable: true),
                     CompanyCarID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -296,6 +305,27 @@ namespace tbkk.Migrations
                         column: x => x.CompanyCarID,
                         principalTable: "CompanyCar",
                         principalColumn: "CompanyCarID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Login",
+                columns: table => new
+                {
+                    LoginID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Login_EmployeeID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login", x => x.LoginID);
+                    table.ForeignKey(
+                        name: "FK_Login_Employee_Login_EmployeeID",
+                        column: x => x.Login_EmployeeID,
+                        principalTable: "Employee",
+                        principalColumn: "EmployeeID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -348,27 +378,6 @@ namespace tbkk.Migrations
                         column: x => x.Point_PointID,
                         principalTable: "Point",
                         principalColumn: "PointID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Login",
-                columns: table => new
-                {
-                    LoginID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Login_EmployeeID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Login", x => x.LoginID);
-                    table.ForeignKey(
-                        name: "FK_Login_Employee_Login_EmployeeID",
-                        column: x => x.Login_EmployeeID,
-                        principalTable: "Employee",
-                        principalColumn: "EmployeeID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -433,6 +442,11 @@ namespace tbkk.Migrations
                         principalColumn: "EmployeeID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Canteen_Canteen_CompanyID",
+                table: "Canteen",
+                column: "Canteen_CompanyID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarQueue_CarQueue_CarTypeID",

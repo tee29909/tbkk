@@ -21,7 +21,6 @@ namespace tbkk.Models
                 {
                     return;   // DB has been seeded
                 }
-
                 context.Canteen.AddRange(
                 new Canteen
                 {
@@ -30,21 +29,12 @@ namespace tbkk.Models
                     Line = "tee29909",
                     Call = "0805694931",
                     Status = "Open",
-                    
-
+                    Canteen_CompanyID = 1
                 }
                 );
-
-
                 context.SaveChanges();
                 /*---------------------------------*/
-
-
             }
-
-         
-           
-
         }
     }
 }

@@ -16,9 +16,10 @@ namespace tbkk.Models
         public string NameSet { get; set; }
 
         public int Price { get; set; }
+        public string Status { get; set; }
 
         [ForeignKey("Canteen")]
         public int Canteen_CanteenID { get; set; }
-        public Canteen Canteen { get; set; }
+        public Canteen Canteen { get; set; } 
     }
 }

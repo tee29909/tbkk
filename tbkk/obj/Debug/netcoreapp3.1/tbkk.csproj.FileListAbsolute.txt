@@ -227,3 +227,4 @@ D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Delete
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Details.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Edit.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Index.cshtml.g.cs
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\LineToken.cshtml.g.cs

@@ -1,0 +1,79 @@
+﻿@page
+@model tbkk.Pages.listOTs.LineTokenModel
+
+@{
+    ViewData["Title"] = "LineToken";
+}
+
+
+<div id="content-wrapper">
+    <div name="55555" class="card-layout ">
+
+        <h1>LineToken</h1>
+
+        <p>
+            <a asp-page="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LineToken[0].TokenCar)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LineToken[0].TokenFood)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LineToken[0].Company)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LineToken)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TokenCar)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TokenFood)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company.Image)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.LineTokenID">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.LineTokenID">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.LineTokenID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+    var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+    </script>
+}

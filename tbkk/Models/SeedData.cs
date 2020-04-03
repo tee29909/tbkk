@@ -239,7 +239,8 @@ namespace tbkk.Models
 
                     NameCar = "สองแถวสองประตู",
                     Seat = 8,
-                    CompanyCarID = 1
+                    CompanyCarID = 1,
+                    Status = "Open"
 
 
                 }
@@ -252,7 +253,8 @@ namespace tbkk.Models
 
                     NameCar = "สองแถวสี่ประตู",
                     Seat = 6,
-                    CompanyCarID = 1
+                    CompanyCarID = 1,
+                    Status = "Open"
 
 
                 }
@@ -264,7 +266,8 @@ namespace tbkk.Models
                   FoodSetcoManul = "No",
                   NameSet = "No",
                   Price=0,
-                  Canteen_CanteenID = 1
+                  Canteen_CanteenID = 1,
+                  Status = "Open"
 
 
               }
@@ -277,7 +280,8 @@ namespace tbkk.Models
                     FoodSetcoManul = "อาหาร",
                     NameSet = "A",
                     Price = 50,
-                    Canteen_CanteenID = 1
+                    Canteen_CanteenID = 1,
+                    Status = "Open"
 
 
 
@@ -291,7 +295,8 @@ namespace tbkk.Models
                     FoodSetcoManul = "อาหาร",
                     NameSet = "B",
                     Price = 50,
-                    Canteen_CanteenID = 1
+                    Canteen_CanteenID = 1,
+                    Status = "Open" 
 
                 }
                 );
