@@ -1,0 +1,54 @@
+﻿@page
+@model tbkk.Pages.FoodSets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodSet[0].FoodSetcoManul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodSet[0].NameSet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodSet[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodSet[0].Canteen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.FoodSet) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodSetcoManul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameSet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Canteen.CanteenID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.FoodSetID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.FoodSetID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.FoodSetID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

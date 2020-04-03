@@ -1,0 +1,66 @@
+﻿@page
+@model tbkk.Pages.CarQueues.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].CarNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].OT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].CarType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarQueue[0].Part)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CarQueue) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OT.OTID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType.CarTypeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Part.PartID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CarQueueID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CarQueueID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CarQueueID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

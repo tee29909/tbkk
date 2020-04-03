@@ -54,9 +54,12 @@ namespace tbkk
 
 
                     SeedDataPoint.Initialize(services);
-                    seedDataDetailOT.Initialize(services);
                     SeedDataLineToken.Initialize(services);
 
+
+
+                    seedDataDetailOT.Initialize(services);
+                    
                     //seedDataDetailOTDateNow.Initialize(services);
                 }
                 catch (Exception ex)

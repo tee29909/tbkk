@@ -1,0 +1,60 @@
+﻿@page
+@model tbkk.Pages.CarQueues.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CarQueue</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CarQueue.CarQueueID" />
+            <div class="form-group">
+                <label asp-for="CarQueue.CarNumber" class="control-label"></label>
+                <input asp-for="CarQueue.CarNumber" class="form-control" />
+                <span asp-validation-for="CarQueue.CarNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarQueue.Type" class="control-label"></label>
+                <input asp-for="CarQueue.Type" class="form-control" />
+                <span asp-validation-for="CarQueue.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarQueue.Time" class="control-label"></label>
+                <input asp-for="CarQueue.Time" class="form-control" />
+                <span asp-validation-for="CarQueue.Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarQueue.CarQueue_OTID" class="control-label"></label>
+                <select asp-for="CarQueue.CarQueue_OTID" class="form-control" asp-items="ViewBag.CarQueue_OTID"></select>
+                <span asp-validation-for="CarQueue.CarQueue_OTID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarQueue.CarQueue_CarTypeID" class="control-label"></label>
+                <select asp-for="CarQueue.CarQueue_CarTypeID" class="form-control" asp-items="ViewBag.CarQueue_CarTypeID"></select>
+                <span asp-validation-for="CarQueue.CarQueue_CarTypeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarQueue.CarQueue_PartID" class="control-label"></label>
+                <select asp-for="CarQueue.CarQueue_PartID" class="form-control" asp-items="ViewBag.CarQueue_PartID"></select>
+                <span asp-validation-for="CarQueue.CarQueue_PartID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
