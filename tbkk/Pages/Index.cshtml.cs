@@ -22,45 +22,52 @@ namespace tbkk.Pages
         {
             _context = context;
         }
-
+        [BindProperty]
         public Login Login { get; set; }
-        
+        public void OnGet()
+        {
+            HttpContext.Session.SetLogin(0);
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            string Username = Request.Form["Username"];
-            string Password = Request.Form["Password"];
+            //string Username = Request.Form["Username"];
+            //string Password = Request.Form["Password"];
             
 
-            Debug.WriteLine(Username);
-            if (Username == string.Empty && Password == string.Empty)
-            {
-                return Page();
-
-            }
             
-
-            Login = await _context.Login.Include(e => e.Employee)
-                .FirstOrDefaultAsync(u => u.Username.Equals(Username));
-
-            if (Login == null)
+            if (Login.Username == string.Empty)
             {
+                ModelState.AddModelError("user", "The username is incorrect.");
                 return Page();
             }
-            if (!Login.Password.Equals(Password))
+            if (Login.Password == string.Empty)
             {
+                ModelState.AddModelError("pass", "The Password is incorrect.");
                 return Page();
             }
+
+
+            var checkLogin = await _context.Login.Include(e => e.Employee)
+                .AnyAsync(u => u.Username.Equals(Login.Username) && u.Username.Equals(Login.Password));
+
+            if (checkLogin == false)
+            {
+                
+                ModelState.AddModelError("error", "The username or password is incorrect.");
+                return Page();
+            }
+
+
+
             //ViewData["Login_EmployeeID"] = new SelectList(_context.Set<Employee>(), "EmployeeID", "EmployeeID");
-            Debug.WriteLine(Login.Login_EmployeeID);
 
 
-
-
-            HttpContext.Session.SetLogin(Login.Employee);
-
-
-
+            Login = await _context.Login.FirstOrDefaultAsync(u => u.Username.Equals(Login.Username) && u.Username.Equals(Login.Password));
+            HttpContext.Session.SetLogin(Login.Login_EmployeeID);
             return RedirectToPage("./Home/Home");
+
+
 
         }
 

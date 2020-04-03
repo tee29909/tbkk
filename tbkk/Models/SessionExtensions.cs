@@ -15,9 +15,9 @@ namespace tbkk.Models
         /// </summary>
         /// <param name="key"></param>
         /// <param name="empLogin"></param>
-        public static void SetLogin(this ISession session, Employee empLogin)
+        public static void SetLogin(this ISession session, int id)
         {
-            session.SetInt32("login", empLogin.EmployeeID);
+            session.SetInt32("login", id);
 
         }
 

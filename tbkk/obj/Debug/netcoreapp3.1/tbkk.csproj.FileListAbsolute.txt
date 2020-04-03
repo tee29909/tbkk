@@ -153,12 +153,8 @@ D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\allowEm
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\CarQueue.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\ConfirmShuttle.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\ContactCarFood.cshtml.g.cs
-D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\CreateOT.cshtml.g.cs
-D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\detailOTView.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\listEmpOT.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\listJoinOT.cshtml.g.cs
-D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\listOT.cshtml.g.cs
-D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\manageCar.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\manageOT.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\OTcar.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
