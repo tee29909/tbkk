@@ -20,7 +20,7 @@ namespace tbkk.Pages.CarTypes
 
         public IActionResult OnGet()
         {
-        ViewData["CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
+        ViewData["CarType_CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
             return Page();
         }
 

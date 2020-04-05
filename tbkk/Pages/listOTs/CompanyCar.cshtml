@@ -76,8 +76,8 @@
                             <!-- Modal footer -->
 
                             <div class="modal-footer">
-                                <input type="submit" value="Confirm" class="btn btn-primary" />
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Confirm" class="btn btn-outline-info" />
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
 
@@ -157,8 +157,8 @@
                             <!-- Modal footer -->
 
                             <div class="modal-footer">
-                                <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-primary" />
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-outline-success" />
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
 
@@ -243,11 +243,11 @@
                     <td>
 
                         @if (Model.select != null)
-                        {@:<samp class="btn btn-danger " onclick="getCompanyCar(@Model.select.CompanyCarID)" data-toggle="modal" data-target="#Edit">Edit</samp>
+                        {@:<samp class="btn btn-outline-warning" onclick="getCompanyCar(@Model.select.CompanyCarID)" data-toggle="modal" data-target="#Edit">Edit</samp>
                             @:|
 
 
-                            <a class="btn btn-danger " asp-page="./CarType" asp-route-id="@Model.select.CompanyCarID">CarType</a>
+                            <a class="btn btn-outline-primary" asp-page="./CarType" asp-route-id="@Model.select.CompanyCarID">CarType</a>
 
                         }
 
@@ -268,7 +268,7 @@
             <div class="card-header">
                 <i class="fas fa-table"></i>
                 CompanyCar
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create</button>
+                <button type="button" class="btn btn-outline-info float-right" data-toggle="modal" data-target="#myModal">Create</button>
             </div>
 
             <div class="card-body">
@@ -330,10 +330,10 @@
                                         <form method="post">
 
 
-                                            <button asp-page-handler="Select" class="btn btn-danger " type="submit" asp-route-id="@item.CompanyCarID">Select</button>|
-                                            <samp class="btn btn-danger " onclick="getCompanyCar(@item.CompanyCarID)" data-toggle="modal" data-target="#Edit">Edit</samp>|
+                                            <button asp-page-handler="Select" class="btn btn-outline-success" type="submit" asp-route-id="@item.CompanyCarID">Select</button>|
+                                            <samp class="btn btn-outline-warning" onclick="getCompanyCar(@item.CompanyCarID)" data-toggle="modal" data-target="#Edit">Edit</samp>|
 
-                                            <a class="btn btn-danger " asp-page="./CarType" asp-route-id="@item.CompanyCarID">CarType</a>
+                                            <a class="btn btn-outline-primary" asp-page="./CarType" asp-route-id="@item.CompanyCarID">CarType</a>
 
 
                                         </form>

@@ -78,8 +78,8 @@
                             <!-- Modal footer -->
 
                             <div class="modal-footer">
-                                <input type="submit" value="Confirm" class="btn btn-primary" />
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Confirm" class="btn btn-outline-success" />
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
 
@@ -159,8 +159,8 @@
                             <!-- Modal footer -->
 
                             <div class="modal-footer">
-                                <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-primary" />
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-outline-success" />
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
 
@@ -245,9 +245,9 @@
 
 
 
-                        <a class="btn btn-danger " asp-page="./FoodSet" asp-route-id="@Model.select.CanteenID">Manu</a>|
-                        <samp class="btn btn-danger " onclick="getCanteen(@Model.select.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>
 
+                        <samp class="btn btn-outline-warning" onclick="getCanteen(@Model.select.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>|
+                        <a class="btn btn-outline-primary" asp-page="./FoodSet" asp-route-id="@Model.select.CanteenID">Manu</a>
 
 
                     </td>
@@ -263,7 +263,7 @@
             <div class="card-header">
                 <i class="fas fa-table"></i>
                 Canteen
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create</button>
+                <button type="button" class="btn btn-outline-info float-right" data-toggle="modal" data-target="#myModal">Create</button>
             </div>
 
             <div class="card-body">
@@ -322,10 +322,10 @@
                                         <form method="post">
 
 
-                                            <button asp-page-handler="Select" class="btn btn-danger " type="submit" asp-route-id="@item.CanteenID">Select</button>|
-                                            <a class="btn btn-danger " asp-page="./FoodSet" asp-route-id="@item.CanteenID">Manu</a>|
-                                            <samp class="btn btn-danger " onclick="getCanteen(@item.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>
+                                            <button asp-page-handler="Select" class="btn btn-outline-success" type="submit" asp-route-id="@item.CanteenID">Select</button>|
 
+                                            <samp class="btn btn-outline-warning" onclick="getCanteen(@item.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>|
+                                            <a class="btn btn-outline-primary" asp-page="./FoodSet" asp-route-id="@item.CanteenID">Manu</a>
 
                                         </form>
 

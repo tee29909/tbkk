@@ -20,9 +20,10 @@ namespace tbkk.Pages.CarQueues
 
         [BindProperty]
         public CarQueue CarQueue { get; set; }
-
+        public Employee Employee { get; set; }
+       
         public async Task<IActionResult> OnGetAsync(int? id)
-        {
+        { Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +47,7 @@ namespace tbkk.Pages.CarQueues
             {
                 return NotFound();
             }
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             CarQueue = await _context.CarQueue.FindAsync(id);
 

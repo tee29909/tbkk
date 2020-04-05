@@ -19,9 +19,10 @@ namespace tbkk.Pages.Canteens
         }
 
         public IList<Canteen> Canteen { get;set; }
-
+        public Employee Employee { get; set; }
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             Canteen = await _context.Canteen
                 .Include(c => c.Company).ToListAsync();
         }

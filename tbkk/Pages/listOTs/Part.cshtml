@@ -1,0 +1,309 @@
+﻿@page
+@model tbkk.Pages.listOTs.PartModel
+
+@{
+    ViewData["Title"] = "Part";
+}
+
+
+
+
+
+
+
+<div id="content-wrapper">
+    <div name="55555" class="card-layout ">
+
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+
+                        <div class="modal-body">
+                            <div class="row ">
+                                <div class="col">
+
+
+                                    <div class="row ">
+                                        <div class="col">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="Part.Name" class="control-label"></label>
+                                                <input asp-for="Part.Name" class="form-control" />
+                                                <span asp-validation-for="Part.Name" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="Part.Price" class="control-label"></label>
+                                                <input asp-for="Part.Price" class="form-control" />
+                                                <span asp-validation-for="Part.Price" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- Modal footer -->
+
+                            <div class="modal-footer">
+                                <input type="submit" value="Confirm" class="btn btn-outline-success" />
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="Edit">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+
+                        <div class="modal-body">
+                            <div class="row ">
+
+
+
+                                <div class="col">
+
+
+                                    <div class="row ">
+                                        <div class="col">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="PartEdit .Name" class="control-label"></label>
+                                                <input asp-for="PartEdit.Name" class="form-control" />
+                                                <span asp-validation-for="PartEdit.Name" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="PartEdit.Price" class="control-label"></label>
+                                                <input asp-for="PartEdit.Price" class="form-control" />
+                                                <input hidden asp-for="PartEdit.PartID" class="form-control" />
+                                                <span asp-validation-for="PartEdit.Price" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-outline-success" />
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    
+
+
+        <h1>Part</h1>
+
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item active d-print-none">Management OT</li>
+            <li class="breadcrumb-item active d-print-none">Part</li>
+
+        </ol>
+
+        <hr />
+
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Part
+                <button type="button" class="btn btn-outline-info float-right" data-toggle="modal" data-target="#myModal">Create</button>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Part.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Part.Price)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Partlist)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+
+
+                                        <samp class="btn btn-outline-warning" onclick="getPart(@item.PartID)" data-toggle="modal" data-target="#Edit">Edit</samp>|
+                                        <a class="btn btn-outline-primary" asp-page="./Point" asp-route-id="@item.PartID">Point</a>
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+
+
+
+        function getPart(id) {
+            $.ajax({
+                type: "GET",
+                url: "/api/Parts/" + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    $('#PartEdit_PartID').val(data.partID);
+                    $('#PartEdit_Name').val(data.name);
+                    $('#PartEdit_Price').val(data.price);
+                    
+                    console.log(data);
+                },
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function
+                error: function (data) {
+                    alert(data.responseText);
+                }
+
+
+            });
+
+
+
+
+        }
+
+
+
+
+
+
+
+           $(window).on('load', function () {
+
+
+             var a = @Model.Debug;
+
+            if (a == 1) {
+
+                $('#myModal').modal('show');
+            } else if (a == 2) {
+
+                $('#Edit').modal('show');
+            }
+
+    });
+
+
+
+
+    </script>
+
+}

@@ -20,6 +20,9 @@
                 @Html.DisplayNameFor(model => model.CarType[0].Seat)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CarType[0].Status)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CarType[0].CompanyCar)
             </th>
             <th></th>
@@ -33,6 +36,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Seat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CompanyCar.CompanyCarID)

@@ -19,9 +19,11 @@ namespace tbkk.Pages.CarQueues
         }
 
         public IList<CarQueue> CarQueue { get;set; }
-
+ public Employee Employee { get; set; }
         public async Task OnGetAsync()
         {
+            
+        Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarQueue = await _context.CarQueue
                 .Include(c => c.CarType)
                 .Include(c => c.OT)

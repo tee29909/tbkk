@@ -20,10 +20,11 @@ namespace tbkk.Pages.Canteens
 
         public IActionResult OnGet()
         {
-        ViewData["Canteen_CompanyID"] = new SelectList(_context.Company, "CompanyID", "Image");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["Canteen_CompanyID"] = new SelectList(_context.Company, "CompanyID", "Image");
             return Page();
         }
-
+public Employee Employee { get; set; }
         [BindProperty]
         public Canteen Canteen { get; set; }
 
@@ -31,6 +32,7 @@ namespace tbkk.Pages.Canteens
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

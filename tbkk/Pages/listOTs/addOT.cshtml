@@ -19,7 +19,7 @@
         </ol>
         <hr />
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">
             Register OT
         </button>
 
@@ -45,7 +45,7 @@
                                         <div class="col-lg-6">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <div class="form-group">
-                                                <label asp-for="OT.date" class="control-label"></label>
+                                                <label asp-for="OT.date" class="control-label dateOT"></label>
                                                 <input asp-for="OT.date" class="form-control" />
                                                 <span asp-validation-for="OT.date" class="text-danger"></span>
                                                 <input hidden asp-for="OT.TypStatus" class="form-control" value="Open" />
@@ -126,9 +126,9 @@
                                                     @{
                                                         //if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
                                                         //{
-                                                        <option>Go</option>
+                                                        <option id="Go">Go</option>
 
-                                                        <option>Go and Back</option>
+                                                        <option id="GoandBack">Go and Back</option>
 
                                                         @*}*@
                                                     }
@@ -241,7 +241,7 @@
                                             <div class="form-group">
 
                                                 <label asp-for="EditDetailOT.OT.date" class="control-label"></label>
-                                                <input readonly asp-for="OTset.date" id="EditDetailOTDate" class="form-control" />
+                                                <input readonly asp-for="OTset.date" id="EditDetailOTDate"  class="form-control" />
                                                 <span asp-validation-for="EditDetailOT.OT.date" class="text-danger"></span>
 
                                                 <lable class="text-danger">
@@ -279,7 +279,7 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label asp-for="EditDetailOT.TimeEnd" class="control-label"></label>
-                                                    <input asp-for="EditDetailOT.TimeEnd" class="form-control date" />
+                                                    <input asp-for="EditDetailOT.TimeEnd" class="form-control date"  />
                                                     <span asp-validation-for="EditDetailOT.TimeEnd" class="text-danger"></span>
 
 
@@ -307,7 +307,7 @@
 
                                             <div class="form-group">
                                                 <label asp-for="EditDetailOT.Type" class="control-label"></label>
-                                                <select asp-for="EditDetailOT.Type" class="form-control">
+                                                <select asp-for="EditDetailOT.Type"  class="form-control">
                                                     <option disabled selected value=""> -- </option>
                                                     <option>No</option>
                                                     <option>Back</option>
@@ -315,9 +315,9 @@
                                                     @{
                                                         //if (Model.OT.TypeOT.Equals("Saturday") || Model.OT.TypeOT.Equals("Sunday"))
                                                         //{
-                                                        <option>Go</option>
+                                                        <option id="GoEdit">Go</option>
 
-                                                        <option>Go and Back</option>
+                                                        <option id="GoandBackEdit">Go and Back</option>
 
                                                         @*}*@
                                                     }
@@ -389,8 +389,8 @@
                         <!-- Modal footer -->
 
                         <div class="modal-footer">
-                            <input type="submit" asp-page-handler="Edit" value="Save" class="btn btn-primary" />
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-outline-success" />
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                         </div>
 
                     </form>
@@ -498,7 +498,7 @@
 
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                     </div>
 
 
@@ -590,7 +590,7 @@
                                     <div id="detailOTclick">
                                         <samp id="detailDetailOT" class="detailDetailOT btn btn-outline-primary" onclick="onclickDetailOT(@item.DetailOTID)" data-toggle="modal" data-target="#detail">Detail</samp>
                                         |
-                                        <samp id="editDetailOT" class="editDetailOT btn btn-outline-secondary" onclick="onclickEdit(@item.DetailOTID)" data-toggle="modal" data-target="#edit">
+                                        <samp id="editDetailOT" class="editDetailOT btn btn-outline-warning" onclick="onclickEdit(@item.DetailOTID)" data-toggle="modal" data-target="#edit">
                                             Edit
                                         </samp>
 
@@ -670,6 +670,7 @@
                 $('#myModal').modal('show');
             } else if (a == 2) {
                 timeSubtract()
+               
                 $('#edit').modal('show');
             }
 
@@ -679,7 +680,7 @@
 
             //var TimeStart = document.getElementById("DetailOT_TimeStart").value;
             //var TimeEnd = document.getElementById("DetailOT_TimeEnd").value;
-            //var time1 = new Date(TimeStart);  
+            //var time1 = new Date(TimeStart);
             //var time2 = new Date(TimeEnd);
             //var a = TimeEnd - TimeStart;
             //console.log(a.);
@@ -690,7 +691,7 @@
 
             timeSubtract2()
 
-            
+
 
         });
 
@@ -781,7 +782,7 @@
             dataType: "json",
                 success: function (data) {
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    
+
                     console.log(data);
                     var date = new Date(data.ot.date);
                     $('#showDate').html(date.getDate() + " " + months[date.getMonth()]  + " " + date.getFullYear());
@@ -796,14 +797,14 @@
                     $('#showPartName').html(data.point.namePoint);
                     $('#showNameSet').html(data.foodSet.nameSet);
                     $('#showStatus').html(data.status);
-                   
+
                     console.log(data.hour);
                 },
-             failure: function (data) {  
-                alert(data.responseText);  
-            }, //End of AJAX failure function  
-            error: function (data) {  
-                alert(data.responseText);  
+             failure: function (data) {
+                alert(data.responseText);
+            }, //End of AJAX failure function
+            error: function (data) {
+                alert(data.responseText);
             }
 
 
@@ -818,45 +819,13 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    var date = new Date(data.ot.date);
-                    
-                    $('#EditDetailOT_Status').val(data.status);
-                    $('#EditDetailOT_DetailOTID').val(data.detailOTID);
-                    $('#EditDetailOT_Employee_UserAdd_EmpID').val(data.employee_UserAdd_EmpID);
-                    $('#EditDetailOT_OT_OTID').val(data.oT_OTID);
-                    $('#EditDetailOT_FoodSet_FoodSetID').val(data.foodSet_FoodSetID);
-                    $('#EditDetailOT_Type').val(data.type);
+                    getDateEdit(data);
 
-                    $('#EditDetailOTDate').val(getdate(date));
-                    
-                    var timeStart = new Date(data.timeStart);
-                    var timeEnd = new Date(data.timeEnd);
 
-                    $('#ShowEmpName').val(data.employee.firstName + " " + data.employee.lastName);
-                    
-                    
-                    $('#EditDetailOT_Point_PointID').val(data.point_PointID);
-                    $('#EditDetailOT_TimeStart').val(timeStart.toLocaleTimeString('en-US', {
-                        hour12: false,
-                        hour: "numeric",
-                        minute: "numeric"
-                    }));
-                    $('#EditDetailOT_TimeEnd').val(timeEnd.toLocaleTimeString('en-US', {
-                        hour12: false,
-                        hour: "numeric",
-                        minute: "numeric"
-                    }));
-                    $('#EditDetailOT_Employee_EmpID').val(data.employee_EmpID);
-
-                    console.log(data);
-                    timeSubtract();
-                   
-                    
-                   
                 },
                 failure: function (data) {
                     alert(data.responseText);
-                }, //End of AJAX failure function  
+                }, //End of AJAX failure function
                 error: function (data) {
                     alert(data.responseText);
                 }
@@ -865,8 +834,8 @@
             });
 
 
-            
-           
+
+
         }
 
         function addZero(x, n) {
@@ -925,19 +894,78 @@
             else {
                 $('#hour').html('00:00 Hour');
             }
-           
+
         }
 
 
 
+        $('#OT_date').change(function () {
+            inputDateOT();
+        });
+
+        function inputDateOT() {
+            var a = document.getElementById("OT_date").value;
+            var dateOT = new Date(a);
+            if (!(dateOT.getDay() == 0 || dateOT.getDay() == 0)) {
+                $('#Go').hide();
+                $('#GoandBack').hide();
+            } else {
+                $('#Go').show();
+                $('#GoandBack').show();
+            }
+            console.log(dateOT.getDay());
+        }
+
+        function inputDateOTEdit() {
+            var a = document.getElementById("EditDetailOTDate").value;
+            var dateOT = new Date(a);
+            if (!(dateOT.getDay() == 0 || dateOT.getDay() == 0)) {
+                $('#GoEdit').hide();
+                $('#GoandBackEdit').hide();
+            }
+            else {
+                $('#GoEdit').show();
+                $('#GoandBackEdit').show();
+            }
+            console.log(dateOT.getDay());
+        }
 
 
+        function getDateEdit(data) {
+            var date = new Date(data.ot.date);
+
+            $('#EditDetailOT_Status').val(data.status);
+            $('#EditDetailOT_DetailOTID').val(data.detailOTID);
+            $('#EditDetailOT_Employee_UserAdd_EmpID').val(data.employee_UserAdd_EmpID);
+            $('#EditDetailOT_OT_OTID').val(data.oT_OTID);
+            $('#EditDetailOT_FoodSet_FoodSetID').val(data.foodSet_FoodSetID);
+            $('#EditDetailOT_Type').val(data.type);
+
+            $('#EditDetailOTDate').val(getdate(date));
+
+            var timeStart = new Date(data.timeStart);
+            var timeEnd = new Date(data.timeEnd);
+
+            $('#ShowEmpName').val(data.employee.firstName + " " + data.employee.lastName);
 
 
+            $('#EditDetailOT_Point_PointID').val(data.point_PointID);
+            $('#EditDetailOT_TimeStart').val(timeStart.toLocaleTimeString('en-US', {
+                hour12: false,
+                hour: "numeric",
+                minute: "numeric"
+            }));
+            $('#EditDetailOT_TimeEnd').val(timeEnd.toLocaleTimeString('en-US', {
+                hour12: false,
+                hour: "numeric",
+                minute: "numeric"
+            }));
+            $('#EditDetailOT_Employee_EmpID').val(data.employee_EmpID);
 
-
-
-
+            console.log(data);
+            timeSubtract();
+            inputDateOTEdit();
+                    }
 
 
     </script>

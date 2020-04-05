@@ -36,7 +36,7 @@ namespace tbkk.Pages.CarTypes
             {
                 return NotFound();
             }
-           ViewData["CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
+           ViewData["CarType_CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
             return Page();
         }
 

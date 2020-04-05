@@ -131,26 +131,35 @@ namespace tbkk.Pages.listOTs
         }
         public async Task<IActionResult> OnPostEditAsync()
         {
+            var check = 0;
             
-            if (!ModelState.IsValid)
-            {
                 if (EditDetailOT.Employee_EmpID == 0)
                 {
+                check = 1;
                     ModelState.AddModelError("EditDetailOT.Employee_EmpID", "The Employee field is required.");
                 }
                 if (EditDetailOT.Point_PointID == 0)
                 {
-                    ModelState.AddModelError("EditDetailOT.Part_PaetID", "The Part field is required.");
+                check = 1;
+                ModelState.AddModelError("EditDetailOT.Point_PointID", "The Point field is required.");
                 }
                 if (EditDetailOT.FoodSet_FoodSetID == 0)
                 {
-                    ModelState.AddModelError("EditDetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
+                check = 1;
+                ModelState.AddModelError("EditDetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
                 }
                 if (EditDetailOT.Type == null)
                 {
-                    ModelState.AddModelError("EditDetailOT.Type", "The Travel Type field is required.");
+                check = 1;
+                ModelState.AddModelError("EditDetailOT.Type", "The Travel Type field is required.");
                 }
 
+
+          
+
+
+
+            if (check == 1) {  
                 try
                 {
                     await OnLoad();
@@ -162,6 +171,11 @@ namespace tbkk.Pages.listOTs
                 Defal = 2;
                 return Page();
             }
+               
+            
+
+
+
             Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             var OTcheck = await _context.OT.FirstOrDefaultAsync(e => e.OTID == EditDetailOT.OT_OTID);
@@ -173,7 +187,6 @@ namespace tbkk.Pages.listOTs
             EditDetailOT.Hour = hour;
 
 
-            int check = 0;
             check = await CheckTimeEditAsync(OTcheck);
 
             if (check == 1)
@@ -242,8 +255,20 @@ namespace tbkk.Pages.listOTs
                 
 
             }
+            if (EditDetailOT.Type.Equals("No"))
+            {
+                var partName = await getNamePartAsync(EditDetailOT.Point_PointID);
+                if (!partName.Equals("No"))
+                {
+                    check = 1;
+                    ModelState.AddModelError("EditDetailOT.Part_PaetID", "Incorrect selection.");
 
-           
+                }
+
+
+            }
+
+
 
             if (!(OTcheck.TypeOT.Equals("Sunday") || OTcheck.TypeOT.Equals("Saturday")) && EditDetailOT.TimeStart.Hour < 17)
             {
@@ -280,44 +305,62 @@ namespace tbkk.Pages.listOTs
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var check = 0;
 
-            if (!ModelState.IsValid)
+            if (OT.date == null)
             {
-                if (DetailOT.Employee_EmpID == 0)
+                check = 1;
+                ModelState.AddModelError("OT.date", "The Employee field is required.");
+            }
+            if (DetailOT.TimeStart == null)
+            {
+                check = 1;
+                ModelState.AddModelError("DetailOT.TimeStart", "The TimeStart field is required.");
+            }
+            if (DetailOT.TimeEnd == null)
+            {
+                check = 1;
+                ModelState.AddModelError("DetailOT.TimeEnd", "The TimeEnd field is required.");
+            }
+
+            if (DetailOT.Employee_EmpID == 0)
                 {
+                check = 1;
                     ModelState.AddModelError("DetailOT.Employee_EmpID", "The Employee field is required.");
                 }
+                
                 if (DetailOT.Point_PointID == 0)
                 {
-                    ModelState.AddModelError("DetailOT.Point_PointID", "The Part field is required.");
-
-                }
-                if (DetailOT.Point_PointID == 0)
-                {
-                    ModelState.AddModelError("DetailOT.Point_PointID", "The Part field is required.");
+                check = 1;
+                ModelState.AddModelError("DetailOT.Point_PointID", "The Part field is required.");
                 }
                 if (DetailOT.Type == null)
                 {
-                    ModelState.AddModelError("DetailOT.Type", "The Travel Type field is required.");
+                check = 1;
+                ModelState.AddModelError("DetailOT.Type", "The Travel Type field is required.");
                 }
                 if (DetailOT.FoodSet_FoodSetID == 0)
                 {
-                    ModelState.AddModelError("DetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
+                check = 1;
+                ModelState.AddModelError("DetailOT.FoodSet_FoodSetID", "The Food Set field is required.");
                 }
 
-
-                try
+            if (check == 1)
+            { try
                 {
                     await OnLoad();
                 }
                 catch (Exception)
                 {
-                    return RedirectToPage("./index");
+                    return RedirectToPage("./../index");
                 }
 
                 Defal = 1;
                 return Page();
+
             }
+               
+            
 
 
             int checkNull = 0;
@@ -385,7 +428,7 @@ namespace tbkk.Pages.listOTs
             DetailOT.Hour = hour;
 
 
-            int check = 0;
+            
             check = await checkTimeAsync(check);
             if (check == 1)
             {

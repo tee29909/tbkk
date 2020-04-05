@@ -44,7 +44,7 @@ namespace tbkk.Pages.Canteens
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             Canteen = await _context.Canteen.FindAsync(id);
 
             if (Canteen != null)

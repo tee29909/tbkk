@@ -29,6 +29,11 @@
                 <span asp-validation-for="FoodSet.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="FoodSet.Status" class="control-label"></label>
+                <input asp-for="FoodSet.Status" class="form-control" />
+                <span asp-validation-for="FoodSet.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="FoodSet.Canteen_CanteenID" class="control-label"></label>
                 <select asp-for="FoodSet.Canteen_CanteenID" class ="form-control" asp-items="ViewBag.Canteen_CanteenID"></select>
             </div>

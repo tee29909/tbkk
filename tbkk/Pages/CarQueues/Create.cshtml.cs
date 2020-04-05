@@ -17,9 +17,11 @@ namespace tbkk.Pages.CarQueues
         {
             _context = context;
         }
-
+             public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
+
+        Employee = HttpContext.Session.GetLogin(_context.Employee);
         ViewData["CarQueue_CarTypeID"] = new SelectList(_context.CarType, "CarTypeID", "CarTypeID");
         ViewData["CarQueue_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
         ViewData["CarQueue_PartID"] = new SelectList(_context.Part, "PartID", "PartID");
@@ -37,6 +39,7 @@ namespace tbkk.Pages.CarQueues
             {
                 return Page();
             }
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             _context.CarQueue.Add(CarQueue);
             await _context.SaveChangesAsync();

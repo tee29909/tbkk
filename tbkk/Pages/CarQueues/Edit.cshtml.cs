@@ -21,14 +21,15 @@ namespace tbkk.Pages.CarQueues
 
         [BindProperty]
         public CarQueue CarQueue { get; set; }
-
+        public Employee Employee { get; set; }
+        
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarQueue = await _context.CarQueue
                 .Include(c => c.CarType)
                 .Include(c => c.OT)
@@ -52,7 +53,7 @@ namespace tbkk.Pages.CarQueues
             {
                 return Page();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             _context.Attach(CarQueue).State = EntityState.Modified;
 
             try

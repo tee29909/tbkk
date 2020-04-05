@@ -24,8 +24,13 @@
                 <span asp-validation-for="CarType.Seat" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="CarType.Status" class="control-label"></label>
+                <input asp-for="CarType.Status" class="form-control" />
+                <span asp-validation-for="CarType.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CarType.CarType_CompanyCarID" class="control-label"></label>
-                <select asp-for="CarType.CarType_CompanyCarID" class ="form-control" asp-items="ViewBag.CompanyCarID"></select>
+                <select asp-for="CarType.CarType_CompanyCarID" class ="form-control" asp-items="ViewBag.CarType_CompanyCarID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
