@@ -111,7 +111,7 @@ namespace tbkk.Pages.listOTs
 
             foreach (var i in DetailOTnew)
             {
-                if (i.FoodSet_FoodSetID != 1)
+                if (!i.FoodSet.NameSet.Equals("No"))
                 {
                     OTsnew.countFood = OTsnew.countFood + 1;
                 }
@@ -138,7 +138,7 @@ namespace tbkk.Pages.listOTs
                 DataDepasments.DepasmentsID = i.DepartmentID;
                 DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
                 DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.FoodCount = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1 && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.FoodCount = DetailOTnew.Where(d => !d.FoodSet.NameSet.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
                 List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
@@ -165,7 +165,7 @@ namespace tbkk.Pages.listOTs
                     Foods foods = new Foods();
                     foods.FoodID = j.FoodSetID;
                     foods.FoodName = j.NameSet;
-                    IList<DetailOT> DataPart = DetailOTnew.Where(d => d.FoodSet_FoodSetID != 1).ToList();
+                    IList<DetailOT> DataPart = DetailOTnew.Where(d => !d.FoodSet.NameSet.Equals("No")).ToList();
                     DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.FoodSet_FoodSetID == j.FoodSetID).ToList();
                     foods.FoodsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
@@ -291,10 +291,8 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Point.Part).Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToListAsync();
             Part = await _context.Part.Where(a=> !a.Name.Equals("No")).ToListAsync();
             FoodSet =await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
-            CarType = await _context.CarType.ToListAsync();
+            CarType = await _context.CarType.Include(e => e.CompanyCar.Company).Where(e =>e.CompanyCar.CompanyCarID == Employee.Employee_CompanyID && e.CompanyCar.Status.Equals("Open") && e.Status.Equals("Open")).ToListAsync();
             CarType = CarType.OrderByDescending(o => o.Seat).ToList();
-            
-
         }
 
 

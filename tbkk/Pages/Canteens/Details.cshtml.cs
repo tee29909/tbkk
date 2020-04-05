@@ -27,7 +27,8 @@ namespace tbkk.Pages.Canteens
                 return NotFound();
             }
 
-            Canteen = await _context.Canteen.FirstOrDefaultAsync(m => m.CanteenID == id);
+            Canteen = await _context.Canteen
+                .Include(c => c.Company).FirstOrDefaultAsync(m => m.CanteenID == id);
 
             if (Canteen == null)
             {

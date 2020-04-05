@@ -9,57 +9,196 @@
 <div id="content-wrapper">
     <div name="55555" class="card-layout ">
 
-        <h1>LineToken</h1>
+        <h1>Line Token</h1>
 
-        <p>
-            <a asp-page="Create">Create New</a>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LineToken[0].TokenCar)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LineToken[0].TokenFood)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LineToken[0].Company)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.LineToken)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TokenCar)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TokenFood)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Company.Image)
-                        </td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.LineTokenID">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.LineTokenID">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.LineTokenID">Delete</a>
-                        </td>
-                    </tr>
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item active d-print-none">Management OT</li>
+            <li class="breadcrumb-item active d-print-none">Line Token</li>
+
+        </ol>
+
+        <hr />
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                TokenID
+                @{
+                    if (Model.LineToken == null)
+                    {
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger float-right" data-toggle="modal" data-target="#Edit">Edit</button>
+                    }
                 }
-            </tbody>
-        </table>
 
+
+            </div>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Create</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form method="post">
+                            <div class="modal-body">
+                                <div class="row ">
+                                    <div class="col">
+
+                                        <div class="row ">
+
+                                            <div class="col-lg-6">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="LineToken.TokenCar" class="control-label"></label>
+                                                    <input asp-for="LineToken.TokenCar" class="form-control" />
+                                                    <input hidden asp-for="LineToken.Company_CompanyID" value="@Model.Employee.Employee_CompanyID" class="form-control" />
+                                                    <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+
+                                                <div class="form-group">
+                                                    <label asp-for="LineToken.TokenFood" class="control-label"></label>
+                                                    <input asp-for="LineToken.TokenFood" class="form-control" />
+                                                    <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <input type="submit" value="confirm" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="Edit">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form method="post">
+                            <div class="modal-body">
+                                <div class="row ">
+                                    <div class="col">
+
+                                        <div class="row ">
+
+                                            <div class="col-lg-6">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="LineToken.TokenCar" class="control-label"></label>
+                                                    <input asp-for="LineToken.TokenCar" class="form-control" />
+                                                    <input hidden asp-for="LineToken.LineTokenID" class="form-control" />
+                                                    <input hidden asp-for="LineToken.Company_CompanyID" class="form-control" />
+                                                    <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+
+                                                <div class="form-group">
+                                                    <label asp-for="LineToken.TokenFood" class="control-label"></label>
+                                                    <input asp-for="LineToken.TokenFood" class="form-control" />
+                                                    <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <input type="submit" asp-page-handler="Edit" value="confirm" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="card-body">
+
+
+
+                <div class="row">
+                    <dt class="col-sm-6 text-right">
+                        @Html.DisplayNameFor(model => model.LineToken.TokenCar)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.LineToken.TokenCar)
+                    </dd>
+                </div>
+
+                <div class="row">
+                    <dt class="col-sm-6 text-right">
+                        @Html.DisplayNameFor(model => model.LineToken.TokenFood)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.LineToken.TokenFood)
+                    </dd>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
     </div>
 </div>
 
 
 
+
+
+
+
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
+<script>
     var nav = document.getElementById("Management");
     var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
 
@@ -73,7 +212,29 @@
                 @:nav2.style.display = "block";
             }
         }
-    var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
 
-    </script>
+
+
+
+
+
+
+
+         $(window).on('load', function () {
+
+
+             var a = @Model.Debug;
+
+            if (a == 1) {
+
+                $('#myModal').modal('show');
+            } else if (a == 2) {
+
+                $('#Edit').modal('show');
+            }
+
+    });
+
+</script>
 }

@@ -8,14 +8,50 @@
 <div id="content-wrapper">
     <div name="55555" class="card-layout">
 
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">No select company car.</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You have not selected a car company.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-page="./CompanyCar" class="btn btn-primary">Select</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
         <h1>Manage OT</h1>
         <div class="container-fluid">
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">Management OT</li>
                 <li class="breadcrumb-item active">Manage OT</li>
+                
 
             </ol>
+            <hr />
 
             @if (Model.OTa.Count != 0)
             {
@@ -64,16 +100,33 @@
                                 </td>
                                 <td>
                                     @{
-                                        if (item.TypStatus.Equals("Open"))
+                                        if (Model.CompanyCar == null)
                                         {
-                                            <form method="post">
-                                                <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-Did="@item.OTID">Close</button>
-                                            </form>
+                                            if (item.TypStatus.Equals("Open"))
+                                            {
+
+                                                <button class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">Close</button>
+
+                                            }
+                                            else if (item.TypStatus.Equals("Manage Car"))
+                                            {
+                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">Manahe Car</a>
+                                            }
                                         }
-                                        else if (item.TypStatus.Equals("Manage Car"))
+                                        else
                                         {
-                                            <a asp-page="./../listOTs/ConfirmShuttle" asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
+                                            if (item.TypStatus.Equals("Open"))
+                                            {
+                                                <form method="post">
+                                                    <button class="btn btn-outline-dark" value="Save" type="submit" asp-route-Did="@item.OTID">Close</button>
+                                                </form>
+                                            }
+                                            else if (item.TypStatus.Equals("Manage Car"))
+                                            {
+                                                <a asp-page="./../listOTs/ConfirmShuttle" asp-route-Did="@item.OTID" class="btn btn-outline-danger">Manahe Car</a>
+                                            }
                                         }
+
                                     }
                                 </td>
                             </tr>

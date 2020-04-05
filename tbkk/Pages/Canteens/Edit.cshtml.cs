@@ -29,12 +29,14 @@ namespace tbkk.Pages.Canteens
                 return NotFound();
             }
 
-            Canteen = await _context.Canteen.FirstOrDefaultAsync(m => m.CanteenID == id);
+            Canteen = await _context.Canteen
+                .Include(c => c.Company).FirstOrDefaultAsync(m => m.CanteenID == id);
 
             if (Canteen == null)
             {
                 return NotFound();
             }
+           ViewData["Canteen_CompanyID"] = new SelectList(_context.Company, "CompanyID", "Image");
             return Page();
         }
 

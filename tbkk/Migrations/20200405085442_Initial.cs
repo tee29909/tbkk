@@ -123,7 +123,7 @@ namespace tbkk.Migrations
                     CompanyCarID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameCompanyCar = table.Column<string>(nullable: true),
-                    Seat = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
                     Line = table.Column<string>(nullable: true),
                     Call = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),
@@ -295,14 +295,14 @@ namespace tbkk.Migrations
                     NameCar = table.Column<string>(nullable: true),
                     Seat = table.Column<int>(nullable: false),
                     Status = table.Column<string>(nullable: true),
-                    CompanyCarID = table.Column<int>(nullable: false)
+                    CarType_CompanyCarID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarType", x => x.CarTypeID);
                     table.ForeignKey(
-                        name: "FK_CarType_CompanyCar_CompanyCarID",
-                        column: x => x.CompanyCarID,
+                        name: "FK_CarType_CompanyCar_CarType_CompanyCarID",
+                        column: x => x.CarType_CompanyCarID,
                         principalTable: "CompanyCar",
                         principalColumn: "CompanyCarID",
                         onDelete: ReferentialAction.Cascade);
@@ -464,9 +464,9 @@ namespace tbkk.Migrations
                 column: "CarQueue_PartID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarType_CompanyCarID",
+                name: "IX_CarType_CarType_CompanyCarID",
                 table: "CarType",
-                column: "CompanyCarID");
+                column: "CarType_CompanyCarID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyCar_Company_CompanyID",

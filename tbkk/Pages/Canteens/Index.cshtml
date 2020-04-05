@@ -28,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Canteen[0].Status)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Canteen[0].Company)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -48,6 +51,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Image)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CanteenID">Edit</a> |

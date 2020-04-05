@@ -1,0 +1,430 @@
+﻿@page
+@model tbkk.Pages.listOTs.ManageCanteenModel
+
+@{
+    ViewData["Title"] = "ManageCanteen";
+}
+
+
+
+<div id="content-wrapper">
+    <div name="55555" class="card-layout ">
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+
+                        <div class="modal-body">
+                            <div class="row ">
+                                <div class="col">
+
+
+                                    <div class="row ">
+                                        <div class="col">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="Canteen.Name" class="control-label"></label>
+                                                <input asp-for="Canteen.Name" class="form-control" />
+                                                <span asp-validation-for="Canteen.Name" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="Canteen.Email" class="control-label"></label>
+                                                <input asp-for="Canteen.Email" class="form-control" />
+                                                <span asp-validation-for="Canteen.Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col">
+
+                                            <div class="form-group">
+                                                <label asp-for="Canteen.Line" class="control-label"></label>
+                                                <input asp-for="Canteen.Line" class="form-control" />
+                                                <span asp-validation-for="Canteen.Line" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="Canteen.Call" class="control-label"></label>
+                                                <input asp-for="Canteen.Call" class="form-control" />
+                                                <input hidden asp-for="Canteen.Status" class="form-control" value="Close" />
+                                                <input hidden asp-for="Canteen.Canteen_CompanyID" class="form-control" value="@Model.Employee.Employee_CompanyID" />
+                                                <span asp-validation-for="Canteen.Call" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+                            <!-- Modal footer -->
+
+                            <div class="modal-footer">
+                                <input type="submit" value="Confirm" class="btn btn-primary" />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="CanteenEdit">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+
+                        <div class="modal-body">
+                            <div class="row ">
+                                <div class="col">
+
+
+                                    <div class="row ">
+                                        <div class="col">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="CanteenEdit.Name" class="control-label"></label>
+                                                <input asp-for="CanteenEdit.Name" class="form-control" />
+                                                <span asp-validation-for="CanteenEdit.Name" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="CanteenEdit.Email" class="control-label"></label>
+                                                <input asp-for="CanteenEdit.Email" class="form-control" />
+                                                <span asp-validation-for="CanteenEdit.Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col">
+
+                                            <div class="form-group">
+                                                <label asp-for="CanteenEdit.Line" class="control-label"></label>
+                                                <input asp-for="CanteenEdit.Line" class="form-control" />
+                                                <span asp-validation-for="CanteenEdit.Line" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label asp-for="CanteenEdit.Call" class="control-label"></label>
+                                                <input asp-for="CanteenEdit.Call" class="form-control" />
+                                                <input hidden asp-for="CanteenEdit.CanteenID" class="form-control" />
+                                                <input hidden asp-for="CanteenEdit.Status" class="form-control" />
+                                                <input hidden asp-for="CanteenEdit.Canteen_CompanyID" class="form-control" />
+                                                <span asp-validation-for="CanteenEdit.Call" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+                            <!-- Modal footer -->
+
+                            <div class="modal-footer">
+                                <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-primary" />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <h1>Canteen</h1>
+
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item active d-print-none">Management OT</li>
+            <li class="breadcrumb-item active d-print-none">Canteen</li>
+
+        </ol>
+
+        <hr />
+        <h4>
+            Select Canteen: @if (Model.select != null)
+            {@Model.select.Name}
+        </h4>
+        <table class="table " width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Line)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Call)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CanteenList[0].Company)
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Line)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Call)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.select.Company.CompanyName)
+                    </td>
+
+                    <td>
+
+
+
+
+                        <a class="btn btn-danger " asp-page="./FoodSet" asp-route-id="@Model.select.CanteenID">Manu</a>|
+                        <samp class="btn btn-danger " onclick="getCanteen(@Model.select.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>
+
+
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Canteen
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create</button>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Line)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Call)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CanteenList[0].Company)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CanteenList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Line)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Call)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                                    </td>
+                                    <td>
+
+                                        @*<a asp-page="./Details" asp-route-id="@item.CanteenID">Details</a>*@
+                                        <form method="post">
+
+
+                                            <button asp-page-handler="Select" class="btn btn-danger " type="submit" asp-route-id="@item.CanteenID">Select</button>|
+                                            <a class="btn btn-danger " asp-page="./FoodSet" asp-route-id="@item.CanteenID">Manu</a>|
+                                            <samp class="btn btn-danger " onclick="getCanteen(@item.CanteenID)" data-toggle="modal" data-target="#CanteenEdit">Edit</samp>
+
+
+                                        </form>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+
+
+
+        function getCanteen(id) {
+            $.ajax({
+                type: "GET",
+                url: "/api/CanteensManage/" + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    $('#CanteenEdit_Status').val(data.status);
+                    $('#CanteenEdit_Name').val(data.name);
+                    $('#CanteenEdit_Email').val(data.email);
+                    $('#CanteenEdit_Line').val(data.line);
+                    $('#CanteenEdit_Call').val(data.call);
+                    $('#CanteenEdit_Canteen_CompanyID').val(data.canteen_CompanyID);
+                    $('#CanteenEdit_CanteenID').val(data.canteenID);
+
+                    console.log(data);
+                },
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function
+                error: function (data) {
+                    alert(data.responseText);
+                }
+
+
+            });
+
+
+
+
+        }
+
+
+
+
+
+
+
+           $(window).on('load', function () {
+
+
+             var a = @Model.Debug;
+
+            if (a == 1) {
+
+                $('#myModal').modal('show');
+            } else if (a == 2) {
+
+                $('#CanteenEdit').modal('show');
+            }
+
+    });
+
+
+
+
+</script>
+
+   }

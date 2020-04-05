@@ -10,13 +10,38 @@
 
     <div name="55555" class="card-layout">
 
-        <h1>Confirm Shuttle</h1>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">No LineToken.</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please fill out a LineToken.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-page="./LineToken" class="btn btn-primary">LineToken</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1>Summarize</h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Help Desk</li>
-            <li class="breadcrumb-item active">Repair</li>
-            <li class="breadcrumb-item active">Create</li>
+            <li class="breadcrumb-item active">Management OT</li>
+            <li class="breadcrumb-item active">Summarize</li>
+
+
         </ol>
+        <hr />
 
 
         <div class="card">
@@ -33,9 +58,9 @@
                         Date :
                     </dd>
                     <dd class="col-sm-6">
+                        @Html.DisplayFor(model => Model.OT.date)
 
-
-                        @Html.DisplayNameFor(model => Model.OT.date)
+                        
                     </dd>
                     <dd class="col-sm 6 text-right">
                         Personnel OT :
@@ -433,78 +458,97 @@
             </div>
         </div>*@
 
-
+        <br />
 
 
         <form method="post">
 
-            <div class="text-center col-12">
 
 
 
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-table"></i>
-                        <label class="float-left">Line Mass</label>
 
-                    </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    <label>Line Mass</label>
 
-                    <div class="card-body">
-                        @{var status = "";
-                            if (Model.LineToken == null)
-                            { status = "Fail"; }
-                            else { status = "True"; } }
-
-                        <label class="float-left">Mass Car</label>
-                        <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
-                        <label class="float-left">Mass Food</label>
-                        <textarea readonly class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
-                    </div>
                 </div>
-                <br />
+
+                <div class="card-body">
+                    @{var status = "";
+                        if (Model.LineToken == null)
+                        { status = "Fail"; }
+                        else { status = "True"; } }
+
+                    <label class="float-left">Mass Car</label>
+                    <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="6" name="massCar" /></textarea>
+                    <br />
+                    <label class="float-left">Mass Food</label>
+                    <textarea readonly class="form-control" id="exampleFormControlTextarea2" rows="6" name="massFood" /></textarea>
+                </div>
+            </div>
+            <br />
 
 
-                <script>
+            <script>
 
                         document.getElementById("exampleFormControlTextarea1").innerHTML = "@massCar";
                         document.getElementById("exampleFormControlTextarea2").innerHTML = "@massFood";
 
-                </script>
+            </script>
 
 
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div hidden class="form-group">
-                    <label asp-for="LineToken.LineTokenID" class="control-label"></label>
-                    <input asp-for="LineToken.LineTokenID" class="form-control" />
-                    <span asp-validation-for="LineToken.LineTokenID" class="text-danger"></span>
-                </div>
-                <div hidden class="form-group">
-                    <label asp-for="LineToken.TokenCar" class="control-label"></label>
-                    <input asp-for="LineToken.TokenCar" class="form-control" />
-                    <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
-                </div>
-                <div hidden class="form-group">
-                    <label asp-for="LineToken.TokenFood" class="control-label"></label>
-                    <input asp-for="LineToken.TokenFood" class="form-control" />
-                    <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
-                </div>
-                <div hidden class="form-group">
-                    <label asp-for="LineToken.Company_CompanyID" class="control-label"></label>
-                    <select asp-for="LineToken.Company_CompanyID" class="form-control" asp-items="ViewBag.Company_CompanyID"></select>
-                </div>
-
-
-
-                <h4>Line Status : @status </h4>
-                @Html.ValidationMessage("Error")
-                <button asp-page-handler="Line" type="submit"  asp-route-Did="@Model.OT.OTID" class="btn btn-success">Line Mass</button>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div hidden class="form-group">
+                <label asp-for="LineToken.LineTokenID" class="control-label"></label>
+                <input asp-for="LineToken.LineTokenID" class="form-control" />
+                <span asp-validation-for="LineToken.LineTokenID" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="LineToken.TokenCar" class="control-label"></label>
+                <input asp-for="LineToken.TokenCar" class="form-control" />
+                <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="LineToken.TokenFood" class="control-label"></label>
+                <input asp-for="LineToken.TokenFood" class="form-control" />
+                <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="LineToken.Company_CompanyID" class="control-label"></label>
+                <select asp-for="LineToken.Company_CompanyID" class="form-control" asp-items="ViewBag.Company_CompanyID"></select>
             </div>
 
+            <div class="text-center">
+                <h4>Line Status : @status </h4>
+                <h5 style="color:red">@Html.ValidationMessage("Error")</h5>
 
+                @{ if (status.Equals("Fail"))
+                    {
+
+
+                        <samp class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Line Mass</samp>
+
+                    }
+                    else
+                    {
+                        <button asp-page-handler="Line" type="submit" asp-route-Did="@Model.OT.OTID" class="btn btn-success">Line Mass</button>
+                    }
+                }
+
+
+            </div>
             <br />
-        </form>
+            <br />
 
+
+
+
+
+
+
+        </form>
 
 
     </div>
@@ -520,17 +564,17 @@
 
 
 @section Scripts {
-<script>
-    function myFunction1(i) {
-        var x = document.getElementById(i);
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
+    <script>
+        function myFunction1(i) {
+            var x = document.getElementById(i);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
         }
-    }
-</script>
-<script>
+    </script>
+    <script>
         var nav = document.getElementById("Management");
         var nav2 = document.getElementById("Management OT");
         @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
@@ -544,7 +588,7 @@
         }
      var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
     var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
-</script>
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 

@@ -15,6 +15,7 @@
             <li class="breadcrumb-item active">Car Table OT</li>
 
         </ol>
+        <hr />
 
         <div class="card mb-3">
             <div class="card-header">
@@ -49,33 +50,33 @@
                         <tbody>
                             @foreach (var item in Model.DetailCarQueue)
                             {
-                            <tr>
-                                <td>
-                                    @{
-                                        DateTime date = item.CarQueue.Time;
-                                    }
+                                <tr>
+                                    <td>
+                                        @{
+                                            DateTime date = item.CarQueue.Time;
+                                        }
 
-                                    @date.ToString("dd-MMM-yyyy")
-
-
-                                </td>
+                                        @date.ToString("dd-MMM-yyyy")
 
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarQueue.Time)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
-                                </td>
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
-                                </td>
 
-                            </tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.Time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.Part.Name)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.CarNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CarQueue.CarType.NameCar)
+                                    </td>
+
+                                </tr>
                             }
                         </tbody>
                     </table>

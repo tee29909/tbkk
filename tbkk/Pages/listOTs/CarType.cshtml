@@ -1,0 +1,292 @@
+﻿@page
+@model tbkk.Pages.listOTs.CarTypeModel
+
+@{
+    ViewData["Title"] = "CarType";
+}
+
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>CarType</h1>
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item active d-print-none">Management OT</li>
+                <li class="breadcrumb-item active d-print-none">Company Car</li>
+                <li class="breadcrumb-item active d-print-none">CarType</li>
+
+
+            </ol>
+
+            <hr />
+            <h4>Company Car :@Model.CompanyCar.NameCompanyCar</h4>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Create</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form method="post">
+
+                            <div class="modal-body">
+                                <div class="row ">
+                                    <div class="col">
+
+
+                                        <div class="row ">
+                                            <div class="col">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="CarType.NameCar" class="control-label"></label>
+                                                    <input asp-for="CarType.NameCar" class="form-control" />
+                                                    <span asp-validation-for="CarType.NameCar" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label asp-for="CarType.Seat" class="control-label"></label>
+                                                    <input asp-for="CarType.Seat" class="form-control" />
+                                                    <input hidden asp-for="CarType.CarType_CompanyCarID" class="form-control" value="@Model.CompanyCar.CompanyCarID" />
+                                                    <input hidden asp-for="CarType.Status" class="form-control" value="Open" />
+                                                    <span asp-validation-for="CarType.Seat" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <input type="submit" value="Confirm" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="Edit">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form method="post">
+
+                            <div class="modal-body">
+                                <div class="row ">
+                                    <div class="col">
+
+
+                                        <div class="row ">
+                                            <div class="col">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="CarTypeEdit.NameCar" class="control-label"></label>
+                                                    <input asp-for="CarTypeEdit.NameCar" class="form-control" />
+                                                    <span asp-validation-for="CarTypeEdit.NameCar" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label asp-for="CarTypeEdit.Seat" class="control-label"></label>
+                                                    <input asp-for="CarTypeEdit.Seat" class="form-control" />
+                                                    <input hidden asp-for="CarTypeEdit.CarType_CompanyCarID" class="form-control" />
+                                                    <input hidden asp-for="CarTypeEdit.CarTypeID" class="form-control" />
+                                                    <input hidden asp-for="CarTypeEdit.Status" class="form-control" />
+                                                    <span asp-validation-for="CarTypeEdit.Seat" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <input type="submit" asp-page-handler="Edit" value="Confirm" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Type Car
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Create</button>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+
+
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CarType.NameCar)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CarType.Seat)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CarType.CompanyCar)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CarType.Status)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CarTypeList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NameCar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Seat)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyCar.NameCompanyCar)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyCar.Status)
+                                        </td>
+                                        <td>
+                                            <form method="post">
+                                                <samp class="btn btn-danger " onclick="getCarType(@item.CarTypeID)" data-toggle="modal" data-target="#Edit">Edit</samp>|
+                                                @{ if (item.Status.Equals("Close"))
+                                                    {
+                                                        <button class="btn btn-danger " type="submit" asp-page-handler="Open" asp-route-id="@item.CarTypeID">Open</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn btn-danger " type="submit" asp-page-handler="Close" asp-route-id="@item.CarTypeID">Close</button>
+                                                    }
+
+                                                }
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+
+
+
+        function getCarType(id) {
+            $.ajax({
+                type: "GET",
+                url: "/api/CarTypes/" + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    $('#CarTypeEdit_CarTypeID').val(data.carTypeID);
+                    $('#CarTypeEdit_NameCar').val(data.nameCar);
+                    $('#CarTypeEdit_Seat').val(data.seat);
+                    $('#CarTypeEdit_Status').val(data.status);
+                    $('#CarTypeEdit_CarType_CompanyCarID').val(data.carType_CompanyCarID);
+
+
+
+                    console.log(data);
+                },
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function
+                error: function (data) {
+                    alert(data.responseText);
+                }
+
+
+            });
+
+
+
+
+        }
+
+
+
+
+
+          $(window).on('load', function () {
+
+
+             var a = @Model.Debug;
+
+            if (a == 1) {
+
+                $('#myModal').modal('show');
+            } else if (a == 2) {
+
+                $('#Edit').modal('show');
+            }
+
+    });
+
+
+
+
+
+
+</script>
+}

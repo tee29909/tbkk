@@ -68,7 +68,7 @@ namespace tbkk.Pages.listOTs
                 .Include(e => e.OT)
                 .Include(d => d.Point.Part)
                 .Include(e => e.Employee)
-                .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == Month && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
+                .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == Month && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.Employee_CompanyID && d.OT.TypStatus.Equals("Close")).ToList();
             var detailCarQ = _context.DetailCarQueue
                 .Include(e => e.CarQueue)
                 .Include(e => e.Employee).Where(d => d.CarQueue.OT.date.Year == Year && d.CarQueue.OT.date.Month == Month && d.CarQueue.OT.OT_CompanyID == Employee.Employee_CompanyID).ToList();
@@ -97,7 +97,7 @@ namespace tbkk.Pages.listOTs
                     .Include(e => e.OT)
                     .Include(d => d.Point.Part)
                     .Include(e => e.Employee)
-                    .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == i && d.Status.Equals("Allow")).ToList();
+                    .Include(e => e.FoodSet).Where(d => d.OT.date.Year == Year && d.OT.date.Month == i && d.Status.Equals("Allow") && d.OT.OT_CompanyID == Employee.EmployeeID && d.OT.TypStatus.Equals("Close")).ToList();
                 var costFoodAdd = detailadd.Where(o => (o.TimeStart.Hour == 8 || o.TimeStart.Hour == 17) && !o.FoodSet.NameSet.Equals("No")).ToList().Sum(s => s.FoodSet.Price);
                 var costCarAdd = detailCar.Sum(s => s.Part.Price);
                 total.Add(new chart1() { label = date.ToString("MMMM"), y = costCarAdd+costFoodAdd });

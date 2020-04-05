@@ -239,7 +239,7 @@ namespace tbkk.Models
 
                     NameCar = "สองแถวสองประตู",
                     Seat = 8,
-                    CompanyCarID = 1,
+                    CarType_CompanyCarID = 1,
                     Status = "Open"
 
 
@@ -253,7 +253,7 @@ namespace tbkk.Models
 
                     NameCar = "สองแถวสี่ประตู",
                     Seat = 6,
-                    CompanyCarID = 1,
+                    CarType_CompanyCarID = 1,
                     Status = "Open"
 
 

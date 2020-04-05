@@ -20,6 +20,7 @@ namespace tbkk.Pages.Canteens
 
         public IActionResult OnGet()
         {
+        ViewData["Canteen_CompanyID"] = new SelectList(_context.Company, "CompanyID", "Image");
             return Page();
         }
 

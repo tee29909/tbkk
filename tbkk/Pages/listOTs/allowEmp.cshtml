@@ -25,8 +25,10 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Management</li>
             <li class="breadcrumb-item active">Allow OT</li>
-            <li class="breadcrumb-item active">Allow</li>
+            <li class="breadcrumb-item active">OT @Html.DisplayFor(modelItem => Model.OT.date)</li>
+
         </ol>
+        <hr />
 
 
         <div class="card mb-3">
@@ -39,8 +41,8 @@
                 <div class="table-responsive">
 
                     <form method="post">
-                        <button asp-page-handler="AddAllowed" class="btn btn-outline-success" type="submit"  asp-route-id="@Model.OT.OTID">All Allowed</button>
-                        <button asp-page-handler="AddDisallow" class="btn btn-outline-danger" type="submit"  asp-route-id="@Model.OT.OTID">All Disallow</button>
+                        <button asp-page-handler="AddAllowed" class="btn btn-outline-success" type="submit" asp-route-id="@Model.OT.OTID">All Allowed</button>
+                        <button asp-page-handler="AddDisallow" class="btn btn-outline-danger" type="submit" asp-route-id="@Model.OT.OTID">All Disallow</button>
                     </form>
                     <br />
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -84,7 +86,7 @@
                             @foreach (var item in Model.list)
                             {
                                 <tr>
-                                     
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DetailOT.Employee.FirstName)  @Html.DisplayFor(modelItem => item.DetailOT.Employee.LastName)
                                     </td>
@@ -124,6 +126,7 @@
                                             {
                                                 @:@Html.DisplayFor(modelItem => item.DetailOT.Point.Part.Name) :=>  @Html.DisplayFor(modelItem => item.DetailOT.Point.NamePoint)
 
+
                                             }
                                         }
 
@@ -134,13 +137,13 @@
                                         @Html.DisplayFor(modelItem => item.DetailOT.FoodSet.NameSet)
                                     </td>
 
-                                  
+
                                     <td>
                                         <form method="post">
                                             @{
                                                 if (!item.DetailOT.Status.Equals("Allow"))
                                                 {
-                                                    <button asp-page-handler="Allow" type="submit"  asp-route-id="@item.DetailOT.DetailOTID" class="btn btn-primary">Allow</button>
+                                                    <button asp-page-handler="Allow" type="submit" asp-route-id="@item.DetailOT.DetailOTID" class="btn btn-primary">Allow</button>
                                                 }
                                                 if (!item.DetailOT.Status.Equals("Disallow"))
                                                 {

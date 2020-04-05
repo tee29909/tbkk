@@ -228,3 +228,7 @@ D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Detail
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Edit.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\FoodSets\Index.cshtml.g.cs
 D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\LineToken.cshtml.g.cs
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\ManageCanteen.cshtml.g.cs
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\FoodSet.cshtml.g.cs
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\CompanyCar.cshtml.g.cs
+D:\สำรอง\tbkk\tbkk\obj\Debug\netcoreapp3.1\Razor\Pages\listOTs\CarType.cshtml.g.cs

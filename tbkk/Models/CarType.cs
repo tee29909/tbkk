@@ -19,7 +19,7 @@ namespace tbkk.Models
         public string Status { get; set; }
 
         [ForeignKey("CompanyCar")]
-        public int CompanyCarID { get; set; }
+        public int CarType_CompanyCarID { get; set; }
         public CompanyCar CompanyCar { get; set; }
 
     }

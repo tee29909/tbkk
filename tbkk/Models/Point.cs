@@ -13,6 +13,9 @@ namespace tbkk.Models
         public int PointID { get; set; }
         [Display(Name = "Name Point")]
         public string NamePoint { get; set; }
+
+
+
         [ForeignKey("Part")]
         public int Point_PartID { get; set; }
         public Part Part { get; set; }

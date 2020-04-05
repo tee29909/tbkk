@@ -13,6 +13,7 @@
             <li class="breadcrumb-item active">Allow OT</li>
 
         </ol>
+        <hr />
 
 
 
@@ -27,77 +28,77 @@
             <div class="card-body">
                 <div class="table-responsive">
 
-                  
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT.date)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT.TypeOT)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT.TimeStart)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT.TimeEnd)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.OT.TypStatus)
-                                    </th>
-                                    <th>
-                                        Manage
-                                    </th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model.listOT != null)
+
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OT.date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OT.TypeOT)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OT.TimeStart)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OT.TimeEnd)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OT.TypStatus)
+                                </th>
+                                <th>
+                                    Manage
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.listOT != null)
+                            {
+                                @foreach (var item in Model.listOT)
                                 {
-                                    @foreach (var item in Model.listOT)
-                                    {
 
 
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.date)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.TypeOT)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.TimeStart)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.TimeEnd)
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TypeOT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TimeStart)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TimeEnd)
+                                        </td>
 
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OT.TypStatus)
-                                    </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OT.TypStatus)
+                                        </td>
 
-                                    <td>
-                                        @item.Emp_Manage / @item.Emp_Cout
-                                    </td>
-                                    <td>
-                                        
-                                            <a asp-page="./../listOTs/allowEmp"  asp-route-id="@item.OT.OTID" class="btn btn-outline-dark">Management</a>
-                                           
+                                        <td>
+                                            @item.Emp_Manage / @item.Emp_Cout
+                                        </td>
+                                        <td>
 
-                                    </td>
-                                </tr>
+                                            <a asp-page="./../listOTs/allowEmp" asp-route-id="@item.OT.OTID" class="btn btn-outline-dark">Management</a>
+
+
+                                        </td>
+                                    </tr>
 
 
 
-                                    }
                                 }
+                            }
 
-                                </tbody>
-                        </table>
+                        </tbody>
+                    </table>
 
-                   
+
 
 
 

@@ -14,7 +14,7 @@ namespace tbkk.Models
 
         public string NameCompanyCar { get; set; }
 
-        public string Seat { get; set; }
+        public string Email { get; set; }
         public string Line { get; set; }
         public string Call { get; set; }
         public string Status { get; set; }

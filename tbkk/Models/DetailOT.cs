@@ -25,7 +25,7 @@ namespace tbkk.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime TimeEnd { get; set; }
 
-
+        
         
         [Display(Name = "Hour")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c} Hour")]
@@ -39,14 +39,14 @@ namespace tbkk.Models
         [Display(Name = "Status")]
         public string Status { get; set; }
 
-        
+        [Required]
         [Display(Name = "Point")]
         [ForeignKey("Point")]
         
         public int Point_PointID { get; set; }
         public Point Point { get; set; }
+        [Required]
 
-        
         [Display(Name = "Food Set")]
         [ForeignKey("FoodSet")]
         

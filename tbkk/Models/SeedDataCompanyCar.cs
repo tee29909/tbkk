@@ -25,7 +25,7 @@ namespace tbkk.Models
                new CompanyCar
                {
                    NameCompanyCar = "transport",
-                   Seat = "Canteen@hotmail.com",
+                   Email = "Canteen@hotmail.com",
                    Line = "tee29909",
                    Call = "0805694931",
                    Status = "Open",

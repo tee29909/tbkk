@@ -22,7 +22,8 @@ namespace tbkk.Pages.Canteens
 
         public async Task OnGetAsync()
         {
-            Canteen = await _context.Canteen.ToListAsync();
+            Canteen = await _context.Canteen
+                .Include(c => c.Company).ToListAsync();
         }
     }
 }

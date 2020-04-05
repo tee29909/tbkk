@@ -24,13 +24,13 @@ namespace tbkk.Pages.listOTs
 
         public OT OTs { get; set; }
 
-        
+        public CompanyCar CompanyCar { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
             OT = await _context.OT.Where(e => e.TypStatus.Equals("Close")).ToListAsync();
             OTa = await _context.OT.Where(e => e.TypStatus.Equals("Open") || e.TypStatus.Equals("Manage Car")).ToListAsync();
-          
+           
             try
             {
                 Employee = HttpContext.Session.GetLogin(_context.Employee);
@@ -43,6 +43,8 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
+            var CompanyCarList = await _context.CompanyCar.Where(e => e.Company_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            CompanyCar = CompanyCarList.FirstOrDefault(e => e.Status.Equals("Open"));
             return Page();
         }
 

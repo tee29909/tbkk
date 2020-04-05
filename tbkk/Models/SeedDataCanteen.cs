@@ -25,9 +25,12 @@ namespace tbkk.Models
                 new Canteen
                 {
                     Name = "nabuy",
+
                     Email = "Canteen@hotmail.com",
+
                     Line = "tee29909",
                     Call = "0805694931",
+
                     Status = "Open",
                     Canteen_CompanyID = 1
                 }

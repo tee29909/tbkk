@@ -94,7 +94,7 @@ namespace tbkk.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CompanyCarID")
+                    b.Property<int>("CarType_CompanyCarID")
                         .HasColumnType("int");
 
                     b.Property<string>("NameCar")
@@ -108,7 +108,7 @@ namespace tbkk.Migrations
 
                     b.HasKey("CarTypeID");
 
-                    b.HasIndex("CompanyCarID");
+                    b.HasIndex("CarType_CompanyCarID");
 
                     b.ToTable("CarType");
                 });
@@ -149,13 +149,13 @@ namespace tbkk.Migrations
                     b.Property<int?>("Company_CompanyID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Line")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameCompanyCar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Seat")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
@@ -569,7 +569,7 @@ namespace tbkk.Migrations
                 {
                     b.HasOne("tbkk.Models.CompanyCar", "CompanyCar")
                         .WithMany()
-                        .HasForeignKey("CompanyCarID")
+                        .HasForeignKey("CarType_CompanyCarID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
