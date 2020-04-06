@@ -4,28 +4,63 @@
 @{
     ViewData["Title"] = "Details";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>Details</h1>
 
-<h1>Details</h1>
+            <div>
+                <h4>Part</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Part.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Part.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Part.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Part.Price)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@Model.Part.PartID">Edit</a> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
 
-<div>
-    <h4>Part</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Part.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Part.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Part.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Part.Price)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Part.PartID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
+}

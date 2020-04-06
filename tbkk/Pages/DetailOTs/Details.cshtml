@@ -4,76 +4,113 @@
 @{
     ViewData["Title"] = "Details";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>Details</h1>
 
-<h1>Details</h1>
+            <div>
+                <h4>DetailOT</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.TimeStart)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.TimeEnd)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Hour)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Hour)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Type)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Type)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Status)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Status)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Point)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Point.PointID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.FoodSet.FoodSetID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.OT)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.OT.OTID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.Employee)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.Employee.EmployeeID)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DetailOT.EmployeeAdd)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.DetailOT.EmployeeAdd.EmployeeID)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@Model.DetailOT.DetailOTID">Edit</a> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
 
-<div>
-    <h4>DetailOT</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.TimeStart)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.TimeStart)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.TimeEnd)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.TimeEnd)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.Hour)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.Hour)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.Point)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.Point.PointID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.FoodSet)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.FoodSet.FoodSetID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.OT)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.OT.OTID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.Employee)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.Employee.EmployeeID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailOT.EmployeeAdd)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DetailOT.EmployeeAdd.EmployeeID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.DetailOT.DetailOTID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
+}

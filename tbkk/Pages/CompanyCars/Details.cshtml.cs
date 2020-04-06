@@ -19,9 +19,10 @@ namespace tbkk.Pages.CompanyCars
         }
 
         public CompanyCar CompanyCar { get; set; }
-
+        public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();

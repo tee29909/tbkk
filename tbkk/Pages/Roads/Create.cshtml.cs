@@ -17,9 +17,10 @@ namespace tbkk.Pages.Roads
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             return Page();
         }
 
@@ -30,6 +31,7 @@ namespace tbkk.Pages.Roads
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

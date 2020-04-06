@@ -17,10 +17,11 @@ namespace tbkk.Pages.Points
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["Point_PartID"] = new SelectList(_context.Part, "PartID", "PartID");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["Point_PartID"] = new SelectList(_context.Part, "PartID", "PartID");
             return Page();
         }
 
@@ -31,6 +32,7 @@ namespace tbkk.Pages.Points
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

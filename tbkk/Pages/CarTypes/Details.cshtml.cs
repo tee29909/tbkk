@@ -19,14 +19,14 @@ namespace tbkk.Pages.CarTypes
         }
 
         public CarType CarType { get; set; }
-
+        public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarType = await _context.CarType
                 .Include(c => c.CompanyCar).FirstOrDefaultAsync(m => m.CarTypeID == id);
 

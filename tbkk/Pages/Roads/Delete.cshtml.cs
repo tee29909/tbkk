@@ -20,9 +20,10 @@ namespace tbkk.Pages.Roads
 
         [BindProperty]
         public Part Part { get; set; }
-
+        public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
@@ -39,6 +40,7 @@ namespace tbkk.Pages.Roads
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();

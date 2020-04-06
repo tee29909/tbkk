@@ -4,50 +4,81 @@
 @{
     ViewData["Title"] = "Create";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>Create</h1>
 
-<h1>Create</h1>
+            <h4>FoodSet</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="FoodSet.FoodSetcoManul" class="control-label"></label>
+                            <input asp-for="FoodSet.FoodSetcoManul" class="form-control" />
+                            <span asp-validation-for="FoodSet.FoodSetcoManul" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FoodSet.NameSet" class="control-label"></label>
+                            <input asp-for="FoodSet.NameSet" class="form-control" />
+                            <span asp-validation-for="FoodSet.NameSet" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FoodSet.Price" class="control-label"></label>
+                            <input asp-for="FoodSet.Price" class="form-control" />
+                            <span asp-validation-for="FoodSet.Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FoodSet.Status" class="control-label"></label>
+                            <input asp-for="FoodSet.Status" class="form-control" />
+                            <span asp-validation-for="FoodSet.Status" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FoodSet.Canteen_CanteenID" class="control-label"></label>
+                            <select asp-for="FoodSet.Canteen_CanteenID" class="form-control" asp-items="ViewBag.Canteen_CanteenID"></select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-<h4>FoodSet</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FoodSet.FoodSetcoManul" class="control-label"></label>
-                <input asp-for="FoodSet.FoodSetcoManul" class="form-control" />
-                <span asp-validation-for="FoodSet.FoodSetcoManul" class="text-danger"></span>
+            <div>
+                <a asp-page="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="FoodSet.NameSet" class="control-label"></label>
-                <input asp-for="FoodSet.NameSet" class="form-control" />
-                <span asp-validation-for="FoodSet.NameSet" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodSet.Price" class="control-label"></label>
-                <input asp-for="FoodSet.Price" class="form-control" />
-                <span asp-validation-for="FoodSet.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodSet.Status" class="control-label"></label>
-                <input asp-for="FoodSet.Status" class="form-control" />
-                <span asp-validation-for="FoodSet.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodSet.Canteen_CanteenID" class="control-label"></label>
-                <select asp-for="FoodSet.Canteen_CanteenID" class ="form-control" asp-items="ViewBag.Canteen_CanteenID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+
+
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
 }

@@ -17,11 +17,12 @@ namespace tbkk.Pages.DetailCarQueues
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IList<DetailCarQueue> DetailCarQueue { get;set; }
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             DetailCarQueue = await _context.DetailCarQueue
                 .Include(d => d.CarQueue)
                 .Include(d => d.Employee).ToListAsync();

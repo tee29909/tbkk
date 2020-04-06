@@ -4,36 +4,67 @@
 @{
     ViewData["Title"] = "Create";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
 
-<h1>Create</h1>
+            <h1>Create</h1>
 
-<h4>Part</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Part.Name" class="control-label"></label>
-                <input asp-for="Part.Name" class="form-control" />
-                <span asp-validation-for="Part.Name" class="text-danger"></span>
+            <h4>Part</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Part.Name" class="control-label"></label>
+                            <input asp-for="Part.Name" class="form-control" />
+                            <span asp-validation-for="Part.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Part.Price" class="control-label"></label>
+                            <input asp-for="Part.Price" class="form-control" />
+                            <span asp-validation-for="Part.Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Part.Price" class="control-label"></label>
-                <input asp-for="Part.Price" class="form-control" />
-                <span asp-validation-for="Part.Price" class="text-danger"></span>
+
+            <div>
+                <a asp-page="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
 }

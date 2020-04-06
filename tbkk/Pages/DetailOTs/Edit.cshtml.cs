@@ -18,12 +18,13 @@ namespace tbkk.Pages.DetailOTs
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         [BindProperty]
         public DetailOT DetailOT { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
@@ -52,6 +53,7 @@ namespace tbkk.Pages.DetailOTs
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

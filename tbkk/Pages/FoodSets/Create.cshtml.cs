@@ -17,10 +17,11 @@ namespace tbkk.Pages.FoodSets
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["Canteen_CanteenID"] = new SelectList(_context.Canteen, "CanteenID", "CanteenID");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["Canteen_CanteenID"] = new SelectList(_context.Canteen, "CanteenID", "CanteenID");
             return Page();
         }
 
@@ -31,6 +32,7 @@ namespace tbkk.Pages.FoodSets
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

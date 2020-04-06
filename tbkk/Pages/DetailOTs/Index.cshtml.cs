@@ -19,9 +19,10 @@ namespace tbkk.Pages.DetailOTs
         }
 
         public IList<DetailOT> DetailOT { get;set; }
-
+        public Employee Employee { get; set; }
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             DetailOT = await _context.DetailOT
                 .Include(d => d.Employee)
                 .Include(d => d.EmployeeAdd)

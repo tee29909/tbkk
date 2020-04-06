@@ -17,11 +17,12 @@ namespace tbkk.Pages.Points
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IList<Point> Point { get;set; }
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             Point = await _context.Point
                 .Include(p => p.Part).ToListAsync();
         }

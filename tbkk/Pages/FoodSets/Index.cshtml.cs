@@ -17,11 +17,12 @@ namespace tbkk.Pages.FoodSets
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IList<FoodSet> FoodSet { get;set; }
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             FoodSet = await _context.FoodSet
                 .Include(f => f.Canteen).ToListAsync();
         }

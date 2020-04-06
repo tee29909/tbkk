@@ -17,11 +17,12 @@ namespace tbkk.Pages.LineTokens
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IList<LineToken> LineToken { get;set; }
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             LineToken = await _context.LineToken
                 .Include(l => l.Company).ToListAsync();
         }

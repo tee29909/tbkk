@@ -17,11 +17,12 @@ namespace tbkk.Pages.CompanyCars
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IList<CompanyCar> CompanyCar { get;set; }
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CompanyCar = await _context.CompanyCar
                 .Include(c => c.Company).ToListAsync();
         }

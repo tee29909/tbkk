@@ -4,63 +4,99 @@
 @{
     ViewData["Title"] = "Index";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>Index</h1>
 
-<h1>Index</h1>
+            <p>
+                <a asp-page="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].TimeStart)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].TypeOT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].TypStatus)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OT[0].Company)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OT)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeStart)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Company.Image)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.OTID">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.OTID">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.OTID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].TimeStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].TimeEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].TypeOT)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].TypStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OT[0].Company)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.OT) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeOT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company.Image)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.OTID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OTID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OTID">Delete</a>
-            </td>
-        </tr>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
 }
-    </tbody>
-</table>

@@ -17,12 +17,13 @@ namespace tbkk.Pages.FoodSets
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         [BindProperty]
         public FoodSet FoodSet { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
@@ -40,6 +41,7 @@ namespace tbkk.Pages.FoodSets
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();

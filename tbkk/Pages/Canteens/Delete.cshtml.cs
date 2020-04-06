@@ -20,6 +20,7 @@ namespace tbkk.Pages.Canteens
 
         [BindProperty]
         public Canteen Canteen { get; set; }
+        public Employee Employee { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,7 +28,7 @@ namespace tbkk.Pages.Canteens
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             Canteen = await _context.Canteen
                 .Include(c => c.Company).FirstOrDefaultAsync(m => m.CanteenID == id);
 

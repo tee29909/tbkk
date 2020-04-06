@@ -17,11 +17,12 @@ namespace tbkk.Pages.DetailCarQueues
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public DetailCarQueue DetailCarQueue { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();

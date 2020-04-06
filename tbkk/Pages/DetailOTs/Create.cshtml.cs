@@ -17,10 +17,11 @@ namespace tbkk.Pages.DetailOTs
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["Employee_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
         ViewData["Employee_UserAdd_EmpID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
         ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet, "FoodSetID", "FoodSetID");
         ViewData["OT_OTID"] = new SelectList(_context.OT, "OTID", "OTID");
@@ -35,6 +36,7 @@ namespace tbkk.Pages.DetailOTs
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

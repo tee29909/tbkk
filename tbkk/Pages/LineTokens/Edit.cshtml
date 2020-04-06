@@ -4,42 +4,73 @@
 @{
     ViewData["Title"] = "Edit";
 }
+    <div id="content-wrapper">
+        <div name="55555" class="card-layout ">
+            <h1>Edit</h1>
 
-<h1>Edit</h1>
+            <h4>LineToken</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="LineToken.LineTokenID" />
+                        <div class="form-group">
+                            <label asp-for="LineToken.TokenCar" class="control-label"></label>
+                            <input asp-for="LineToken.TokenCar" class="form-control" />
+                            <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LineToken.TokenFood" class="control-label"></label>
+                            <input asp-for="LineToken.TokenFood" class="form-control" />
+                            <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LineToken.Company_CompanyID" class="control-label"></label>
+                            <select asp-for="LineToken.Company_CompanyID" class="form-control" asp-items="ViewBag.Company_CompanyID"></select>
+                            <span asp-validation-for="LineToken.Company_CompanyID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-<h4>LineToken</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="LineToken.LineTokenID" />
-            <div class="form-group">
-                <label asp-for="LineToken.TokenCar" class="control-label"></label>
-                <input asp-for="LineToken.TokenCar" class="form-control" />
-                <span asp-validation-for="LineToken.TokenCar" class="text-danger"></span>
+            <div>
+                <a asp-page="./Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="LineToken.TokenFood" class="control-label"></label>
-                <input asp-for="LineToken.TokenFood" class="form-control" />
-                <span asp-validation-for="LineToken.TokenFood" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LineToken.Company_CompanyID" class="control-label"></label>
-                <select asp-for="LineToken.Company_CompanyID" class="form-control" asp-items="ViewBag.Company_CompanyID"></select>
-                <span asp-validation-for="LineToken.Company_CompanyID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+
+
+
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    var nav = document.getElementById("Management");
+    var name = document.getElementById("nav_name").innerHTML = "Name: @Model.Employee.FirstName @Model.Employee.LastName Position: @Model.Employee.Position.PositionName";
+
+    var nav2 = document.getElementById("Management OT");
+        @{ if (Model.Employee.Position.PositionName.Equals("Manager") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav.style.display = "block";
+            }
+            if (Model.Employee.Department.DepartmentName.Equals("Human Resource") || Model.Employee.Position.PositionName.Equals("admin"))
+            {
+                @:nav2.style.display = "block";
+            }
+        }
+        var img = document.getElementById("myImg").src = "/Upload/@Model.Employee.Image";
+
+
+
+    </script>
+
 }

@@ -17,7 +17,8 @@ namespace tbkk.Pages.CarTypes
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
+        
         [BindProperty]
         public CarType CarType { get; set; }
 
@@ -27,7 +28,7 @@ namespace tbkk.Pages.CarTypes
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarType = await _context.CarType
                 .Include(c => c.CompanyCar).FirstOrDefaultAsync(m => m.CarTypeID == id);
 
@@ -42,13 +43,15 @@ namespace tbkk.Pages.CarTypes
         {
             if (id == null)
             {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarType = await _context.CarType.FindAsync(id);
 
             if (CarType != null)
             {
+               
                 _context.CarType.Remove(CarType);
                 await _context.SaveChangesAsync();
             }

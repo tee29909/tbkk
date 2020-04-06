@@ -17,10 +17,12 @@ namespace tbkk.Pages.CarTypes
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
+        
         public IActionResult OnGet()
         {
-        ViewData["CarType_CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["CarType_CompanyCarID"] = new SelectList(_context.CompanyCar, "CompanyCarID", "CompanyCarID");
             return Page();
         }
 
@@ -33,9 +35,10 @@ namespace tbkk.Pages.CarTypes
         {
             if (!ModelState.IsValid)
             {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
                 return Page();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             _context.CarType.Add(CarType);
             await _context.SaveChangesAsync();
 

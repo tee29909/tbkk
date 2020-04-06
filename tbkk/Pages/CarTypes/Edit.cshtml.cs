@@ -21,14 +21,15 @@ namespace tbkk.Pages.CarTypes
 
         [BindProperty]
         public CarType CarType { get; set; }
-
+        public Employee Employee { get; set; }
+       
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             CarType = await _context.CarType
                 .Include(c => c.CompanyCar).FirstOrDefaultAsync(m => m.CarTypeID == id);
 
@@ -46,9 +47,10 @@ namespace tbkk.Pages.CarTypes
         {
             if (!ModelState.IsValid)
             {
+                Employee = HttpContext.Session.GetLogin(_context.Employee);
                 return Page();
             }
-
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             _context.Attach(CarType).State = EntityState.Modified;
 
             try

@@ -11,6 +11,7 @@ namespace tbkk.Pages.Roads
 {
     public class IndexModel : PageModel
     {
+        public Employee Employee { get; set; }
         private readonly tbkk.Models.tbkkdbContext _context;
 
         public IndexModel(tbkk.Models.tbkkdbContext context)
@@ -22,6 +23,8 @@ namespace tbkk.Pages.Roads
 
         public async Task OnGetAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+
             Part = await _context.Part.ToListAsync();
         }
     }

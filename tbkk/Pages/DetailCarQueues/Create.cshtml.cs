@@ -17,10 +17,11 @@ namespace tbkk.Pages.DetailCarQueues
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
-        ViewData["DetailCarQueue_CarQueueID"] = new SelectList(_context.CarQueue, "CarQueueID", "CarQueueID");
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
+            ViewData["DetailCarQueue_CarQueueID"] = new SelectList(_context.CarQueue, "CarQueueID", "CarQueueID");
         ViewData["DetailCarQueue_EmployeeID"] = new SelectList(_context.Employee, "EmployeeID", "EmployeeID");
             return Page();
         }
@@ -32,6 +33,7 @@ namespace tbkk.Pages.DetailCarQueues
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (!ModelState.IsValid)
             {
                 return Page();

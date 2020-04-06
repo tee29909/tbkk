@@ -20,9 +20,10 @@ namespace tbkk.Pages.Points
 
         [BindProperty]
         public Point Point { get; set; }
-
+        public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
@@ -40,6 +41,7 @@ namespace tbkk.Pages.Points
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();

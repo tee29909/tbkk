@@ -17,11 +17,12 @@ namespace tbkk.Pages.Ots
         {
             _context = context;
         }
-
+        public Employee Employee { get; set; }
         public OT OT { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Employee = HttpContext.Session.GetLogin(_context.Employee);
             if (id == null)
             {
                 return NotFound();
