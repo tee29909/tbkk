@@ -46,10 +46,17 @@ namespace tbkk.Pages
                 ModelState.AddModelError("pass", "The Password is incorrect.");
                 return Page();
             }
-
-
-            var checkLogin = await _context.Login.Include(e => e.Employee)
-                .AnyAsync(u => u.Username.Equals(Login.Username) && u.Username.Equals(Login.Password));
+            var checkLogin = false;
+            try
+            {
+                checkLogin = await _context.Login.Include(e => e.Employee)
+              .AnyAsync(u => u.Username.Equals(Login.Username) && u.Username.Equals(Login.Password));
+            }
+            catch (Exception)
+            {
+                checkLogin = false;
+            }
+          
 
             if (checkLogin == false)
             {

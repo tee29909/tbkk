@@ -62,7 +62,7 @@
                                                 <label asp-for="Canteen.Call" class="control-label"></label>
                                                 <input asp-for="Canteen.Call" class="form-control" />
                                                 <input hidden asp-for="Canteen.Status" class="form-control" value="Close" />
-                                                <input hidden asp-for="Canteen.Canteen_CompanyID" class="form-control" value="@Model.Employee.Employee_CompanyID" />
+                                                <input hidden asp-for="Canteen.Canteen_CompanyID" class="form-control" value="@Model.Employee.Company_CompanyID" />
                                                 <span asp-validation-for="Canteen.Call" class="text-danger"></span>
                                             </div>
                                         </div>

@@ -136,9 +136,9 @@ namespace tbkk.Pages.listOTs
                 Depasments DataDepasments = new Depasments();
                 DataDepasments.DepasmentsName = i.DepartmentName;
                 DataDepasments.DepasmentsID = i.DepartmentID;
-                DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.FoodCount = DetailOTnew.Where(d => !d.FoodSet.NameSet.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.DepasmentsCount = DetailOTnew.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Department_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.FoodCount = DetailOTnew.Where(d => !d.FoodSet.NameSet.Equals("No") && d.Employee.Department_DepartmentID == i.DepartmentID).ToList().Count;
                 List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
@@ -147,7 +147,7 @@ namespace tbkk.Pages.listOTs
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
                     IList<DetailOT> DataPart = DetailOTnew.Where(d => !d.Point.Part.Name.Equals("No")).ToList();
-                    DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
+                    DataPart = DataPart.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.Point.Point_PartID == j.PartID).ToList();
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (parts.PartsCount != 0)
@@ -166,7 +166,7 @@ namespace tbkk.Pages.listOTs
                     foods.FoodID = j.FoodSetID;
                     foods.FoodName = j.NameSet;
                     IList<DetailOT> DataPart = DetailOTnew.Where(d => !d.FoodSet.NameSet.Equals("No")).ToList();
-                    DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
+                    DataPart = DataPart.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.FoodSet_FoodSetID == j.FoodSetID).ToList();
                     foods.FoodsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (foods.FoodsCount != 0)
@@ -291,7 +291,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.Point.Part).Where(d => d.OT_OTID == Did && d.Status.Equals("Allow")).ToListAsync();
             Part = await _context.Part.Where(a=> !a.Name.Equals("No")).ToListAsync();
             FoodSet =await _context.FoodSet.Where(a => !a.NameSet.Equals("No")).ToListAsync();
-            CarType = await _context.CarType.Include(e => e.CompanyCar.Company).Where(e =>e.CompanyCar.CompanyCarID == Employee.Employee_CompanyID && e.CompanyCar.Status.Equals("Open") && e.Status.Equals("Open")).ToListAsync();
+            CarType = await _context.CarType.Include(e => e.CompanyCar.Company).Where(e =>e.CompanyCar.CompanyCarID == Employee.Company_CompanyID && e.CompanyCar.Status.Equals("Open") && e.Status.Equals("Open")).ToListAsync();
             CarType = CarType.OrderByDescending(o => o.Seat).ToList();
         }
 

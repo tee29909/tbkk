@@ -93,9 +93,9 @@ namespace tbkk.Pages.listOTs
             
 
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            Employeelist = await _context.Employee.Where(d => d.Employee_DepartmentID == Employee.Employee_DepartmentID && d.Employee_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            Employeelist = await _context.Employee.Where(d => d.Department_DepartmentID == Employee.Department_DepartmentID && d.Company_CompanyID == Employee.Company_CompanyID).ToListAsync();
 
-            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet.Include(a => a.Canteen).Where(e => e.Canteen.Canteen_CompanyID == Employee.Employee_CompanyID && e.Canteen.Status.Equals("Open") && e.Status.Equals("Open")), "FoodSetID", "NameSet");
+            ViewData["FoodSet_FoodSetID"] = new SelectList(_context.FoodSet.Include(a => a.Canteen).Where(e => e.Canteen.Canteen_CompanyID == Employee.Company_CompanyID && e.Canteen.Status.Equals("Open") && e.Status.Equals("Open")), "FoodSetID", "NameSet");
             ViewData["Point_PointID"] = new SelectList(_context.Point, "PointID", "NamePoint");
 
 
@@ -106,7 +106,7 @@ namespace tbkk.Pages.listOTs
                 .Include(d => d.FoodSet)
                 .Include(d => d.OT)
                 .Include(d => d.Point.Part).Where(d => d.OT.date >= date).ToListAsync();
-            var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Employee_CompanyID && d.TypStatus.Equals("Open")).ToListAsync();
+            var OTlists = await _context.OT.Where(d => d.date >= date && d.OT_CompanyID == Employee.Company_CompanyID && d.TypStatus.Equals("Open")).ToListAsync();
 
             var OTLadd = new List<OTL>();
             foreach (var item in OTlists)
@@ -114,7 +114,7 @@ namespace tbkk.Pages.listOTs
                 var OTA = new OTL();
                 OTA.OT = item;
                 OTA.DetailOT = new List<DetailOT>();
-                var detailAdd = DetailOTList.Where(d => d.OT_OTID == item.OTID && d.Employee.Employee_DepartmentID ==Employee.Employee_DepartmentID).ToList();
+                var detailAdd = DetailOTList.Where(d => d.OT_OTID == item.OTID && d.Employee.Department_DepartmentID ==Employee.Department_DepartmentID).ToList();
                 if (detailAdd.Count != 0)
                 {
                     OTA.DetailOT = detailAdd;
@@ -389,7 +389,7 @@ namespace tbkk.Pages.listOTs
 
 
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            var dateOT = _context.OT.Any(e => e.date == OT.date && e.OT_CompanyID == Employee.Employee_CompanyID);
+            var dateOT = _context.OT.Any(e => e.date == OT.date && e.OT_CompanyID == Employee.Company_CompanyID);
             if (dateOT == false)
             {
 
@@ -402,7 +402,7 @@ namespace tbkk.Pages.listOTs
             {
 
 
-                OT = await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date && e.OT_CompanyID == Employee.Employee_CompanyID);
+                OT = await _context.OT.FirstOrDefaultAsync(e => e.date == OT.date && e.OT_CompanyID == Employee.Company_CompanyID);
                 if (OT.TypStatus.Equals("Close") || OT.TypStatus.Equals("Manage Car"))
                 {
 
@@ -511,7 +511,7 @@ namespace tbkk.Pages.listOTs
 
         private async Task addnewOT()
         {
-            OT.OT_CompanyID = Employee.Employee_CompanyID;
+            OT.OT_CompanyID = Employee.Company_CompanyID;
             _context.OT.Add(OT);
             await _context.SaveChangesAsync();
         }

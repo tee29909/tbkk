@@ -139,7 +139,7 @@ namespace tbkk.Pages.listOTs
                 return RedirectToPage("./index");
             }
 
-            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToArrayAsync();
+            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Department_DepartmentID == Employee.Department_DepartmentID).ToArrayAsync();
             
             foreach (var item in newDetailOTs)
             {
@@ -185,7 +185,7 @@ namespace tbkk.Pages.listOTs
                 return RedirectToPage("./index");
             }
 
-            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID && n.Status.Equals("Pending for approval")).ToArrayAsync();
+            var newDetailOTs = await _context.DetailOT.Include(d => d.Employee).Where(n => n.OT_OTID == id && n.Employee.Department_DepartmentID == Employee.Department_DepartmentID && n.Status.Equals("Pending for approval")).ToArrayAsync();
 
             foreach (var item in newDetailOTs)
             {
@@ -231,7 +231,7 @@ namespace tbkk.Pages.listOTs
             .Include(d => d.Point.Part).Where(d => d.OT_OTID == id).ToListAsync();
 
 
-            DetailOT = DetailOT.Where(d => d.Employee.Employee_DepartmentID == Employee.Employee_DepartmentID).ToList();
+            DetailOT = DetailOT.Where(d => d.Employee.Department_DepartmentID == Employee.Department_DepartmentID).ToList();
             var add = new List<list>();
             foreach (var item in DetailOT)
             {

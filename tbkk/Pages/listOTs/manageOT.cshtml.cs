@@ -43,7 +43,7 @@ namespace tbkk.Pages.listOTs
             {
                 return NotFound();
             }
-            var CompanyCarList = await _context.CompanyCar.Where(e => e.Company_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            var CompanyCarList = await _context.CompanyCar.Where(e => e.Company_CompanyID == Employee.Company_CompanyID).ToListAsync();
             CompanyCar = CompanyCarList.FirstOrDefault(e => e.Status.Equals("Open"));
             return Page();
         }

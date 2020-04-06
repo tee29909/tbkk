@@ -34,7 +34,7 @@ namespace tbkk.Pages.listOTs
         private async Task Lode()
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
-            CanteenList = await _context.Canteen.Include(c => c.Company).Where( c=>c.Canteen_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+            CanteenList = await _context.Canteen.Include(c => c.Company).Where( c=>c.Canteen_CompanyID == Employee.Company_CompanyID).ToListAsync();
             select = CanteenList.FirstOrDefault(e => e.Status.Equals("Open"));
             CanteenList = CanteenList.Where(c => c.Status.Equals("Close") ).ToList();
         }

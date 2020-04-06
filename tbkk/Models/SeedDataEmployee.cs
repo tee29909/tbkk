@@ -26,7 +26,8 @@ namespace tbkk.Models
      new Employee
      {
 
-         Employee_Num = 1,
+         Employee_Num = "1",
+         Salary = 20.4,
          FirstName = "admin",
 
         
@@ -51,15 +52,15 @@ namespace tbkk.Models
 
          Status = "working",
 
-         Employee_CompanyID = 1,
+         Company_CompanyID = 1,
 
-         Employee_DepartmentID = 1,
+         Department_DepartmentID = 1,
 
-         Employee_LocationID = 1,
+         Location_LocationID = 1,
 
-         Employee_EmployeeTypeID = 1,
+         EmployeeType_EmployeeTypeID = 1,
 
-         Employee_PositionID = 1
+         Position_PositionID = 1
      }
      );
 
@@ -80,7 +81,8 @@ namespace tbkk.Models
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "Athena",
 
@@ -102,22 +104,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 5,
+                        Department_DepartmentID = 5,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "Arista",
 
                         LastName = "Carter",
@@ -138,22 +141,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 5,
+                        Department_DepartmentID = 5,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "Aria",
 
                         LastName = "Campbell",
@@ -174,21 +178,22 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 5,
+                        Department_DepartmentID = 5,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "Ammie",
 
@@ -210,21 +215,22 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 4,
+                        Department_DepartmentID = 4,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "Alyssa",
 
@@ -246,21 +252,22 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 4,
+                        Department_DepartmentID = 4,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "Angela",
 
                         LastName = "Baker",
@@ -281,21 +288,22 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 3,
+                        Department_DepartmentID = 3,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "Abigail",
 
@@ -317,22 +325,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 3,
+                        Department_DepartmentID = 3,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                     );
                 context.Employee.AddRange(
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "Amber",
 
                         LastName = "Alexander",
@@ -353,15 +362,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 2,
+                        Department_DepartmentID = 2,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 2
+                        Position_PositionID = 2
                     }
                     );
 
@@ -369,7 +378,8 @@ namespace tbkk.Models
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "Amelia",
 
@@ -391,15 +401,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 2,
+                        Department_DepartmentID = 2,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 2
+                        Position_PositionID = 2
                     }
                     );
 
@@ -407,7 +417,8 @@ namespace tbkk.Models
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "brooke",
 
@@ -429,15 +440,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 2,
+                        Department_DepartmentID = 2,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 2
+                        Position_PositionID = 2
                     }
                    );
                 //12
@@ -445,7 +456,8 @@ namespace tbkk.Models
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "alice",
 
                         LastName = "anissa",
@@ -466,22 +478,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 5,
+                        Department_DepartmentID = 5,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                    );
                 //13
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "ava",
 
@@ -503,15 +516,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 4,
+                        Department_DepartmentID = 4,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                    );
                 //14
@@ -519,7 +532,8 @@ namespace tbkk.Models
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "opal",
 
                         LastName = "sophie",
@@ -540,22 +554,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 4,
+                        Department_DepartmentID = 4,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                    );
                 //15
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "max",
 
@@ -577,22 +592,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 3,
+                        Department_DepartmentID = 3,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                    );
                 //16
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "layla",
 
@@ -614,22 +630,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 2,
+                        Department_DepartmentID = 2,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 2
+                        Position_PositionID = 2
                     }
                    );
                 //17
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "morgen",
 
@@ -651,15 +668,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 3,
+                        Department_DepartmentID = 3,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                    );
                 //18
@@ -667,7 +684,8 @@ namespace tbkk.Models
                     new Employee
                     {
 
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
                         FirstName = "oscar",
 
                         LastName = "serafim",
@@ -688,22 +706,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 1,
+                        Department_DepartmentID = 1,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 2
+                        Position_PositionID = 2
                     }
                    );
                 //19
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "evan",
 
@@ -725,22 +744,23 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 2,
+                        Department_DepartmentID = 2,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 2,
+                        EmployeeType_EmployeeTypeID = 2,
 
-                        Employee_PositionID = 3
+                        Position_PositionID = 3
                     }
                    );
                 //20
                 context.Employee.AddRange(
                     new Employee
                     {
-                        Employee_Num = 1,
+                        Employee_Num = "1",
+                        Salary = 20.4,
 
                         FirstName = "harry",
 
@@ -762,15 +782,15 @@ namespace tbkk.Models
 
                         Status = "working",
 
-                        Employee_CompanyID = 1,
+                        Company_CompanyID = 1,
 
-                        Employee_DepartmentID = 5,
+                        Department_DepartmentID = 5,
 
-                        Employee_LocationID = 1,
+                        Location_LocationID = 1,
 
-                        Employee_EmployeeTypeID = 1,
+                        EmployeeType_EmployeeTypeID = 1,
 
-                        Employee_PositionID = 4
+                        Position_PositionID = 4
                     }
                    );
 

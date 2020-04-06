@@ -57,7 +57,7 @@ namespace tbkk.Migrations
                     LocationID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LocationName = table.Column<string>(nullable: false),
-                    Note = table.Column<string>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -211,53 +211,54 @@ namespace tbkk.Migrations
                 {
                     EmployeeID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Employee_Num = table.Column<int>(nullable: false),
+                    Employee_Num = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Gender = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
+                    Salary = table.Column<double>(nullable: false),
                     Call = table.Column<string>(nullable: true),
                     Line = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
                     Addr = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Status = table.Column<string>(nullable: true),
-                    Employee_CompanyID = table.Column<int>(nullable: false),
-                    Employee_DepartmentID = table.Column<int>(nullable: false),
-                    Employee_LocationID = table.Column<int>(nullable: false),
-                    Employee_EmployeeTypeID = table.Column<int>(nullable: false),
-                    Employee_PositionID = table.Column<int>(nullable: false)
+                    Company_CompanyID = table.Column<int>(nullable: false),
+                    Department_DepartmentID = table.Column<int>(nullable: false),
+                    Location_LocationID = table.Column<int>(nullable: false),
+                    EmployeeType_EmployeeTypeID = table.Column<int>(nullable: false),
+                    Position_PositionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employee", x => x.EmployeeID);
                     table.ForeignKey(
-                        name: "FK_Employee_Company_Employee_CompanyID",
-                        column: x => x.Employee_CompanyID,
+                        name: "FK_Employee_Company_Company_CompanyID",
+                        column: x => x.Company_CompanyID,
                         principalTable: "Company",
                         principalColumn: "CompanyID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employee_Department_Employee_DepartmentID",
-                        column: x => x.Employee_DepartmentID,
+                        name: "FK_Employee_Department_Department_DepartmentID",
+                        column: x => x.Department_DepartmentID,
                         principalTable: "Department",
                         principalColumn: "DepartmentID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employee_EmployeeType_Employee_EmployeeTypeID",
-                        column: x => x.Employee_EmployeeTypeID,
+                        name: "FK_Employee_EmployeeType_EmployeeType_EmployeeTypeID",
+                        column: x => x.EmployeeType_EmployeeTypeID,
                         principalTable: "EmployeeType",
                         principalColumn: "EmployeeTypeID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employee_Location_Employee_LocationID",
-                        column: x => x.Employee_LocationID,
+                        name: "FK_Employee_Location_Location_LocationID",
+                        column: x => x.Location_LocationID,
                         principalTable: "Location",
                         principalColumn: "LocationID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employee_Position_Employee_PositionID",
-                        column: x => x.Employee_PositionID,
+                        name: "FK_Employee_Position_Position_PositionID",
+                        column: x => x.Position_PositionID,
                         principalTable: "Position",
                         principalColumn: "PositionID",
                         onDelete: ReferentialAction.Cascade);
@@ -509,29 +510,29 @@ namespace tbkk.Migrations
                 column: "Point_PointID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Employee_CompanyID",
+                name: "IX_Employee_Company_CompanyID",
                 table: "Employee",
-                column: "Employee_CompanyID");
+                column: "Company_CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Employee_DepartmentID",
+                name: "IX_Employee_Department_DepartmentID",
                 table: "Employee",
-                column: "Employee_DepartmentID");
+                column: "Department_DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Employee_EmployeeTypeID",
+                name: "IX_Employee_EmployeeType_EmployeeTypeID",
                 table: "Employee",
-                column: "Employee_EmployeeTypeID");
+                column: "EmployeeType_EmployeeTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Employee_LocationID",
+                name: "IX_Employee_Location_LocationID",
                 table: "Employee",
-                column: "Employee_LocationID");
+                column: "Location_LocationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_Employee_PositionID",
+                name: "IX_Employee_Position_PositionID",
                 table: "Employee",
-                column: "Employee_PositionID");
+                column: "Position_PositionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FoodSet_Canteen_CanteenID",

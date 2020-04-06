@@ -268,7 +268,7 @@ namespace tbkk
             timelist = massCarQ();
             food = foodMass();
             LineToken = await _context.LineToken
-                .Include(l => l.Company).FirstOrDefaultAsync(e => e.Company_CompanyID == Employee.Employee_CompanyID);
+                .Include(l => l.Company).FirstOrDefaultAsync(e => e.Company_CompanyID == Employee.Company_CompanyID);
             ViewData["Company_CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyName");
         }
         private List<Depasments> OTDetailOTList()
@@ -276,15 +276,15 @@ namespace tbkk
             List<Depasments> add = new List<Depasments>();
             foreach (var i in Department)
             {
-                var DataParts = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
+                var DataParts = DetailOTnew.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID).ToList();
                 Depasments DataDepasments = new Depasments();
                 DataDepasments.DepasmentsName = i.DepartmentName;
                 DataDepasments.DepasmentsID = i.DepartmentID;
                 DataDepasments.DepasmentsCount = DataParts.Count;
 
 
-                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Employee_DepartmentID == i.DepartmentID).ToList().Count;
-                DataDepasments.FoodCount = DetailOTnew.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID && !d.FoodSet.NameSet.Equals("No")).ToList().Count;
+                DataDepasments.CarCount = DetailOTnew.Where(d => !d.Type.Equals("No") && d.Employee.Department_DepartmentID == i.DepartmentID).ToList().Count;
+                DataDepasments.FoodCount = DetailOTnew.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID && !d.FoodSet.NameSet.Equals("No")).ToList().Count;
                 List<Parts> Listparts = new List<Parts>();
                 foreach (var j in Part)
                 {
@@ -292,7 +292,7 @@ namespace tbkk
                     parts.PartID = j.PartID;
                     parts.PartName = j.Name;
                     IList<DetailOT> DataPart = DataParts.Where(d => !d.Point.Part.Name.Equals("No")).ToList();
-                    DataPart = DataPart.Where(d => d.Employee.Employee_DepartmentID == i.DepartmentID).ToList();
+                    DataPart = DataPart.Where(d => d.Employee.Department_DepartmentID == i.DepartmentID).ToList();
                     DataPart = DataPart.Where(d => d.Point.Point_PartID == j.PartID).ToList();
                     parts.PartsCount = DataPart.Where(d => !d.Type.Equals("No")).ToList().Count;
                     if (parts.PartsCount != 0)

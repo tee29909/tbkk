@@ -12,7 +12,7 @@ namespace tbkk.Models
         [Required]
         [Display(Name = "LocationName")]
         public string LocationName { get; set; }
-        [Required]
+
         [Display(Name = "Note")]
         public string Note { get; set; }
         [Required]

@@ -279,29 +279,23 @@ namespace tbkk.Migrations
                     b.Property<string>("Call")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Company_CompanyID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Department_DepartmentID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Employee_CompanyID")
+                    b.Property<int>("EmployeeType_EmployeeTypeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Employee_DepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Employee_EmployeeTypeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Employee_LocationID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Employee_Num")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Employee_PositionID")
-                        .HasColumnType("int");
+                    b.Property<string>("Employee_Num")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -318,20 +312,29 @@ namespace tbkk.Migrations
                     b.Property<string>("Line")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Location_LocationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Position_PositionID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Salary")
+                        .HasColumnType("float");
+
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeID");
 
-                    b.HasIndex("Employee_CompanyID");
+                    b.HasIndex("Company_CompanyID");
 
-                    b.HasIndex("Employee_DepartmentID");
+                    b.HasIndex("Department_DepartmentID");
 
-                    b.HasIndex("Employee_EmployeeTypeID");
+                    b.HasIndex("EmployeeType_EmployeeTypeID");
 
-                    b.HasIndex("Employee_LocationID");
+                    b.HasIndex("Location_LocationID");
 
-                    b.HasIndex("Employee_PositionID");
+                    b.HasIndex("Position_PositionID");
 
                     b.ToTable("Employee");
                 });
@@ -417,7 +420,6 @@ namespace tbkk.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
@@ -631,31 +633,31 @@ namespace tbkk.Migrations
                 {
                     b.HasOne("tbkk.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("Employee_CompanyID")
+                        .HasForeignKey("Company_CompanyID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("tbkk.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("Employee_DepartmentID")
+                        .HasForeignKey("Department_DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("tbkk.Models.EmployeeType", "EmployeeType")
                         .WithMany()
-                        .HasForeignKey("Employee_EmployeeTypeID")
+                        .HasForeignKey("EmployeeType_EmployeeTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("tbkk.Models.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("Employee_LocationID")
+                        .HasForeignKey("Location_LocationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("tbkk.Models.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("Employee_PositionID")
+                        .HasForeignKey("Position_PositionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

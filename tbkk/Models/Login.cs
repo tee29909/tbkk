@@ -16,5 +16,10 @@ namespace tbkk.Models
         [ForeignKey("Employee")]
         public int Login_EmployeeID { get; set; }
         public Employee Employee { get; set; }
+
+        public static implicit operator Login(bool v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

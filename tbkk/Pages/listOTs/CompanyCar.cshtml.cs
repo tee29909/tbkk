@@ -39,7 +39,7 @@ namespace tbkk.Pages.listOTs
             Employee = HttpContext.Session.GetLogin(_context.Employee);
 
             CompanyCarList = await _context.CompanyCar
-               .Include(c => c.Company).Where(e => e.Company_CompanyID == Employee.Employee_CompanyID).ToListAsync();
+               .Include(c => c.Company).Where(e => e.Company_CompanyID == Employee.Company_CompanyID).ToListAsync();
             select = new CompanyCar();
             select = CompanyCarList.FirstOrDefault(e => e.Status.Equals("Open"));
             CompanyCarList = CompanyCarList.Where(e => e.Status.Equals("Close")).ToList();

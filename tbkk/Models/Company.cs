@@ -8,10 +8,11 @@ namespace tbkk.Models
 {
     public class Company
     {
-        [Key]
+        
         public int CompanyID { get; set; }
         [Display(Name = "CompanyName")]
         public string CompanyName { get; set; }
+
         [Required]
         [Display(Name = "Image")]
         public string Image { get; set; }

@@ -34,7 +34,7 @@ namespace tbkk.Pages.listOTs
         {
             Employee = HttpContext.Session.GetLogin(_context.Employee);
             LineToken = await _context.LineToken
-                .Include(l => l.Company).FirstOrDefaultAsync(e => e.Company_CompanyID == Employee.Employee_CompanyID);
+                .Include(l => l.Company).FirstOrDefaultAsync(e => e.Company_CompanyID == Employee.Company_CompanyID);
         }
 
         public async Task<IActionResult> OnPostAsync()
